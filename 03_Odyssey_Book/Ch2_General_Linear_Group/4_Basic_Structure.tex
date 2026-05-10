@@ -1,0 +1,250 @@
+\documentclass[../Odyssey_Project.tex]{subfiles}
+
+\begin{document}
+\setcounter{section}{3}
+\section{Basic Structure}
+
+\subsubsection*{Setup and notation}
+\begin{itemize}
+    \item $F$ a field, $n \in \N$. $\mathcal{M}_n(F)$ denotes the set of all $n \times n$ matrices with entries in $F$; we write $M = (m_{ij})$ with $m_{ij} \in F$ the $(i,j)$-entry (row $i$, column $j$).
+    \item The \emph{general linear group} $\mathrm{GL}(n, F)$ is the subset of $\mathcal{M}_n(F)$ of invertible matrices, equivalently those with non-zero determinant. It forms a group under matrix multiplication; $I$ denotes the identity.
+    \item More generally, for a finite-dimensional $F$-vector space $V$, $\mathrm{GL}(V)$ is the group of invertible linear transformations of $V$ under composition. Taking $V = F^n$ recovers $\mathrm{GL}(n, F)$ up to obvious isomorphism, and any $n$-dimensional $F$-vector space is isomorphic to $F^n$, so we lose nothing by working with $\mathrm{GL}(n, F)$.
+    \item If $F$ is finite, then $|F| = p^a$ for a prime $p$ and $a \in \N$ (Moore's theorem, 1893). For $q$ a prime power we write $\mathrm{GL}(n, q)$ for $\mathrm{GL}(n, F)$ where $F$ is the unique field of order $q$.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:4.1}
+Let $E$ be a finite abelian group of exponent $p$, where $p$ is prime. Then $\mathrm{Aut}(E) \cong \mathrm{GL}(n, p)$, where $n \in \N$ is such that $|E| = p^n$.
+\end{proposition}
+
+(Recall that the exponent of a group is the least common multiple of the orders of its elements.)
+
+\begin{proof}\end{proof}
+
+\subsubsection*{Elementary abelian \texorpdfstring{$p$}{p}-groups}
+\begin{itemize}
+    \item If $E$ is as in Proposition~\ref{prop:4.1} with basis $\{x_1, \ldots, x_n\}$ over the field of $p$ elements, then as groups $E = \langle x_1 \rangle \times \cdots \times \langle x_n \rangle$ with each $\langle x_i \rangle$ cyclic of order $p$.
+    \item Hence any finite abelian group of prime exponent $p$ is isomorphic with a direct product of copies of $\Z_p$. Such groups are called \emph{elementary abelian $p$-groups}.
+    \item The \emph{rank} of an elementary abelian $p$-group $E$ is $n$, where $|E| = p^n$.
+    \item In particular $\mathrm{Aut}(\Z_p) \cong \mathrm{GL}(1, p) \cong (\Z/p\Z)^\times$ by Proposition~\ref{prop:4.1}; this was previously established in Proposition~\ref{prop:2.1}.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:4.2}
+Let $n \in \N$, and let $q$ be a prime power. Then
+\[
+|\mathrm{GL}(n, q)| = \prod_{k=1}^n (q^n - q^{k-1}) = q^{\frac{n(n-1)}{2}} (q^n - 1) \cdots (q - 1).
+\]
+\end{proposition}
+
+\begin{proof}\end{proof}
+
+\subsubsection*{Fixing notation for the section}
+\begin{itemize}
+    \item We now fix a field $F$ and some $n \in \N$, and write $G$ instead of $\mathrm{GL}(n, F)$.
+    \item For $M = (m_{ij}) \in \mathcal{M}_n(F)$: the \emph{main diagonal} of $M$ consists of the entries $m_{ii}$ for $1 \leq i \leq n$.
+    \item $M$ is \emph{diagonal} if its only non-zero entries lie on the main diagonal.
+    \item $M$ is \emph{upper triangular} if all entries below the main diagonal are zero, i.e.\ $m_{ij} = 0$ whenever $i > j$.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:4.3}
+The set $B$ consisting of all invertible upper triangular matrices is a subgroup of $G$, called the \emph{standard Borel subgroup}.
+\end{proposition}
+
+\begin{proof}\end{proof}
+
+More generally, a \emph{Borel subgroup} of $G$ is any conjugate of the standard Borel subgroup $B$.
+
+\subsubsection*{Permutation matrices}
+\begin{itemize}
+    \item A \emph{permutation matrix} is a matrix in which every row and column has a unique non-zero entry, and all non-zero entries equal $1$.
+    \item The identity matrix is a permutation matrix; every permutation matrix is obtained from $I$ by switching columns (or rows).
+    \item Every permutation matrix is orthogonal, so its inverse (= transpose) is again a permutation matrix. Hence all $n \times n$ permutation matrices lie in $G$.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:4.4}
+The set $W$ consisting of all permutation matrices is a subgroup of $G$, called the \emph{Weyl subgroup}.
+\end{proposition}
+
+\begin{proof}\end{proof}
+
+\subsubsection*{Action on the standard basis}
+\begin{itemize}
+    \item Let $V_n(F)$ denote the vector space of $n$-dimensional column vectors with entries in $F$, and let $\mathbf{v}_1, \ldots, \mathbf{v}_n$ be the standard basis.
+    \item Multiplying $\mathbf{v}_i$ on the left by an $n \times n$ matrix $M$ produces the $i$th column of $M$; we say that $M$ \emph{sends} $\mathbf{v}_i$ to the $i$th column of $M$.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:4.5}
+$W \cong S_n$.
+\end{proposition}
+
+\begin{proof}\end{proof}
+
+\subsubsection*{Permutation matrices as permutations}
+\begin{itemize}
+    \item We often implicitly regard a permutation matrix $w$ as the element of $S_n$ sending $i$ to $j$, where $\mathbf{v}_j$ is the $i$th column of $w$.
+    \item For example, the matrix
+    \[
+    \begin{pmatrix} 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \\ 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \end{pmatrix}
+    \]
+    corresponds to $(1\;3)(2\;4) \in S_4$, and so if $w$ is this matrix then we may write $w(1) = 3$, and so forth.
+    \item Useful observation: if $w(i) = j$, then for any $M \in \mathcal{M}_n(F)$, the $j$th row of $wM$ equals the $i$th row of $M$, and the $i$th column of $Mw$ equals the $j$th column of $M$.
+\end{itemize}
+
+\subsubsection*{Transvections}
+\begin{itemize}
+    \item For distinct $1 \leq i, j \leq n$ and $\alpha \in F$, define $X_{ij}(\alpha)$ to be the $n \times n$ matrix whose $(k,l)$-entry equals $\alpha$ if $(k,l) = (i,j)$ and equals $\delta_{kl}$ for all other $(k,l)$.
+    \item For example, $X_{23}(\alpha) \in \mathcal{M}_3(F)$ is the matrix
+    \[
+    \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & \alpha \\ 0 & 0 & 1 \end{pmatrix}.
+    \]
+    \item These matrices $X_{ij}(\alpha)$, and their conjugates by elements of $G$, are called \emph{transvections}.
+\end{itemize}
+
+\begin{lemma}
+\label{lem:4.6}
+Let $\alpha, \beta \in F$, and let $i$ and $j$ be distinct.
+\begin{enumerate}
+    \item[(i)] $X_{ij}(\alpha)$ has determinant $1$ and hence lies in $G$.
+    \item[(ii)] If $\alpha \neq 0$, then $X_{ij}(\alpha) \in B$ iff $i < j$.
+    \item[(iii)] $X_{ij}(\alpha) X_{ij}(\beta) = X_{ij}(\alpha + \beta)$, and hence $X_{ij}(\alpha)^{-1} = X_{ij}(-\alpha)$.
+    \item[(iv)] $[X_{ij}(\alpha), X_{jk}(\beta)] = X_{ik}(\alpha\beta)$ whenever $i, j, k$ are distinct.
+    \item[(v)] If $w \in W$, then $w X_{ij}(\alpha) w^{-1} = X_{w(i)\,w(j)}(\alpha)$.
+    \item[(vi)] $X_{ij}(\alpha)$ sends $\mathbf{v}_j$ to $\mathbf{v}_j + \alpha \mathbf{v}_i$ and fixes $\mathbf{v}_k$ whenever $k \neq j$.
+    \item[(vii)] If $M \in \mathcal{M}_n(F)$, then the $i$th row of $X_{ij}(\alpha) M$ is equal to the sum of the $i$th row of $M$ and $\alpha$ times the $j$th row of $M$, and for $k \neq i$ the $k$th row of $X_{ij}(\alpha) M$ is equal to the $k$th row of $M$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}\end{proof}
+
+\subsubsection*{Root subgroups}
+\begin{itemize}
+    \item For distinct $i$ and $j$, define $X_{ij} = \{X_{ij}(\alpha) \mid \alpha \in F\}$; by parts (i) and (iii) of Lemma~\ref{lem:4.6}, this is a subgroup of $G$.
+    \item The subgroups $X_{ij}$ are called \emph{root subgroups} of $G$. (Terminology from the theory of Lie algebras.)
+    \item These subgroups feed into the \nameref{thm:bruhat}, the main result of the section.
+\end{itemize}
+
+\begin{lemma}
+\label{lem:4.7}
+Let $M \in G$. Then there is a product $b$ of upper triangular transvections such that the following property holds: For each $1 \leq i \leq n$, $bM$ has exactly one row, say the $k_i$th row, whose entries in the first $i - 1$ columns are zero and which has a non-zero entry in the $i$th column.
+\end{lemma}
+
+\begin{proof}\end{proof}
+
+\begin{namedtheorem}[Bruhat Decomposition Theorem]
+\label{thm:bruhat}
+$G = BWB$.
+\end{namedtheorem}
+
+\begin{proof}\end{proof}
+
+We have now expressed $G$ as a union of the double cosets $BwB$, as $w$ ranges through $W$. We will now show that this union is disjoint. Again we first need a lemma.
+
+\begin{lemma}
+\label{lem:4.8}
+If $w_1, w_2 \in W$ and $b \in B$ are such that $w_1 b w_2 \in B$, then $w_2 = w_1^{-1}$.
+\end{lemma}
+
+\begin{proof}\end{proof}
+
+\begin{corollary}
+\label{cor:4.9}
+If $w$ and $w'$ are distinct elements of $W$, then $BwB$ and $Bw'B$ are disjoint; consequently, $G$ is the disjoint union as $w$ runs through $W$ of the $n!$ double cosets $BwB$.
+\end{corollary}
+
+\begin{proof}\end{proof}
+
+The following somewhat technical observation, which we shall need in the next section, is an immediate consequence of what we have done.
+
+\begin{corollary}
+\label{cor:4.10}
+Let $M \in G$, and let $w$ be the unique element of $W$ such that $M \in BwB$. Then $w$ sends $\mathbf{v}_i$ to $\mathbf{v}_{k_i}$ for each $i$, where the numbers $k_i$ are as defined in the statement of Lemma~\ref{lem:4.7}. In particular, if $M$ sends $\mathbf{v}_1$ to $\alpha_1 \mathbf{v}_1 + \cdots + \alpha_k \mathbf{v}_k$ where $\alpha_k \neq 0$, then $w$ sends $\mathbf{v}_1$ to $\mathbf{v}_k$.
+\end{corollary}
+
+\begin{proof}\end{proof}
+
+We close this section with a result giving a smaller generating set for $G$ than that given by the Bruhat decomposition. Once again, we start with a lemma.
+
+\begin{lemma}
+\label{lem:4.11}
+Let $b \in B$. Then there exists a product $t$ of transvections such that $tb$ is a diagonal matrix having the same main diagonal entries as $b$.
+\end{lemma}
+
+\begin{proof}\end{proof}
+
+\begin{theorem}
+\label{thm:4.12}
+$G$ is generated by the set consisting of all invertible diagonal matrices and all transvections.
+\end{theorem}
+
+\begin{proof}\end{proof}
+
+\subsection*{Exercises}
+
+\begin{exercise}
+\label{ex:4.1}
+Show that $\mathrm{GL}(2, 2) \cong S_3$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:4.2}
+(cont.) Construct a monomorphism $\varphi \colon \mathrm{GL}(1, 4) \to \mathrm{GL}(2, 2)$ that corresponds to the inclusion of $A_3$ in $S_3$. (Recall that the field $\mathbb{F}_4$ of $4$ elements can be written as $\{0, 1, \alpha, \alpha^2\}$, where $\alpha + 1 = \alpha^2$ and $\lambda + \lambda = 0$ for all $\lambda \in \mathbb{F}_4$.) Show further that the extension of $\varphi$ to a map from $\mathbb{F}_4$ to $\mathcal{M}_2(\mathbb{F}_2)$, where $\mathbb{F}_2 = \{0, 1\}$ is the field of $2$ elements, is a monomorphism of rings.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:4.3}
+(cont.) Construct an explicit monomorphism from $\mathrm{GL}(n, 4)$ to $\mathrm{GL}(2n, 2)$ for any $n \in \N$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:4.4}
+(cont.) More generally, show for any $n \in \N$ and any prime power $q$ that $\mathrm{GL}(2n, q)$ has a subgroup that is isomorphic with $\mathrm{GL}(n, q^2)$. Will $\mathrm{GL}(n, q^m)$ always have a subgroup isomorphic with $\mathrm{GL}(mn, q)$ for any $m, n \in \N$ and any prime power $q$?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:4.5}
+Show that $\mathrm{GL}(4, 2) \cong A_8$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:4.6}
+Let $\beta$ be a non-trivial automorphism of the field $F$. Use $\beta$ to construct an outer automorphism of $\mathrm{GL}(n, F)$. Do all outer automorphisms of $\mathrm{GL}(n, F)$ arise in this way?
+\end{exercise}
+
+\subsection*{Further Exercises}
+
+\begin{exercise}
+\label{ex:4.7}
+A matrix is said to be \emph{monomial} if each row and column has exactly one non-zero entry. Let $N$ be the subset of $G = \mathrm{GL}(n, F)$ consisting of all monomial matrices. Show that $N \leq G$, that $T = B \cap N$ is the subgroup of $G$ consisting of all diagonal matrices, that $N = N_G(T)$, and that $N = T \rtimes W$.
+\end{exercise}
+
+Let $G$ be a group. Suppose that $G$ has subgroups $B$ and $N$ of $G$ satisfying the following conditions:
+\begin{itemize}
+    \item $G$ is generated by $B$ and $N$.
+    \item $T = B \cap N$ is a normal subgroup of $N$.
+    \item $W = N/T$ is generated by a finite set $S$ of involutions (elements of order $2$). In addition, if for each $w \in W$ we choose some $\dot{w} \in N$ such that $\dot{w} T = w$, then we must have
+    \begin{itemize}
+        \item $\dot{s} B \dot{w} \subseteq B \dot{w} B \cup B \dot{s} \dot{w} B$ for any $s \in S$ and $w \in W$,
+        \item $\dot{s} B \dot{s} \nsubseteq B$ for any $s \in S$.
+    \end{itemize}
+\end{itemize}
+In this case we say that $B$ and $N$ form a \emph{$BN$-pair} of $G$, or that $(G, B, N, S)$ is a \emph{Tits system} (after Jacques Tits). We call $B$ the \emph{Borel subgroup} of $G$, and $W = N / B \cap N$ the \emph{Weyl group} associated with the Tits system. The \emph{rank} of the Tits system is defined to be $|S|$.
+
+\begin{exercise}
+\label{ex:4.8}
+(cont.) Let $G = \mathrm{GL}(n, F)$, let $B$ be the standard Borel subgroup of $G$, let $N$ be the subgroup of $G$ consisting of all monomial matrices, and let $T = B \cap N$. By Exercise~\ref{ex:4.7} above, we know that we can regard $W = N/T$ as being imbedded in $G$ as the group of permutation matrices. (By making this identification, we can replace $\dot{w}$ by $w$ in the above formulas.) Let $S$ be the subset of $W$ consisting of those permutation matrices that are obtained from the identity matrix by switching two adjacent columns. (In other words, if we identify $W$ with $S_n$ as in Proposition~\ref{prop:4.5}, then $S$ corresponds to the set $\{(1\;2), (2\;3), \ldots, (n-1\;n)\}$.) Show that $(G, B, N, S)$ is a Tits system of rank $n - 1$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:4.9}
+(cont.) Let $G$ be a group with a $BN$-pair. Verify that, for $w \in W$, the set $B \dot{w} B$ is independent of the choice of $\dot{w} \in N$ such that $\dot{w} T = w$. Show that we have a Bruhat decomposition
+\[
+G = \bigcup_{w \in W} BwB
+\]
+in which the union is disjoint, where $BwB$ is taken to mean $B \dot{w} B$ for any $\dot{w} \in N$ with $\dot{w} T = w$.
+\end{exercise}
+
+\end{document}

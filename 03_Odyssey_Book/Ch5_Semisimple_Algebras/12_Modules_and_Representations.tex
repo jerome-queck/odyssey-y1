@@ -1,0 +1,229 @@
+\documentclass[../Odyssey_Project.tex]{subfiles}
+
+\begin{document}
+\setcounter{section}{11}
+\section{Modules and Representations}
+
+\subsubsection*{From Group Actions to Linear Actions}
+\begin{itemize}
+    \item In Section~3 we studied actions of groups on sets; if a group acts on a set carrying additional algebraic structure, it is the structure-respecting actions that are most interesting.
+    \item Here we focus on actions of groups on vector spaces that respect the vector space structure.
+    \item Let $F$ be a field and let $G$ be a group acting on an $F$-vector space $V$. The action is \emph{linear} if
+    \begin{itemize}
+        \item $g(v + w) = gv + gw$ for all $g \in G$ and $v, w \in V$;
+        \item $g(\alpha v) = \alpha(gv)$ for all $g \in G$, $\alpha \in F$, and $v \in V$.
+    \end{itemize}
+    \item Proposition~\ref{prop:3.1} gave the bijection between group actions on a set and homomorphisms to symmetric groups; we now deduce its analogue for linear actions.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:12.1}
+There is a bijective correspondence between the set of linear actions of a group $G$ on an $F$-vector space $V$ and the set of homomorphisms from $G$ to $\mathrm{GL}(V)$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Linear Representations and Modules}
+\begin{itemize}
+    \item A homomorphism $\rho \colon G \to \mathrm{GL}(V)$, where $G$ is a group and $V$ a vector space, is called a \emph{linear representation} of $G$ in $V$.
+    \item By Proposition~\ref{prop:12.1}, the study of linear representations is equivalent to the study of linear actions; with emphasis on finite groups and finite-dimensional vector spaces, this area originated in the late nineteenth century.
+    \item The modern approach to the representation theory of finite groups involves yet another equivalent concept, that of finitely generated modules over group algebras. It is therefore necessary at this juncture to review some elementary module theory.
+    \item As in Section~1, we will omit most proofs on the assumption that the reader will have seen this material previously; however, our account requires only a mild knowledge of rings, fields, and vector spaces.
+    \item Let $R$ be a ring with unit, and let $M$ be an abelian group written additively. Then $M$ is a \emph{left $R$-module} if there is a map $R \times M \to M$, $(r,m) \mapsto rm$, satisfying:
+    \begin{itemize}
+        \item $1m = m$ for all $m \in M$;
+        \item $r(m + n) = rm + rn$ for all $r \in R$ and $m, n \in M$;
+        \item $(r + s)m = rm + sm$ for all $r, s \in R$ and $m \in M$;
+        \item $r(sm) = (rs)m$ for all $r, s \in R$ and $m \in M$.
+    \end{itemize}
+    \item If $R = \Z$, then $\Z$-modules are exactly abelian groups; if $F$ is a field, then $F$-modules are precisely $F$-vector spaces. A module is the natural generalisation of a vector space to an arbitrary ring.
+    \item One similarly defines right $R$-modules; if $R$ is commutative, every left module is canonically a right module. In general, a left $R$-module is a right module over the \emph{opposite ring} $R^{op}$.
+    \item Let $S$ be another ring with unit. An abelian group $M$ that is both a left $R$-module and a right $S$-module is an \emph{$(R,S)$-bimodule} provided $r(ms) = (rm)s$ for all $r \in R$, $m \in M$, $s \in S$. Any left $R$-module is an $(R,\Z)$-bimodule, and $R$ itself is an $(R,R)$-bimodule.
+    \item An $R$-module $M$ is \emph{finitely generated} if every element is an $R$-linear combination of elements from some finite subset of $M$. Unlike vector spaces, minimal generating sets need not have a common size.
+    \item If $N$ is a subgroup of $M$ closed under the $R$-action, $N$ is an \emph{$R$-submodule}. The submodules of the regular module $R$ are exactly the left ideals. A nonzero module with no submodules other than $0$ and itself is \emph{simple}.
+    \item Quotient modules $M/N$ are defined by $r(m + N) = rm + N$.
+    \item Sums, intersections, internal and external direct sums of submodules are defined as for groups; $N$ is a \emph{direct summand} of $M$ if $M = N \oplus N'$ for some submodule $N'$. We write $nM$ or $M^n$ for $\underbrace{M \oplus \cdots \oplus M}_{n}$.
+    \item A \emph{composition series} of $M$ is a descending series of submodules ending at $0$ in which each successive quotient is simple. Modules need not have one (any infinite $\Z$-module is an example), but when they do, \nameref{thm:jordan-holder} holds.
+    \item Every composition factor of any submodule or quotient module of an $R$-module $M$ must also be a composition factor of $M$, as any composition series of a submodule (resp., quotient module) can be extended (resp., lifted) to give a composition series of $M$.
+    \item An \emph{$R$-module homomorphism} $\varphi \colon M \to N$ is a group homomorphism with $\varphi(rm) = r\varphi(m)$ for all $r \in R$, $m \in M$. Mono-, epi-, iso-, endo-, automorphisms are defined as for groups; the kernel is a submodule, the image is a submodule, and \nameref{thm:fth}, \nameref{thm:correspondence}, and the two isomorphism theorems (\nameref{thm:first-iso} and \nameref{thm:second-iso}) all carry over.
+\end{itemize}
+
+\begin{namedlemma}[Schur's Lemma]
+\label{lem:schur}
+Any non-zero homomorphism between simple $R$-modules is an isomorphism.
+\end{namedlemma}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Hom-Modules, Balanced Maps, and Tensor Products}
+\begin{itemize}
+    \item Given $R$-modules $M$ and $N$, we write $\mathrm{Hom}_R(M, N)$ for the set of $R$-module homomorphisms $M \to N$, and $\mathrm{End}_R(M)$ for $\mathrm{Hom}_R(M, M)$. Pointwise addition makes $\mathrm{Hom}_R(M, N)$ an abelian group.
+    \item If $S$ is another ring, $M$ an $(R,S)$-bimodule, and $N$ an $R$-module, then $\mathrm{Hom}_R(M, N)$ is an $S$-module via $(s\varphi)(m) = \varphi(ms)$. In particular, when $F$ is a field and $U$, $V$ are $F$-vector spaces, $\mathrm{Hom}_F(U, V)$ is an $F$-vector space.
+    \item The map $\mathrm{Hom}_R(R, M) \to M$ sending $\varphi$ to $\varphi(1)$ is an $R$-module isomorphism.
+    \item Let $M$ be an $(R,S)$-bimodule and $N$ a left $S$-module. A map $f \colon M \times N \to U$ to an $R$-module $U$ is \emph{balanced} if
+    \begin{itemize}
+        \item $f(m_1 + m_2, n) = f(m_1, n) + f(m_2, n)$;
+        \item $f(m, n_1 + n_2) = f(m, n_1) + f(m, n_2)$;
+        \item $f(ms, n) = f(m, sn)$;
+        \item $f(rm, n) = rf(m, n)$.
+    \end{itemize}
+    \item The \emph{tensor product} $M \otimes_S N$ is the $R$-module equipped with a balanced map $\eta \colon M \times N \to M \otimes_S N$ such that any balanced $f \colon M \times N \to U$ factors uniquely through $\eta$: there is a unique $R$-module homomorphism $\alpha \colon M \otimes_S N \to U$ with $f = \alpha \circ \eta$. We write $m \otimes n = \eta(m, n)$.
+    \item Concretely, $M \otimes_S N$ is generated by the symbols $\{m \otimes n \mid m \in M, n \in N\}$ subject to the relations
+    \begin{itemize}
+        \item $(m_1 + m_2) \otimes n = m_1 \otimes n + m_2 \otimes n$;
+        \item $m \otimes (n_1 + n_2) = m \otimes n_1 + m \otimes n_2$;
+        \item $(ms) \otimes n = m \otimes (sn)$;
+        \item $(rm) \otimes n = r(m \otimes n)$.
+    \end{itemize}
+    A general element of $M \otimes_S N$ is a \emph{sum} of elementary tensors, not just one.
+    \item Special case: if $F$ is a field and $U$, $V$ are finite-dimensional with bases $\{u_1, \ldots, u_r\}$ and $\{v_1, \ldots, v_s\}$, then $U \otimes_F V$ has basis $\{u_i \otimes v_j\}$ and dimension $rs$. For $u = \sum_i a_i u_i$ and $v = \sum_j b_j v_j$, $u \otimes v = \sum_{i,j} a_i b_j (u_i \otimes v_j)$.
+    \item (An understanding of this special case will, strictly speaking, suffice in reading the remainder of the book; however, an understanding of the general case will be beneficial in Section~16.)
+\end{itemize}
+
+\begin{proposition}
+\label{prop:12.2}
+Let $R$ be a ring with unit, and let $M$ be an $R$-module. Then $M$ and $R \otimes_R M$ are isomorphic $R$-modules.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\begin{proposition}
+\label{prop:12.3}
+Let $R$ and $S$ be rings with unit, let $M_1, \ldots, M_r$ be $(R,S)$-bimodules, and let $N$ be an $S$-module. Then $(\bigoplus_i M_i) \otimes_S N$ and $\bigoplus_i M_i \otimes_S N$ are isomorphic $R$-modules.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\begin{proposition}
+\label{prop:12.4}
+Let $F$ be a field, and let $U$ and $V$ be $F$-vector spaces, with $\dim_F(U) < \infty$. Let $U^* = \mathrm{Hom}_F(U, F)$. Then the map $\Gamma \colon U^* \otimes_F V \to \mathrm{Hom}_F(U, V)$ defined by setting $\Gamma(\varphi \otimes v)(u) = \varphi(u)v$ and extending linearly is an isomorphism of $F$-vector spaces.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Group Rings and Group Algebras}
+\begin{itemize}
+    \item Let $R$ be a ring and $G$ a group. The \emph{group ring} of $G$ over $R$, denoted $RG$, consists of all finite formal $R$-linear combinations of elements of $G$, with the obvious addition and with multiplication extending that in $G$:
+    \[
+        \Bigl(\sum_{x \in G} \alpha_x x\Bigr)\Bigl(\sum_{y \in G} \beta_y y\Bigr) = \sum_{x \in G}\sum_{y \in G} \alpha_x \beta_y\, xy = \sum_{x \in G}\Bigl(\sum_{g \in G} \alpha_g \beta_{g^{-1} x}\Bigr) x.
+    \]
+    \item The unit element is the identity of $G$.
+    \item When $R = F$ is a field and $G$ is finite, $FG$ is also an $F$-vector space with basis $G$, hence has finite dimension $|G|$. In this case $FG$ is called the \emph{group algebra}.
+    \item An \emph{algebra} over $F$ (or \emph{$F$-algebra}) is a set $A$ carrying both a ring structure and an $F$-vector space structure that share the same addition, with $(\lambda a)b = a(\lambda b) = \lambda(ab)$ for $\lambda \in F$, $a, b \in A$. We do \emph{not} assume an algebra has a ring unit.
+    \item An algebra is \emph{finite-dimensional} if it has finite dimension as an $F$-vector space; the matrix ring $\mathcal{M}_n(F)$ is a finite-dimensional $F$-algebra, and $FG$ is finite-dimensional whenever $G$ is finite.
+    \item A homomorphism of $F$-algebras is a ring homomorphism that is also $F$-linear.
+\end{itemize}
+
+\begin{lemma}
+\label{lem:12.5}
+If $F$ is a field and $G$ a finite group, then an $FG$-module is finitely generated iff it has finite dimension as an $F$-vector space.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{proposition}
+\label{prop:12.6}
+If $F$ is a field and $G$ a finite group, then there is a bijective correspondence between finitely generated $FG$-modules and linear actions of $G$ on finite-dimensional $F$-vector spaces.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Examples and Constructions of \texorpdfstring{$FG$}{FG}-Modules}
+\begin{itemize}
+    \item In what follows $G$ is a finite group, $F$ a field, and all $F$-vector spaces are finite-dimensional; all $FG$-modules will be finitely generated and hence finite-dimensional by Lemma~\ref{lem:12.5}.
+    \item It is enough to specify the action of $G$ on $V$; the $FG$-action then extends linearly.
+    \item \emph{Trivial module}: $F$ regarded as an $FG$-module via $g \lambda = \lambda$.
+    \item \emph{Permutation module}: if $G$ acts on a finite set $X = \{x_1, \ldots, x_n\}$, the $F$-vector space $FX$ with basis $X$ is an $FG$-module via $g\bigl(\sum_i c_i x_i\bigr) = \sum_i c_i (g x_i)$.
+    \item Direct sums of $FG$-modules: $g(u, v) = (gu, gv)$.
+    \item \emph{Tensor product} $U \otimes_F V$ with the diagonal action $g(u \otimes v) = gu \otimes gv$.
+    \item $\mathrm{Hom}_F(U, V)$ with action $(g\varphi)(u) = g(\varphi(g^{-1} u))$; one checks $(g_1 g_2)\varphi = g_1(g_2 \varphi)$.
+    \item Taking $V = F$ trivial gives the \emph{dual module} $U^* = \mathrm{Hom}_F(U, F)$ with $(g\varphi)(u) = \varphi(g^{-1} u)$.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:12.7}
+Let $U$ and $V$ be $FG$-modules. Then $U^* \otimes_F V$ and $\mathrm{Hom}_F(U, V)$ are isomorphic $FG$-modules.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Maschke's Theorem and Semisimplicity}
+\begin{itemize}
+    \item We now reach the most basic result of the representation theory of finite groups, discovered in 1898 by Heinrich Maschke at the University of Chicago.
+\end{itemize}
+
+\begin{namedtheorem}[Maschke's Theorem]
+\label{thm:maschke}
+Let $G$ be a group, and suppose that the characteristic of $F$ is either zero or coprime to $|G|$. If $U$ is an $FG$-module and $V$ is an $FG$-submodule of $U$, then $V$ is a direct summand of $U$ as $FG$-modules.
+\end{namedtheorem}
+\begin{proof}
+\end{proof}
+
+\begin{itemize}
+    \item We summarise the hypothesis by saying that the characteristic of $F$ \emph{does not divide} $|G|$, even though this is a slight abuse.
+    \item A module is \emph{semisimple} if it is a direct sum of simple modules.
+\end{itemize}
+
+\begin{corollary}
+\label{cor:12.8}
+Let $G$ be a group, and let $F$ be a field whose characteristic does not divide $|G|$. Then every non-zero $FG$-module is semisimple.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+\begin{itemize}
+    \item In Chapter~6 we shall be concerned only with the case $F = \C$, called \emph{ordinary} representation theory; since $\C$ has characteristic zero, by Corollary~\ref{cor:12.8} every non-zero $\C G$-module is semisimple.
+    \item The next section concentrates on algebras with this property. The case where the characteristic of $F$ divides $|G|$, in which $FG$-modules need not be semisimple, is the subject of \emph{modular} representation theory (originated by Dickson in 1907; mostly developed by Brauer from the 1930s onward).
+\end{itemize}
+
+\subsection*{Exercises}
+
+Throughout these exercises, let $F$ be a field and let $G$ be a finite group.
+
+\begin{exercise}
+\label{ex:12.1}
+Let $U$ and $V$ be $FG$-modules having the same dimension $n$, and let $\rho \colon G \to \mathrm{GL}(U)$ and $\tau \colon G \to \mathrm{GL}(V)$ be the corresponding representations. By fixing $F$-bases for $U$ and $V$, we consider $\rho$ and $\tau$ as homomorphisms from $G$ to $\mathrm{GL}(n, F)$. Show that $U \cong V$ iff there exists some $M \in \mathrm{GL}(n, F)$ such that $\rho(g) M = M \tau(g)$ for every $g \in G$. (Two representations are said to be \emph{equivalent} if this latter condition holds; hence two representations are equivalent iff their corresponding modules over the group algebra are isomorphic.)
+\end{exercise}
+
+\begin{exercise}
+\label{ex:12.2}
+Let $\sigma = \sum_{g \in G} g \in FG$. Show that the subspace $F\sigma$ of $FG$ is the unique submodule of $FG$ that is isomorphic with the trivial module.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:12.3}
+(cont.) Let $\epsilon \colon FG \to F$ be the $FG$-module epimorphism defined by $\epsilon(g) = 1$ for all $g \in G$, and let $\Delta = \ker \epsilon$. (We call $\Delta$ the \emph{augmentation ideal} of $FG$.) Show that $\Delta$ is the unique submodule of $FG$ whose quotient is isomorphic with the trivial module.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:12.4}
+(cont.) Suppose that the characteristic of $F$ divides $|G|$. Show that $F\sigma \subseteq \Delta$. Conclude that $\Delta$ is not a direct summand of $FG$ and hence that the $FG$-module $FG$ is not semisimple. (This shows that the converse of Corollary~\ref{cor:12.8} is true.)
+\end{exercise}
+
+\subsection*{Further Exercises}
+
+In Section~9 we defined the second cohomology group of a pair $(H, A)$, where $H$ is a group and $A$ an abelian group, with respect to a given homomorphism from $H$ to $\mathrm{Aut}(A)$. It is easy to verify that, for an abelian group $A$, specifying a homomorphism from a group $H$ to $\mathrm{Aut}(A)$ is exactly the same as specifying a $\Z H$-module structure on $A$. Therefore, it is customary to talk about the second cohomology group of a pair $(H, A)$ where $H$ is a group and $A$ a $\Z H$-module. (We anticipated this development by writing $xa$ instead of $\varphi(x)(a)$ on page~86.) We will now generalize the second cohomology group.
+
+Let $H$ be a group, let $H^n$ be the set of $n$-tuples of elements of $H$ for some $n \in \N$, and let $A$ be a $\Z H$-module. A \emph{normalized $n$-cochain} of $(H, A)$ is a set function $f \colon H^n \to A$ such that $f(h_1, \ldots, h_n) = 0$ whenever $h_i = 1$ for some $i$; the set of normalized $n$-cochains of $(H, A)$ is denoted $C^n(H, A)$. We give $C^n(H, A)$ an abelian group structure by defining
+\[
+    (f + g)(h_1, \ldots, h_n) = f(h_1, \ldots, h_n) + g(h_1, \ldots, h_n).
+\]
+We define a homomorphism $\delta^n \colon C^{n-1}(H, A) \to C^n(H, A)$ by
+\[
+    (\delta^n f)(h_1, \ldots, h_n) = h_1 f(h_2, \ldots, h_n) + \sum_{i=1}^{n-1} (-1)^i f(h_1, \ldots, h_i h_{i+1}, \ldots, h_n) + (-1)^n f(h_1, \ldots, h_{n-1}).
+\]
+The image of $\delta^n$ is called the set of \emph{$n$-coboundaries} and is denoted $B^n(H, A)$; the kernel of $\delta^{n+1}$ is called the set of \emph{$n$-cocycles} and is denoted $Z^n(H, A)$. For example, $\ker \delta^3$ consists of all normalized 2-cochains $f$ satisfying $h_1 f(h_2, h_3) - f(h_1 h_2, h_3) + f(h_1, h_2 h_3) - f(h_1, h_2) = 0$ for all $h_1, h_2, h_3 \in H$, which agrees with our definition of a 2-cocycle in Section~9. Both $B^n(H, A)$ and $Z^n(H, A)$ are abelian subgroups of $C^n(H, A)$. We find that $\delta^{n+1} \circ \delta^n$ is the zero map, or equivalently that $B^n(H, A) \subseteq Z^n(H, A)$. (Verify this.) The quotient group $Z^n(H, A) / B^n(H, A)$ is denoted $H^n(H, A)$ and is called the \emph{$n$th cohomology group} of $(H, A)$.
+
+While $H^3(H, A)$ plays some role in the theory of extensions of a non-abelian group $N$ by $H$, where $Z(N) = A$ (see [20, pp.\ 124--131]), the groups $H^n(H, A)$ for $n > 3$ have no known group-theoretic meaning. Nonetheless, higher cohomology groups are studied for their own sake, and in recent years connections between the cohomology of groups and the representation theory of groups have attracted much attention. (As the title of one of the first author's papers [6] proclaims, ``Cohomology \emph{is} representation theory.'') We developed the group-theoretic meaning of $H^2(H, A)$ in the further exercises to Section~9, and in what follows we develop the meaning of $H^1(H, A)$.
+
+\begin{exercise}
+\label{ex:12.5}
+(cont.) Define a homomorphism $\varphi \colon H \to \mathrm{Aut}(A)$ by $\varphi(x)(a) = xa$. Show that there is a bijective correspondence between the set of splitting maps of $A \rtimes_\varphi H$ and $Z^1(H, A)$. (Recall that a homomorphism $t \colon H \to A \rtimes_\varphi H$ is called a splitting map if $\eta \circ t$ is the identity map on $H$, where $\eta \colon A \rtimes_\varphi H \to H$ is the natural map. The natural inclusion of $H$ into $A \rtimes_\varphi H$ is a splitting map, but there may be others.)
+\end{exercise}
+
+\begin{exercise}
+\label{ex:12.6}
+(cont.) We say that two splitting maps $t$ and $u$ of $A \rtimes_\varphi H$ are \emph{conjugate} if there is some $a \in A$ such that $u(x) = at(x)a^{-1}$ for all $x \in H$. (Verify that this is an equivalence relation on the set of splitting maps.) Show that there is a bijective correspondence between the set of conjugacy classes of splitting maps of $A \rtimes_\varphi H$ and $H^1(H, A)$.
+\end{exercise}
+
+\end{document}

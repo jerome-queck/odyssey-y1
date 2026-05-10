@@ -1,0 +1,519 @@
+\documentclass[../Odyssey_Project.tex]{subfiles}
+
+\begin{document}
+\setcounter{section}{14}
+\section{The Character Table}
+
+\subsubsection*{Definition of the Character Table}
+\begin{itemize}
+    \item Any character of $G$ is a $\Z$-linear combination of the $r$ irreducible characters $\chi_1, \ldots, \chi_r$, where $r$ is the number of conjugacy classes of $G$ (Theorem~\ref{thm:14.3}).
+    \item Each irreducible character is determined by its values on the $r$ conjugacy classes, so the irreducible characters are completely determined by an $r \times r$ array.
+    \item The \emph{character table} of $G$ is this $r \times r$ array $\mathcal{X} = (\chi_i(g_j))_{1 \leq i,j \leq r}$, where $g_1, \ldots, g_r$ are conjugacy class representatives.
+    \item The character table is well-defined only up to reordering of rows and columns.
+    \item By convention, $g_1 = 1$, so the first column consists of the degrees of $G$.
+    \item We write $\mathcal{X}$ in the form
+    \[
+        \begin{array}{c|cccc}
+            & 1 & k_2 & \cdots & k_r \\
+            & 1 & g_2 & \cdots & g_r \\
+            \hline
+            \chi_1 & 1 & 1 & \cdots & 1 \\
+            \chi_2 & f_2 & \chi_2(g_2) & \cdots & \chi_2(g_r) \\
+            \vdots & \vdots & \vdots & \ddots & \vdots \\
+            \chi_r & f_r & \chi_r(g_2) & \cdots & \chi_r(g_r)
+        \end{array}
+    \]
+    where the $f_i$ are the degrees of $G$, and $k_i = |G : C_G(g_i)|$ is the order of the conjugacy class of $g_i$ (Proposition~\ref{prop:3.13}).
+    \item By convention $\chi_1$ is always the principal character.
+\end{itemize}
+
+\subsubsection*{Orthogonality of Rows}
+
+\begin{namedtheorem}[Row Orthogonality Theorem]
+\label{thm:row-orthogonality}
+$(\chi_i, \chi_j) = \delta_{ij}$ for any $i$ and $j$.
+\end{namedtheorem}
+\begin{proof}
+\end{proof}
+
+In other words, this theorem asserts that
+\[
+    \delta_{ij} = \frac{1}{|G|} \sum_{g \in G} \chi_i(g)\overline{\chi_j(g)} = \frac{1}{|G|} \sum_{t=1}^{r} k_t \chi_i(g_t)\overline{\chi_j(g_t)}
+\]
+for any $i$ and $j$, where the $g_t$ are conjugacy class representatives and the $k_t$ are the orders of the conjugacy classes. The rows of the character table, considered as vectors in $\C^r$, are orthogonal with respect to an inner product that differs slightly from the standard one.
+
+\begin{corollary}
+\label{cor:15.1}
+The irreducible characters of $G$ form an orthonormal basis for the vector space of class functions on $G$.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+\begin{corollary}
+\label{cor:15.2}
+If $\alpha = \sum_i a_i \chi_i$ and $\beta = \sum_j b_j \chi_j$ are virtual characters of $G$, then $(\alpha, \beta) = \sum_i a_i b_i$.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+\begin{corollary}
+\label{cor:15.3}
+If $\alpha$ is a character of $G$ and $n \in \{1, 2, 3\}$, then $(\alpha, \alpha) = n$ iff $\alpha$ is a sum of $n$ irreducible characters.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+\begin{corollary}
+\label{cor:15.4}
+If $\alpha$ is a virtual character of $G$, then each $\chi_j$ appears with coefficient $(\alpha, \chi_j)$ in the unique expression of $\alpha$ as a $\Z$-linear combination of the irreducible characters of $G$.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+\begin{proposition}
+\label{prop:15.5}
+If $\alpha$ is a linear character of $G$ and $\chi$ is an irreducible character of $G$, then $\alpha\chi$ is an irreducible character of $G$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Orthogonality of Columns}
+
+\begin{namedtheorem}[Column Orthogonality Theorem]
+\label{thm:col-orthogonality}
+If $g_1, \ldots, g_r$ are a set of conjugacy class representatives of $G$, and $k_1, \ldots, k_r$ are the orders of the conjugacy classes, then for any $1 \leq i, j \leq r$ we have
+\[
+    \sum_{t=1}^{r} \chi_t(g_i)\overline{\chi_t(g_j)} = \frac{|G|}{k_i}\delta_{ij} = |C_G(g_i)|\delta_{ij}.
+\]
+\end{namedtheorem}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Characters and Quotient Groups}
+
+\begin{lemma}
+\label{lem:15.6}
+Let $N \trianglelefteq G$, and let $U$ be a $\C(G/N)$-module. Then $U$ admits a canonical $\C G$-module structure, with a subspace of $U$ being a $\C G$-submodule iff it is a $\C(G/N)$-submodule. If $\psi$ is the character of the $\C(G/N)$-module $U$, then the character of the $\C G$-module $U$ is $\psi \circ \eta$, where $\eta\colon G \to G/N$ is the natural map.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+We define $K_\chi = \{x \in G \mid \chi(x) = \chi(1)\}$ for any character $\chi$ of $G$; we have $K_\chi \trianglelefteq G$ by part (vi) of Proposition~\ref{prop:14.4}. We call $K_\chi$ the \emph{kernel} of $\chi$, as it is the kernel of the corresponding representation. We write $K_i$ instead of $K_{\chi_i}$.
+
+\begin{proposition}
+\label{prop:15.7}
+The normal subgroups of $G$ are exactly the sets of the form $\bigcap_{i \in I} K_i$ for some $I \subseteq \{1, \ldots, r\}$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\begin{corollary}
+\label{cor:15.8}
+$G$ is simple iff the only irreducible character $\chi_i$ for which $\chi_i(g) = \chi_i(1)$ for some $1 \neq g \in G$ is the principal character $\chi_1$.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+\begin{corollary}
+\label{cor:15.9}
+The character table of $G$ can be used to determine whether or not $G$ is solvable.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+We define $Z_\chi = \{x \in G \mid |\chi(x)| = \chi(1)\}$ for any character $\chi$ of $G$. Again we write $Z_i$ instead of $Z_{\chi_i}$.
+
+\begin{lemma}
+\label{lem:15.10}
+$Z_\chi \leq G$ for any character $\chi$ of $G$, and if in addition $\chi$ is irreducible, then $Z_\chi/K_\chi = Z(G/K_\chi)$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{corollary}
+\label{cor:15.11}
+If $G$ is non-abelian and simple, then $Z_i = 1$ for all $i > 1$.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+\begin{proposition}
+\label{prop:15.12}
+$Z(G) = \bigcap_{i=1}^{r} Z_i$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\begin{lemma}
+\label{lem:15.13}
+If $N \trianglelefteq G$, then the irreducible characters of $G/N$ can be determined from those of $G$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{corollary}
+\label{cor:15.14}
+The character table of $G$ can be used to determine whether or not $G$ is nilpotent.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+Observe that in Corollary~\ref{cor:15.9} we assumed that we knew both the irreducible characters of $G$ and the orders of the conjugacy classes, whereas in Corollary~\ref{cor:15.14} we did not need to know the orders of the classes. As evidenced by Lemma~\ref{lem:15.13}, there may be circumstances in which we can construct a character table without knowing the orders of the conjugacy classes. There is a theorem of G.\ Higman (see [15, p.\ 136]) which asserts that if we know the irreducible characters of $G$, but not the orders of the conjugacy classes, then we can at least determine the sets of prime divisors of the orders of the conjugacy classes.
+
+\subsubsection*{Examples: Constructing Character Tables}
+
+The remainder of this section consists of a series of examples in which we develop methods of finding characters and use these methods to construct the character tables of various groups.
+
+\begin{example}
+\label{ex:15.eg.1}
+Let $G = \langle g \rangle \cong \Z_n$ for some $n \in \N$, and let $\lambda$ be a primitive $n$th root of unity. For each $1 \leq i \leq n$, let $V_i$ be a one-dimensional $\C$-vector space, and let $g$ act on $V_i$ by multiplication by $\lambda^{i-1}$; since $G$ is cyclic, this definition completely determines a $\C G$-module structure on $V_i$. Each $V_i$, being one-dimensional, is a simple $\C G$-module. If $\chi_i$ is the character of $V_i$, then $\chi_i(g) = \lambda^{i-1}$, and hence $\chi_i(g^a) = \lambda^{a(i-1)}$ for any $a$. The characters $\chi_1, \ldots, \chi_n$ are $n$ distinct linear characters of $G$, and since $G$ can have at most $|G| = n$ irreducible characters, we see that the $\chi_i$ are precisely the irreducible characters of $G$. Thus, the character table of $G$ is
+\[
+    \begin{array}{c|ccccc}
+        & 1 & 1 & 1 & \cdots & 1 \\
+        & 1 & g & g^2 & \cdots & g^{n-1} \\
+        \hline
+        \chi_1 & 1 & 1 & 1 & \cdots & 1 \\
+        \chi_2 & 1 & \lambda & \lambda^2 & \cdots & \lambda^{n-1} \\
+        \chi_3 & 1 & \lambda^2 & \lambda^4 & \cdots & \lambda^{n-2} \\
+        \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+        \chi_n & 1 & \lambda^{n-1} & \lambda^{n-2} & \cdots & \lambda
+    \end{array}
+\]
+Observe that the set $\{\chi_1, \ldots, \chi_n\}$ is a cyclic group under multiplication of characters, with generator $\chi_2$; we have $\chi_i = \chi_2^{i-1}$ for any $i$.
+\end{example}
+
+\begin{example}
+\label{ex:15.eg.2}
+Let $G$ and $H$ be groups with respective irreducible characters $\chi_1, \ldots, \chi_r$ and $\psi_1, \ldots, \psi_s$. We wish to determine the irreducible characters of $G \times H$. We see that two elements $(x, y)$ and $(x', y')$ of $G \times H$ are conjugate iff $x$ and $x'$ are conjugate in $G$ and $y$ and $y'$ are conjugate in $H$. Since by Theorem~\ref{thm:14.3}, $G$ and $H$ have $r$ and $s$ conjugacy classes, respectively, we conclude that $G \times H$ has $rs$ conjugacy classes, with each class of $G \times H$ being the product of a class of $G$ and a class of $H$; hence by Theorem~\ref{thm:14.3}, $G \times H$ has $rs$ irreducible characters.
+
+Let $S_1, \ldots, S_r$ and $T_1, \ldots, T_s$ be the distinct simple $\C G$- and $\C H$-modules, respectively. For each $i$ and $j$, we give $S_i \otimes T_j$ the structure of a $\C(G \times H)$-module by $(g, h)(s \otimes t) = gs \otimes ht$ and linear extension. Let $\tau_{ij}$ be the character of $S_i \otimes T_j$ for each $i$ and $j$. By imitating the proof of part (i) of Proposition~\ref{prop:14.8}, we find that $\tau_{ij}(g, h) = \chi_i(g)\psi_j(h)$; we adopt the notation $\tau_{ij} = \chi_i \times \psi_j$. We note that the $\tau_{ij}$ are distinct and that we can recover the $\chi_i$ and $\psi_j$ from the $\tau_{ij}$ by appropriate restriction. Now for any $i, i', j, j'$ we have
+\begin{align*}
+    (\tau_{ij}, \tau_{i'j'}) &= \frac{1}{|G \times H|} \sum_{(g,h) \in G \times H} \tau_{ij}(g,h)\overline{\tau_{i'j'}(g,h)} \\
+    &= \frac{1}{|G||H|} \sum_{g \in G} \sum_{h \in H} \chi_i(g)\psi_j(h)\overline{\chi_{i'}(g)\psi_{j'}(h)} \\
+    &= \left(\frac{1}{|G|} \sum_{g \in G} \chi_i(g)\overline{\chi_{i'}(g)}\right)\left(\frac{1}{|H|} \sum_{h \in H} \psi_j(h)\overline{\psi_{j'}(h)}\right) \\
+    &= (\chi_i, \chi_{i'})(\psi_j, \psi_{j'}) = \delta_{ii'}\delta_{jj'}
+\end{align*}
+by \nameref{thm:row-orthogonality}. In particular, we have $(\tau_{ij}, \tau_{ij}) = 1$ for each $i$ and $j$, which by Corollary~\ref{cor:15.3} implies that $\tau_{ij}$ is an irreducible character. Therefore the $\tau_{ij}$ are the $rs$ irreducible characters of $G \times H$; that is, the set of irreducible characters of $G \times H$ is $\{\chi_i \times \psi_j\}_{i,j}$.
+\end{example}
+
+\begin{example}
+\label{ex:15.eg.3}
+Suppose that $G$ is abelian. Then every conjugacy class of $G$ contains exactly one element, and consequently $G$ has $|G|$ irreducible characters by Theorem~\ref{thm:14.3}. But $\sum_{i=1}^{|G|} f_i^2 = |G|$ by Corollary~\ref{cor:14.2}, so we must have $f_i = 1$ for each $i$. Therefore all irreducible characters of $G$ are linear. By Corollary~\ref{cor:8.8}, $G$ is a direct product of cyclic $p$-groups; let these cyclic $p$-groups be of orders $p_1^{a_1}, \ldots, p_t^{a_t}$ with respective generators $g_1, \ldots, g_t$. We could determine the character table of $G$ from those of the cyclic $p$-groups using Examples~\ref{ex:15.eg.1} and~\ref{ex:15.eg.2}, but there is an alternate method, which we now describe. A linear character $\chi$ of $G$ is just a homomorphism from $G$ to $\C^\times$, and hence to define such a $\chi$ it suffices to specify $\chi(g_i)$ for each $i$, with the only restriction on $\chi(g_i)$ being that it is a $p_i^{a_i}$-th root of unity. Therefore, there is a bijective correspondence between irreducible characters of $G$ and ordered $t$-tuples $(\lambda_1, \ldots, \lambda_t)$ in which each $\lambda_i$ is a $p_i^{a_i}$-th root of unity.
+
+As a simple example, let $G = \langle a, b \rangle \cong \Z_2 \times \Z_2$. Both $a$ and $b$ have order 2, so by the above paragraph we see that the four irreducible characters of $G$ correspond to the ordered pairs $(1,1), (1,-1), (-1,1)$, and $(-1,-1)$. Therefore, the character table for $G$ is
+\[
+    \begin{array}{c|cccc}
+        & 1 & 1 & 1 & 1 \\
+        & 1 & a & b & ab \\
+        \hline
+        \chi_1 & 1 & 1 & 1 & 1 \\
+        \chi_2 & 1 & 1 & -1 & -1 \\
+        \chi_3 & 1 & -1 & 1 & -1 \\
+        \chi_4 & 1 & -1 & -1 & 1
+    \end{array}
+\]
+Here the second and third columns correspond to the ordered pairs given above, and the fourth column is wholly determined by the previous two columns.
+\end{example}
+
+\begin{example}
+\label{ex:15.eg.4}
+Let $X$ be a finite $G$-set. We saw in Section~12 that the vector space $\C X$ having basis $X$ is a $\C G$-module. We wish to determine the character $\pi$ of $\C X$. Consider the matrix, with respect to the basis $X$, of the linear transformation of $\C X$ defined by $g \in G$. Since $gx \in X$ for every $x \in X$, this matrix is a permutation matrix; but $\pi(g)$ is the sum of the diagonal entries of this matrix, so we conclude that $\pi(g)$ equals the number of elements of $X$ which are fixed by $g$.
+
+Let $\chi_1$ be the principal character of $G$. We have
+\begin{align*}
+    (\pi, \chi_1) &= \frac{1}{|G|}\sum_{g \in G} \pi(g)\chi_1(g) = \frac{1}{|G|}\sum_{g \in G} \pi(g) \\
+    &= \frac{1}{|G|}\sum_{g \in G} |\{x \in X \mid gx = x\}| \\
+    &= \frac{1}{|G|}|\{(g, x) \in G \times X \mid gx = x\}| \\
+    &= \frac{1}{|G|}\sum_{x \in X} |\{g \in G \mid gx = x\}|.
+\end{align*}
+For each $x \in X$, let $G_x$ be the stabilizer of $x$; using Corollary~\ref{cor:3.5}, we now have
+\[
+    (\pi, \chi_1) = \sum_{x \in X} \frac{|G_x|}{|G|} = \sum_{\text{orbits } \mathcal{O}} \sum_{x \in \mathcal{O}} \frac{1}{|G : G_x|} = \sum_{\text{orbits } \mathcal{O}} \sum_{x \in \mathcal{O}} \frac{1}{|\mathcal{O}|} = \sum_{\text{orbits } \mathcal{O}} |\mathcal{O}| \cdot \frac{1}{|\mathcal{O}|} = \sum_{\text{orbits } \mathcal{O}} 1,
+\]
+which allows us to conclude that $(\pi, \chi_1)$ is equal to the number of orbits of $X$ under the action of $G$. (This result is often attributed to Burnside, although as argued in [21] it would be more accurate to call this result the Cauchy-Frobenius lemma.) In particular, if $G$ acts transitively on $X$, then we see via Corollary~\ref{cor:15.4} that the unique expression of the character $\pi - \chi_1$ as a linear combination of the irreducible characters of $G$ does not involve $\chi_1$.
+\end{example}
+
+\begin{example}
+\label{ex:15.eg.5}
+The group $G/G'$ is abelian by Proposition~\ref{prop:2.6}, and hence (as seen in Example~\ref{ex:15.eg.3}) all of its irreducible characters are linear. It follows from Lemma~\ref{lem:15.6} that each linear character of $G/G'$ can be lifted to a linear character of $G$, and that the lifts of distinct characters are distinct. Now let $\chi$ be a linear character of $G$, so that $\chi\colon G \to \C^\times$ is a homomorphism whose kernel is $K_\chi$. Then $G/K_\chi$ is abelian, being isomorphic with $X$, a subgroup of $\C^\times$, and hence $G' \leq K_\chi$ by Proposition~\ref{prop:2.6}. We can now define a linear character $\psi$ of $G/G'$ whose lift is $\chi$ by $\psi(gG') = \chi(g)$. We conclude that every linear character of $G$ is the lift of a linear character of $G/G'$.
+\end{example}
+
+\begin{example}
+\label{ex:15.eg.6}
+Consider $S_3$. The conjugacy classes of $S_3$ are $\{1\}$, $\{(1\,2), (1\,3), (2\,3)\}$, and $\{(1\,2\,3), (1\,3\,2)\}$. (This follows from Proposition~\ref{prop:1.10}.) We have $S_3/A_3 \cong \Z_2$, so $S_3$ has two linear characters, which are lifted from the characters of $\Z_2$ as in Lemma~\ref{lem:15.6}. Letting these characters be $\chi_1$ and $\chi_2$, we have
+\[
+    \begin{array}{c|ccc}
+        & 1 & 3 & 2 \\
+        & 1 & (1\,2) & (1\,2\,3) \\
+        \hline
+        \chi_1 & 1 & 1 & 1 \\
+        \chi_2 & 1 & -1 & 1 \\
+        \chi_3 & & &
+    \end{array}
+\]
+Since $6 = |S_3| = f_1^2 + f_2^2 + f_3^2 = 2 + f_3^2$ by Corollary~\ref{cor:14.2}, we have $f_3 = 2$. \nameref{thm:col-orthogonality} now gives
+\[
+    0 = \sum_{i=1}^{3} f_i \chi_i((1\,2)) = 1 \cdot 1 + 1 \cdot (-1) + 2\chi_3((1\,2))
+\]
+and
+\[
+    0 = \sum_{i=1}^{3} f_i \chi_i((1\,2\,3)) = 1 \cdot 1 + 1 \cdot 1 + 2\chi_3((1\,2)),
+\]
+from which we see that the character table of $S_3$ is
+\[
+    \begin{array}{c|ccc}
+        & 1 & 3 & 2 \\
+        & 1 & (1\,2) & (1\,2\,3) \\
+        \hline
+        \chi_1 & 1 & 1 & 1 \\
+        \chi_2 & 1 & -1 & 1 \\
+        \chi_3 & 2 & 0 & -1
+    \end{array}
+\]
+\end{example}
+
+\begin{example}
+\label{ex:15.eg.7}
+Consider $S_4$. Recall that $S_4$ has a normal subgroup of order 4, namely
+\[
+    K = \{1,\, (1\,2)(3\,4),\, (1\,3)(2\,4),\, (1\,4)(2\,3)\}.
+\]
+The subgroup $S_3$ of $S_4$ intersects $K$ trivially, and $|S_4| = |S_3||K|$; therefore $S_4 = K \rtimes S_3$. In particular, we have $S_4/K \cong S_3$, and thus we can obtain irreducible characters of $S_4$ from the irreducible characters of $S_3$ as in Lemma~\ref{lem:15.6}.
+
+By Proposition~\ref{prop:1.10}, each conjugacy class of $S_4$ consists of all elements having a given cycle structure. Hence $S_4$ has 5 classes, with representatives $1$, $(1\,2)(3\,4)$, $(1\,2\,3)$, $(1\,2)$, and $(1\,2\,3\,4)$; the orders of the classes are 1, 3, 8, 6, and 6, respectively.
+
+Let $\chi_1, \chi_2$, and $\chi_3$ be the irreducible characters of $S_4$ obtained from those of $S_3$. To determine these characters, we need information about the images in $S_4/K$ of the class representatives. We easily see that the images of 1 and $(1\,2)(3\,4)$ are trivial, that the image of $(1\,2\,3)$ has order 3, and that the images of $(1\,2)$ and $(1\,2\,3\,4)$ have order 2.
+
+Using this observation and the character table for $S_3$ obtained in Example~\ref{ex:15.eg.6}, we obtain the following partial character table for $S_4$:
+\[
+    \begin{array}{c|ccccc}
+        & 1 & 3 & 8 & 6 & 6 \\
+        & 1 & (1\,2)(3\,4) & (1\,2\,3) & (1\,2) & (1\,2\,3\,4) \\
+        \hline
+        \chi_1 & 1 & 1 & 1 & 1 & 1 \\
+        \chi_2 & 1 & 1 & 1 & -1 & -1 \\
+        \chi_3 & 2 & 2 & -1 & 0 & 0 \\
+        \chi_4 & & & & & \\
+        \chi_5 & & & & &
+    \end{array}
+\]
+
+Now $S_4$ acts transitively on the set $X = \{1, 2, 3, 4\}$; let $\pi$ be the character of the $\C G$-module $\C X$. Since $\pi(g)$ equals the number of fixed points under the action of $g$ on $X$ by Example~\ref{ex:15.eg.4}, we have
+\[
+    \begin{array}{c|ccccc}
+        & 1 & 3 & 8 & 6 & 6 \\
+        & 1 & (1\,2)(3\,4) & (1\,2\,3) & (1\,2) & (1\,2\,3\,4) \\
+        \hline
+        \pi & 4 & 0 & 1 & 2 & 0 \\
+        \pi - \chi_1 & 3 & -1 & 0 & 1 & -1
+    \end{array}
+\]
+We also have
+\[
+    (\pi - \chi_1, \pi - \chi_1) = \frac{1}{|S_4|} \sum_{i=1}^{5} k_i [(\pi - \chi_1)(g_i)]^2 = \frac{1}{24}(1 \cdot 9 + 3 \cdot 1 + 8 \cdot 0 + 6 \cdot 1 + 6 \cdot 1) = 1,
+\]
+and hence $\pi - \chi_1$ is irreducible by Corollary~\ref{cor:15.3}. Let $\chi_4 = \pi - \chi_1$. Now $\chi_2 \chi_4 \neq \chi_4$, and $\chi_2 \chi_4$ is irreducible by Proposition~\ref{prop:15.5}; therefore $\chi_5 = \chi_2 \chi_4$, and hence the character table of $S_4$ is
+\[
+    \begin{array}{c|ccccc}
+        & 1 & 3 & 8 & 6 & 6 \\
+        & 1 & (1\,2)(3\,4) & (1\,2\,3) & (1\,2) & (1\,2\,3\,4) \\
+        \hline
+        \chi_1 & 1 & 1 & 1 & 1 & 1 \\
+        \chi_2 & 1 & 1 & 1 & -1 & -1 \\
+        \chi_3 & 2 & 2 & -1 & 0 & 0 \\
+        \chi_4 & 3 & -1 & 0 & 1 & -1 \\
+        \chi_5 & 3 & -1 & 0 & -1 & 1
+    \end{array}
+\]
+\end{example}
+
+\begin{example}
+\label{ex:15.eg.8}
+Let $G$ be a non-abelian group of order 8. We will show that this information completely determines the character table of $G$. Since there are two isomorphism classes of non-abelian groups of order 8 (see page~79), this will imply that the character table does not specify a group up to isomorphism.
+
+We have $|Z(G)| = 2$ by Theorem~\ref{thm:8.1} and Lemma~\ref{lem:8.2}, and hence $Z(G) \cong \Z_2$. Since $G$ is non-abelian and $G/Z(G)$ is abelian (being a group of order 4), this forces $G' = Z(G)$ by Proposition~\ref{prop:2.6}. Now $|G/G'| = 4$, and by Lemma~\ref{lem:8.2} $G/G'$ cannot be cyclic since $G$ is non-abelian and $G' = Z(G)$, so we must have $G/G' \cong \Z_2 \times \Z_2$. By Examples~\ref{ex:15.eg.3} and~\ref{ex:15.eg.5}, we now know that $G$ has exactly 4 linear characters. By Corollary~\ref{cor:14.2}, we have $\sum_{i=1}^{r} f_i^2 = 8$, where $f_i = 1$ for $1 \leq i \leq 4$ and $f_i > 1$ for $i > 4$; this forces $r = 5$ and $f_5 = 2$.
+
+Let $x$ be the generator of $G'$. As $G' = Z(G)$, we see that 1 and $x$ are the only elements of $G$ lying in single-element conjugacy classes, and hence each of the other three classes must have order 2. Let $a$, $b$, and $c$ be representatives of the multi-element classes. Since $G/G'$ also has four conjugacy classes, we see that the images of $a$, $b$, and $c$ in $G/G'$ must lie in distinct conjugacy classes. Using the character table for $\Z_2 \times \Z_2$ determined in Example~\ref{ex:15.eg.3}, we can now obtain a partial character table for $G$ by lifting:
+\[
+    \begin{array}{c|ccccc}
+        & 1 & 1 & 2 & 2 & 2 \\
+        & 1 & x & a & b & c \\
+        \hline
+        \chi_1 & 1 & 1 & 1 & 1 & 1 \\
+        \chi_2 & 1 & 1 & 1 & -1 & -1 \\
+        \chi_3 & 1 & 1 & -1 & 1 & -1 \\
+        \chi_4 & 1 & 1 & -1 & -1 & 1 \\
+        \chi_5 & 2 & & & &
+    \end{array}
+\]
+We see via \nameref{thm:col-orthogonality} that $\chi_5(a) = \chi_5(b) = \chi_5(c) = 0$ and that $\chi_5(x) = -2$, completing the character table.
+\end{example}
+
+\begin{example}
+\label{ex:15.eg.9}
+Consider the group $A_5$. Using Proposition~\ref{prop:1.10}, we find that the elements of $A_5$ form 4 conjugacy classes in $S_5$, with representatives $1$, $(1\,2)(3\,4)$, $(1\,2\,3)$, and $(1\,2\,3\,4\,5)$ and respective orders 1, 15, 20, and 24. However, elements of $A_5$ that are conjugate in $S_5$ may not be conjugate in $A_5$.
+
+Let $x \in A_5$, and let $\mathcal{K}$ be the conjugacy class in $S_5$ of $x$. We see from Proposition~\ref{prop:3.13} that $|\mathcal{K}| = |S_5 : C_{S_5}(x)|$ and that the conjugacy class in $A_5$ of $x$ is contained in $\mathcal{K}$ and has order $|A_5 : C_{A_5}(x)|$. Suppose first that $C_{S_5}(x) \not\leq A_5$. This forces $A_5 C_{S_5}(x) = S_5$ since $A_5$ is a maximal subgroup of $S_5$. The first isomorphism theorem gives $S_5/A_5 = A_5 C_{S_5}(x)/A_5 \cong C_{S_5}(x)/C_{S_5}(x) \cap A_5 = C_{S_5}(x)/C_{A_5}(x)$, and hence
+\begin{align*}
+    |A_5 : C_{A_5}(x)| &= \frac{|S_5 : C_{A_5}(x)|}{|S_5 : A_5|} = \frac{|S_5 : C_{A_5}(x)|}{|C_{S_5}(x) : C_{A_5}(x)|} = |S_5 : C_{S_5}(x)| \\
+    &= |\mathcal{K}|.
+\end{align*}
+Thus $\mathcal{K}$ is the conjugacy class in $A_5$ of $x$. Now suppose $C_{S_5}(x) \leq A_5$. Then we have $C_{A_5}(x) = C_{S_5}(x) \cap A_5 = C_{S_5}(x)$, and hence
+\[
+    |A_5 : C_{A_5}(x)| = |A_5 : C_{S_5}(x)| = \tfrac{1}{2}|S_5 : C_{S_5}(x)| = \tfrac{1}{2}|\mathcal{K}|,
+\]
+from which we see that $\mathcal{K}$ splits into two conjugacy classes in $A_5$ of equal cardinality.
+
+We easily see that each of the elements 1, $(1\,2)(3\,4)$, and $(1\,2\,3)$ commutes with some odd permutation in $S_5$; for example, $(4\,5)$ and $(1\,2\,3)$ commute. Hence by the above paragraph, the conjugacy classes in $A_5$ of these elements are the respective classes in $S_5$. Since $24 \nmid 60$, we can now conclude that the conjugacy class in $S_5$ of $(1\,2\,3\,4\,5)$ splits into two classes in $A_5$, and hence that the conjugacy classes of $A_5$ have orders 1, 15, 20, 12, and 12. (Using this fact and the remark made after Proposition~\ref{prop:3.13}, we could now give a slick proof of the simplicity of $A_5$.) We will now show that $x = (1\,2\,3\,4\,5)$ and $x^2 = (1\,3\,5\,2\,4)$ are not conjugate in $A_5$, thereby establishing that the conjugacy class in $A_5$ of $x$ splits in $A_5$ into the class containing $x$ and the class containing $x^2$.
+
+Suppose that $g \in A_5$ is such that $gxg^{-1} = x^2$. Then we have $g\langle x \rangle g^{-1} = \langle x^2 \rangle = \langle x \rangle$, and hence $g \in N_{A_5}(\langle x \rangle)$. Now $\langle x \rangle$ is a Sylow 5-subgroup of $A_5$, and we observed in the proof of Theorem~\ref{thm:7.4} that $A_5$ has 6 Sylow 5-subgroups. Thus $|N_{A_5}(\langle x \rangle)| = 10$, and we find that $N_{A_5}(\langle x \rangle) = \langle x \rangle \rtimes \langle t \rangle \cong D_{10}$, where $t = (2\,5)(3\,4)$. But $txt^{-1} = x^{-1} \neq x^2$; from this, we see that there is no element $g \in N_{A_5}(\langle x \rangle)$ such that $gxg^{-1} = x^2$. Contradiction; therefore $x$ and $x^2$ are not conjugate in $A_5$.
+
+We now see that $A_5$ has 5 conjugacy classes, with representatives $1$, $(1\,2)(3\,4)$, $(1\,2\,3)$, $(1\,2\,3\,4\,5)$, and $(1\,3\,5\,2\,4)$ and respective orders 1, 15, 20, 12, and 12. Since $A_5$ is simple, we cannot produce irreducible characters of $A_5$ by lifting irreducible characters of quotient groups, as we have done in previous examples. However, $A_5$ is a group of permutations, so we have as a starting point the characters of certain obvious permutation modules.
+
+Let $X = \{1, 2, 3, 4, 5\}$; $A_5$ acts transitively on $X$ in the obvious way. Let $\pi$ be the character of the $\C A_5$-module $\C X$. By Example~\ref{ex:15.eg.4}, we see that $\pi(g)$ equals the number of fixed points of $X$ under the action of $g \in A_5$, and hence we have
+\[
+    \begin{array}{c|ccccc}
+        & 1 & 15 & 20 & 12 & 12 \\
+        & 1 & (1\,2)(3\,4) & (1\,2\,3) & (1\,2\,3\,4\,5) & (1\,3\,5\,2\,4) \\
+        \hline
+        \pi & 5 & 1 & 2 & 0 & 0 \\
+        \pi - \chi_1 & 4 & 0 & 1 & -1 & -1
+    \end{array}
+\]
+We also have
+\[
+    (\pi - \chi_1, \pi - \chi_1) = \frac{1}{|A_5|}\sum_{i=1}^{5} k_i[(\pi - \chi_1)(g_i)]^2 = \frac{1}{60}(1 \cdot 16 + 15 \cdot 0 + 20 \cdot 1 + 12 \cdot 1 + 12 \cdot 1) = 1,
+\]
+and hence $\pi - \chi_1$ is irreducible by Corollary~\ref{cor:15.3}. Let $\chi_2 = \pi - \chi_1$.
+
+Let $Y$ be the set of two-element subsets of $X$; this is a transitive $A_5$-set under the obvious action. Let $\psi$ be the character of the $\C A_5$-module $\C Y$. We have
+\[
+    \begin{array}{c|ccccc}
+        & 1 & 15 & 20 & 12 & 12 \\
+        & 1 & (1\,2)(3\,4) & (1\,2\,3) & (1\,2\,3\,4\,5) & (1\,3\,5\,2\,4) \\
+        \hline
+        \psi & 10 & 2 & 1 & 0 & 0 \\
+        \psi - \chi_1 & 9 & 1 & 0 & -1 & -1
+    \end{array}
+\]
+Now
+\[
+    (\psi - \chi_1, \psi - \chi_1) = \frac{1}{|A_5|}\sum_{i=1}^{5} k_i[(\psi - \chi_1)(g_i)]^2 = \frac{1}{60}(1 \cdot 81 + 15 \cdot 1 + 20 \cdot 0 + 12 \cdot 1 + 12 \cdot 1) = 2,
+\]
+so by Corollary~\ref{cor:15.3}, $\psi - \chi_1$ is the sum of two irreducible characters; as noted in Example~\ref{ex:15.eg.4}, neither of these two characters is $\chi_1$, since $Y$ is transitive. We have
+\[
+    (\psi - \chi_1, \chi_2) = \frac{1}{|A_5|}\sum_{i=1}^{5} k_i(\psi - \chi_1)(g)\chi_2(g) = \frac{1}{60}(1 \cdot 9 \cdot 4 + 15 \cdot 1 \cdot 0 + 20 \cdot 0 \cdot 1 + 24 \cdot (-1)(-1)) = 1,
+\]
+and therefore by Corollary~\ref{cor:15.4} we see that $\psi - \chi_1 - \chi_2$ is an irreducible character that is neither $\chi_1$ nor $\chi_2$. Let $\chi_3 = \psi - \chi_1 - \chi_2$, and observe that $f_3 = 5$.
+
+By Corollary~\ref{cor:14.2} we have $\sum_{i=1}^{5} f_i^2 = |A_5| = 60$, which gives $f_4^2 + f_5^2 = 18$ and hence $f_4 = f_5 = 3$. Thus we have the following partial character table:
+\[
+    \begin{array}{c|ccccc}
+        & 1 & 15 & 20 & 12 & 12 \\
+        & 1 & (1\,2)(3\,4) & (1\,2\,3) & (1\,2\,3\,4\,5) & (1\,3\,5\,2\,4) \\
+        \hline
+        \chi_1 & 1 & 1 & 1 & 1 & 1 \\
+        \chi_2 & 4 & 0 & 1 & -1 & -1 \\
+        \chi_3 & 5 & 1 & -1 & 0 & 0 \\
+        \chi_4 & 3 & & & & \\
+        \chi_5 & 3 & & & &
+    \end{array}
+\]
+
+Let $a = \chi_4((1\,2)(3\,4))$ and $b = \chi_5((1\,2)(3\,4))$. By \nameref{thm:col-orthogonality}, we have
+\[
+    0 = \sum_{i=1}^{5} f_i \chi_i((1\,2)(3\,4)) = 1 \cdot 1 + 4 \cdot 0 + 5 \cdot 1 + 3a + 3b,
+\]
+and hence $a + b = -2$. By part (iii) of Proposition~\ref{prop:14.4}, we see that each of $a$ and $b$ is a sum of three square roots of unity; therefore $a, b \in \{-3, -1, 1, 3\}$. But by \nameref{thm:col-orthogonality} we have
+\[
+    4 = \frac{60}{15} = \frac{|A_5|}{k_2} = \sum_{i=1}^{5} |\chi_i((1\,2)(3\,4))|^2 = 1 + 0 + 1 + a^2 + b^2,
+\]
+and hence $a^2 + b^2 = 2$. It now follows that $a = b = -1$.
+
+By \nameref{thm:col-orthogonality}, we have
+\[
+    3 = \frac{60}{20} = \frac{|A_5|}{k_3} = \sum_{i=1}^{5} |\chi_i((1\,2\,3))|^2 = 1 + 1 + 1 + |\chi_4((1\,2\,3))|^2 + |\chi_5((1\,2\,3))|^2;
+\]
+thus $|\chi_4((1\,2\,3))|^2 + |\chi_5((1\,2\,3))|^2 = 0$, and therefore we conclude that $\chi_4((1\,2\,3)) = \chi_5((1\,2\,3)) = 0$. We now have the following partial character table:
+\[
+    \begin{array}{c|ccccc}
+        & 1 & 15 & 20 & 12 & 12 \\
+        & 1 & (1\,2)(3\,4) & (1\,2\,3) & (1\,2\,3\,4\,5) & (1\,3\,5\,2\,4) \\
+        \hline
+        \chi_1 & 1 & 1 & 1 & 1 & 1 \\
+        \chi_2 & 4 & 0 & 1 & -1 & -1 \\
+        \chi_3 & 5 & 1 & -1 & 0 & 0 \\
+        \chi_4 & 3 & -1 & 0 & & \\
+        \chi_5 & 3 & -1 & 0 & &
+    \end{array}
+\]
+
+Let $x = (1\,2\,3\,4\,5)$. Recall that in proving that $x$ and $x^2$ are not conjugate in $A_5$, we found that $x$ and $x^{-1}$ are conjugate in $A_5$; hence $\chi_4(x) = \chi_4(x^{-1})$, and thus $\chi_4(x)$ is real-valued by part (iv) of Proposition~\ref{prop:14.4}. The same argument shows that $\chi_4(x^2)$, $\chi_5(x)$, and $\chi_5(x^2)$ are also real-valued. Let $c = \chi_4(x)$ and $d = \chi_4(x^2)$. Then by \nameref{thm:row-orthogonality}, we have
+\[
+    0 = \sum_{i=1}^{5} k_i \chi_4(g_i) = 1 \cdot 3 + 15 \cdot (-1) + 20 \cdot 0 + 12c + 12d,
+\]
+which gives $c + d = 1$, and also (since $\chi_4$ is real-valued)
+\[
+    60 = \sum_{i=1}^{5} k_i \chi_4(g_i)^2 = 1 \cdot 9 + 15 \cdot 1 + 20 \cdot 0 + 12c^2 + 12d^2,
+\]
+which gives $c^2 + d^2 = 3$. Hence $c^2 - c - 1 = 0$, so without loss of generality we have $c = \frac{1 + \sqrt{5}}{2}$ and $d = 1 - c = \frac{1 - \sqrt{5}}{2}$. We can similarly show that we must have $\chi_5(x), \chi_5(x^2) \in \{\frac{1 + \sqrt{5}}{2}, \frac{1 - \sqrt{5}}{2}\}$; we leave it to the reader to verify that $\chi_5(x) = \frac{1 - \sqrt{5}}{2}$ and $\chi_5(x^2) = \frac{1 + \sqrt{5}}{2}$, which completes the character table of $A_5$.
+\end{example}
+
+\subsection*{Exercises}
+
+Throughout these exercises, $G$ denotes a finite group, and $\mathcal{X}$ denotes the character table of $G$.
+
+\begin{exercise}
+\label{ex:15.1}
+What is the determinant of $\mathcal{X}$?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:15.2}
+Show that the sum of the entries in any row of $\mathcal{X}$ is a non-negative integer.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:15.3}
+Compute the character of the $G$-set $G$, where $G$ acts via conjugation, and determine the multiplicities in this character of the irreducible characters.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:15.4}
+Observe that the complex conjugate of an irreducible character is an irreducible character. (This is either Exercise~\ref{ex:14.6} or an easy consequence of part (ii) of Proposition~\ref{prop:14.8} and Corollary~\ref{cor:15.3}.) Let $P$ be the $r \times r$ permutation matrix such that $P\mathcal{X}$ is the matrix obtained from $\mathcal{X}$ by interchanging two rows if their corresponding characters are conjugate. Let $Q$ be the $r \times r$ permutation matrix such that $\mathcal{X}Q$ is the matrix obtained from $\mathcal{X}$ by interchanging two columns if their corresponding conjugacy classes are inverse, in the sense that one class consists of the inverses of the elements of the other class. Show that $P\mathcal{X} = \mathcal{X}Q$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:15.5}
+Suppose that $|G|$ is odd. Show that the only irreducible character that is real-valued is the principal character.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:15.6}
+Let $\chi$ be an irreducible character of $G$, and let $e \in \C G$ be the identity element of the corresponding matrix summand of $\C G$. Show that
+\[
+    e = \frac{\chi(1)}{|G|} \sum_{g \in G} \chi(g^{-1}) g.
+\]
+\end{exercise}
+
+\begin{exercise}
+\label{ex:15.7}
+If $N \trianglelefteq G$ and $g \in G$, show that $|C_G(g)| \geq |C_{G/N}(gN)|$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:15.8}
+Show that if $G$ acts doubly transitively on $X$, then the character of $\C X$ is the sum of the principal character and exactly one other irreducible character.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:15.9}
+Determine the character table of $D_{2n}$ for any $n \in \N$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:15.10}
+Determine the character table of $S_5$.
+\end{exercise}
+
+\end{document}

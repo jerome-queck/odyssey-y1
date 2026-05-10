@@ -1,0 +1,375 @@
+\documentclass[../Odyssey_Project.tex]{subfiles}
+
+\begin{document}
+\setcounter{section}{12}
+\section{Wedderburn Theory}
+
+\subsubsection*{Setting and Goal}
+\begin{itemize}
+    \item Maschke (Corollary~\ref{cor:12.8}) shows that if $\mathrm{char}(F) \nmid |G|$ then every finitely generated $FG$-module decomposes as a direct sum of simple modules.
+    \item This section identifies the finite-dimensional $F$-algebras with this property and uses the resulting structure theorems to finish Kolchin's theorem on unipotent subgroups.
+    \item Throughout, all algebras are finite-dimensional $F$-algebras (with unit unless stated), and all modules are finitely generated, equivalently finite-dimensional as $F$-vector spaces (Lemma~\ref{lem:12.5}).
+    \item The classification is due to J.~H.~M.~Wedderburn.
+\end{itemize}
+
+\subsubsection*{Semisimplicity for Modules}
+\begin{itemize}
+    \item Three equivalent formulations of semisimplicity for an $A$-module: every submodule is a direct summand; the module is a direct sum of simple submodules; the module is a sum of simple submodules.
+    \item Semisimplicity is preserved under submodules and quotient modules.
+    \item An algebra $A$ is \emph{semisimple} if every non-zero $A$-module is semisimple; equivalently, $A$ is semisimple as an $A$-module over itself.
+\end{itemize}
+
+\begin{lemma}
+\label{lem:13.1}
+The following statements about an $A$-module $M$ are equivalent:
+\begin{enumerate}
+    \item Any submodule of $M$ is a direct summand of $M$.
+    \item $M$ is semisimple.
+    \item $M$ is a sum (but not, a priori, a direct sum) of simple submodules.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{lemma}
+\label{lem:13.2}
+Submodules and quotient modules of semisimple modules are semisimple.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{lemma}
+\label{lem:13.3}
+The algebra $A$ is semisimple iff the $A$-module $A$ is semisimple.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Counting Simple Summands}
+\begin{itemize}
+    \item Decomposing $A \cong S_1 \oplus \dots \oplus S_r$ into simple summands captures all isomorphism types of simple $A$-modules.
+    \item Multiplicities of simple summands in a semisimple module are determined uniquely (\nameref{thm:jordan-holder}).
+\end{itemize}
+
+\begin{proposition}
+\label{prop:13.4}
+Let $A$ be a semisimple algebra, and suppose that as $A$-modules we have $A \cong S_1 \oplus \dots \oplus S_r$, where the $S_i$ are simple submodules of $A$. Then any simple $A$-module is isomorphic with some $S_i$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\begin{proposition}
+\label{prop:13.5}
+Suppose that $A$ is a semisimple algebra, and let $S_1, \dots, S_r$ be a collection of simple $A$-modules such that every simple $A$-module is isomorphic with exactly one $S_i$. Let $M$ be an $A$-module, and write $M \cong n_1 S_1 \oplus \dots \oplus n_r S_r$ for some non-negative integers $n_i$. Then the $n_i$ are uniquely determined.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Matrix Algebras over Division Algebras}
+\begin{itemize}
+    \item For a finite-dimensional $F$-algebra $D$, the matrix algebra $\mathcal{M}_n(D)$ has dimension $n^2 \dim_F D$.
+    \item $E_{ij}(\alpha)$ denotes the matrix with sole non-zero entry $\alpha$ in position $(i,j)$.
+    \item $D^n$ is the natural left $\mathcal{M}_n(D)$-module of column vectors.
+    \item A \emph{division algebra} is an algebra whose non-zero elements form a group under multiplication; field extensions of $F$ are division algebras, but non-commutative examples also exist.
+\end{itemize}
+
+\begin{theorem}
+\label{thm:13.6}
+Let $D$ be a division algebra, and let $n \in \N$. Then any simple $\mathcal{M}_n(D)$-module is isomorphic with $D^n$, and $\mathcal{M}_n(D)$ is isomorphic as $\mathcal{M}_n(D)$-modules with the direct sum of $n$ copies of $D^n$. In particular, $\mathcal{M}_n(D)$ is a semisimple algebra.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Simple Algebras}
+\begin{itemize}
+    \item An algebra is \emph{simple} if its only two-sided ideals are itself and the zero ideal.
+    \item Simple algebras are semisimple, and matrix algebras over division algebras are simple.
+\end{itemize}
+
+\begin{lemma}
+\label{lem:13.7}
+Simple algebras are semisimple.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{theorem}
+\label{thm:13.8}
+Let $D$ be a division algebra, and let $n \in \N$. Then $\mathcal{M}_n(D)$ is a simple algebra.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Direct Sums of Algebras}
+\begin{itemize}
+    \item The \emph{external direct sum} $B = B_1 \oplus \dots \oplus B_r$ has the Cartesian product of underlying sets with componentwise operations; each $B_i$ embeds as an ideal.
+    \item A $B$-module $M$ becomes a $B_i$-module via $b_i m = (0,\dots,b_i,\dots,0) m$, and is simple/semisimple as a $B_i$-module iff it is simple/semisimple as a $B$-module.
+    \item An \emph{internal direct sum} of ideals $B_1, \dots, B_r$ (vector-space direct sum) is isomorphic to the external direct sum.
+    \item Two-sided ideals of a finite direct sum decompose componentwise.
+\end{itemize}
+
+\begin{lemma}
+\label{lem:13.9}
+Let $B = B_1 \oplus \dots \oplus B_n$ be a direct sum of algebras. Then the two-sided ideals of $B$ are exactly the sets of the form $J_1 \oplus \dots \oplus J_n$, where $J_i$ is a two-sided ideal of $B_i$ for each $i$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{theorem}
+\label{thm:13.10}
+Let $r \in \N$. For each $1 \leq i \leq r$, let $D_i$ be a division algebra over $F$, let $n_i \in \N$, and let $B_i = \mathcal{M}_{n_i}(D_i)$. Let $B$ be the external direct sum of the $B_i$. Then $B$ is a semisimple algebra having exactly $r$ isomorphism classes of simple modules and exactly $2^r$ two-sided ideals, namely every sum of the form $\bigoplus_{j \in J} B_j$, where $J$ is a subset of $\{1, \dots, n\}$.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Endomorphism and Opposite Algebras}
+\begin{itemize}
+    \item For an $A$-module $M$, $\mathrm{End}_A(M)$ is an $F$-algebra under composition; we call it the \emph{endomorphism algebra} of $M$.
+    \item The \emph{opposite algebra} $B^{op}$ has the same underlying additive structure but reversed multiplication: $a \cdot b := ba$. Note $(B^{op})^{op} = B$, and the opposite of a division algebra is again a division algebra.
+    \item These two notions are linked by $B^{op} \cong \mathrm{End}_B(B)$: every $B$-endomorphism of $B$ is right multiplication by some element.
+    \item Endomorphism algebras decompose along $A$-module direct sums into block form, and over a single simple module they yield a matrix algebra.
+\end{itemize}
+
+\begin{lemma}
+\label{lem:13.11}
+Let $B$ be an algebra. Then $B^{op} \cong \mathrm{End}_B(B)$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{lemma}
+\label{lem:13.12}
+Let $S_1, \dots, S_r$ be the distinct simple $A$-modules; for each $i$, let $U_i$ be a direct sum of copies of $S_i$, and let $U = U_1 \oplus \dots \oplus U_r$. Then we have $\mathrm{End}_A(U) \cong \mathrm{End}_A(U_1) \oplus \dots \oplus \mathrm{End}_A(U_r)$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{lemma}
+\label{lem:13.13}
+If $S$ is a simple $A$-module, then for any $n \in \N$ we have $\mathrm{End}_A(nS) \cong \mathcal{M}_n(\mathrm{End}_A(S))$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{lemma}
+\label{lem:13.14}
+Suppose that $F$ is algebraically closed, and let $S$ be a simple $A$-module. Then $\mathrm{End}_A(S) \cong F$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{lemma}
+\label{lem:13.15}
+Let $B$ be an algebra. Then $\mathcal{M}_n(B)^{op} \cong \mathcal{M}_n(B^{op})$ for any $n \in \N$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Wedderburn's Structure Theorems}
+\begin{itemize}
+    \item Wedderburn's main structure theorem (Theorem~\ref{thm:13.16}): a finite-dimensional algebra is semisimple iff it is isomorphic to a direct sum of matrix algebras over division algebras.
+    \item Equivalently, semisimple iff a direct sum of simple algebras, confirming the consistency of terminology.
+    \item An algebra is simple iff it is isomorphic to a single matrix algebra over a division algebra (Theorem~\ref{thm:13.17}).
+    \item Over an algebraically closed field, every semisimple algebra is a direct sum of full matrix algebras over $F$ itself (Theorem~\ref{thm:13.18}).
+\end{itemize}
+
+\begin{theorem}
+\label{thm:13.16}
+The algebra $A$ is semisimple iff it is isomorphic with a direct sum of matrix algebras over division algebras.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\begin{theorem}
+\label{thm:13.17}
+The algebra $A$ is simple iff it is isomorphic with a matrix algebra over a division algebra.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\begin{theorem}
+\label{thm:13.18}
+Suppose that the field $F$ is algebraically closed. Then any semisimple algebra is isomorphic with a direct sum of matrix algebras over $F$.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Nilpotent Ideals and the Radical}
+\begin{itemize}
+    \item In this part, $A$ is an algebra possibly without unit. An element $x \in A$ is \emph{nilpotent} if $x^n = 0$ for some $n \in \N$.
+    \item An ideal $I$ is \emph{nilpotent} if $I^n = 0$ for some $n$, where $I^n$ is the ideal spanned by all products of $n$ elements; an algebra is nilpotent if some such $n$ exists for $I = A$.
+    \item A nilpotent algebra cannot have a unit.
+    \item The sum of two nilpotent ideals is nilpotent, and (using finite-dimensionality) a unique largest nilpotent ideal exists.
+    \item Submodules with semisimple quotient are closed under finite intersection, so a smallest such submodule of $A$ exists.
+    \item For an $A$-module $M$, $\mathrm{Ann}(M) = \{a \in A \mid aM = 0\}$ is the \emph{annihilator} of $M$, an ideal of $A$; the \emph{common annihilator} of a family $\{M_t\}_{t \in \mathcal{T}}$ is $\bigcap_{t \in \mathcal{T}} \mathrm{Ann}(M_t)$.
+    \item Wedderburn (Theorem~\ref{thm:13.23}): the largest nilpotent ideal, the common annihilator of all simple $A$-modules, and the smallest submodule of $A$ with semisimple quotient all coincide. This common object is the \emph{radical} $\mathrm{rad}(A)$, also called the Jacobson radical $J(A)$.
+\end{itemize}
+
+\begin{lemma}
+\label{lem:13.19}
+Let $I$ and $J$ be nilpotent ideals of $A$. Then $I + J$ is also a nilpotent ideal of $A$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{corollary}
+\label{cor:13.20}
+$A$ has a largest nilpotent ideal.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+\begin{lemma}
+\label{lem:13.21}
+Let $M$ and $N$ be submodules of $A$ such that $A/M$ and $A/N$ are semisimple $A$-modules. Then $A/M \cap N$ is a semisimple $A$-module.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{corollary}
+\label{cor:13.22}
+$A$ has a smallest submodule having semisimple quotient.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+\begin{theorem}
+\label{thm:13.23}
+Let $A$ be an algebra with unit. Then the following are equal:
+\begin{itemize}
+    \item The largest nilpotent ideal of $A$.
+    \item The common annihilator of all simple $A$-modules.
+    \item The smallest submodule of $A$ having semisimple quotient.
+\end{itemize}
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\begin{corollary}
+\label{cor:13.24}
+Let $A$ be an algebra with unit. Then $A$ is semisimple iff $A$ has no non-zero nilpotent ideals.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Algebras Without Unit; Nilpotence}
+\begin{itemize}
+    \item Any algebra (possibly without unit) embeds as an ideal in an algebra with unit, with quotient $F$.
+    \item Consequence: an algebra without unit having radical zero cannot exist---no such algebras occur.
+    \item Wedderburn: an algebra generated as an $F$-vector space by nilpotent elements is itself nilpotent. This finishes \nameref{thm:kolchin}.
+\end{itemize}
+
+\begin{lemma}
+\label{lem:13.25}
+Let $A$ be an algebra, possibly without unit. Then there exists an algebra $B$ with unit and an ideal $I$ of $B$ such that, as algebras, we have $I \cong A$ and $B/I \cong F$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{theorem}
+\label{thm:13.26}
+Let $A$ be a non-zero algebra, possibly without unit. If $A$ has no non-zero nilpotent ideals, then $A$ is an algebra with unit.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\begin{theorem}
+\label{thm:13.27}
+Suppose that the algebra $A$ can be generated as an $F$-vector space by a set consisting of nilpotent elements. Then $A$ is nilpotent.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\begin{proposition}
+\label{prop:13.28}
+Let $V_n(F)$ be the space of column vectors of length $n \in \N$ with entries from a field $F$, and let $H$ be a unipotent subgroup of $\mathrm{GL}(n,F)$. Then there exists some $0 \neq \mathbf{v} \in V_n(F)$ such that $x\mathbf{v} = \mathbf{v}$ for all $x \in H$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsection*{Exercises}
+
+Throughout these exercises, $A$ denotes a finite-dimensional algebra with unit over a field $F$, and all $A$-modules are finitely generated.
+
+\begin{exercise}
+\label{ex:13.1}
+Let $n \in \N$. Let $V$ be the $n$-dimensional subspace of $A^n$ spanned by the identity elements of the summands. Show that if $M$ is an $A$-module and $T \colon V \to M$ is a linear transformation, then there is a unique $A$-module homomorphism from $A^n$ to $M$ which extends $T$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:13.2}
+(cont.) Suppose that $B$ is an $A$-module having an $n$-dimensional subspace $U$ such that whenever $M$ is an $A$-module and $T \colon U \to M$ is a linear transformation, there is a unique extension of $T$ to an $A$-module homomorphism from $B$ to $M$. Show that $B$ and $A^n$ are isomorphic $A$-modules. (Modules of the form $A^n$ for some $n \in \N$ are called \emph{free} $A$-modules; hence this exercise provides an alternate characterization of freeness, which we shall generalize for group algebras in the exercises to Section 16.)
+\end{exercise}
+
+\begin{exercise}
+\label{ex:13.3}
+Let $n \in \N$, and let $T_n(F)$ be the algebra of upper triangular $n \times n$ matrices. Show that the set $V_n(F)$ of column vectors over $F$ of length $n$ is a $T_n(F)$-module that has a unique composition series in which every simple $T_n(F)$-module appears exactly once as a composition factor.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:13.4}
+(cont.) Show that the $T_n(F)$-module $T_n(F)$ is isomorphic with the direct sum of all non-zero submodules of $V_n(F)$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:13.5}
+(cont.) Find the largest nilpotent ideal of $T_n(F)$, and show without reference to Theorem~\ref{thm:13.23} that it is also the common annihilator of all simple $T_n(F)$-modules and the smallest submodule of $T_n(F)$ having semisimple quotient.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:13.6}
+Let $U$ be an $A$-module, let $n \in \N$, and let $U^n$ be the set of column vectors of length $n$ with entries from $U$, considered in the obvious way as an $\mathcal{M}_n(A)$-module. Show that $U$ is a simple $A$-module iff $U^n$ is a simple $\mathcal{M}_n(A)$-module.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:13.7}
+(cont.) Show that $\mathrm{Hom}_A(U,V) \cong \mathrm{Hom}_{\mathcal{M}_n(A)}(U^n, V^n)$ for any $A$-modules $U$ and $V$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:13.8}
+(cont.) Show that every $\mathcal{M}_n(A)$-module is isomorphic with a module of the form $U^n$ for some $A$-module $U$. (What Exercises~\ref{ex:13.6}--\ref{ex:13.8} show is that the module theory of the algebras $A$ and $\mathcal{M}_n(A)$ is, in a sense that can be made precise, the same. In the language of category theory, we say that the categories of $A$-modules and $\mathcal{M}_n(A)$-modules are \emph{Morita equivalent}.)
+\end{exercise}
+
+\begin{exercise}
+\label{ex:13.9}
+Show that $A$ is a simple $A$-module iff $A$ is a division algebra.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:13.10}
+We can clearly regard an $A/\mathrm{rad}\, A$-module as being an $A$-module; on the other hand, a simple $A$-module is annihilated by $\mathrm{rad}(A)$ and hence can be considered as an $A/\mathrm{rad}\, A$-module. Show that an $A$-module is simple iff it is a simple $A/\mathrm{rad}(A)$-module. (Since $A/\mathrm{rad}(A)$ is a semisimple algebra, this implies that the determination of simple modules over arbitrary algebras reduces to the case of semisimple algebras.)
+\end{exercise}
+
+\begin{exercise}
+\label{ex:13.11}
+Let $B$ be a finite-dimensional $F$-algebra, possibly without unit. Show that if $B$ is a simple algebra whose multiplication is not identically zero, then $B$ is isomorphic with a matrix algebra over a division algebra.
+\end{exercise}
+
+\subsection*{Further Exercises}
+
+Let $A$ be as above, and let $M$ be a finitely generated $A$-module.
+
+\begin{exercise}
+\label{ex:13.12}
+Show that the following objects (exist and) are equal: the intersection of all maximal submodules of $M$; the smallest submodule of $M$ having semisimple quotient; and $\mathrm{rad}(A)M$. This submodule of $M$ is called the \emph{radical} of $M$ and is denoted $\mathrm{rad}(M)$. (Observe that our two definitions of the symbol $\mathrm{rad}(A)$ agree.)
+
+We define a descending series $\mathrm{rad}^n(M)$ of submodules of $M$ by setting $\mathrm{rad}^0(M) = M$ and $\mathrm{rad}^n(M) = \mathrm{rad}(\mathrm{rad}^{n-1}(M))$ for $n \in \N$. It follows from Exercise~\ref{ex:13.12} that $\mathrm{rad}^n(M) = (\mathrm{rad}(A))^n M$ for any $n \in \N$. This series is called the \emph{radical series} of $M$. Observe that $\mathrm{rad}^n(M) = 0$ for some $n$, since $\mathrm{rad}(A)$ is a nilpotent ideal, and that each successive quotient of the radical series is a semisimple module, with $M$ being semisimple iff $\mathrm{rad}(M) = 0$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:13.13}
+(cont.) Show that $M$ has a unique largest semisimple submodule and that this submodule is equal to $\{m \in M \mid \mathrm{rad}(A)m = 0\}$. We call this submodule the \emph{socle} of $M$, and we denote it by $\mathrm{soc}(M)$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:13.14}
+(cont.) We define an ascending series $\mathrm{soc}^n(M)$ of submodules of $M$ as follows: We let $\mathrm{soc}^0(M) = 0$ and $\mathrm{soc}^1(M) = \mathrm{soc}(M)$, and for $n > 1$ we let $\mathrm{soc}^n(M)$ be the submodule of $M$ such that $\mathrm{soc}^n(M)/\mathrm{soc}^{n-1}(M) = \mathrm{soc}(M/\mathrm{soc}^{n-1}(M))$. Show that we have $\mathrm{soc}^n(M) = \{m \in M \mid \mathrm{rad}(A)^n m = 0\}$ for any $n \in \N$. (This series is called the \emph{socle series} of $M$. As with the radical series, we observe that $\mathrm{soc}^n(M) = M$ for some $n$, since $\mathrm{rad}(A)$ is nilpotent, and that each successive quotient of the socle series is semisimple, with $M$ being semisimple iff $\mathrm{soc}(M) = M$.)
+\end{exercise}
+
+\begin{exercise}
+\label{ex:13.15}
+(cont.) Show that $\mathrm{rad}^n(M) = 0$ iff $\mathrm{soc}^n(M) = M$; conclude that the radical and socle series of $M$ have the same finite length. If this common length is $r$, then show that $\mathrm{rad}^n(M) \subseteq \mathrm{soc}^{r-n}(M)$ for every $0 \leq n \leq r$.
+\end{exercise}
+
+\end{document}

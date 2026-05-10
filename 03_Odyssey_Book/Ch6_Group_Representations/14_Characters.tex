@@ -1,0 +1,242 @@
+\documentclass[../Odyssey_Project.tex]{subfiles}
+
+\begin{document}
+\setcounter{section}{13}
+\section{Characters}
+
+\subsubsection*{Standing assumptions}
+\begin{itemize}
+    \item In this chapter $G$ denotes a finite group.
+    \item All $\C G$-modules are finitely generated, equivalently, finite-dimensional as $\C$-vector spaces.
+    \item $\C$ is the field of complex numbers.
+\end{itemize}
+
+\subsubsection*{Wedderburn structure of $\C G$}
+\begin{itemize}
+    \item Since $\C$ is algebraically closed of characteristic zero, Wedderburn theory pins down the structure of $\C G$ precisely.
+    \item The simple summands $\mathcal{M}_{f_i}(\C)$ correspond bijectively to isomorphism classes of simple $\C G$-modules $S_i$, with $\dim_{\C} S_i = f_i$.
+\end{itemize}
+
+\begin{theorem}
+\label{thm:14.1}
+There is some $r \in \N$ and some $f_1, \ldots, f_r \in \N$ such that $\C G \cong \mathcal{M}_{f_1}(\C) \oplus \ldots \oplus \mathcal{M}_{f_r}(\C)$ as $\C$-algebras. Furthermore, there are exactly $r$ isomorphism classes of simple $\C G$-modules, and if we let $S_1, \ldots, S_r$ be representatives of these $r$ classes, then we can order the $S_i$ so that $\C G \cong f_1 S_1 \oplus \ldots \oplus f_r S_r$ as $\C G$-modules, where $\dim_{\C} S_i = f_i$ for each $i$. Any $\C G$-module can be written uniquely in the form $a_1 S_1 \oplus \ldots \oplus a_r S_r$, where the $a_i$ are non-negative integers.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Degrees of $G$}
+\begin{itemize}
+    \item The $\C$-dimensions $f_1, \ldots, f_r$ of the $r$ simple $\C G$-modules are called the \emph{degrees} of $G$.
+    \item The trivial $\C G$-module $\C$ is one-dimensional and hence simple, so $G$ always has at least one degree equal to $1$; by convention we set $f_1 = 1$.
+\end{itemize}
+
+\begin{corollary}
+\label{cor:14.2}
+We have $\sum\limits_{i=1}^{r} f_i^2 = |G|$.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Degrees and conjugacy classes}
+\begin{itemize}
+    \item In fact the degrees of $G$ must divide $|G|$; we shall not use this fact, but we provide a proof of it in the Appendix.
+    \item The next theorem links the number of simple $\C G$-modules to the conjugacy structure of $G$ via the center of $\C G$.
+\end{itemize}
+
+\begin{theorem}
+\label{thm:14.3}
+The number $r$ of simple $\C G$-modules is equal to the number of conjugacy classes of $G$.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Defining characters}
+\begin{itemize}
+    \item In general there is no natural bijective correspondence between the conjugacy classes of $G$ and the simple $\C G$-modules. However, if $G$ is a symmetric group, then there is such a correspondence, although we shall not develop it here; for an overview, see [13, Section 4.1].
+    \item If $U$ is a $\C G$-module, then each $g \in G$ defines an invertible linear transformation of $U$ that sends $u \in U$ to $gu$. The \emph{character} of $U$ is the function $\chi_U \colon G \to \C$, where $\chi_U(g)$ is the trace of this linear transformation of $U$ defined by $g$.
+    \item For example, $\chi_U(1) = \dim_{\C} U$, since the identity element of $G$ induces the identity transformation on $U$.
+    \item If $\rho \colon G \to \mathrm{GL}(U)$ is the representation corresponding to $U$, then $\chi_U(g)$ is just the trace of the map $\rho(g)$.
+    \item Isomorphic $\C G$-modules have equal characters.
+    \item For any $g, h \in G$ the linear transformations of $U$ defined by $g$ and $hgh^{-1}$ are similar and hence have the same trace; so any character of $G$ is constant on each conjugacy class of $G$.
+    \item For example, let $U = \C G$ and let $g \in G$. With respect to the basis $G$ of $\C G$, $\chi_U(g)$ equals the number of elements $x \in G$ for which $gx = x$. Therefore $\chi_U(1) = |G|$ and $\chi_U(g) = 0$ for every $1 \neq g \in G$. This character is called the \emph{regular character} of $G$.
+    \item The theory of characters was developed by Frobenius and others, starting in 1896. At first nothing was known about linear representations, let alone modules over the group algebra; Frobenius defined characters as being functions from $G$ to $\C$ satisfying certain properties, but it turned out that his characters were exactly the trace functions of finitely generated $\C G$-modules.
+    \item We will denote the characters of the $r$ simple $\C G$-modules by $\chi_1, \ldots, \chi_r$; these characters will be referred to as the \emph{irreducible characters} of $G$. Whenever we say that $S_1, \ldots, S_r$ are the distinct simple $\C G$-modules, we implicitly order them so that $\chi_{S_i} = \chi_i$ for each $i$.
+    \item In keeping with the convention that $f_1$ denotes the degree of the trivial representation, we let $\chi_1$ be the character of the trivial representation; we call $\chi_1$ the \emph{principal character} of $G$, and we have $\chi_1(g) = 1$ for all $g \in G$.
+    \item A character of a one-dimensional $\C G$-module is called a \emph{linear character}. Since one-dimensional modules are simple, all linear characters are irreducible. If $\chi$ arises from a one-dimensional $\C G$-module $U$, then for $g, h \in G$ and $u \in U$ we have $gu = \chi(g)u$ and $hu = \chi(h)u$, so $\chi(gh)u = (gh)u = \chi(g)\chi(h)u$; hence $\chi$ is a homomorphism from $G$ to $\C^{\times}$. Conversely, given a homomorphism $\varphi \colon G \to \C^{\times}$, we can define a one-dimensional $\C G$-module $U$ by $gu = \varphi(g) u$ for $g \in G$ and $u \in U$, and we then have $\chi_U = \varphi$. Therefore, linear characters of $G$ are exactly the same as group homomorphisms from $G$ to $\C^{\times}$.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:14.4}
+Let $U$ be a $\C G$-module, let $\rho \colon G \to \mathrm{GL}(U)$ be the representation corresponding to $U$, and let $g \in G$ be of order $n$. Then:
+\begin{enumerate}
+    \item[(i)] $\rho(g)$ is diagonalizable.
+    \item[(ii)] $\chi_U(g)$ equals the sum (with multiplicities) of the eigenvalues of $\rho(g)$.
+    \item[(iii)] $\chi_U(g)$ is a sum of $\chi_U(1)$ $n$th roots of unity.
+    \item[(iv)] $\chi_U(g^{-1}) = \overline{\chi_U(g)}$. (Here $\overline{z}$ denotes the complex conjugate of $z \in \C$.)
+    \item[(v)] $|\chi_U(g)| \leq \chi_U(1)$.
+    \item[(vi)] $\{x \in G \mid \chi_U(x) = \chi_U(1)\}$ is a normal subgroup of $G$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Algebra of characters}
+\begin{itemize}
+    \item If $\chi$ and $\psi$ are characters of $G$, we can define new functions $\chi + \psi$ and $\chi\psi$ from $G$ to $\C$ by $(\chi + \psi)(g) = \chi(g) + \psi(g)$ and $(\chi\psi)(g) = \chi(g)\psi(g)$ for $g \in G$.
+    \item These new functions obtained from characters are not, a priori, characters themselves.
+    \item Given a scalar $\lambda \in \C$, we can also define a new function $\lambda \chi \colon G \to \C$ by $(\lambda \chi)(g) = \lambda \chi(g)$, so we view characters of $G$ as elements of a $\C$-vector space of functions from $G$ to $\C$.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:14.5}
+The irreducible characters of $G$ are, as functions from $G$ to $\C$, linearly independent over $\C$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\begin{lemma}
+\label{lem:14.6}
+$\chi_{U \oplus V} = \chi_U + \chi_V$ for any $\C G$-modules $U$ and $V$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Characters distinguish modules}
+\begin{itemize}
+    \item Characters of $\C G$-modules suffice to distinguish $\C G$-modules up to isomorphism.
+\end{itemize}
+
+\begin{theorem}
+\label{thm:14.7}
+If $S_1, \ldots, S_r$ are the distinct simple $\C G$-modules, then the character of the $\C G$-module $a_1 S_1 \oplus \ldots \oplus a_r S_r$ (where the $a_i$ are non-negative integers) is $a_1 \chi_1 + \ldots + a_r \chi_r$. Consequently, two $\C G$-modules are isomorphic iff their characters are equal.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Tensor products, duals, and Hom}
+\begin{itemize}
+    \item Although each character determines a $\C G$-module up to isomorphism by Theorem~\ref{thm:14.7}, there is no generic way to construct a module from its corresponding character, and so in some sense information is lost by studying characters in lieu of modules.
+    \item Characters turn out to be an efficient means of translating information about the ordinary representation theory of $G$ to information about $G$ itself; from now on we focus on characters rather than modules.
+    \item Recall from Section~12 that if $U$ and $V$ are $\C G$-modules, then $U \otimes_{\C} V$ and $\mathrm{Hom}_{\C}(U,V)$, written here as $U \otimes V$ and $\mathrm{Hom}(U,V)$, admit natural $\C G$-module structures.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:14.8}
+Let $U$ and $V$ be $\C G$-modules. Then:
+\begin{enumerate}
+    \item[(i)] $\chi_{U \otimes V} = \chi_U \chi_V$.
+    \item[(ii)] $\chi_{U^*} = \overline{\chi_U}$. (Recall that $U^* = \mathrm{Hom}(U, F)$.)
+    \item[(iii)] $\chi_{\mathrm{Hom}(U,V)} = \overline{\chi_U} \chi_V$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Virtual characters and class functions}
+\begin{itemize}
+    \item A \emph{virtual character} of $G$ is a $\Z$-linear combination of the irreducible characters of $G$. (Some authors prefer the term ``generalized character.'') Characters are virtual characters by Theorem~\ref{thm:14.7}.
+\end{itemize}
+
+\begin{corollary}
+\label{cor:14.9}
+The virtual characters of $G$ form a ring.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Class functions}
+\begin{itemize}
+    \item A \emph{class function} on $G$ is a function from $G$ to $\C$ whose value within any conjugacy class is constant.
+    \item Characters of $\C G$-modules are class functions.
+    \item The set of class functions on $G$ forms a $\C$-vector space of dimension $r$, where $r$ is the number of conjugacy classes of $G$; an obvious basis is the set of functions taking the value $1$ on a single conjugacy class and $0$ on all other classes.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:14.10}
+The irreducible characters of $G$ form a basis for the space of class functions on $G$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Inner product on class functions}
+\begin{itemize}
+    \item If $\alpha$ and $\beta$ are class functions on $G$, then their \emph{inner product} is the complex number
+    \[
+        (\alpha, \beta) = \frac{1}{|G|} \sum_{g \in G} \alpha(g) \overline{\beta(g)}.
+    \]
+    \item This function $(\,\cdot\,, \,\cdot\,)$ is, as the name suggests, an inner product on the space of class functions:
+    \begin{itemize}
+        \item $(\alpha, \alpha) \geq 0$ for all $\alpha$, and $(\alpha, \alpha) = 0$ iff $\alpha = 0$.
+        \item $(\alpha, \beta) = \overline{(\beta, \alpha)}$ for all $\alpha, \beta$.
+        \item $(\lambda \alpha, \beta) = \lambda(\alpha, \beta)$ for all $\alpha, \beta$ and all $\lambda \in \C$.
+        \item $(\alpha_1 + \alpha_2, \beta) = (\alpha_1, \beta) + (\alpha_2, \beta)$ for all $\alpha_1, \alpha_2, \beta$.
+    \end{itemize}
+    \item The following are easy consequences of the above properties:
+    \begin{itemize}
+        \item $(\alpha, \lambda \beta) = \overline{\lambda}(\alpha, \beta)$ for all $\alpha, \beta$ and all $\lambda \in \C$.
+        \item $(\alpha, \beta_1 + \beta_2) = (\alpha, \beta_1) + (\alpha, \beta_2)$ for all $\alpha, \beta_1, \beta_2$.
+    \end{itemize}
+    \item We need a small piece of notation: if $U$ is a $\C G$-module, the set of elements of $U$ on which $G$ acts trivially is a $\C G$-submodule, denoted $U^G = \{u \in U \mid gu = u \text{ for all } g \in G\}$.
+\end{itemize}
+
+\begin{lemma}
+\label{lem:14.11}
+If $U$ is a $\C G$-module, then $\dim_{\C} U^G = \frac{1}{|G|} \sum\limits_{g \in G} \chi_U(g)$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{theorem}
+\label{thm:14.12}
+We have $(\chi_U, \chi_V) = \dim_{\C} \mathrm{Hom}_{\C G}(U, V)$ for any $\C G$-modules $U$ and $V$.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\subsection*{Exercises}
+
+Throughout these exercises, $G$ denotes a finite group, and all modules are finitely generated.
+
+\begin{exercise}
+\label{ex:14.1}
+Let $A$ be a semisimple $\C$-algebra. Let $[A, A]$ be the subspace of $A$ spanned by the set $\{ab - ba \mid a, b \in A\}$. Show that the codimension of $[A, A]$ in $A$ (which is just the dimension of $A/[A, A]$) is equal to the number of isomorphism classes of simple $A$-modules.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:14.2}
+(cont.) Let $A = \C G$, and let $g_1, \ldots, g_r$ be representatives of the $r$ conjugacy classes of $G$. Show that $\{g_i + [A, A] \mid 1 \leq i \leq r\}$ is a basis of $A/[A, A]$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:14.3}
+Show that if $S$ is a simple $\C G$-module and $U$ is a one-dimensional $\C G$-module, then $S \otimes U$ is simple.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:14.4}
+Show that the set of isomorphism classes of the one-dimensional $\C G$-modules forms a group under the taking of tensor products.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:14.5}
+Let $\chi$ be an irreducible character of $G$. Show that if $\lambda$ is any $|G|$th root of unity, then $\{x \in G \mid \chi(x) = \lambda \chi(1)\} \trianglelefteq G$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:14.6}
+Show that a $\C G$-module $U$ is simple iff its dual $U^*$ is simple. Conclude that the complex conjugate of an irreducible character is again an irreducible character.
+\end{exercise}
+
+If $F$ is any field and $U$ is any $FG$-module, then we define the character of $U$ to be an $F$-valued function on $U$ whose value at $g \in G$ is the trace of the $F$-endomorphism of $U$ induced by $g$, exactly as was done in this section in the case $F = \C$.
+
+\begin{exercise}
+\label{ex:14.7}
+Suppose that $F$ has characteristic $p > 0$. Give an example to demonstrate that two $FG$-modules that have the same character need not be isomorphic.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:14.8}
+Suppose that $F$ has characteristic $p > 0$. Show that if $U$ is an $FG$-module then we have $\chi_U(g) = \chi_U(g_{p'})$ for any $g \in G$, where $g_{p'}$ is the $p'$-part of $g$ as defined in Exercise~\ref{ex:1.4}.
+\end{exercise}
+
+\end{document}

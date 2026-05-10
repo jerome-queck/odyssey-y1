@@ -1,0 +1,153 @@
+\documentclass[../Odyssey_Project.tex]{subfiles}
+
+\begin{document}
+\setcounter{section}{9}
+\section{Composition Series}
+
+\subsubsection*{Composition Series}
+\begin{itemize}
+  \item A series of subgroups $G = G_0 > G_1 > \ldots > G_r = 1$ of a group $G$ is a \emph{composition series} of $G$ if $G_{i+1} \trianglelefteq G_i$ for every $i$ and if each \emph{successive quotient} $G_i / G_{i+1}$ is simple.
+  \item The composition series above is said to have \emph{length} $r$.
+  \item The successive quotients of a composition series are called the \emph{composition factors} of the series.
+  \item More generally, a group is said to be a \emph{composition factor} of $G$ if it is isomorphic with one of the composition factors in some composition series of $G$.
+  \item Example: $S_5 > A_5 > 1$ is the only composition series of $S_5$ (since $A_5$ is simple by Theorem~\ref{thm:7.4} and is the only non-trivial proper normal subgroup of $S_5$ by Theorem~\ref{thm:7.5}), with composition factors $\Z_2$ and $A_5$.
+\end{itemize}
+
+\subsubsection*{Maximal Normal Subgroups}
+\begin{itemize}
+  \item $N$ is a \emph{maximal normal subgroup} of $G$ if $N \trianglelefteq G$ and there is no proper normal subgroup of $G$ that properly contains $N$.
+  \item By \nameref{thm:correspondence}, $N$ is a maximal normal subgroup of $G$ iff $G/N$ is simple.
+  \item A maximal subgroup that is also normal is clearly a maximal normal subgroup (and must be of prime index), but a maximal normal subgroup need not be a maximal subgroup, for it could be properly contained in a proper subgroup that is not normal.
+  \item For example, $A_5 \times \Z_2$ has $1 \times \Z_2$ as a maximal normal subgroup that is not maximal.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:10.1}
+Finite groups have composition series.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\begin{itemize}
+  \item Infinite groups need not have composition series. For example, using Theorem~\ref{thm:1.5} we see that every non-trivial subgroup of the infinite cyclic group $\Z$ is isomorphic with $\Z$; as $\Z$ is not simple, $\Z$ has no simple subgroups, and hence we cannot construct a composition series of $\Z$, since the last non-trivial term of such a series must be a simple subgroup of $\Z$.
+\end{itemize}
+
+\begin{lemma}
+\label{lem:10.2}
+Let $G$ be a group that has a composition series, and let $N \trianglelefteq G$. Then $N$ has a composition series.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Equivalence of Composition Series}
+\begin{itemize}
+  \item Let $G = G_0 > G_1 > \ldots > G_r = 1$ be a composition series, and suppose $G = H_0 > H_1 > \ldots > H_r = 1$ is another composition series of the same length $r$. These series are \emph{equivalent} if there is some $\rho \in S_r$ such that $G_{i-1}/G_i \cong H_{\rho(i)-1}/H_{\rho(i)}$ for every $i$.
+  \item Example: $G = \langle x \rangle \cong \Z_6$ with $G_1 = \langle x^2 \rangle$, $H_1 = \langle x^3 \rangle$ gives equivalent composition series $G > G_1 > 1$ and $G > H_1 > 1$, since $G/G_1 \cong H_1/1 \cong \Z_2$ and $G_1/1 \cong G/H_1 \cong \Z_3$. (Here $\rho = (1\ 2) \in S_2$.)
+  \item Up to equivalence, a group has at most one composition series, so a group having a composition series has a well-defined collection of composition factors.
+  \item Since composition factors are simple groups, classifying finite simple groups (completed in 1980) gives comprehensive understanding of finite groups.
+\end{itemize}
+
+\begin{namedtheorem}[Jordan--H\"older Theorem]
+\label{thm:jordan-holder}
+Suppose that $G$ is a group that has a composition series. Then any two composition series of $G$ have the same length and are equivalent.
+\end{namedtheorem}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Subnormal, Normal, and Chief Series}
+\begin{itemize}
+  \item A series of subgroups $G = G_0 \geq G_1 \geq \ldots \geq G_r = 1$ of a group $G$ is called a \emph{subnormal series} of $G$ if $G_{i+1} \trianglelefteq G_i$ for every $i$.
+  \item A subnormal series is called a \emph{normal series} if $G_i \trianglelefteq G$ for every $i$.
+  \item Some authors use ``normal series'' for what we call a subnormal series, and ``invariant series'' for what we call a normal series.
+  \item Composition series are examples of subnormal series, but subnormal series can have successive quotients that are trivial or that are non-trivial but not simple.
+  \item Two subnormal series of the same length are said to be \emph{equivalent} if they satisfy the condition stated as the definition of equivalence of composition series.
+  \item A \emph{refinement} of a subnormal series is one obtained by interposing additional terms; it is \emph{proper} if at least one of the interposed terms was not already present.
+  \item A composition series is a subnormal series that has no repeated terms and does not admit a proper refinement.
+  \item A \emph{chief series} of $G$ is a normal series of $G$ with no repeated terms and with the additional property that no normal subgroup of $G$ is contained properly between any two terms of the series.
+  \item Analogy: A composition series is a subnormal series having no subnormal series as a proper refinement, and a chief series is a normal series having no normal series as a proper refinement.
+  \item The successive quotients of a chief series are its \emph{chief factors}; a group is a \emph{chief factor} of $G$ if it is isomorphic with a chief factor in some chief series of $G$.
+  \item The analogue of the \nameref{thm:jordan-holder} for chief series holds---namely, any two chief series of a group have the same length and are equivalent, with a proof virtually identical to that for composition series. This is a special case of the Jordan--H\"older theorem for groups with operators (see [26, Section 2.3]).
+\end{itemize}
+
+\subsubsection*{Minimal Normal Subgroups}
+\begin{itemize}
+  \item $N$ is a \emph{minimal normal subgroup} of $G$ if $1 \neq N \trianglelefteq G$ and there is no non-trivial normal subgroup of $G$ that is properly contained in $N$.
+  \item Any non-trivial finite group has minimal normal subgroups.
+  \item A simple group has a unique minimal normal subgroup, namely itself.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:10.3}
+Finite groups have chief series.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\begin{itemize}
+  \item By definition, the composition factors of finite groups are simple groups. We now turn to determining the nature of chief factors of finite groups; the first step is to rephrase the problem in different terms.
+\end{itemize}
+
+\begin{lemma}
+\label{lem:10.4}
+Let $G$ be a group having a chief series. Then every chief factor of $G$ is a minimal normal subgroup of a quotient group of $G$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{theorem}
+\label{thm:10.5}
+A minimal normal subgroup of a finite group is a direct product of mutually isomorphic simple groups.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\begin{corollary}
+\label{cor:10.6}
+A chief factor of a finite group is a direct product of mutually isomorphic simple groups.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+\subsection*{Exercises}
+
+\begin{exercise}
+\label{ex:10.1}
+Show that an abelian group has a composition series iff it is finite.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:10.2}
+Show that $\mathrm{GL}(n, F)$ has a composition series iff $F$ is finite.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:10.3}
+Using \nameref{thm:third-iso} (Exercise~\ref{ex:2.14}), prove the \emph{Schreier refinement theorem}: Any two subnormal series of a given group have equivalent refinements.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:10.4}
+(cont.) Use the Schreier refinement theorem to give an alternate proof of \nameref{thm:jordan-holder}.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:10.5}
+Determine all composition series and all chief series of $S_n$ for $n \geq 2$. (\textsc{Hint}: Use Exercise~\ref{ex:3.8}.)
+\end{exercise}
+
+\begin{exercise}
+\label{ex:10.6}
+Show that any group having a composition series has a chief series.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:10.7}
+(cont.) Show that any chief factor of a group having a composition series is a direct product of mutually isomorphic simple groups.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:10.8}
+Show that any finite group that has no proper non-trivial characteristic subgroups is a direct product of mutually isomorphic simple groups. Use this to give a new proof of Theorem~\ref{thm:10.5}.
+\end{exercise}
+
+\end{document}

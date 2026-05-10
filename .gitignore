@@ -1,0 +1,57 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Odyssey Y1 — .gitignore
+# Tracked: 03_Odyssey_Book/ (.tex sources), 04_Odyssey_Poster/, .vscode/
+# Excluded: agent / AI infrastructure, all textbooks & reference PDFs, all PDFs
+# (compiled outputs and paired textbook excerpts), LaTeX build artefacts,
+# macOS noise.
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Agent / AI infrastructure (local-only, not part of the project deliverable)
+AGENT_INSTRUCTIONS.md
+AGENTS.md
+CLAUDE.md
+agent_sessions/
+.continue/
+
+# Textbooks and reference material (third-party copyrighted PDFs)
+01_Core_Textbooks/
+02_Reference_Textbooks/
+
+# All PDFs everywhere — paired *_textbook.pdf excerpts are textbook material;
+# per-section compiled outputs are regenerable from .tex.
+# Exception: the final compiled book (Odyssey_Project.pdf) IS tracked so the
+# project deliverable lives in the repo alongside its source.
+*.pdf
+!03_Odyssey_Book/Odyssey_Project.pdf
+
+# LaTeX build artefacts
+build/
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.toc
+*.bbl
+*.bcf
+*.run.xml
+*.blg
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+
+# macOS noise
+.DS_Store
+._*
+
+# Editor / IDE scratch (project-level .vscode/settings.json + wrapper script
+# stay tracked; ignore user-state workspace files)
+.vscode/*.code-workspace
+
+# Misc
+*.swp
+*.swo
+*~

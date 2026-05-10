@@ -1,0 +1,190 @@
+\documentclass[../Odyssey_Project.tex]{subfiles}
+
+\begin{document}
+\setcounter{section}{7}
+\section{Finite \texorpdfstring{$p$}{p}-groups}
+
+\subsubsection*{Why study finite \texorpdfstring{$p$}{p}-groups?}
+\begin{itemize}
+    \item \nameref{thm:sylow} reduces many questions about a finite group to questions about its subgroups of prime-power order.
+    \item Finite $p$-groups form a rich subject in their own right; this section only scratches the surface.
+\end{itemize}
+
+\subsubsection*{The center and maximal subgroups}
+\begin{itemize}
+    \item The center of a non-trivial finite $p$-group is non-trivial (Theorem~\ref{thm:8.1}); more generally, every non-trivial normal subgroup meets $Z(P)$ non-trivially.
+    \item Consequently, the only finite simple $p$-groups are the groups $\Z_p$ of prime order.
+    \item For non-abelian $G$, the quotient $G/Z(G)$ is never cyclic (Lemma~\ref{lem:8.2}); in particular $|P:Z(P)| \neq p$.
+    \item Every maximal subgroup of a finite $p$-group is normal of index $p$ (Proposition~\ref{prop:8.3}, Corollary~\ref{cor:8.4}).
+\end{itemize}
+
+\subsubsection*{Abelian \texorpdfstring{$p$}{p}-groups and the basis theorem}
+\begin{itemize}
+    \item Every finite abelian $p$-group is a direct product of cyclic $p$-groups (Theorem~\ref{thm:8.6}).
+    \item The non-generators of a cyclic $p$-group are exactly its $p$th powers (Lemma~\ref{lem:8.5}).
+    \item Combining Theorems~\ref{thm:8.6} and~\ref{thm:8.7} yields the \emph{basis theorem}: every finite abelian group is a direct product of cyclic $p$-groups (Corollary~\ref{cor:8.8}).
+\end{itemize}
+
+\subsubsection*{Nilpotent groups and the Frattini argument}
+\begin{itemize}
+    \item The \nameref{thm:frattini-arg} states that $G = N_G(P)N$ whenever $P$ is a Sylow subgroup of a normal subgroup $N \trianglelefteq G$.
+    \item A finite group $G$ is \emph{nilpotent} if every Sylow subgroup of $G$ is normal; equivalently, $G$ is the direct product of its Sylow subgroups, equivalently every maximal subgroup is normal (Theorem~\ref{thm:8.7}).
+    \item Finite abelian groups and finite $p$-groups are nilpotent; an alternative definition of nilpotence which extends to infinite groups is taken up in Section~11.
+\end{itemize}
+
+\subsubsection*{Groups of small order}
+\begin{itemize}
+    \item Any group of order $p$ is isomorphic with $\Z_p$.
+    \item Any group of order $p^2$ is abelian (by Theorem~\ref{thm:8.1} and Lemma~\ref{lem:8.2}) and is isomorphic with either $\Z_{p^2}$ or $\Z_p \times \Z_p$.
+    \item Any abelian group of order $p^3$ is isomorphic with one of $\Z_{p^3}$, $\Z_{p^2} \times \Z_p$, or $\Z_p \times \Z_p \times \Z_p$ (by Theorem~\ref{thm:8.6}).
+    \item For odd primes $p$, there are exactly two isomorphism classes of non-abelian groups of order $p^3$: one having an element of order $p^2$ (Proposition~\ref{prop:8.10}) and one with no such element (Proposition~\ref{prop:8.11}).
+    \item Lemma~\ref{lem:8.9} provides the technical commutator identities supporting the classification.
+    \item For $p = 2$, the non-abelian groups of order $8$ are the dihedral group $D_8$ and the \emph{quaternion group}; the latter is the unique group of order $p^3$ that cannot be written non-trivially as a semidirect product.
+\end{itemize}
+
+\begin{theorem}
+\label{thm:8.1}
+If $P$ is a non-trivial finite $p$-group, then $Z(P)$ is also non-trivial. Moreover, if $1 \neq N \trianglelefteq P$, then $N \cap Z(P) \neq 1$.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\begin{lemma}
+\label{lem:8.2}
+If $G$ is a non-abelian group, then $G/Z(G)$ cannot be cyclic. In particular, if $P$ is a finite $p$-group, then $|P:Z(P)| \neq p$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{proposition}
+\label{prop:8.3}
+If $P$ is a finite $p$-group, then every maximal subgroup of $P$ is normal in $P$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\begin{corollary}
+\label{cor:8.4}
+Any maximal subgroup of a finite $p$-group is of index $p$.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+\begin{lemma}
+\label{lem:8.5}
+Every non-generator of a cyclic $p$-group $P$ is a $p$th power in $P$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{theorem}
+\label{thm:8.6}
+A finite abelian $p$-group is a direct product of cyclic $p$-groups.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\begin{namedtheorem}[Frattini Argument]
+\label{thm:frattini-arg}
+Let $G$ be a finite group, let $N \trianglelefteq G$, and let $P$ be a Sylow subgroup of $N$. Then $G = N_G(P)N$.
+\end{namedtheorem}
+\begin{proof}
+\end{proof}
+
+\begin{theorem}
+\label{thm:8.7}
+The following statements about a finite group $G$ are equivalent:
+\begin{enumerate}
+    \item[(1)] Every Sylow subgroup of $G$ is normal in $G$.
+    \item[(2)] $G$ is the direct product of its Sylow subgroups.
+    \item[(3)] Every maximal subgroup of $G$ is normal in $G$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\begin{corollary}
+\label{cor:8.8}
+A finite abelian group is a direct product of cyclic $p$-groups.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+\begin{lemma}
+\label{lem:8.9}
+Let $G$ be a group and let $x, y \in G$. If $[x,y] \in Z(G)$, then $[x^n, y] = [x,y]^n$ and $x^n y^n = (xy)^n [x,y]^{\frac{n(n-1)}{2}}$ for any $n \in \N$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{proposition}
+\label{prop:8.10}
+If $p$ is an odd prime, then there is exactly one isomorphism class of non-abelian groups of order $p^3$ having elements of order $p^2$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\begin{proposition}
+\label{prop:8.11}
+If $p$ is an odd prime, then there is exactly one isomorphism class of non-abelian groups of order $p^3$ having no elements of order $p^2$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsection*{Exercises}
+
+\begin{exercise}
+\label{ex:8.1}
+Show that if $P$ is a non-cyclic finite $p$-group, then $P$ has a normal subgroup $N$ such that $P/N \cong \Z_p \times \Z_p$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:8.2}
+Let $P$ be a group of order $p^n$. Show that $P$ has a normal subgroup $N_a$ of order $p^a$ for every $0 \leq a \leq n$, and that these subgroups can be chosen so that $N_a$ is contained in $N_b$ whenever $a \leq b$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:8.3}
+Let $G = \mathrm{GL}(n,p)$, and let $P$ be a Sylow $p$-subgroup of $G$. What is the order of $Z(P)$? What is the order of $Z(P/Z(P))$? If we let $Z_2(P) \leq P$ be such that $Z_2(P)/Z(P) = Z(P/Z(P))$ and continue in this way, what happens?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:8.4}
+Let $U$ be the subgroup of $\mathrm{GL}(n,p)$ consisting of the upper unitriangular matrices, and let $Q$ be the subgroup of $U$ consisting of matrices whose $(i,j)$-entry is zero whenever $1 < i < j < n$. Determine $Z(Q)$, and show that $Q/Z(Q)$ is abelian.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:8.5}
+Show that subgroups and quotient groups of finite nilpotent groups are nilpotent, and that direct products of finite nilpotent groups are nilpotent.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:8.6}
+Let $U$ be the subgroup of $\mathrm{GL}(3,p)$ consisting of the upper unitriangular matrices. Show that if $p$ is an odd prime, then $U$ is a non-abelian group of order $p^3$ having no elements of order $p^2$. If $p = 2$, with which group of order $8$ is $U$ isomorphic?
+\end{exercise}
+
+\subsection*{Further Exercises}
+
+\begin{exercise}
+\label{ex:8.7}
+Show that a finite group $G$ has a largest nilpotent normal subgroup, in the sense that it contains all nilpotent normal subgroups of $G$. (This subgroup is called the \emph{Fitting subgroup} of $G$.)
+\end{exercise}
+
+\noindent The intersection of all maximal subgroups of a finite group $G$ is called the \emph{Frattini subgroup} of $G$ and is denoted by $\Phi(G)$.
+
+\begin{exercise}
+\label{ex:8.8}
+Show that $\Phi(G)$ is a nilpotent normal subgroup of $G$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:8.9}
+Show that $g \in \Phi(G)$ iff whenever $G = \langle S \rangle$ and $g \in S$, then $G = \langle S - \{g\} \rangle$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:8.10}
+Show that if $P$ is a finite $p$-group, then $P/\Phi(P)$ is an elementary abelian $p$-group.
+\end{exercise}
+
+\end{document}

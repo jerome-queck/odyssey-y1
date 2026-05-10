@@ -1,0 +1,286 @@
+\documentclass[../Odyssey_Project.tex]{subfiles}
+
+\begin{document}
+\setcounter{section}{15}
+\section{Induction}
+
+\subsubsection*{Overview}
+\begin{itemize}
+    \item Induced modules play a critical role in the representation theory of finite groups.
+    \item Two equivalent definitions of induction are presented: one via tensor products over arbitrary rings (slick but heavier), the other using only tensor products over fields (clumsier but more elementary). A third definition is developed in Exercise~\ref{ex:16.1}.
+    \item Let $H \leq G$ and let $V$ be an $FH$-module. Since the group algebra $FG$ is an $(FG, FH)$-bimodule, we form the $FG$-module $FG \otimes_{FH} V$, the \emph{induced} $FG$-module of $V$ (or the \emph{induction} of $V$ to $G$), denoted $\mathrm{Ind}_H^G V$. Other notations: $V^G$, $V \uparrow G$, and $V \uparrow_H^G$.
+    \item For an $FG$-module $U$, regarding $U$ as an $FH$-module yields the \emph{restriction} $\mathrm{Res}_H^G U$. Other notations: $U_H$, $U \downarrow H$, and $U \downarrow_H^G$.
+\end{itemize}
+
+\begin{lemma}
+\label{lem:16.1}
+We have $\dim_F \mathrm{Ind}_H^G V = |G : H| \dim_F V$ for $V$ an $FH$-module. Moreover, as $F$-vector spaces we have
+\[
+\mathrm{Ind}_H^G V = \bigoplus_{t \in T} t \otimes V,
+\]
+where $T$ is a transversal for $H$ in $G$ and $t \otimes V = \{t \otimes v \mid v \in V\}$.
+\end{lemma}
+
+\begin{proof}
+\end{proof}
+
+\begin{namedtheorem}[Frobenius Reciprocity Theorem]
+\label{thm:frobenius-reciprocity}
+Let $U$ be an $FG$-module, let $H \leq G$, and let $V$ be an $FH$-module. Then as $F$-vector spaces we have $\mathrm{Hom}_{FH}(V, \mathrm{Res}_H^G U) \cong \mathrm{Hom}_{FG}(\mathrm{Ind}_H^G V, U)$.
+\end{namedtheorem}
+
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Induced Characters}
+\begin{itemize}
+    \item Restrict attention to $F = \C$. If $V$ is a $\C H$-module with character $\varphi$, the character of $\mathrm{Ind}_H^G V$ is denoted $\varphi^G$ and called an \emph{induced character}; we have $\varphi^G(1) = |G : H| \varphi(1)$.
+    \item If $U$ is a $\C G$-module with character $\chi$, the character of $\mathrm{Res}_H^G U$ is denoted $\chi|_H$, and $\chi|_H(1) = \chi(1)$.
+    \item The form of ``Frobenius reciprocity'' actually known to Frobenius (Theorem~\ref{thm:16.2}) follows from \nameref{thm:frobenius-reciprocity} and Theorem~\ref{thm:14.12}.
+\end{itemize}
+
+\begin{theorem}
+\label{thm:16.2}
+Let $H \leq G$, let $U$ be a $\C G$-module having character $\chi$, and let $V$ be a $\C H$-module having character $\varphi$. Then $(\varphi, \chi|_H)_H = (\varphi^G, \chi)_G$.
+\end{theorem}
+
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Induction--Restriction Tables}
+\begin{itemize}
+    \item If $H \leq G$ and $\varphi_1, \dots, \varphi_r$ and $\chi_1, \dots, \chi_s$ are the irreducible characters of $H$ and $G$ respectively, the \emph{induction-restriction table} of $(G, H)$ is the $r \times s$ matrix whose $(i,j)$-entry gives the common value of $(\varphi_i^G, \chi_j)_G$ and $(\varphi_i, \chi_j|_H)_H$.
+    \item By Corollary~\ref{cor:15.4}, the $i$th row gives the multiplicities with which the $\chi_j$ appear in the decomposition of $\varphi_i^G$, while the $j$th column gives the multiplicities with which the $\varphi_i$ appear in the decomposition of $\chi_j|_H$.
+    \item One can compute the table by calculating the restrictions of the $\chi_j$ and reading off the expressions for the $\varphi_i^G$ in terms of the $\chi_j$.
+    \item For example, with $G = S_3$ and $H = S_2 \leq G$, inspection gives $\chi_1|_H = \varphi_1$, $\chi_2|_H = \varphi_2$, $\chi_3|_H = \varphi_1 + \varphi_2$, so the induction-restriction table yields $\varphi_1^G = \chi_1 + \chi_3$ and $\varphi_2^G = \chi_2 + \chi_3$.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:16.3}
+Let $H \leq G$, and let $V$ be a $\C H$-module having character $\chi$. If $T$ is a transversal for $H$ in $G$, then for any $g \in G$ we have
+\[
+\chi^G(g) = \sum_{\substack{t \in T, \\ t^{-1} g t \in H}} \chi(t^{-1} g t).
+\]
+\end{proposition}
+
+\begin{proof}
+\end{proof}
+
+\begin{corollary}
+\label{cor:16.4}
+Let $\chi$ be a character of $H \leq G$, and let $g \in G$. Then
+\[
+\chi^G(g) = \frac{1}{|H|} \sum_{\substack{x \in G, \\ x^{-1} g x \in H}} \chi(x^{-1} g x).
+\]
+\end{corollary}
+
+\begin{proof}
+\end{proof}
+
+\begin{proposition}
+\label{prop:16.5}
+Let $\chi$ be a character of $H \leq G$, and let $g \in G$, and let $s$ be the number of conjugacy classes of $H$ whose members are conjugate in $G$ to $g$. If $s = 0$, then $\chi^G(g) = 0$. Otherwise, if we let $h_1, \dots, h_s$ be representatives of these $s$ conjugacy classes of $H$, then
+\[
+\chi^G(g) = \sum_{i=1}^s \frac{|C_G(g)|}{|C_H(h_i)|} \chi(h_i).
+\]
+\end{proposition}
+
+\begin{proof}
+\end{proof}
+
+\begin{corollary}
+\label{cor:16.6}
+Let $\chi$ be a character of $H \leq G$. Let $g \in G$, and suppose that the number $s$ of conjugacy classes of $H$ whose members are conjugate in $G$ to $g$ is positive. Let $\ell$ be the order of the conjugacy class in $G$ of $g$; let $h_1, \dots, h_s$ be representatives of these $s$ conjugacy classes of $H$, and let $k_1, \dots, k_s$ be the orders of these classes. Then
+\[
+\chi^G(g) = \sum_{i=1}^s |G : H| \frac{k_i}{\ell} \chi(h_i).
+\]
+\end{corollary}
+
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Frobenius Groups}
+\begin{itemize}
+    \item We end the section by presenting an important theorem on finite groups which, quite remarkably, has no known proof that does not use character theory.
+    \item A \emph{Frobenius group} is a group $G$ having a subgroup $H$ such that $H \cap g H g^{-1} = 1$ for every $g \in G - H$. We call $H$ a \emph{Frobenius complement} of $G$.
+    \item If $G$ is a finite Frobenius group, applying \nameref{thm:frobenius} yields a normal subgroup $N$, called the \emph{Frobenius kernel} of $G$. One has $G = N \rtimes H$, $N \cap H = 1$, and $|N||H| = |G|$.
+    \item For $G = N \rtimes H$ a finite Frobenius group with Frobenius kernel $N$ and complement $H$, the conjugation map $\varphi: H \to \mathrm{Aut}(N)$ has the property that for each $1 \neq h \in H$, $\varphi(h)$ is a \emph{fixed-point-free automorphism} of $N$: $\varphi(h)(n) = n$ forces $n = 1$. In particular, $\varphi$ is injective.
+    \item Conversely, given finite groups $N$ and $H$ and a homomorphism $\varphi: H \to \mathrm{Aut}(N)$ for which every $\varphi(h)$, $h \neq 1$, is fixed-point-free, $N \rtimes_\varphi H$ is a Frobenius group.
+    \item Example: if $p, q$ are distinct primes with $p \equiv 1 \pmod{q}$, then any monomorphism $\varphi: \Z_q \to \mathrm{Aut}(\Z_p)$ is fixed-point-free, and hence the unique non-abelian group of order $pq$ is a Frobenius group.
+    \item A theorem of Thompson (his 1959 Chicago Ph.D. thesis) states that any finite group having a fixed-point-free automorphism of prime order is nilpotent. Hence the Frobenius kernel of a finite Frobenius group is nilpotent.
+\end{itemize}
+
+\begin{namedtheorem}[Frobenius' Theorem]
+\label{thm:frobenius}
+Let $G$ be a transitive permutation group on a finite set $X$, and suppose that each non-identity element of $G$ fixes at most one element of $X$. Then the union of the identity element and the set of elements of $G$ that have no fixed points is a normal subgroup of $G$.
+\end{namedtheorem}
+
+\begin{proof}
+\end{proof}
+
+\subsection*{Exercises}
+
+\noindent Throughout these exercises, $G$ is a finite group, $H$ is a subgroup of $G$, $F$ is a field, and all $FG$-modules are finitely generated.
+
+\begin{exercise}
+\label{ex:16.1}
+Let $V$ be an $FH$-module, and let $W$ be an $FG$-module containing $V$. Suppose that $W$ has the property that for any $FG$-module $U$ and any $\varphi \in \mathrm{Hom}_{FH}(V, U)$, there is a unique $FG$-module homomorphism from $W$ to $U$ which extends $V$. (In this case, we say that $W$ is relatively $H$-free with respect to $V$; compare with Exercises~\ref{ex:13.1}--\ref{ex:13.2}.) Show that $W \cong \mathrm{Ind}_H^G V$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:16.2}
+Let $W$ be an $FG$-module that is generated by an $FH$-submodule $V$, and suppose that $\dim_F W = |G : H| \dim_F V$. Show that we must have $W \cong \mathrm{Ind}_H^G V$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:16.3}
+Show that $\mathrm{Hom}_{FG}(U, \mathrm{Ind}_H^G V) \cong \mathrm{Hom}_{FH}(\mathrm{Res}_H^G U, V)$ as $F$-vector spaces for any $FG$-module $U$ and $FH$-module $V$. (\textsc{Hint}: Show first that if $\varphi \in \mathrm{Hom}_{FH}(\mathrm{Res}_H^G U, V)$, then the map sending $u \in U$ to $\sum_{t \in T} t \otimes \varphi(t^{-1} u)$, where $T$ is a transversal for $H$ in $G$, lies in $\mathrm{Hom}_{FG}(U, \mathrm{Ind}_H^G V)$.)
+\end{exercise}
+
+\begin{exercise}
+\label{ex:16.4}
+Show that if $X$ is a transitive $G$-set, then $FX \cong \mathrm{Ind}_{G_x}^G F$ for any $x \in X$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:16.5}
+Compute the induction-restriction table of $(A_5, A_4)$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:16.6}
+Compute the character table of the unique non-abelian group of order $pq$, where $p$ and $q$ are distinct primes and $p \equiv 1 \pmod{q}$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:16.7}
+Suppose that $G$ is a Frobenius group having Frobenius kernel $N$. Show that the irreducible characters of $G$ either are lifts of irreducible characters of $G/N$ or are induced from the non-principal irreducible characters of $N$. When is it true that the inductions to $G$ of two distinct non-principal irreducible characters of $N$ are equal?
+\end{exercise}
+
+\subsection*{Further Exercises}
+
+\noindent In this set of exercises, we develop the character table of $G = \mathrm{GL}(2, q)$, where $q$ is any prime power. Recall from Proposition~\ref{prop:4.2} that we have $|G| = q (q-1)^2 (q+1)$. Our first task is to determine the conjugacy classes of $G$. Here we sketch a comparatively ``hands-on'' approach, which uses only some standard topics from linear algebra. (A slicker approach might, for instance, make use of the invariant factor formulation of rational canonical form.) We denote by $m_g(X)$ the minimal polynomial of an element $g \in G$. Our strategy is to exploit the following:
+
+\begin{exercise}
+\label{ex:16.8}
+Show that conjugate elements of $G$ have the same minimal polynomial.
+\end{exercise}
+
+\noindent Since $m_g(X)$ is a factor of the characteristic polynomial of $g$, which is the quadratic polynomial $\det(XI - g)$, we see that $m_g(X)$ is either linear, or a product of two like or unlike linear factors, or an irreducible monic quadratic.
+
+\begin{exercise}
+\label{ex:16.9}
+(cont.) Show that if $m_g(X) = X - a$ for some $a \in \mathbb{F}_q^\times$, then $g = \begin{pmatrix} a & 0 \\ 0 & a \end{pmatrix} \in Z(G)$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:16.10}
+(cont.) Show that if $m_g(X) = (X - a)^2$ for some $a \in \mathbb{F}_q^\times$, then $g$ is conjugate with $\begin{pmatrix} a & 1 \\ 0 & a \end{pmatrix}$, and the conjugacy class of $g$ has order $q^2 - 1$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:16.11}
+(cont.) Show that if $m_g(X) = (X - a)(X - b)$ for some distinct $a, b \in \mathbb{F}_q^\times$, then $g$ is conjugate with $\begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix}$, and the conjugacy class of $g$ has order $q^2 + q$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:16.12}
+(cont.) Show that if $r, s \in \mathbb{F}_q$ are such that $X^2 - rX - s$ is irreducible, then the conjugacy class of $\begin{pmatrix} 0 & 1 \\ s & r \end{pmatrix}$ has order $q^2 - q$.
+\end{exercise}
+
+\noindent (Hint for Exercises~\ref{ex:16.10}--\ref{ex:16.12}: Compute centralizers and use Proposition~\ref{prop:3.13}.)
+
+\begin{exercise}
+\label{ex:16.13}
+(cont.) Verify that what follows is a complete list of the conjugacy classes of $G$: $q - 1$ classes of $1$ element each, indexed by elements of $\mathbb{F}_q^\times$; $q - 1$ classes of $q^2 - 1$ elements each, indexed by elements of $\mathbb{F}_q^\times$; $(q - 1)(q - 2)/2$ classes of $q^2 + q$ elements each, indexed by unordered pairs of distinct elements of $\mathbb{F}_q^\times$; and $q(q - 1)/2$ classes of $q^2 - q$ elements each, indexed by irreducible monic quadratic polynomials with coefficients in $\mathbb{F}_q$.
+\end{exercise}
+
+\noindent Having determined the classes of $G$, we now turn to finding irreducible characters. Recall that we have an epimorphism $\det: G \to \mathbb{F}_q^\times$. Consequently, we can lift characters of $\mathbb{F}_q^\times$ to characters of $G$, as in Lemma~\ref{lem:15.6}. Now $\mathbb{F}_q^\times$ is an abelian group of order $q - 1$, and hence it has $q - 1$ linear characters, which we denote by $\tau_1, \dots, \tau_{q-1}$. (In fact, it is true (see [17, p. 132]) that $\mathbb{F}_q^\times \cong \Z_{q-1}$, and so we can, upon fixing a generator of $\mathbb{F}_q^\times$, completely specify the $\tau_i$.) For each $1 \leq i \leq q - 1$, let $\chi_i = \tau_i \circ \det$. We have
+\[
+\begin{array}{c|cccc}
+ & \begin{pmatrix} a & 0 \\ 0 & a \end{pmatrix} & \begin{pmatrix} a & 1 \\ 0 & a \end{pmatrix} & \begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix} & \begin{pmatrix} 0 & 1 \\ s & r \end{pmatrix} \\
+\hline
+\chi_i & \tau_i(a)^2 & \tau_i(a)^2 & \tau_i(a) \tau_i(b) & \tau_i(-s)
+\end{array}
+\]
+The characters $\chi_i$ are linear, and $\chi_1$ is indeed the principal character of $G$.
+
+\noindent As in Chapter 2, let $B$, $U$, and $T$ be the subgroups of $G$ consisting, respectively, of all upper triangular, all upper unitriangular, and all diagonal elements of $G$. We have $T \cong \mathbb{F}_q^\times \times \mathbb{F}_q^\times$, and so we see from Example~\ref{ex:15.eg.2} that the irreducible characters of $T$ have the form $\tau_i \times \tau_j$ (after making appropriate identifications). Now $B = U \rtimes T$ by Proposition~\ref{prop:5.1}, so we can lift each character $\tau_i \times \tau_j$ of $T \cong B/U$ to obtain a character $\theta_{ij}$ of $B$. The epimorphism from $B$ to $T$ sends $\begin{pmatrix} x & y \\ 0 & z \end{pmatrix}$ to $\begin{pmatrix} x & 0 \\ 0 & z \end{pmatrix}$, and consequently we have $\theta_{ij}\begin{pmatrix} x & y \\ 0 & z \end{pmatrix} = (\tau_i \times \tau_j)\begin{pmatrix} x & 0 \\ 0 & z \end{pmatrix} = \tau_i(x) \tau_j(z)$. We now wish to consider the induced characters $\theta_{ij}^G$.
+
+\begin{exercise}
+\label{ex:16.14}
+(cont.) Show that
+\[
+\begin{array}{c|cccc}
+ & \begin{pmatrix} a & 0 \\ 0 & a \end{pmatrix} & \begin{pmatrix} a & 1 \\ 0 & a \end{pmatrix} & \begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix} & \begin{pmatrix} 0 & 1 \\ s & r \end{pmatrix} \\
+\hline
+\theta_{ij}^G & (q + 1) \tau_i(a) \tau_j(a) & \tau_i(a) \tau_j(a) & \tau_i(a) \tau_j(b) + \tau_i(b) \tau_j(a) & 0
+\end{array}
+\]
+Observe that $\theta_{ij}^G = \theta_{ji}^G$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:16.15}
+(cont.) Show that $(\theta_{ij}^G, \theta_{ij}^G) = 1 + \delta_{ij}$ and that $(\theta_{ii}^G, \chi_i) = 1$. Conclude that $\theta_{ii}^G - \chi_i$ is an irreducible character of $G$ for each $i$ and that $\theta_{ij}^G$ is an irreducible character of $G$ whenever $i$ and $j$ are distinct.
+\end{exercise}
+
+\noindent At this point, we have constructed $q - 1$ distinct irreducible characters of degree $1$ (the $\chi_i$), $q - 1$ distinct irreducible characters of degree $q$ (the $\theta_{ii}^G - \chi_i$), and $(q - 1)(q - 2)/2$ distinct irreducible characters of degree $q + 1$ (the $\theta_{ij}^G$ for $i < j$). Our partial character table of $G$ is now
+\[
+\begin{array}{c|cccc}
+ & \begin{pmatrix} a & 0 \\ 0 & a \end{pmatrix} & \begin{pmatrix} a & 1 \\ 0 & a \end{pmatrix} & \begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix} & \begin{pmatrix} 0 & 1 \\ s & r \end{pmatrix} \\
+\hline
+\chi_i & \tau_i(a)^2 & \tau_i(a)^2 & \tau_i(a) \tau_i(b) & \tau_i(-s) \\
+\theta_{ii}^G - \chi_i & q \tau_i(a)^2 & 0 & \tau_i(a) \tau_i(b) & -\tau_i(-s) \\
+\theta_{ij}^G & (q + 1) \tau_i(a) \tau_j(a) & \tau_i(a) \tau_j(a) & \tau_i(a) \tau_j(b) + \tau_i(b) \tau_j(a) & 0
+\end{array}
+\]
+
+\noindent To complete the character table, it will be convenient to work with a different set of representatives for the conjugacy classes of those elements whose minimal polynomials are irreducible quadratics. (We shall refer to these classes as being the ``fourth-column'' classes, owing to their placement in our partial character table above.) By Exercise~\ref{ex:4.4}, $G$ has a subgroup $C$ which is isomorphic with $\mathbb{F}_{q^2}^\times$, where $\mathbb{F}_{q^2}$ is the field of $q^2$ elements. As we remarked before, we have $C \cong \Z_{q^2 - 1}$. It is true, although we are not in a position to prove it, that any subgroup of $G$ that is isomorphic with $\mathbb{F}_{q^2}^\times$ is a conjugate of $C$. (The proof of this fact requires some familiarity with field theory, but the essential point is that all fields of order $q^2$ are isomorphic; see [19, Corollary XIV.2.7].) It is also true that $C$ must contain $Z(G) \cong \mathbb{F}_q^\times$, and so we will consider $\mathbb{F}_q^\times$ as being a subgroup of $C$.
+
+\begin{exercise}
+\label{ex:16.16}
+(cont.) Show that the elements of $C - \mathbb{F}_q^\times$ form a double set of representatives of the fourth-column classes, with $x \in C - \mathbb{F}_q^\times$ being conjugate with (but unequal to) $x^q$. (\textsc{Hint}: Argue that each element of $G$ whose minimal polynomial is an irreducible quadratic determines a subgroup of $G$ that is isomorphic with $\mathbb{F}_{q^2}^\times$.)
+\end{exercise}
+
+\noindent We now take $x \in C - \mathbb{F}_q^\times$ as our arbitrary fourth-column class representative. We have $\chi_i(x) = \tau_i(\det x)$, $(\theta_{ii}^G - \chi_i)(x) = -\tau_i(\det x)$, and $\theta_{ij}^G(x) = 0$.
+
+\noindent Let $\beta_1, \dots, \beta_{q^2 - 1}$ be the irreducible characters of $C$. (By choosing a generator for $C$, we can specify the $\beta_i$.) We will consider the induced characters $\beta_k^G$.
+
+\begin{exercise}
+\label{ex:16.17}
+(cont.) Show
+\[
+\begin{array}{c|cccc}
+ & \begin{pmatrix} a & 0 \\ 0 & a \end{pmatrix} & \begin{pmatrix} a & 1 \\ 0 & a \end{pmatrix} & \begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix} & x \in C - \mathbb{F}_q^\times \\
+\hline
+\beta_k^G & (q^2 - q) \beta_k(a) & 0 & 0 & \beta_k(x) + \beta_k(x)^q
+\end{array}
+\]
+Observe that $(\beta_k^q)^G = \beta_k^G$, where by $\beta_k^q$ we mean the linear character of $C$ defined by $\beta_k^q(x) = \beta_k(x)^q$.
+\end{exercise}
+
+\noindent It is not hard to show that there are exactly $q - 1$ values of $k$ for which $\beta_k^q = \beta_k$. (This follows, for instance, from the observation made in Example~\ref{ex:15.eg.1} that the linear characters of a cyclic group of order $n$ themselves form a cyclic group of order $n$.)
+
+\noindent Choose some $k$ such that $\beta_k^q \neq \beta_k$, and let $i_k$ be such that the restriction of $\beta_k$ to $\mathbb{F}_q^\times \subseteq C$ is $\tau_{i_k}$. Let $\psi_k = (\theta_{11}^G - \chi_1) \theta_{i_k 1}^G - \theta_{i_k 1}^G - \beta_k^G$; this is a virtual character.
+
+\begin{exercise}
+\label{ex:16.18}
+(cont.) Show that
+\[
+\begin{array}{c|cccc}
+ & \begin{pmatrix} a & 0 \\ 0 & a \end{pmatrix} & \begin{pmatrix} a & 1 \\ 0 & a \end{pmatrix} & \begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix} & x \in C - \mathbb{F}_q^\times \\
+\hline
+\psi_k & (q - 1) \tau_{i_k}(a) & -\tau_{i_k}(a) & 0 & -\beta_k(x) - \beta_k(x)^q
+\end{array}
+\]
+\end{exercise}
+
+\begin{exercise}
+\label{ex:16.19}
+(cont.) If $k$ is such that $\beta_k^q \neq \beta_k$, show that $(\psi_k, \psi_k) = 1$. Conclude that we have constructed $q(q - 1)/2$ distinct irreducible characters of degree $q - 1$.
+\end{exercise}
+
+\noindent The number of irreducible characters that we have constructed is now equal to the number of conjugacy classes of $G$, and so by Theorem~\ref{thm:14.3} we are done.
+
+\end{document}

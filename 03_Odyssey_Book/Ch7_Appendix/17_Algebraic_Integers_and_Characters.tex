@@ -1,0 +1,135 @@
+\documentclass[../Odyssey_Project.tex]{subfiles}
+
+\begin{document}
+\setcounter{section}{16}
+\section{Algebraic Integers and Characters}
+
+\subsubsection*{Setting and motivation}
+\begin{itemize}
+    \item This appendix continues character theory with a different flavour from Chapter~6, leaning on Galois theory and a higher level of algebraic background.
+    \item Logically the appendix follows Section~15.
+    \item Throughout, $G$ is a finite group.
+    \item We say that $x \in \C$ is an \emph{algebraic integer} if there is some monic polynomial $f \in \Z[X]$ such that $f(x) = 0$.
+\end{itemize}
+
+\begin{lemma}
+\label{lem:17.1}
+The set of rational numbers that are also algebraic integers is exactly the set of ordinary integers.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Algebraic integers form a ring}
+\begin{itemize}
+    \item The next standard result is used freely; its proof is sketched in the exercises.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:17.2}
+The algebraic integers form a subring of $\C$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Characters take algebraic-integer values}
+\begin{itemize}
+    \item The relevance of algebraic integers to representation theory of finite groups is established by the following basic fact.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:17.3}
+Let $\chi$ be a character of $G$. Then $\chi(g)$ is an algebraic integer for any $g \in G$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Class-sum integrality}
+\begin{itemize}
+    \item The next result is necessary for both intended applications.
+\end{itemize}
+
+\begin{lemma}
+\label{lem:17.4}
+If $\chi$ is an irreducible character of $G$ and $g \in G$, then $|G : C_G(g)|\chi(g)/\chi(1)$ is an algebraic integer.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Degrees of irreducible characters divide \texorpdfstring{$|G|$}{|G|}}
+\begin{itemize}
+    \item This proves the first main result of the appendix, a fact already mentioned in Section~14.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:17.5}
+Let $\chi$ be an irreducible character of $G$. Then $\chi(1)$ divides $|G|$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Toward Burnside's \texorpdfstring{$p^a q^b$}{p\^a q\^b} theorem}
+\begin{itemize}
+    \item The goal of the remainder of the appendix is to prove \nameref{thm:burnside-paqb} on the solvability of groups of order $p^a q^b$, mentioned in Section~11.
+\end{itemize}
+
+\begin{lemma}
+\label{lem:17.6}
+Let $\chi$ be a character of $G$, let $g \in G$, and define $\gamma = \chi(g)/\chi(1)$. If $\gamma$ is a non-zero algebraic integer, then $|\gamma| = 1$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{A classical theorem of Burnside}
+\begin{itemize}
+    \item We now prove a classical theorem due to Burnside.
+\end{itemize}
+
+\begin{theorem}
+\label{thm:17.7}
+If $G$ has a conjugacy class of non-trivial prime power order, then $G$ is not simple.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Burnside's famous \texorpdfstring{$p^a q^b$}{p\^a q\^b} theorem}
+\begin{itemize}
+    \item Finally, we have Burnside's famed $p^a q^b$ theorem.
+\end{itemize}
+
+\begin{namedtheorem}[Burnside's Theorem]
+\label{thm:burnside-paqb}
+If $|G| = p^a q^b$, where $p$ and $q$ are primes, then $G$ is solvable.
+\end{namedtheorem}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Beyond two primes}
+\begin{itemize}
+    \item It was observed on page~100 that there are non-solvable groups of order $p^a q^b r^c$, where $p$, $q$, and $r$ are distinct primes.
+    \item In fact, up to isomorphism there are eight such groups.
+    \item Six of these groups are projective special linear groups. (Recall that $A_5$ and $A_6$ are, by Exercises~\ref{ex:6.2} and~\ref{ex:6.5}, isomorphic with projective special linear groups.)
+    \item The remaining two groups are members of a family of groups called the projective special unitary groups (see [24, p.~245]).
+\end{itemize}
+
+\subsection*{Exercises}
+
+\begin{exercise}
+\label{ex:17.1}
+For $x \in \C$, let $\Z[x] = \{f(x) \mid f(X) \in \Z[X]\}$; this is an abelian subgroup of $\C$. Show that $x$ is an algebraic integer iff $\Z[x]$ is finitely generated.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:17.2}
+(cont.) Show that the set of algebraic integers is a subring of $\C$. (\textsc{Hint}: Use Exercise~\ref{ex:17.1} and the well-known fact (see [1, p.~145]) that any subgroup of a finitely generated abelian group is finitely generated.)
+\end{exercise}
+
+\begin{exercise}
+\label{ex:17.3}
+Let $G$ be a finite group, and define a function $\psi \colon G \to \C$ by setting $\psi(g) = |\{(x,y) \in G \times G \mid [x,y] = g\}|$ for $g \in G$. Show that
+\[
+\psi = \sum_{i=1}^{r} \frac{|G|}{\chi_i(1)} \chi_i,
+\]
+which in light of Proposition~\ref{prop:17.5} shows that $\psi$ is a character. (Compare with Exercise~\ref{ex:3.6}.)
+\end{exercise}
+
+\end{document}

@@ -1,0 +1,353 @@
+\documentclass[../Odyssey_Project.tex]{subfiles}
+
+\begin{document}
+\setcounter{section}{1}
+\section{Automorphisms}
+
+\subsubsection*{The Automorphism Group}
+\begin{itemize}
+    \item The set of automorphisms of a group $G$ is denoted $\operatorname{Aut}(G)$.
+    \item If $\varphi, \rho \in \operatorname{Aut}(G)$, then $\varphi \circ \rho \in \operatorname{Aut}(G)$, so composition is a binary operation on $\operatorname{Aut}(G)$.
+    \item Under composition, $\operatorname{Aut}(G)$ is a group: identity is the trivial automorphism, and the inverse of $\varphi$ is its set-map inverse $\varphi^{-1}$.
+    \item Call $\operatorname{Aut}(G)$ with this operation the \emph{automorphism group} of $G$; we may write $\varphi\rho$ for $\varphi \circ \rho$.
+\end{itemize}
+
+\subsubsection*{Inner Automorphisms, $\operatorname{Inn}(G)$, and the Center}
+\begin{itemize}
+    \item Each $g \in G$ defines a conjugation homomorphism $\varphi_g : G \to G$ by $\varphi_g(x) = gxg^{-1}$. (Indeed $\varphi_g(xy) = \varphi_g(x)\varphi_g(y)$ and $\varphi_g(x^{-1}) = \varphi_g(x)^{-1}$.)
+    \item Each $\varphi_g$ is an automorphism: for $x \in G$, $x = \varphi_g(g^{-1}xg)$, and if $\varphi_g(x) = \varphi_g(y)$ then $x = y$ by cancellation. These are the \emph{inner automorphisms} of $G$.
+    \item $\varphi_g \varphi_h = \varphi_{gh}$ for $g,h \in G$, since $g(hxh^{-1})g^{-1} = (gh)x(gh)^{-1}$. Hence there is a homomorphism $G \to \operatorname{Aut}(G)$ sending $g$ to $\varphi_g$.
+    \item Its image is the \emph{inner automorphism group} of $G$, denoted $\operatorname{Inn}(G)$; its kernel is the \emph{center} of $G$, denoted $Z(G)$. Observe
+    \[
+    Z(G) = \{g \in G \mid \varphi_g(x) = x \text{ for all } x \in G\}
+         = \{g \in G \mid gx = xg \text{ for all } x \in G\},
+    \]
+    so $Z(G)$ consists of those elements of $G$ which commute with every element of $G$.
+    \item Clearly $G$ is abelian iff $Z(G) = G$.
+\end{itemize}
+
+\subsubsection*{Outer Automorphisms, $\operatorname{Out}(G)$}
+\begin{itemize}
+    \item If $\sigma \in \operatorname{Aut}(G)$ and $\varphi_g \in \operatorname{Inn}(G)$, then $\sigma \varphi_g \sigma^{-1} = \varphi_{\sigma(g)}$. Hence $\operatorname{Inn}(G) \trianglelefteq \operatorname{Aut}(G)$.
+    \item The quotient $\operatorname{Aut}(G)/\operatorname{Inn}(G)$ is the \emph{outer automorphism group} of $G$, denoted $\operatorname{Out}(G)$.
+    \item ``Outer automorphism'' usually refers not to elements of $\operatorname{Out}(G)$, but rather to automorphisms of $G$ which are not inner and which thus have non-trivial image in $\operatorname{Out}(G)$.
+    \item If $G$ is abelian, then all non-trivial automorphisms of $G$ are outer in this sense, since in this case $\operatorname{Inn}(G) = 1$.
+\end{itemize}
+
+\subsubsection*{Automorphism Groups of Cyclic Groups}
+\begin{itemize}
+    \item Determining the structure of the automorphism group of a given group is often difficult. We focus on cyclic groups.
+    \item Let $G = \langle x \rangle \cong \Z$, and let $\varphi$ be an automorphism of $G$. Then $\varphi(x)$ must generate $G$; the only generators are $x$ and $x^{-1}$. So $\varphi$ either fixes each element or sends each to its inverse, and $\operatorname{Aut}(G) \cong \Z_2$.
+    \item Let $n \in \N$ and $G = \langle x \rangle \cong \Z_n$. Suppose $\varphi$ is an endomorphism of $G$. Then $\varphi(x) = x^m$ for some $0 \leq m < n$, so $\varphi$ sends every element to its $m$th power. Hence $G$ has exactly $n$ endomorphisms, namely the $m$th power maps $\sigma_m$ for $0 \leq m < n$.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:2.1}
+Let $G = \langle x \rangle \cong \Z_n$ for $n \in \N$, and for each $0 \leq m < n$ let $\sigma_m$ be the endomorphism of $G$ sending $x$ to $x^m$. Then $\operatorname{Aut}(G)$ consists precisely of those $\sigma_m$ for which $m \neq 0$ and $\gcd(m,n) = 1$. Furthermore, $\operatorname{Aut}(G)$ is abelian and is isomorphic with the group $(\Z/n\Z)^{\times}$ of units of the ring $\Z/n\Z$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{The Totient and Primitive Roots}
+\begin{itemize}
+    \item The \emph{totient} of $n \in \N$ is the number of positive integers less than $n$ and coprime to $n$ (the value at $n$ of the Euler phi-function).
+    \item If $n = p_1^{a_1} \cdots p_r^{a_r}$ with the $p_i$ distinct primes, then the totient of $n$ is $(p_1^{a_1} - p_1^{a_1 - 1}) \cdots (p_r^{a_r} - p_r^{a_r - 1})$.
+    \item By Proposition~\ref{prop:2.1}, the order of $\operatorname{Aut}(\Z_n)$ is the totient of $n$. In particular, $|\operatorname{Aut}(\Z_p)| = p - 1$ when $p$ is prime.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:2.2}
+Let $p$ be a prime. Then $\operatorname{Aut}(\Z_p) \cong \Z_{p-1}$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Primitive Roots Modulo $n$}
+\begin{itemize}
+    \item Let $G = \langle x \rangle \cong \Z_n$, $1 \leq m \leq n$, $\gcd(m,n) = 1$. Induction gives $(\sigma_m)^k(x) = x^{m^k}$.
+    \item The order of $\sigma_m$ is the least positive $k$ such that $x^{m^k} = x$, i.e.\ the smallest $k \in \N$ with $m^k \equiv 1 \pmod{n}$.
+    \item If the order of $\sigma_m$ equals the totient of $n$, we call $m$ a \emph{primitive root modulo $n$}.
+    \item $\operatorname{Aut}(\Z_n)$ is cyclic iff there is a primitive root modulo $n$.
+    \item For composite $n$, the structure of $\operatorname{Aut}(\Z_n)$ belongs to number theory more than group theory.
+\end{itemize}
+
+\begin{theorem}
+\label{thm:2.3}
+$\operatorname{Aut}(\Z_n)$ is cyclic iff $n = 2$ or $4$, or $n = p^k$ or $2p^k$ for some odd prime $p$ and some $k \in \N$.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\noindent A proof of the equivalent result about the existence and non-existence of primitive roots modulo $n$ is given in [9, Section 8.3].
+
+\subsubsection*{Fixed and Characteristic Subgroups}
+\begin{itemize}
+    \item Let $\varphi \in \operatorname{Aut}(G)$ and $H \leq G$. We say $H$ is \emph{fixed by} $\varphi$ if $\varphi(H) = H$; in this case the restriction is an automorphism of $H$.
+    \item If $L \leq \operatorname{Aut}(G)$, $H$ is \emph{fixed by} $L$ if $H$ is fixed by every $\varphi \in L$.
+    \item $H$ is normal in $G$ iff $H$ is fixed by $\operatorname{Inn}(G)$.
+    \item $H$ is a \emph{characteristic subgroup} of $G$ (or $H$ \emph{characteristic} in $G$) if $H$ is fixed by $\operatorname{Aut}(G)$. (Some authors write $H \operatorname{char} G$.)
+    \item Example: $Z(G)$ is always characteristic. For if $x \in Z(G)$ and $\varphi \in \operatorname{Aut}(G)$, then $\varphi(x)y = \varphi(x \varphi^{-1}(y)) = \varphi(\varphi^{-1}(y)x) = y\varphi(x)$ for any $y \in G$, showing $\varphi(x) \in Z(G)$.
+    \item Characteristic subgroups are normal, but the converse fails. In fact, an infinite abelian group need not have any non-trivial proper characteristic subgroups (Exercise~\ref{ex:2.5}).
+\end{itemize}
+
+\begin{lemma}
+\label{lem:2.4}
+If $K$ is a characteristic subgroup of $H$ and $H$ is a characteristic subgroup of $G$, then $K$ is a characteristic subgroup of $G$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{The Derived Group}
+\begin{itemize}
+    \item Normality is not transitive: if $N \trianglelefteq G$, the restriction to $N$ of an element of $\operatorname{Inn}(G)$ lies in $\operatorname{Aut}(N)$ but need not lie in $\operatorname{Inn}(N)$.
+    \item For $x,y \in G$ the \emph{commutator} is $[x,y] = xyx^{-1}y^{-1}$.
+    \item The \emph{derived group} $G'$ of $G$ is the subgroup generated by all commutators: $G' = \langle \{[x,y] \mid x,y \in G\} \rangle$.
+    \item $G$ is abelian iff $G' = 1$.
+    \item If $H \leq G$, then $H' \leq G'$.
+    \item In general, $G'$ contains more than just the commutators of elements of $G$.
+    \item Since $[x,y]^{-1} = (xyx^{-1}y^{-1})^{-1} = yxy^{-1}x^{-1} = [y,x]$, by Proposition~\ref{prop:1.2} an arbitrary element of $G'$ is a finite product of commutators of elements of $G$.
+\end{itemize}
+
+\begin{lemma}
+\label{lem:2.5}
+Let $G$ be a group. Then $G'$ is characteristic in $G$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{proposition}
+\label{prop:2.6}
+Let $G$ be a group, and let $N \trianglelefteq G$. Then $G/N$ is abelian iff $G' \leq N$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{External Direct Products}
+\begin{itemize}
+    \item Let $n \in \N$ and let $G_1, \dots, G_n$ be groups. The Cartesian product $G_1 \times \cdots \times G_n$ becomes a group under componentwise multiplication $(g_1,\dots,g_n)(g_1',\dots,g_n') = (g_1 g_1', \dots, g_n g_n')$. The identity is $(1,\dots,1)$ and inverses are $(g_1^{-1},\dots,g_n^{-1})$.
+    \item This is the (\emph{external}) \emph{direct product} of $G_1,\dots,G_n$.
+    \item Order of factors is irrelevant: $G_1 \times \cdots \times G_n \cong G_{\rho(1)} \times \cdots \times G_{\rho(n)}$ for any $\rho \in S_n$.
+    \item For $G = G_1 \times \cdots \times G_n$:
+    \begin{itemize}
+        \item Each $H_i = \{(1,\dots,g_i,\dots,1) \mid g_i \in G_i\}$ is a normal subgroup of $G$ isomorphic with $G_i$. Moreover $G/H_i$ is isomorphic with the direct product of the remaining $G_j$.
+        \item Every $g \in G$ has a unique expression $g = h_1 \cdots h_n$ with $h_i \in H_i$; if $g = (g_1,\dots,g_n)$ then $h_i = (1,\dots,g_i,\dots,1)$.
+        \item If the $G_i$ are finite, then $|G| = |G_1| \cdots |G_n|$.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{Internal Direct Products}
+\begin{itemize}
+    \item Suppose $G$ has subgroups $H_1, \dots, H_n$ such that:
+    \begin{enumerate}
+        \item $H_i \trianglelefteq G$ for each $1 \leq i \leq n$.
+        \item Every $g \in G$ has a unique expression $g = h_1 \cdots h_n$ where $h_i \in H_i$.
+    \end{enumerate}
+    Conditions (1) and (2) imply:
+    \begin{enumerate}
+        \setcounter{enumi}{2}
+        \item $G = H_1 \cdots H_n$.
+        \item $H_i \cap H_1 \cdots H_{i-1} H_{i+1} \cdots H_n = 1$ for each $i$.
+        \item If $i \neq j$, then elements of $H_i$ commute with elements of $H_j$.
+        \item If $g = h_1 \cdots h_n$ and $g' = h_1' \cdots h_n'$ with $h_i, h_i' \in H_i$, then $gg' = (h_1 h_1') \cdots (h_n h_n')$.
+    \end{enumerate}
+    \item Under these conditions, there is a unique isomorphism from $G$ to the external direct product $H_1 \times \cdots \times H_n$ sending $H_i$ to $1 \times \cdots \times H_i \times \cdots \times 1$. Call $G$ the (\emph{internal}) \emph{direct product} of $H_1,\dots,H_n$ and write $G = H_1 \times \cdots \times H_n$ (slight abuse of notation).
+    \item If (1) holds, then (2) holds iff both (3) and (4) hold; so to check a direct product, it suffices to verify either (1) and (2) or (1), (3), and (4). (For $n = 2$, (4) reduces to $H_1 \cap H_2 = 1$.)
+\end{itemize}
+
+\begin{lemma}
+\label{lem:2.7}
+Let $G$ be a group having normal subgroups $H$ and $K$ such that $G = HK$. Then $G/H \cap K \cong H/H \cap K \times K/H \cap K$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{lemma}
+\label{lem:2.8}
+Let $n \in \N$, and write $n = p_1^{a_1} \cdots p_r^{a_r}$ where the $p_i$ are distinct primes and the $a_i$ are positive integers. Then we have $\Z_n \cong \Z_{p_1^{a_1}} \times \cdots \times \Z_{p_r^{a_r}}$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{corollary}
+\label{cor:2.9}
+If $\gcd(a,b) = 1$, then $\Z_{ab} \cong \Z_a \times \Z_b$.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+\begin{proposition}
+\label{prop:2.10}
+Suppose that a finite group $G$ is the direct product of its subgroups $H_1,\dots,H_n$, where the orders $|H_i|$ are pairwise coprime. Then any subgroup $L$ of $G$ is the direct product of $L \cap H_1, \dots, L \cap H_n$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Internal Semidirect Products}
+\begin{itemize}
+    \item Suppose $G$ has subgroup $H$ and normal subgroup $N$ with $G = NH$ and $N \cap H = 1$. Then $G$ is the (\emph{internal}) \emph{semidirect product} of $N$ by $H$, written $G = N \rtimes H$. (Notation common but not standard; alternatives include $N \rtimes H$, $H \ltimes N$, no notation.)
+    \item If in addition $H \trianglelefteq G$, then $G$ is the direct product of $N$ and $H$.
+    \item Example: $G = S_3$, $N = A_3$, $H = \langle (1\,2) \rangle$. Then $G = N \rtimes H$, but $H$ is not normal, so $G$ is not the direct product.
+    \item Properties of $G = N \rtimes H$:
+    \begin{itemize}
+        \item $H \cong H/(N \cap H) \cong NH/N = G/N$ by \nameref{thm:first-iso}; if $G$ is finite, $|G| = |N||G:N| = |N||H|$.
+        \item Each $x \in G$ has a unique expression $x = nh$ with $n \in N$, $h \in H$.
+        \item If $x = n_1 h_1$, $y = n_2 h_2$, then $xy = n_1 h_1 n_2 h_1^{-1} \cdot h_1 h_2 = n' h'$ with $n' = n_1 h_1 n_2 h_1^{-1} \in N$ and $h' = h_1 h_2 \in H$.
+        \item For $h \in H$, conjugation by $h$ maps $N$ to $N$, so $\varphi_h : N \to N$, $\varphi_h(n) = hnh^{-1}$, is an automorphism of $N$, and $\varphi_h \circ \varphi_{h'} = \varphi_{hh'}$. Hence the \emph{conjugation homomorphism} $\varphi : H \to \operatorname{Aut}(N)$, $\varphi(h) = \varphi_h$.
+        \item $(n_1 h_1)(n_2 h_2) = n_1 \varphi(h_1)(n_2) \cdot h_1 h_2$, so the multiplication of $G$ is determined by the operations of $N$ and $H$ together with $\varphi$.
+        \item If $\varphi$ is trivial, then $hnh^{-1} = n$ for all $n \in N$, $h \in H$, so $H \trianglelefteq G$ and $G = N \times H$. Conversely, if $G = N \times H$, then $H$ commutes with $N$, so $\varphi$ is trivial.
+        \item If $\varphi$ is non-trivial, $G$ is non-abelian: there exist $h \in H$, $n \in N$ with $hnh^{-1} = \varphi(h)(n) \neq n$.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{External Semidirect Products}
+\begin{itemize}
+    \item Given groups $N$, $H$ and a homomorphism $\varphi : H \to \operatorname{Aut}(N)$, define a binary operation on $N \times H$ by
+    \[
+    (n_1, h_1)(n_2, h_2) = (n_1 \varphi(h_1)(n_2), h_1 h_2).
+    \]
+    This makes $N \times H$ a group with identity $(1,1)$ and inverse $(n,h)^{-1} = (\varphi(h^{-1})(n^{-1}), h^{-1})$.
+    \item Call this the (\emph{external}) \emph{semidirect product} of $N$ by $H$ corresponding to $\varphi$, denoted $G = N \rtimes_{\varphi} H$.
+    \item This generally differs from the direct product unless $\varphi$ is trivial.
+    \item $\mathcal{N} = N \times 1$ and $\mathcal{H} = 1 \times H$ in $G$ are isomorphic copies of $N$, $H$ respectively. Computation shows $\mathcal{N} \trianglelefteq G$, $G = \mathcal{NH}$, $\mathcal{N} \cap \mathcal{H} = 1$, so $G$ is the internal semidirect product of $\mathcal{N}$ by $\mathcal{H}$.
+    \item Identifying $\mathcal{N}$ with $N$ and $\mathcal{H}$ with $H$, the conjugation homomorphism from $\mathcal{H}$ to $\operatorname{Aut}(\mathcal{N})$ corresponds to the original $\varphi$.
+    \item Write $N \rtimes_{\varphi} H = \{nh \mid n \in N, h \in H\}$ with multiplication $(n_1 h_1)(n_2 h_2) = n_1 \varphi(h_1)(n_2) \cdot h_1 h_2$. Note $hnh^{-1} = \varphi(h)(n)$.
+    \item Distinct $\varphi, \psi : H \to \operatorname{Aut}(N)$ need not yield isomorphic semidirect products. The next two propositions are partial converses.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:2.11}
+Let $H$ be a cyclic group and let $N$ be an arbitrary group. If $\varphi$ and $\psi$ are monomorphisms from $H$ to $\operatorname{Aut}(N)$ such that $\varphi(H) = \psi(H)$, then we have $N \rtimes_{\varphi} H \cong N \rtimes_{\psi} H$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\begin{proposition}
+\label{prop:2.12}
+Let $N$ and $H$ be groups, let $\psi : H \to \operatorname{Aut}(N)$ be a homomorphism, and let $f \in \operatorname{Aut}(N)$. If $\hat{f}$ is the inner automorphism of $\operatorname{Aut}(N)$ induced by $f$, then $N \rtimes_{\hat{f} \circ \psi} H \cong N \rtimes_{\psi} H$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Dihedral Groups}
+\begin{itemize}
+    \item Let $N \cong \Z_n$ ($n \in \N$), $H \cong \Z_2$, $\varphi : H \to \operatorname{Aut}(N)$ send the generator of $H$ to the automorphism sending each element of $N$ to its inverse (so $\varphi(h) = \sigma_{n-1}$).
+    \item The group $N \rtimes_{\varphi} H$ is the \emph{dihedral group} of order $2n$, denoted $D_{2n}$. (Some authors write $D_n$.)
+    \item $D_{2n}$ is non-abelian iff $n > 2$; when $n = 2$, $\varphi$ is trivial and $D_4 \cong \Z_2 \times \Z_2$.
+    \item Geometrically $D_{2n}$ is the symmetry group of a regular $n$-gon: the generator of $N$ is rotation by $2\pi/n$, the generator of $H$ is reflection through a fixed axis.
+    \item Also: the \emph{infinite dihedral group} $D_\infty = N \rtimes_{\varphi} H$ where $N \cong \Z$ and $H, \varphi$ as above.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:2.13}
+Let $s$ and $t$ be elements of order $2$ in a group $G$. (Such elements are called \emph{involutions}.) Then $\langle s,t \rangle$ is a dihedral group; in particular, $\langle s,t \rangle = \langle st \rangle \rtimes \langle s \rangle$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\noindent For a discussion of the importance of this particular result in the study of finite simple groups, see [7, Section 45].
+
+\subsection*{Exercises}
+
+\begin{exercise}
+\label{ex:2.1}
+Let $H$ be a subgroup of a cyclic group $G$. Show that every automorphism of $H$ is the restriction to $H$ of an automorphism of $G$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:2.2}
+Show that $\operatorname{Aut}(\Z_8) \cong \Z_2 \times \Z_2$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:2.3}
+Show that $\operatorname{Aut}(\Z_{p^2}) \cong \Z_{p^2-p}$ for $p$ a prime. (\textsc{Hint:} Let $m$ be a primitive root modulo $p$, and show that either $m$ or $m+p$ be a primitive root modulo $p^2$.)
+\end{exercise}
+
+\begin{exercise}
+\label{ex:2.4}
+Show that if $H \trianglelefteq G$, then any characteristic subgroup of $H$ is normal in $G$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:2.5}
+Let $F$ be a field, and consider $F$ as a group under its additive operation. Show that $F$ has no non-trivial proper characteristic subgroups.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:2.6}
+Verify the claim made on page 19 that if (1) holds, then (2) holds iff (3) and (4) hold.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:2.7}
+Verify the claim made on page 19 that (1) and (2) together imply (3) through (6).
+\end{exercise}
+
+\begin{exercise}
+\label{ex:2.8}
+Let $G_1$ and $G_2$ be groups, and let $H \leq G_1 \times G_2$. Define
+\[
+P_1 = \{x \in G_1 \mid (x,y) \in H \text{ for some } y \in G_2\},
+\]
+\[
+I_1 = \{x \in G_1 \mid (x,1) \in H\},
+\]
+and analogously define subsets $P_2$ and $I_2$ of $G_2$.
+\begin{enumerate}
+    \item[(a)] Show for $i = 1,2$ that $P_i \leq G_i$ and $I_i \trianglelefteq P_i$.
+    \item[(b)] Show that there is a unique isomorphism from $P_1/I_1$ to $P_2/I_2$ sending $xI_1$ to $yI_2$, where $y$ is any element of $G_2$ such that $(x,y) \in H$.
+    \item[(c)] Prove \emph{Goursat's theorem}: There is a bijective correspondence between subgroups of $G_1 \times G_2$ and triples $(S_1, S_2, \varphi)$, where $S_i$ is a section of $G_i$ ($i = 1,2$) and $\varphi : S_1 \to S_2$ is an isomorphism. (Recall that a section of a group $G$ is a group $L/M$, where $M \trianglelefteq L \leq G$.)
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+\label{ex:2.9}
+(cont.) Use Exercise~\ref{ex:2.8} to give a different proof of Proposition~\ref{prop:2.10}.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:2.10}
+Let $G = N \rtimes H$, and suppose that $N \leq K \leq G$. Show that $K = N \rtimes (K \cap H)$.
+\end{exercise}
+
+\subsection*{Further Exercises}
+
+\noindent Let $N$ and $H$ be groups. An \emph{extension} of $N$ by $H$ is a group $E$ along with a monomorphism $i : N \to E$ and an epimorphism $\pi : E \to H$ such that $i(N) = \ker \pi$ (so that $N$ imbeds in $E$ as a normal subgroup, with the quotient group being isomorphic with $H$). We shall usually refer to an extension $(E,i,\pi)$ simply by the group $E$; however, the nature of the maps $i$ and $\pi$ are important in distinguishing between extensions. We identify $N$ with its image under $i$, and $H$ with the quotient of $E$ by $N$. As an example, let $\varphi : H \to \operatorname{Aut}(N)$ be a homomorphism; then the semidirect product $N \rtimes_{\varphi} H$ is an extension of $N$ by $H$ in an obvious way, taking $i$ to be the inclusion map sending $n \in N$ to $(n,1)$ and $\pi$ to be the projection map sending $(n,h)$ to $h$.
+
+\begin{exercise}
+\label{ex:2.11}
+We say that an extension $E$ of $N$ by $H$ is a \emph{split extension} if there is a homomorphism $t : H \to E$ (called a \emph{splitting map} for the extension) such that $\pi \circ t$ is the identity map on $H$, in which case $t(H)$ will be a transversal for $N$ in $E$. Show that $E$ is a split extension iff it is a semidirect product of $N$ by $H$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:2.12}
+(cont.) Let $Q$ be the quaternion group of order 8. (We can consider $Q$ as the set $\{\pm 1, \pm i, \pm j, \pm k\}$ with multiplication given by the rules $i^2 = j^2 = k^2 = -1$ and $ij = k = -ji$.) Show that $Q$ can be realized as a non-trivial extension in four ways---thrice as an extension of $\Z_4$ by $\Z_2$, and once as an extension of $\Z_2$ by $\Z_2 \times \Z_2$---but that none of these extensions is split. (In other words, $Q$ cannot be written non-trivially as a semidirect product.)
+\end{exercise}
+
+\noindent If $E$ is an extension of $N$ by $H$, then we cannot expect to find a homomorphism $t : H \to E$ such that $t(H)$ will be a transversal for $N$ in $E$, for if such a $t$ existed then $E$ would be split. However, since $H \cong E/N$, we can always find a set map $t : H \to E$ whose image is a transversal for $N$; such a map is called a \emph{section} of the extension. Moreover, we can always choose $t$ so that $t(1) = 1$, in which case we say that $t$ is \emph{normalized}. (We use normalized sections instead of arbitrary sections in order to keep the notational complexity to a minimum.)
+
+\begin{exercise}
+\label{ex:2.13}
+(cont.) Let $t$ be a normalized section of an extension $E$. Let $\Psi : E \to \operatorname{Aut}(E)$ be the homomorphism sending an element of $E$ to the corresponding inner automorphism of $E$. We shall, for $x \in E$, regard $\Psi(x)$ as being an automorphism of $N$, which is possible since $N \trianglelefteq E$. Define set maps $f : H \times H \to N$ and $\varphi : H \to \operatorname{Aut}(N)$ by
+\[
+f(\alpha, \beta) = t(\alpha) t(\beta) t(\alpha \beta)^{-1},
+\]
+\[
+\varphi(\alpha) = \Psi(t(\alpha)).
+\]
+We call $(f, \varphi)$ the \emph{factor pair} arising from $t$. Show that $(f, \varphi)$ has the following properties:
+\begin{enumerate}
+    \item[1] $f(\alpha, 1) = f(1, \alpha) = 1$ for every $\alpha \in H$, and $\varphi(1)$ is the identity in $\operatorname{Aut}(N)$.
+    \item[2] $\varphi(\alpha)\varphi(\beta) = \Psi(f(\alpha, \beta))\varphi(\alpha\beta)$ for $\alpha, \beta \in H$.
+    \item[3] $f(\alpha, \beta) f(\alpha\beta, \gamma) = \varphi(\alpha)(f(\beta, \gamma)) f(\alpha, \beta\gamma)$ for $\alpha, \beta, \gamma \in H$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+\label{ex:2.14}
+(cont.) Just as we were able to externalize the notion of semidirect product, so should we be able to externalize the notion of extension; that is, given groups $N$ and $H$ and appropriate additional data, we should be able to construct an extension of $N$ by $H$. Using Exercise~\ref{ex:2.13} as a guide, formulate such an external construction and prove that it works.
+\end{exercise}
+
+\noindent We shall return to these ideas in the further exercises to Section 9.
+
+\end{document}

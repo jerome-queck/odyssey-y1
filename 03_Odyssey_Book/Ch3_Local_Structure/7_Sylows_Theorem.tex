@@ -1,0 +1,230 @@
+\documentclass[../Odyssey_Project.tex]{subfiles}
+
+\begin{document}
+\setcounter{section}{6}
+\section{Sylow's Theorem}
+
+\subsubsection*{Setup and notation}
+\begin{itemize}
+    \item Throughout the section, $G$ is a finite group and $p$ a prime divisor of $|G|$.
+    \item $|G|_p$ denotes the highest power of $p$ dividing $|G|$, so $|G|_p = p^n$ with $p^n \mid |G|$ but $p^{n+1} \nmid |G|$.
+\end{itemize}
+
+\subsubsection*{$p$-elements, $p$-groups, $p$-subgroups}
+\begin{itemize}
+    \item $g \in G$ is a \emph{$p$-element} if its order is a power of $p$.
+    \item $G$ is a \emph{$p$-group} if $|G|$ is a power of $p$; $H \leq G$ is a \emph{$p$-subgroup} if $|H|$ is a power of $p$.
+    \item Every element of a $p$-group is a $p$-element. (For infinite groups, $p$-group means every element is a $p$-element.)
+    \item $H \leq G$ is a \emph{Sylow $p$-subgroup} of $G$ if $H$ is a $p$-subgroup of order $|G|_p$, the maximal possible order of a $p$-subgroup of $G$.
+    \item A subgroup of $G$ is a \emph{Sylow subgroup} if it is a Sylow $p$-subgroup for some prime divisor $p$ of $|G|$.
+\end{itemize}
+
+\subsubsection*{Motivating example: $\mathrm{GL}(n, p)$}
+\begin{itemize}
+    \item For $G = \mathrm{GL}(n, p)$, Proposition~\ref{prop:4.2} gives $|G| = p^{\frac{n(n-1)}{2}}(p^n - 1)\cdots(p - 1)$, so $|G|_p = p^{\frac{n(n-1)}{2}}$.
+    \item The subgroup $U$ of upper uni-triangular matrices satisfies $|U| = p^{n-1}p^{n-2}\cdots p^2 p = p^{\frac{n(n-1)}{2}} = |G|_p$, hence $U$ is a Sylow $p$-subgroup.
+    \item Every $p$-element of $\mathrm{GL}(n,p)$ is unipotent (its characteristic polynomial is $(X-1)^n$), and by \nameref{thm:kolchin} any $p$-subgroup is conjugate with a subgroup of $U$.
+    \item In particular: $\mathrm{GL}(n,p)$ has a Sylow $p$-subgroup, all are conjugate, and every $p$-subgroup is contained in one. \nameref{thm:sylow} extends this to arbitrary finite $G$.
+\end{itemize}
+
+\begin{namedtheorem}[Sylow's Theorem]
+\label{thm:sylow}
+(i) $G$ has at least one Sylow $p$-subgroup.
+
+(ii) All the Sylow $p$-subgroups of $G$ are conjugate.
+
+(iii) Any $p$-subgroup of $G$ is contained in a Sylow $p$-subgroup.
+
+(iv) The number of Sylow $p$-subgroups of $G$ is congruent to $1$ modulo $p$.
+\end{namedtheorem}
+\begin{proof}
+\end{proof}
+
+\begin{corollary}
+\label{cor:7.1}
+The number of Sylow $p$-subgroups of $G$ divides $|G|/|G|_p$.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+\begin{namedtheorem}[Cauchy's Theorem]
+\label{thm:cauchy}
+$G$ has an element of order $p$.
+\end{namedtheorem}
+\begin{proof}
+\end{proof}
+
+\noindent (Other proofs of \nameref{thm:sylow} often assume that \nameref{thm:cauchy} is already known, as was the case historically.)
+
+\subsubsection*{Sylow subgroups of normal subgroups and quotients}
+\begin{itemize}
+    \item Sylow $p$-subgroups behave well with respect to a normal subgroup $N \trianglelefteq G$: both $PN/N$ and $P \cap N$ are Sylow $p$-subgroups (of $G/N$ and $N$ respectively).
+    \item For a non-normal subgroup $H \leq G$, $P \cap H$ need not be Sylow in $H$, but some conjugate $gPg^{-1} \cap H$ is.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:7.2}
+Let $N \trianglelefteq G$, and let $P$ be a Sylow $p$-subgroup of $G$. Then $PN/N$ is a Sylow $p$-subgroup of $G/N$, and $P \cap N$ is a Sylow $p$-subgroup of $N$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Applications: groups of order $pq$ and simplicity of $A_5$}
+\begin{itemize}
+    \item Sylow's theorem classifies groups of order $pq$ (distinct primes $p > q$).
+    \item It also gives a clean count of $p$-elements via the orbit count of Sylow $p$-subgroups, used to prove $A_5$ is simple.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:7.3}
+Let $p$ and $q$ be distinct primes, with $p > q$. If $p \not\equiv 1 \pmod{q}$, then any group of order $pq$ is isomorphic with $\Z_{pq}$. If $p \equiv 1 \pmod{q}$, then any abelian group of order $pq$ is isomorphic with $\Z_{pq}$, and there is exactly one isomorphism class of non-abelian groups of order $pq$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\begin{theorem}
+\label{thm:7.4}
+$A_5$ is simple.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\begin{theorem}
+\label{thm:7.5}
+Any simple group of order $60$ is isomorphic with $A_5$.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\begin{corollary}
+\label{cor:7.6}
+$\mathrm{PSL}(2, 4) \cong \mathrm{PSL}(2, 5) \cong A_5$.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+\noindent It is a relatively easy exercise to show that the only simple groups of order less than $60$ are the cyclic groups of prime order, and hence that $A_5$ is the non-abelian finite simple group having smallest order. The non-abelian finite simple group of next smallest order is $\mathrm{PSL}(2, 7)$, which has order $168$.
+
+\subsection*{Exercises}
+
+\noindent Throughout these exercises, $G$ is a finite group and $p$ is a prime divisor of $|G|$.
+
+\begin{exercise}
+\label{ex:7.1}
+Let $H \leq G$ and let $P$ be a Sylow $p$-subgroup of $G$. Prove, without reference to \nameref{thm:sylow}, that there is some conjugate of $P$ whose intersection with $H$ is a Sylow $p$-subgroup of $H$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:7.2}
+(cont.) Use Exercise~\ref{ex:7.1} to give an alternate proof of part (i) of \nameref{thm:sylow}.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:7.3}
+Give an alternate proof of parts (ii) and (iii) of \nameref{thm:sylow} by considering the action of an arbitrary $p$-subgroup $Q$ of $G$ on the coset space $G/P$, where $P$ is a Sylow $p$-subgroup of $G$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:7.4}
+Prove the following generalization of part (iv) of \nameref{thm:sylow}: If $|G|$ is divisible by $p^b$, and $H \leq G$ has order $p^a$ where $a \leq b$, then the number of subgroups of $G$ that both contain $H$ and have order $p^b$ is congruent to $1$ modulo $p$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:7.5}
+Show that if $P$ is a Sylow $p$-subgroup of $G$, then $N_G(P)$ is a self-normalizing subgroup of $G$, meaning that $N_G(N_G(P)) = N_G(P)$. (Any subgroup of $G$ that can be written as $N_G(P)$ for some non-trivial $p$-subgroup $P$ of $G$ is said to be a \emph{$p$-local subgroup} of $G$.)
+\end{exercise}
+
+\begin{exercise}
+\label{ex:7.6}
+Given a prime $p$, find an example of a finite group having exactly $1 + p$ Sylow $p$-subgroups. Can this be done for $1 + 2p$? $1 + 3p$?
+\end{exercise}
+
+\begin{exercise}
+\label{ex:7.7}
+Show that if $G$ has exactly $1 + kp$ Sylow $p$-subgroups for some $k \in \N$, then there is a subgroup of $S_{1+kp}$ having exactly $1 + kp$ Sylow $p$-subgroups.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:7.8}
+Let $n \geq 6$, and assume by induction that $A_{n-1}$ is simple. Let $N$ be a non-trivial proper normal subgroup of $A_n$.
+\begin{enumerate}
+    \item[(a)] Show that $A_n = N \rtimes A_{n-1}$.
+    \item[(b)] Let $N^{\#}$ be the set of non-identity elements of $N$, and consider the action of $A_{n-1}$ on $N^{\#}$ given by the conjugation homomorphism from $A_{n-1}$ to $\mathrm{Aut}(N)$. Show that $N^{\#}$ is isomorphic as an $A_{n-1}$-set to $\{1, \ldots, n-1\}$.
+    \item[(c)] Show that $A_{n-1}$ acts triply transitively on $N^{\#}$. (An action of a group $G$ on a set $X$ is \emph{triply transitive} if for every pair of triples $(x_1, x_2, x_3)$ and $(y_1, y_2, y_3)$, where $x_i, y_i \in X$ for all $i$ and $x_i \neq x_j$ (resp., $y_i \neq y_j$) when $i \neq j$, there is some $g \in G$ such that $gx_i = y_i$ for all $i$.)
+    \item[(d)] Derive a contradiction, and conclude that $A_n$ is simple.
+\end{enumerate}
+\end{exercise}
+
+\noindent The remaining exercises develop a proof that if $G$ is a finite simple group with $|G| \leq 200$, then either $G \cong \Z_p$ for some prime $p$, or $G \cong A_5$, or $G \cong \mathrm{PSL}(2, 7)$. This was established by H\"older in 1892. We will need to assume two facts, which will be proved in later sections:
+\begin{itemize}
+    \item[A.] If $|G| = p^n$ where $n > 1$, then $G$ is not simple (Section~8).
+    \item[B.] If $G$ is a $p$-group and $H < G$, then $H < N_G(H)$ (Section~11).
+\end{itemize}
+
+\begin{exercise}
+\label{ex:7.9}
+Show that $G$ is not simple whenever one of the following statements is true, where $p$ is an odd prime:
+\begin{enumerate}
+    \item[(a)] $|G| = 2^m p^n$, where $2^k \not\equiv 1 \pmod{p}$ for any $1 \leq k \leq m$.
+    \item[(b)] $|G| = p^n q$, where $q \neq p$ is prime and $q \not\equiv 1 \pmod{p}$.
+    \item[(c)] $|G| = ap$, where $p \nmid a$ and $kp + 1 \nmid a$ for any $k \in \N$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+\label{ex:7.10}
+Show that $G$ is not simple whenever one of the following statments is true:
+\begin{enumerate}
+    \item[(a)] $|G| = p^a(p + 1)$, where $a > 1$.
+    \item[(b)] $|G| = p^a(p + 3)$, where $a > 3$ if $p = 2$ and $a > 1$ if $p > 3$.
+    \item[(c)] $|G| = p^a(p^2 - 1)$, where $a > 1$ and $p$ is odd.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+\label{ex:7.11}
+Show that if $|G| \in \{30, 56, 105, 132\}$, then $G$ is not simple.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:7.12}
+Show that $G$ is not simple in the following cases:
+\begin{enumerate}
+    \item[(a)] $|G| = 90$. (\textsc{Hint}: Show that if $Q$ is a Sylow $3$-subgroup of $G$ and $1 \neq x \in Q$, then $C_G(x) = Q$.)
+    \item[(b)] $|G| = 112$. (\textsc{Hint}: Use fact B above to show that any two Sylow $2$-subgroups of $G$ intersect trivially.)
+    \item[(c)] $|G| = 120$. (\textsc{Hint}: Show that $G$ imbeds in $S_6$, and contradict Exercise~\ref{ex:3.8}.)
+    \item[(d)] $|G| = 144$. (\textsc{Hint}: Argue as in part (i) above.)
+    \item[(e)] $|G| = 180$. (\textsc{Hint}: Show that if $Q$ is a Sylow $3$-subgroup of $G$ and $1 \neq x \in Q$, then $|C_G(x) : Q| \leq 2$.)
+\end{enumerate}
+\end{exercise}
+
+\noindent From fact A above and Exercises 9--12, we can conclude that if $G$ is a simple group with $|G| \leq 200$, then $|G|$ either is prime or is equal to either $60$ or $168$. (Verify this.) In light of Theorem~\ref{thm:7.5} and Theorem~\ref{thm:6.8}, all we need now show is that any two simple groups of order $168 = 2^3 \cdot 3 \cdot 7$ are isomorphic. We accomplish this in Exercises 13--17 below by showing that any simple group of order $168$ is isomorphic with a specific subgroup of $A_8$. (Compare with Exercise~\ref{ex:6.9}.) Let $G$ be a simple group of order $168$, let $P = \langle x \rangle$ be a Sylow $7$-subgroup of $G$, and let $H = N_G(P)$.
+
+\begin{exercise}
+\label{ex:7.13}
+Show that $H = \{g \in G \mid gxg^{-1} \in P\}$ is a non-abelian group of order $21$ which is generated by $x$ and $y$, where $y$ has order $3$ and $yxy^{-1} = x^4$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:7.14}
+(cont.) Show that $N_G(\langle y \rangle)$ is isomorphic with $S_3$ and is generated by $y$ and $z$, where $z$ has order $2$ and $yzy = z$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:7.15}
+(cont.) Show that $G/H = \{H, zH, xzH, \ldots, x^6 zH\}$. Conclude that $G = \langle x, y, z \rangle$.
+\end{exercise}
+
+\noindent Let $\varphi \colon G \to S_8$ be the monomorphism corresponding to the action of $G$ on the coset space $G/H$. Observe that $\varphi(G) = \varphi(G)' \leq S_8' \leq A_8$. View $S_8$ as the group of permutations of the set $\{\infty, 0, 1, 2, 3, 4, 5, 6\}$; for each $0 \leq i \leq 6$, associate $i$ with the coset $x^i z H$, and associate $\infty$ with the coset $H$.
+
+\begin{exercise}
+\label{ex:7.16}
+(cont.) Show that $\varphi(x) = (0\, 1\, 2\, 3\, 4\, 5\, 6)$, that $\varphi(y) = (1\, 4\, 2)(3\, 5\, 6)$, and that $\varphi(z) = z_i$ for some $i$, where $z_1 = (\infty\, 0)(1\, 3)(2\, 5)(4\, 6)$, $z_2 = (\infty\, 0)(1\, 5)(2\, 6)(3\, 4)$, and $z_3 = (\infty\, 0)(1\, 6)(2\, 3)(4\, 5)$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:7.17}
+(cont.) Let $L_i = \langle \varphi(x), \varphi(y), z_i \rangle \leq A_8$ for $i = 1, 2, 3$. Show that $L_1 = L_2 = L_3$. Conclude that $G$ is uniquely determined up to isomorphism.
+\end{exercise}
+
+\end{document}

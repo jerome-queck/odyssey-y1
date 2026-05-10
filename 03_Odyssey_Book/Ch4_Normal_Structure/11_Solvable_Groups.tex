@@ -1,0 +1,288 @@
+\documentclass[../Odyssey_Project.tex]{subfiles}
+
+\begin{document}
+\setcounter{section}{10}
+\section{Solvable Groups}
+
+\subsubsection*{The derived series and solvability}
+\begin{itemize}
+    \item We define a series $G^{(k)}$ of subgroups of a group $G$ by setting $G^{(0)} = G$ and taking $G^{(k)}$ to be the derived group of $G^{(k-1)}$ for $k \in \N$. This series is called the \emph{derived series} of $G$.
+    \item Since $G^{(k+1)}$ is a characteristic subgroup of $G^{(k)}$ for each $k$ by Lemma~\ref{lem:2.5}, we see via Lemma~\ref{lem:2.4} that the derived series is a normal series of $G$. Moreover, we see from Proposition~\ref{prop:2.6} that each successive quotient $G^{(k)}/G^{(k+1)}$ of the derived series is abelian.
+    \item We say that a group is \emph{solvable} if its derived series terminates in the identity. (Authors from British Commonwealth countries often write ``soluble'' in lieu of ``solvable'' and ``insoluble'' in lieu of ``non-solvable.'')
+    \item Since a group is abelian iff its derived group is trivial, we see that abelian groups are solvable. However, not all groups are solvable; for example, $A_5$ is non-abelian and simple by Theorem~\ref{thm:7.4}, so $A_5^{(k)} = A_5$ for all $k$.
+    \item A group whose derived group is itself is said to be \emph{perfect}; any non-abelian simple group is perfect, and in particular is not solvable. However, a perfect group need not be simple: $\operatorname{SL}(n, F)$ is perfect but has non-trivial center, except when $n = 2$ and $|F| = 3$.
+    \item Solvable groups are to be thought of as the opposite of simple groups: simple groups have very few normal subgroups while solvable groups are rife with them.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:11.1}
+A simple solvable group has prime order.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\begin{proposition}
+\label{prop:11.2}
+The following statements about a group $G$ are equivalent:
+\begin{enumerate}
+    \item[(1)] $G$ is solvable.
+    \item[(2)] $G$ has a normal series in which every successive quotient is abelian.
+    \item[(3)] $G$ has a subnormal series in which every successive quotient is abelian.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\begin{proposition}
+\label{prop:11.3}
+\begin{enumerate}
+    \item[(i)] If $G$ is solvable and $H \leq G$, then $H$ is solvable.
+    \item[(ii)] If $G$ is solvable and $N \trianglelefteq G$, then $G/N$ is solvable.
+    \item[(iii)] If $N \trianglelefteq G$ and both $N$ and $G/N$ are solvable, then $G$ is solvable.
+    \item[(iv)] If $G$ and $H$ are solvable, then $G \times H$ is solvable.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\begin{proposition}
+\label{prop:11.4}
+A group having a composition series is solvable iff all of its composition factors have prime order. (In particular, such groups are finite.)
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Examples and consequences}
+\begin{itemize}
+    \item There are groups, such as $S_5$, which are neither simple nor solvable, and there are non-abelian groups, such as $S_3$ (which has the composition series $S_3 > A_3 > 1$), which are solvable.
+    \item Proposition~\ref{prop:11.4} also implies that an infinite abelian group, being solvable, cannot possess a composition series (which was Exercise~\ref{ex:10.1}).
+\end{itemize}
+
+\begin{corollary}
+\label{cor:11.5}
+Finite $p$-groups are solvable.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+\begin{proposition}
+\label{prop:11.6}
+A group having a composition series is solvable iff all of its chief factors are elementary abelian.
+
+(Any group having a composition series also has a chief series by Exercise~\ref{ex:10.6}. Alternately, a solvable group having a composition series is finite by Proposition~\ref{prop:11.4} and hence has a chief series by Proposition~\ref{prop:10.3}.)
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\begin{corollary}
+\label{cor:11.7}
+A group having a composition series is solvable iff it has a normal series in which every successive quotient is a $p$-group.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Supersolvable groups and Hall's theorems}
+\begin{itemize}
+    \item Those finite groups whose chief factors all have prime order are said to be \emph{supersolvable}; finite supersolvable groups are solvable by Proposition~\ref{prop:11.6}.
+    \item It follows from Exercise~\ref{ex:8.2} that finite $p$-groups are supersolvable. However, not all finite solvable groups are supersolvable. The series $S_4 > A_4 > K > 1$, where $K$ is the Klein four-group, is a chief series of $S_4$, and we have $S_4/A_4 \cong \Z_2$, $A_4/K \cong \Z_3$, and $K \cong \Z_2 \times \Z_2$, which by Proposition~\ref{prop:11.6} shows that $S_4$ is solvable but not supersolvable.
+    \item There is an equivalent definition of supersolvability which extends to infinite groups; see Exercise~\ref{ex:11.6}.
+    \item Solvable groups possess a number of properties beyond those which hold for arbitrary groups. The following theorem, due to Philip Hall, is a generalization for finite solvable groups of part (i) of \nameref{thm:sylow}.
+\end{itemize}
+
+\begin{theorem}
+\label{thm:11.8}
+Let $G$ be a finite solvable group of order $mn$, where $m$ and $n$ are coprime. Then $G$ has a subgroup of order $m$.
+
+(In other words, this theorem asserts that a finite solvable group possesses Hall subgroups of all possible orders.)
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{More on solvability criteria}
+\begin{itemize}
+    \item Theorem~\ref{thm:11.8} does not hold for all finite groups; for instance, we observed in the proof of Theorem~\ref{thm:7.5} that the group $A_5$ of order $60 = 20 \cdot 3$ has no subgroup of order $20$.
+    \item P.~Hall also proved the following generalization for finite solvable groups of parts (ii) and (iii) of \nameref{thm:sylow}, which the reader is asked to prove in the exercises.
+\end{itemize}
+
+\begin{theorem}
+\label{thm:11.9}
+Let $G$ be a finite solvable group of order $mn$, where $m$ and $n$ are coprime. Then any two subgroups of $G$ of order $m$ are conjugate, and any subgroup of $G$ whose order divides $m$ is contained in a subgroup of order $m$.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Classical theorems on solvability}
+\begin{itemize}
+    \item We now state, without proof, a number of well-known theorems giving conditions under which a finite group is solvable. We start with a classical result that generalizes Corollary~\ref{cor:11.5}.
+\end{itemize}
+
+\begin{namedtheorem}[Burnside's Theorem]
+\label{thm:burnside-solvable}
+If $p$ and $q$ are primes, then any group of order $p^a q^b$ is solvable.
+\end{namedtheorem}
+\begin{proof}
+\end{proof}
+
+\begin{itemize}
+    \item \nameref{thm:burnside-solvable} is the best possible result, in the sense that a finite group whose order has exactly three prime divisors need not be solvable, with $A_5$ providing a counterexample.
+    \item Burnside proved this theorem in 1904 using the methods of character theory, which will be discussed in Chapter~6; we present a character-theoretic proof of Burnside's theorem in the Appendix (\nameref{thm:burnside-paqb}). Until the 1960s, there was no proof of this theorem that did not involve character theory.
+\end{itemize}
+
+\begin{namedtheorem}[Feit--Thompson Theorem]
+\label{thm:feit-thompson}
+All finite groups of odd order are solvable.
+\end{namedtheorem}
+\begin{proof}
+\end{proof}
+
+\begin{itemize}
+    \item This result, also known as the ``odd order theorem,'' had first been conjectured by Burnside in 1911. As a corollary, we see that the only simple groups of odd order are cyclic groups of prime order.
+    \item Once it had finally been established that all non-abelian finite simple groups are of even order, the movement toward a classification of all finite simple groups gathered steam. Feit and Thompson completed their proof of this theorem during a special ``Finite Group Theory Year,'' held at the University of Chicago in the school year 1960--61. Their original proof [12] was 255 pages long, and even at that length the proof requires too much background knowledge for it to be readily comprehensible to anyone but the specialists at the time at which the proof was published. In recent years there has been a program, of which [8] represents a major part, to produce a more accessible proof of this fundamental result.
+    \item The following result is a converse to Theorem~\ref{thm:11.8} and is also due to P.~Hall. While this theorem generalizes \nameref{thm:burnside-solvable}, its proof relies on the fact that groups of order $p^a q^b$ are solvable.
+\end{itemize}
+
+\begin{theorem}
+\label{thm:11.10}
+Let $G$ be a finite group. If $G$ has a subgroup of order $m$ whenever $m$ and $n$ are coprime numbers such that $|G| = mn$, then $G$ is solvable.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\begin{itemize}
+    \item This next result was conjectured by P.~Hall in the same paper [14] in which he proved Theorem~\ref{thm:11.10}; it was later proved by Thompson in [27].
+\end{itemize}
+
+\begin{theorem}
+\label{thm:11.11}
+A finite group $G$ is not solvable iff there exist non-trivial elements $x, y, z$ of $G$ of pairwise coprime orders $a, b, c$ such that $xy = z$.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\begin{itemize}
+    \item For example, in $A_5$ this criterion for non-solvability is satisfied by taking $a = 5$, $b = 2$, $c = 3$ and $x = (1\,2\,3\,4\,5)$, $y = (1\,2)(3\,4)$, $z = (1\,3\,5)$. (Compare with Exercise~\ref{ex:1.5}.)
+\end{itemize}
+
+\subsubsection*{Galois's theorem and the affine group}
+\begin{itemize}
+    \item The concept of solvable groups originated with Galois around 1830 in his work on the solution by radicals of polynomial equations; this in fact is the origin of the term ``solvable'' for this class of groups.
+    \item Let $V$ be a vector space over a field $F$. For $v \in V$, let $T_v$ be the self-map of $V$ corresponding to translation by $v$, and let $\mathcal{T}(V)$ be the set of all such translations; this is a group isomorphic with the abelian group $V$, and if we regard $\mathcal{T}(V)$ and $\operatorname{GL}(V)$ as subgroups of the group of all invertible self-maps of $V$, then $\operatorname{GL}(V) \cap \mathcal{T}(V)$ is trivial.
+    \item We easily verify that $S T_v S^{-1} = T_{S(v)}$ for any $S \in \operatorname{GL}(V)$ and $v \in V$. This gives rise to a homomorphism from $\operatorname{GL}(V)$ to $\operatorname{Aut}(\mathcal{T}(V))$, and hence we have an (internal) semidirect product $\mathcal{T}(V) \rtimes \operatorname{GL}(V)$. This group is called the \emph{affine group} of $V$ and is denoted $\operatorname{Aff}(V)$; its elements are called the \emph{affine transformations} of $V$.
+\end{itemize}
+
+\begin{theorem}
+\label{thm:11.12}
+Let $G$ be a finite, solvable, primitive permutation group on a set $X$. Then $X$ can be given the structure of a vector space over the field $\Z/p\Z$ for some prime $p$ in such a way that $G$ is isomorphic with a subgroup of $\operatorname{Aff}(X)$ that contains $\mathcal{T}(X)$.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Nilpotent groups}
+\begin{itemize}
+    \item A normal series $G = G_0 \geq G_1 \geq \ldots \geq G_r = 1$ of a group $G$ is said to be a \emph{central series} of $G$ if, for each $i$, $G_i/G_{i+1}$ is contained in the center of $G/G_{i+1}$.
+    \item A group $G$ is said to be \emph{nilpotent} if it has a central series. An abelian group $G$ has the central series $G > 1$, and hence abelian groups are nilpotent.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:11.13}
+Nilpotent groups are solvable.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\begin{itemize}
+    \item There are solvable groups that are not nilpotent. For example, the group $S_3$ cannot have a central series, as the penultimate term of such a series would have to be a non-trivial subgroup of $Z(S_3) = 1$.
+\end{itemize}
+
+\begin{lemma}
+\label{lem:11.14}
+Finite $p$-groups are nilpotent.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{itemize}
+    \item If $H$ and $K$ are subgroups of a group $G$, we define a new subgroup $[H, K]$ of $G$ by $[H, K] = \langle \{ [h, k] \mid h \in H, k \in K \} \rangle$. Observe that $G' = [G, G]$.
+    \item We now reconcile the above definition of nilpotence with that made in Section~8 for finite groups. Recall that a subgroup $H$ of a group $G$ is said to be \emph{self-normalizing} if $N_G(H) = H$.
+\end{itemize}
+
+\begin{theorem}
+\label{thm:11.15}
+The following statements about a finite group $G$ are equivalent:
+\begin{enumerate}
+    \item[(1)] $G$ is nilpotent.
+    \item[(2)] $G$ has no proper self-normalizing subgroups.
+    \item[(3)] Every Sylow subgroup of $G$ is normal in $G$.
+    \item[(4)] $G$ is the direct product of its Sylow subgroups.
+    \item[(5)] Every maximal subgroup of $G$ is normal in $G$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\subsection*{Exercises}
+
+\begin{exercise}
+\label{ex:11.1}
+Show that any finite group has a largest solvable normal subgroup.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:11.2}
+Let $N$ be a solvable normal Hall subgroup of a finite group $G$. Show that any two complements to $N$ in $G$ are conjugate. (The strong version of \nameref{thm:schur-zassenhaus} asserts that this is true for any normal Hall subgroup $N$, whether solvable or not. The proof uses \nameref{thm:feit-thompson} to argue that if $N$ is not solvable, then $G/N$ must be solvable.)
+\end{exercise}
+
+\begin{exercise}
+\label{ex:11.3}
+Complete the following sketch, which gives a proof of Theorem~\ref{thm:11.8} that is independent of \nameref{thm:schur-zassenhaus}. Here $G$ is a finite solvable group of order $mn$, where $m$ and $n$ are coprime, and we are to show that $G$ has a subgroup of order $m$.
+\begin{enumerate}
+    \item[(a)] Using induction, reduce to the case where $G$ has a unique minimal normal subgroup $N$ of order $n$.
+    \item[(b)] Let $M/N$ be a minimal normal subgroup of $G/N$; since $G/N$ is solvable by Proposition~\ref{prop:11.3}, it follows from Proposition~\ref{prop:11.6} that $|M/N|$ is a power of some prime divisor $p$ of $m$. If $P$ is a Sylow $p$-subgroup of $M$, show that $|N_G(P)| = m$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+\label{ex:11.4}
+Prove Theorem~\ref{thm:11.9}. If your proof involves \nameref{thm:schur-zassenhaus}, then construct a second proof that is independent of Schur-Zassenhaus by mimicking Exercise~\ref{ex:11.3} above.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:11.5}
+Let $V$ be a finite-dimensional vector space over the field of $p$ elements. Suppose that $G$ is a solvable subgroup of $\operatorname{Aff}(V)$ which contains $\mathcal{T}(V)$ and that the stabilizer of the origin under the action of $G$ on $V$ does not leave any non-zero proper subspace of $V$ invariant. Show that $G$ is a primitive permutation group on $V$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:11.6}
+Show that a finite group is supersolvable iff it has a normal series having cyclic successive quotients. (An arbitrary group is called supersolvable if this latter condition holds.)
+\end{exercise}
+
+\begin{exercise}
+\label{ex:11.7}
+Show that finite nilpotent groups are supersolvable. (If we define supersolvability for arbitrary groups as in Exercise~\ref{ex:11.6}, is an infinite nilpotent group necessarily supersolvable?)
+\end{exercise}
+
+\begin{exercise}
+\label{ex:11.8}
+(cont.) Give an example of a finite supersolvable group that is not nilpotent. (Hence we have a proper ascending chain of classes of finite groups, starting with cyclic groups, then abelian, then nilpotent, then supersolvable, and ending with solvable.)
+\end{exercise}
+
+\subsection*{Further Exercises}
+
+Let $G$ be a group. Let $\Gamma_1 = G$, and for $n \in \N$ let $\Gamma_{n+1} = [\Gamma_n, G] \leq G$. Let $\mathcal{Z}_0 = 1$, and for $n \in \N$ let $\mathcal{Z}_n$ be the unique subgroup of $G$ such that $\mathcal{Z}_n / \mathcal{Z}_{n-1} = Z(G/\mathcal{Z}_{n-1})$. (Observe that $\Gamma_2 = G'$ and $\mathcal{Z}_1 = Z(G)$.) We call the series $G = \Gamma_1 \geq \Gamma_2 \geq \Gamma_3 \geq \ldots$ the \emph{lower central series} of $G$ and the series $1 = \mathcal{Z}_0 \leq \mathcal{Z}_1 \leq \mathcal{Z}_2 \leq \ldots$ the \emph{upper central series} of $G$.
+
+\begin{exercise}
+\label{ex:11.9}
+Show that each $\Gamma_n$ and $\mathcal{Z}_n$ is a characteristic subgroup of $G$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:11.10}
+(cont.) Show that $G$ is nilpotent iff $\Gamma_r = 1$ for some $r$ iff $\mathcal{Z}_s = G$ for some $s$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:11.11}
+(cont.) Suppose that $G$ is nilpotent. Show that the lower and upper central series of $G$ have the same length, say $c$, and that no central series of $G$ can have length less than $c$. (This number $c$ is called the \emph{nilpotency class} of $G$. The groups of nilpotency class $1$ are exactly the abelian groups.)
+\end{exercise}
+
+\end{document}

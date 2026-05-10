@@ -1,0 +1,197 @@
+\documentclass[../Odyssey_Project.tex]{subfiles}
+
+\begin{document}
+\setcounter{section}{4}
+\section{Parabolic Subgroups}
+
+\subsubsection*{Setup and Complete Flags}
+\begin{itemize}
+    \item Throughout, $G = \mathrm{GL}(n, F)$ for some field $F$ and some $n \in \N$, with $V_n(F)$ the space of column vectors of length $n$ over $F$.
+    \item Elements of $G$ are viewed as matrices, with respect to the standard basis $\mathbf{v}_1, \dots, \mathbf{v}_n$, of invertible linear transformations of $V_n(F)$.
+    \item A \emph{complete flag} on $V_n(F)$ is a sequence of subspaces
+    \[
+        0 \subset V_1 \subset V_2 \subset \dots \subset V_{n-1} \subset V_n = V_n(F),
+    \]
+    denoted $(V_1, \dots, V_n)$. Since $\subset$ is proper containment, $\dim_F V_i = i$.
+    \item The \emph{standard flag} is given by $V_i = F\mathbf{v}_1 \oplus \dots \oplus F\mathbf{v}_i = V_{i-1} \oplus F\mathbf{v}_i$ (with $V_0 = 0$).
+\end{itemize}
+
+\subsubsection*{The $G$-Action on Complete Flags}
+\begin{itemize}
+    \item $G$ acts on complete flags by $g(V_1, \dots, V_n) = (gV_1, \dots, gV_n)$.
+    \item This action is transitive: any complete flag $(W_1, \dots, W_n)$ is obtained from the standard flag by the matrix whose $i$th column is $\mathbf{w}_i \in W_i - W_{i-1}$.
+    \item The stabilizer of the standard flag is precisely the standard Borel subgroup $B$, so by Lemma~\ref{lem:3.2} the Borel subgroups of $G$ are exactly the stabilizers of complete flags on $V_n(F)$.
+\end{itemize}
+
+\subsubsection*{Upper Unitriangular Matrices and the Decomposition of $B$}
+\begin{itemize}
+    \item An upper triangular matrix is \emph{upper unitriangular} if all its main-diagonal entries equal $1$, equivalently if it is upper triangular with only eigenvalue $1$.
+    \item The set $U$ of all invertible upper unitriangular matrices is a subgroup of $B$ (imitate the proof of Proposition~\ref{prop:4.3}).
+    \item Let $T$ be the set of diagonal matrices in $G$. Then $T \leq B$ and $U \cap T = 1$.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:5.1}
+$B = U \rtimes T$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Action of $U$ and $T$ on the Standard Flag}
+\begin{itemize}
+    \item An element of $U$ sends each $\mathbf{v}_i$ to $\mathbf{v}_i$ plus some element of $V_{i-1}$; conversely, any matrix with this property lies in $U$.
+    \item Hence $U$ consists of the matrices stabilizing each $V_i$ and inducing the identity on each quotient $V_i / V_{i-1}$.
+    \item $T$ consists exactly of the matrices stabilizing each of $F\mathbf{v}_1, \dots, F\mathbf{v}_n$; we say $T$ is the \emph{common stabilizer} of the $F\mathbf{v}_i$.
+\end{itemize}
+
+\subsubsection*{Unipotent Elements and Subgroups}
+\begin{itemize}
+    \item An element of $G$ is \emph{unipotent} if its characteristic polynomial is $(X - 1)^n$.
+    \item By Jordan form, any unipotent element of $G$ is conjugate to an element of $U$.
+    \item A subgroup of $G$ is \emph{unipotent} if all its elements are unipotent; $U$ is unipotent and comprises all unipotent elements of $B$.
+\end{itemize}
+
+\begin{namedtheorem}[Kolchin's Theorem]
+\label{thm:kolchin}
+Any unipotent subgroup of $G$ is conjugate with a subgroup of $U$.
+\end{namedtheorem}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{General Flags and Parabolic Subgroups}
+\begin{itemize}
+    \item A \emph{flag} on $V_n(F)$ is a nested sequence of non-zero subspaces of $V_n(F)$ which terminates in $V_n(F)$ and has no repeated terms; that is, a sequence $(W_1, \dots, W_r)$ with
+    \[
+        0 \subset W_1 \subset W_2 \subset \dots \subset W_{r-1} \subset W_r = V_n(F).
+    \]
+    Since $\subset$ is proper, $r \leq n$; a complete flag is the case $r = n$.
+    \item The $G$-set of all flags is not transitive: two flags $(W_1, \dots, W_r)$ and $(W_1', \dots, W_s')$ lie in the same orbit iff $r = s$ and $\dim_F W_i = \dim_F W_i'$ for all $i$ (same \emph{dimension sequence}).
+    \item A \emph{parabolic subgroup} of $G$ is the stabilizer of some flag on $V_n(F)$.
+    \item Given a flag $(W_1, \dots, W_r)$ with parabolic stabilizer $P$, choose subspaces $Y_i$ with $W_i = W_{i-1} \oplus Y_i$. The \emph{unipotent radical} of $P$ is the subgroup $U_P \leq P$ of matrices inducing the identity on each $W_i / W_{i-1}$; e.g.\ $U_B = U$.
+    \item A \emph{Levi complement} of $U_P$ is the subgroup $L_P \leq P$ which is the common stabilizer of the $Y_i$.
+    \item A Levi complement is isomorphic with $\mathrm{GL}(y_1, F) \times \dots \times \mathrm{GL}(y_r, F)$, where $y_i = \dim_F Y_i = \dim_F W_i - \dim_F W_{i-1}$. (In particular, any two Levi complements of $U_P$ are isomorphic.)
+    \item Taking $Y_i = F\mathbf{v}_i$ gives $L_B = T$, isomorphic with a direct product of $n$ copies of $\mathrm{GL}(1, F) \cong F^\times$.
+\end{itemize}
+
+\begin{proposition}
+\label{prop:5.2}
+If $P$ is a parabolic subgroup of $G$, then we have $P = U_P \rtimes L_P$, where $U_P$ is the unipotent radical of $P$ and $L_P$ is a Levi complement of $U_P$. Furthermore, $P = N_G(U_P)$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\subsubsection*{Subflags and Staircase Groups}
+\begin{itemize}
+    \item A \emph{subflag} of the standard flag $(V_1, \dots, V_n)$ is a flag $(W_1, \dots, W_r)$ in which each $W_i = V_j$ for some $j$; there are $2^{n-1}$ such subflags.
+    \item A \emph{staircase group} is a parabolic subgroup of $G$ that stabilizes some subflag of the standard flag.
+    \item Example ($n = 6$, subflag $0 \subset V_2 \subset V_3 \subset V_6$): the staircase group consists of all matrices in $G = \mathrm{GL}(6, F)$ of the form
+    \[
+        \begin{pmatrix}
+            * & * & * & * & * & * \\
+            * & * & * & * & * & * \\
+            0 & 0 & * & * & * & * \\
+            0 & 0 & 0 & * & * & * \\
+            0 & 0 & 0 & * & * & * \\
+            0 & 0 & 0 & * & * & *
+        \end{pmatrix}.
+    \]
+    Imagine a ``staircase'' separating the zero entries from the arbitrary entries.
+    \item Its unipotent radical consists of all matrices in $G$ of the form
+    \[
+        \begin{pmatrix}
+            1 & 0 & * & * & * & * \\
+            0 & 1 & * & * & * & * \\
+            0 & 0 & 1 & * & * & * \\
+            0 & 0 & 0 & 1 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 1 & 0 \\
+            0 & 0 & 0 & 0 & 0 & 1
+        \end{pmatrix},
+    \]
+    and the Levi complement (with canonical choices $Y_2 = F\mathbf{v}_3$ and $Y_3 = F\mathbf{v}_4 \oplus F\mathbf{v}_5 \oplus F\mathbf{v}_6$) consists of all matrices in $G$ of the form
+    \[
+        \begin{pmatrix}
+            * & * & 0 & 0 & 0 & 0 \\
+            * & * & 0 & 0 & 0 & 0 \\
+            0 & 0 & * & 0 & 0 & 0 \\
+            0 & 0 & 0 & * & * & * \\
+            0 & 0 & 0 & * & * & * \\
+            0 & 0 & 0 & * & * & *
+        \end{pmatrix},
+    \]
+    isomorphic with $\mathrm{GL}(2, F) \times \mathrm{GL}(1, F) \times \mathrm{GL}(3, F)$.
+    \item In general, the unipotent radical of any staircase group is contained in $B$.
+    \item The $G$-set of all flags is partitioned into the orbits of the subflags of the standard flag, since any flag has the same dimension sequence as some subflag of the standard flag. By Lemma~\ref{lem:3.2}, the parabolic subgroups of $G$ are exactly the conjugates of the staircase groups.
+\end{itemize}
+
+\subsubsection*{Subgroups Containing $B$}
+\begin{itemize}
+    \item Goal: there are exactly $2^{n-1}$ subgroups of $G$ containing $B$, namely the staircase groups.
+\end{itemize}
+
+\begin{lemma}
+\label{lem:5.3}
+The only non-zero subspaces of $V_n(F)$ left invariant by $B$ are the subspaces $V_1, \dots, V_n$ that appear in the standard flag.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{theorem}
+\label{thm:5.4}
+The only subgroups of $G$ that contain $B$ are the staircase groups.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\subsection*{Exercises}
+
+Let $G = \mathrm{GL}(n, F)$, where $n \geq 2$.
+
+\begin{exercise}
+\label{ex:5.1}
+Suppose that $g \in G$ fixes some $0 \neq \mathbf{v} \in V_n(F)$ and induces the identity transformation on $V_n(F) / F\mathbf{v}$. Show that $g$ is conjugate with an element of the root subgroup $X_{12}$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:5.2}
+We say a basis $\mathcal{B}$ of $V_n(F)$ \emph{belongs} to a complete flag $(V_1, \dots, V_n)$ if each $V_i$ contains exactly one element of $\mathcal{B}$ that is not in $V_{i-1}$.
+\begin{enumerate}
+    \item[(a)] Show that if $(V_1, \dots, V_n)$ and $(W_1, \dots, W_n)$ are complete flags on $V_n(F)$, then there is a basis of $V_n(F)$ that belongs to both flags.
+    \item[(b)] Use part (a) to give a different proof of the \nameref{thm:bruhat}.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+\label{ex:5.3}
+Let $P$ and $Q$ be distinct parabolic subgroups of $G$ containing the standard Borel subgroup $B$ of $G$ (so that, by Theorem~\ref{thm:5.4}, $P$ and $Q$ are staircase groups).
+\begin{enumerate}
+    \item[(a)] Show that $P$ and $Q$ are not conjugate in $G$.
+    \item[(b)] If $L_P$ and $L_Q$ are corresponding Levi complements, find conditions on $P$ and $Q$ that determine when $L_P$ and $L_Q$ will be conjugate in $G$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+\label{ex:5.4}
+Prove Proposition~\ref{prop:5.2}.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:5.5}
+Prove the following generalization of Lemma~\ref{lem:5.3}: If $P$ is a parabolic subgroup of $G$ which is the stabilizer of the flag $(W_1, \dots, W_r)$, then the $W_i$ are the only subspaces of $V_n(F)$ left invariant by $P$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:5.6}
+(cont.) Using Exercise~\ref{ex:5.5}, show that any parabolic subgroup of $G$ is self-normalizing.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:5.7}
+Complete the outlined proof of Theorem~\ref{thm:5.4}.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:5.8}
+Assume that the case $r = 1$ of Theorem~\ref{thm:5.4} holds; we sketch an alternate proof of the general case of Theorem~\ref{thm:5.4}. We use induction on $n$, where $G = \mathrm{GL}(n, F)$. Let $H$ be a subgroup of $G$ which contains $B$, and suppose that $H$ stabilizes $V_m$, where $1 \leq m < n$. Let $S$ be the stabilizer of $V_m$; observe that $H \leq S$. We can write $S = U \rtimes (K_1 \times K_2)$, where the elements of $K_1 \cong \mathrm{GL}(m, F)$ have their only non-zero entries in the first $m$ rows and columns, and where $K_2$ is a direct product of general linear groups whose elements have their non-zero entries concentrated in the last $n - m$ rows and columns. Since $U \leq B \leq H$, by Exercise~\ref{ex:2.10} we have $H = U \rtimes Q$ for some $Q \leq K_1 \times K_2$. Use Goursat's theorem (Exercise~\ref{ex:2.8}), Exercise~\ref{ex:5.6}, and the induction hypothesis to analyze $Q$ and thereby conclude that $H$ is a staircase group.
+\end{exercise}
+
+\end{document}

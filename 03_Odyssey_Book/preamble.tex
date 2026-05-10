@@ -1,0 +1,48 @@
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage[linktoc=all]{hyperref}
+
+% Continuous section numbering across chapters
+\counterwithout{section}{chapter}
+
+% Math Macros — number sets
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+
+% Math Macros — group / module operators
+% (Justified by usage frequency across Ch1, Ch2, Ch5, Ch6.
+%  Existing inline \mathrm{GL}, \operatorname{Aut}, \mathrm{Hom}, etc.
+%  remain valid — these macros are equivalent shorthands going forward.)
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Out}{Out}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{namedtheorem}{Theorem}
+\newtheorem*{namedlemma}{Lemma}
+\newtheorem*{namedproposition}{Proposition}
+\newtheorem*{namedcorollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}{Example}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Exercise environment
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem*{furtherexercise}{Further Exercise}
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
