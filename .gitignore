@@ -1,6 +1,7 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # Odyssey Y1 — .gitignore
-# Tracked: 03_Odyssey_Book/ (.tex sources), 04_Odyssey_Poster/, .vscode/
+# Tracked: 03_Odyssey_Book/ (.tex sources), 04_Odyssey_Poster/,
+# STUDY PLAN.md, .vscode/
 # Excluded: agent / AI infrastructure, all textbooks & reference PDFs, all PDFs
 # (compiled outputs and paired textbook excerpts), LaTeX build artefacts,
 # macOS noise.

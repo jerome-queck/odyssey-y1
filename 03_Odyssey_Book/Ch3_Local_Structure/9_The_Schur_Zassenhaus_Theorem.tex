@@ -37,11 +37,15 @@ Any normal Hall subgroup of a finite group has a complement.
 \label{ex:9.1}
 Suppose that $G$ is a finite group such that $G = N \rtimes H$, where $H$ is abelian. Show that if $|N|$ and $|H|$ are relatively coprime, then all complements to $N$ in $G$ are conjugate.
 \end{exercise}
+\begin{solution}
+\end{solution}
 
 \begin{exercise}
 \label{ex:9.2}
 Repeat Exercise~\ref{ex:9.1} under the assumption that $H$ is nilpotent rather than abelian.
 \end{exercise}
+\begin{solution}
+\end{solution}
 
 \subsection*{Further Exercises}
 
@@ -55,6 +59,8 @@ Let $(f, \varphi)$ be a factor pair, and define
 \]
 for $(x, \alpha), (y, \beta) \in N \times H$. Show that this gives a group structure on $N \times H$; call this group $E_{f, \varphi}$. Show further that $(E_{f, \varphi}, i, \pi)$ is an extension, where $i(x) = (x, 1)$ and $\pi(x, \alpha) = \alpha$, and that $(f, \varphi)$ is the factor pair arising from some normalized section of $E_{f, \varphi}$. (Observe that this construction generalizes the notion of external semidirect product.)
 \end{exercise}
+\begin{solution}
+\end{solution}
 
 We have seen in Exercise~\ref{ex:2.13} that an extension gives rise to a factor pair via a choice of normalized section, and we have just given an explicit construction of an extension from a given factor pair. We view these processes as giving maps between $\mathcal{E}$ and $\mathcal{F}$, and we now investigate the relationship between these maps. We must first consider the relation between factor pairs arising from different normalized sections of the same extension.
 
@@ -66,6 +72,8 @@ We have seen in Exercise~\ref{ex:2.13} that an extension gives rise to a factor 
     \item[\textbf{5}] $g(\alpha, \beta) = c(\alpha) \varphi(\alpha)(c(\beta)) f(\alpha, \beta) c(\alpha \beta)^{-1}$ for $\alpha, \beta \in H$.
 \end{itemize}
 \end{exercise}
+\begin{solution}
+\end{solution}
 
 The above exercise motivates the following definition: We say that two factor pairs $(f, \varphi)$ and $(g, \rho)$ are \emph{equivalent} if there is a map $c: N \to H$ such that properties \textbf{4} and \textbf{5} hold. (Verify that this is an equivalence relation on $\mathcal{F}$.) Let $\overline{\mathcal{F}}$ denote the set of equivalence classes of factor pairs; we will use $[f, \varphi]$ to denote the class of the factor pair $(f, \varphi)$. We have a well-defined map from $\mathcal{E}$ to $\overline{\mathcal{F}}$ which sends an extension to the class of a factor pair arising from any normalized section. We must now consider what happens when we pass from $\overline{\mathcal{F}}$ back to $\mathcal{E}$ via the construction in Exercise~\ref{ex:9.3}. Here we will need to recall the exact definition of an extension.
 
@@ -73,6 +81,8 @@ The above exercise motivates the following definition: We say that two factor pa
 \label{ex:9.5}
 (cont.) Let $(f, \varphi)$ and $(g, \rho)$ be factor pairs, with $[f, \varphi] = [g, \rho]$. Let $i: N \to E_{f, \varphi}$ and $j: N \to E_{g, \rho}$ be the natural inclusions (of $N$ into the underlying set $N \times H$), and let $\pi: E_{f, \varphi} \to H$ and $\tau: E_{g, \rho} \to H$ be the natural projections (of the underlying set $N \times H$ onto $H$). Show that there is an isomorphism $\xi: E_{f, \varphi} \to E_{g, \rho}$ such that $\xi \circ i = j$ and $\tau \circ \xi = \pi$.
 \end{exercise}
+\begin{solution}
+\end{solution}
 
 Motivated by the above exercise, we say that two extensions $(E, i, \pi)$ and $(F, j, \tau)$ are \emph{equivalent} if there is an isomorphism $\xi: E \to F$ such that $\xi \circ i = j$ and $\tau \circ \xi = \pi$. (Verify that this gives an equivalence relation on $\mathcal{E}$.) We let $\overline{\mathcal{E}}$ denote the set of equivalence classes of extensions, and we let $[E]$ denote the class of an extension $E$. In this context, Exercise~\ref{ex:9.5} asserts that there is a well-defined map from $\overline{\mathcal{F}}$ to $\overline{\mathcal{E}}$, sending $[f, \varphi]$ to $[E_{f, \varphi}]$.
 
@@ -80,16 +90,22 @@ Motivated by the above exercise, we say that two extensions $(E, i, \pi)$ and $(
 \label{ex:9.6}
 (cont.) If $p$ is an odd prime, show that $\Z_{p^2}$ can be realized in $p - 1$ nonequivalent ways as an extension of $\Z_p$ by $\Z_p$.
 \end{exercise}
+\begin{solution}
+\end{solution}
 
 \begin{exercise}
 \label{ex:9.7}
 (cont.) We have already obtained a map from $\mathcal{E}$ to $\overline{\mathcal{F}}$, sending an extension $E$ to the class of the factor pair arising from any normalized section of $E$. Show that this map induces a map from $\overline{\mathcal{E}}$ to $\overline{\mathcal{F}}$.
 \end{exercise}
+\begin{solution}
+\end{solution}
 
 \begin{exercise}
 \label{ex:9.8}
 (cont.) Show that the map from $\overline{\mathcal{E}}$ to $\overline{\mathcal{F}}$ obtained in Exercise~\ref{ex:9.7} is inverse to the map from $\overline{\mathcal{F}}$ to $\overline{\mathcal{E}}$ sending $[f, \varphi]$ to $[E_{f, \varphi}]$. Conclude that there is a bijective correspondence between the set of equivalence classes of extensions and the set of equivalence classes of factor pairs.
 \end{exercise}
+\begin{solution}
+\end{solution}
 
 Exercise~\ref{ex:9.8} implies that in order to study extensions up to equivalence, it suffices to study equivalence classes of factor pairs. The next two exercises give a slight refinement of the correspondence just obtained.
 
@@ -97,11 +113,15 @@ Exercise~\ref{ex:9.8} implies that in order to study extensions up to equivalenc
 \label{ex:9.9}
 (cont.) Let $\eta: \operatorname{Aut}(N) \to \operatorname{Out}(N)$ be the natural map. Show that if $(f, \varphi)$ and $(g, \rho)$ are any two factor pairs arising from an extension $E$, then $\eta \circ \varphi = \eta \circ \rho$, and this map from $H$ to $\operatorname{Out}(N)$ (which we denote by $\psi_E$) is a homomorphism. Conclude that there is a well-defined map from $\mathcal{E}$ to the set of homomorphisms from $H$ to $\operatorname{Out}(N)$, sending $E$ to $\psi_E$.
 \end{exercise}
+\begin{solution}
+\end{solution}
 
 \begin{exercise}
 \label{ex:9.10}
 (cont.) Let $\psi: H \to \operatorname{Out}(N)$ be a given homomorphism. Show that there is a bijective correspondence between the set of classes $[E]$ of $\overline{\mathcal{E}}$ for which $\psi_E = \psi$ and the set of classes $[f, \varphi]$ of $\overline{\mathcal{F}}$ for which $\eta \circ \varphi = \psi$, where $\eta: \operatorname{Aut}(N) \to \operatorname{Out}(N)$ is the natural map.
 \end{exercise}
+\begin{solution}
+\end{solution}
 
 We now consider the case where the group $N$ is abelian; we write $A$ instead of $N$, and we will use additive notation for $A$. Observe that $\operatorname{Out}(A) = \operatorname{Aut}(A)$. We fix a homomorphism $\varphi: H \to \operatorname{Aut}(A)$, and we write ${}^x a$ in lieu of $\varphi(x)(a)$ for $x \in H$ and $a \in A$. We would like to study those equivalence classes $[E]$ of extensions of $N$ by $H$ for which $\psi_E = \varphi$; we say that such extensions \emph{respect} the action of $H$ on $A$. By Exercise~\ref{ex:9.10}, it suffices to study equivalence classes $[f, \varphi]$ of factor pairs of $A$ by $H$. We suppress $\varphi$ in our notation, so that we are studying functions $f: H \times H \to A$ such that $f(x, 1) = f(1, x) = 0$ for all $x \in H$ and which in addition satisfy
 \[
@@ -117,5 +137,7 @@ for all $x, y \in H$. As discussed in the section, the set $H^2(H, A)$ of equiva
 \label{ex:9.11}
 (cont.) Suppose that $H$ and $A$ are both finite. Show that the order of each element of $H^2(H, A)$ divides both $|H|$ and the exponent of $A$. (This implies that $H^2(G/A, A) = 0$ when $A$ is an abelian normal Hall subgroup of a finite group $G$, which we established in proving \nameref{thm:schur-zassenhaus}.)
 \end{exercise}
+\begin{solution}
+\end{solution}
 
 \end{document}
