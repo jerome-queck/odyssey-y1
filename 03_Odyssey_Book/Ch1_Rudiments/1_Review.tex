@@ -333,6 +333,50 @@ The sketched proofs are completed above in:
 We say that a group $G$ has \emph{exponent} $e$ if $e$ is the smallest positive integer such that $x^e = 1$ for every $x \in G$. Show that if $G$ has exponent 2, then $G$ is abelian. For what integers $e$ is a group having exponent $e$ necessarily abelian?
 \end{exercise}
 \begin{solution}
+First suppose that \(G\) has exponent \(2\). Let \(x,y \in G\). Then \(x^2 = y^2 = (xy)^2 = 1\), so \(xyxy = 1\). Multiplying on the left by \(x\) and on the right by \(y\), and using \(x^2 = y^2 = 1\), gives \(yx = xy\). Since \(x,y\) were arbitrary, \(G\) is abelian. \\
+If \(e = 1\), then \(x = 1\) for all \(x \in G\), so \(G = \{1\}\), which is abelian. We claim that these are the only possibilities. \\
+Let \(e \geq 3\). If \(e\) is even, take the dihedral group
+\[
+    D_e = \langle r,s \mid r^e = s^2 = 1,\ srs^{-1} = r^{-1}\rangle.
+\]
+This group is non-abelian, since \(srs^{-1} = r^{-1} \ne r\). Its rotations have order dividing \(e\), and its reflections have order \(2\). Since \(e\) is even, the exponent is \(\operatorname{lcm}(e,2) = e\). \\
+Now suppose that \(e \geq 3\) is odd. Let
+\[
+    U_e =
+    \left\{
+    M(a,b,c) =
+    \begin{pmatrix}
+        1 & a & c \\
+        0 & 1 & b \\
+        0 & 0 & 1
+    \end{pmatrix}
+    \ \middle|\ a,b,c \in \Z/e\Z
+    \right\},
+\]
+under matrix multiplication, with entries computed in \(\Z/e\Z\). Direct multiplication gives
+\[
+    M(a,b,c)M(a',b',c') = M(a+a', b+b', c+c'+ab').
+\]
+Hence \(U_e\) is closed under multiplication. The identity is \(M(0,0,0)\), and
+\[
+    M(a,b,c)^{-1} = M(-a,-b,ab-c).
+\]
+Associativity follows from associativity of matrix multiplication, so \(U_e\) is a group. It is non-abelian, since
+\[
+    M(1,0,0)M(0,1,0) = M(1,1,1),
+    \qquad
+    M(0,1,0)M(1,0,0) = M(1,1,0).
+\]
+For \(n \in \N\), induction using the multiplication formula gives
+\[
+    M(a,b,c)^n = M\left(na, nb, nc+\binom{n}{2}ab\right).
+\]
+Taking \(n=e\), we get
+\[
+    M(a,b,c)^e = M\left(0,0,\binom{e}{2}ab\right).
+\]
+Since \(e\) is odd, \(\binom{e}{2} = e(e-1)/2\) is divisible by \(e\), so \(M(a,b,c)^e = M(0,0,0)\) for every \(M(a,b,c) \in U_e\). Thus every element has order dividing \(e\). However \(M(1,0,0)^n = M(n,0,0)\), so \(M(1,0,0)\) has order \(e\). Hence \(U_e\) is a non-abelian group of exponent \(e\). \\
+\(\therefore\) a group of exponent \(e\) is necessarily abelian iff \(e = 1\) or \(e = 2\).
 \end{solution}
 
 \begin{exercise}
@@ -340,6 +384,37 @@ We say that a group $G$ has \emph{exponent} $e$ if $e$ is the smallest positive 
 Let $G$ be a finite group, and suppose that the map $\varphi : G \to G$ defined by $\varphi(x) = x^3$ for $x \in G$ is a homomorphism. Show that if 3 does not divide $|G|$, then $G$ must be abelian. (See [2] for a generalization.)
 \end{exercise}
 \begin{solution}
+Let \(x,y \in G\). Since \(\varphi\) is a homomorphism, we have
+\[
+    x^3y^3 = \varphi(x)\varphi(y) = \varphi(xy) = (xy)^3 = xyxyxy.
+\]
+Cancelling \(x\) on the left and \(y\) on the right gives
+\[
+    (yx)^2 = x^2y^2.
+\]
+Swapping \(x\) and \(y\), we also have
+\[
+    (xy)^2 = y^2x^2.
+\]
+Using this in the original equation,
+\[
+    x^3y^3 = (xy)^3 = (xy)(xy)^2 = xy(y^2x^2) = xy^3x^2.
+\]
+Cancelling \(x\) on the left gives
+\[
+    y^3x^2 = x^2y^3.
+\]
+Hence every cube commutes with every square. \\
+Now let \(z \in \ker \varphi\). Then \(z^3 = 1\), so \(o(z) \mid 3\). Then we also have \(o(z) \mid |G|\). Since \(3 \nmid |G|\), we must have \(o(z) = 1\), and hence \(z = 1\). Thus \(\ker \varphi = \{1\}\), so \(\varphi\) is injective. Since \(G\) is finite, \(\varphi\) is also surjective. Therefore every element of \(G\) is a cube. \\
+Let \(g \in G\). Since every element of \(G\) is a cube, write \(g = y^3\) for some \(y \in G\). Then for every \(x \in G\), the relation above gives
+\[
+    gx^2 = y^3x^2 = x^2y^3 = x^2g.
+\]
+Thus every square is central. In particular, \(x^2\) and \(y^2\) commute for all \(x,y \in G\). Since \((xy)^2 = y^2x^2\), it follows that
+\[
+    (xy)^2 = x^2y^2.
+\]
+Hence \(xyxy = xxyy\). Cancelling \(x\) on the left and \(y\) on the right gives \(yx = xy\). Since \(x,y\) were arbitrary, \(G\) is abelian.
 \end{solution}
 
 \begin{exercise}
@@ -347,6 +422,50 @@ Let $G$ be a finite group, and suppose that the map $\varphi : G \to G$ defined 
 Let $g$ be an element of a group $G$, and suppose that $|G| = mn$ where $m$ and $n$ are coprime. Show that there are unique elements $x$ and $y$ of $G$ such that $xy = g = yx$ and $x^m = 1 = y^n$. (In the case where $m$ is a power of some prime $p$, we call $x$ the $p$-part of $g$ and $y$ the $p'$-part of $g$; more generally, if $\pi$ is a set of primes which includes all prime divisors of $m$ and no prime divisors of $n$, then $x$ and $y$ are called the $\pi$-part and $\pi'$-part, respectively, of $g$.)
 \end{exercise}
 \begin{solution}
+Since \(\gcd(m,n) = 1\), choose \(a,b \in \Z\) such that \(am+bn = 1\). Since \(\langle g \rangle \leq G\), \nameref{thm:lagrange} gives \(o(g) = |\langle g \rangle| \mid |G| = mn\), so \(g^{mn} = 1\). Define
+\[
+    x = g^{bn}, \qquad y = g^{am}.
+\]
+Then \(x\) and \(y\) commute, since both are powers of \(g\). Moreover,
+\[
+    xy = g^{bn}g^{am} = g^{am+bn} = g,
+\]
+and similarly \(yx = g\). Also,
+\[
+    x^m = g^{bmn} = (g^{mn})^b = 1,
+    \qquad
+    y^n = g^{amn} = (g^{mn})^a = 1.
+\]
+Thus such elements \(x,y \in G\) exist. \\
+We now show that they are unique. Suppose that \(x',y' \in G\) also satisfy
+\[
+    x'y' = g = y'x',
+    \qquad
+    (x')^m = 1,
+    \qquad
+    (y')^n = 1.
+\]
+Since \(x'\) and \(y'\) commute, we may take powers of \(x'y'\) termwise. Thus
+\[
+    g^{bn} = (x'y')^{bn} = (x')^{bn}(y')^{bn}.
+\]
+But \((y')^{bn} = ((y')^n)^b = 1\), so
+\[
+    g^{bn} = (x')^{bn}.
+\]
+Since \(bn = 1-am\), we get
+\[
+    (x')^{bn} = (x')^{1-am} = x'((x')^m)^{-a} = x'.
+\]
+Therefore \(x' = g^{bn} = x\). Similarly,
+\[
+    g^{am} = (x'y')^{am} = (x')^{am}(y')^{am} = (y')^{am},
+\]
+and since \(am = 1-bn\),
+\[
+    (y')^{am} = (y')^{1-bn} = y'((y')^n)^{-b} = y'.
+\]
+Therefore \(y' = g^{am} = y\). Hence the required elements \(x\) and \(y\) exist and are unique. \\
 \end{solution}
 
 \begin{exercise}
@@ -354,6 +473,67 @@ Let $g$ be an element of a group $G$, and suppose that $|G| = mn$ where $m$ and 
 Let $r, s$, and $t$ be positive integers greater than 1. Show that there is a finite group $G$ having elements $x$ and $y$ such that $x$ has order $r$, $y$ has order $s$, and $xy$ has order $t$.
 \end{exercise}
 \begin{solution}
+We use one standard fact about a particular group given by generators and relations. For \(a,b,c > 1\), the triangle group \(\Delta(a,b,c)\) is the abstract group
+\[
+    \Delta(a,b,c)
+    =
+    \langle U,V \mid U^a = 1,\ V^b = 1,\ (UV)^c = 1\rangle
+\]
+generated by two formal elements \(U\) and \(V\), subject to the relations \(U^a=1\), \(V^b=1\), and \((UV)^c=1\). The word ``triangle'' is only the standard name for this presentation; no geometry is needed here. Equivalently, \(\Delta(a,b,c)\) is the universal group with these three relations: whenever a group \(H\) has elements \(\alpha,\beta \in H\) satisfying
+\[
+    \alpha^a = 1,
+    \qquad
+    \beta^b = 1,
+    \qquad
+    (\alpha\beta)^c = 1,
+\]
+there is a homomorphism \(\Delta(a,b,c) \to H\) sending \(U\) to \(\alpha\) and \(V\) to \(\beta\). \\
+The standard fact we use is that \(U,V,UV\) have exact orders \(a,b,c\), respectively, in \(\Delta(a,b,c)\), and that \(\Delta(a,b,c)\) is residually finite. Here residually finite means that if \(g \ne 1\), then there is a homomorphism from \(\Delta(a,b,c)\) to some finite group in which the image of \(g\) is not \(1\). \\
+Now apply this fact with \(a=r\), \(b=s\), and \(c=t\). Put
+\[
+    \Gamma =
+    \langle X,Y \mid X^r = 1,\ Y^s = 1,\ (XY)^t = 1\rangle .
+\]
+In \(\Gamma\), the elements \(X,Y,XY\) have exact orders \(r,s,t\). Hence every element of the finite set
+\[
+    \mathcal S
+    =
+    \{X^i \mid 1 \leq i < r\}
+    \cup
+    \{Y^j \mid 1 \leq j < s\}
+    \cup
+    \{(XY)^k \mid 1 \leq k < t\}
+\]
+is non-identity. By residual finiteness, for each \(g \in \mathcal S\), there is a finite group \(Q_g\) and a homomorphism
+\[
+    \varphi_g \colon \Gamma \to Q_g
+\]
+such that \(\varphi_g(g) \ne 1\). Now define
+\[
+    Q = \prod_{g \in \mathcal S} Q_g,
+    \qquad
+    \Phi \colon \Gamma \to Q,
+    \qquad
+    \Phi(h) = \bigl(\varphi_g(h)\bigr)_{g \in \mathcal S}.
+\]
+Let \(G = \Phi(\Gamma) \leq Q\), and set
+\[
+    x = \Phi(X),
+    \qquad
+    y = \Phi(Y).
+\]
+Since \(Q\) is finite, \(G\) is finite. Also, since \(X^r = 1\), \(Y^s = 1\), and \((XY)^t = 1\) in \(\Gamma\), we have
+\[
+    x^r = 1,
+    \qquad
+    y^s = 1,
+    \qquad
+    (xy)^t = 1.
+\]
+Thus \(o(x) \mid r\), \(o(y) \mid s\), and \(o(xy) \mid t\). \\
+It remains to show that no smaller positive powers become trivial in this finite quotient. Suppose \(1 \leq i < r\). Since \(X^i \in \mathcal S\), the \(X^i\)-coordinate of \(\Phi(X^i)\) is \(\varphi_{X^i}(X^i)\), which is not \(1\). Hence \(\Phi(X^i) \ne 1\), so \(x^i \ne 1\). Therefore \(o(x) = r\). \\
+Similarly, if \(1 \leq j < s\), then the \(Y^j\)-coordinate of \(\Phi(Y^j)\) is \(\varphi_{Y^j}(Y^j) \ne 1\), so \(y^j \ne 1\). Hence \(o(y) = s\). Finally, if \(1 \leq k < t\), then the \((XY)^k\)-coordinate of \(\Phi((XY)^k)\) is \(\varphi_{(XY)^k}((XY)^k) \ne 1\), so \((xy)^k \ne 1\). Hence \(o(xy) = t\). \\
+\(\therefore\) the finite group \(G\) contains elements \(x,y\) such that \(o(x)=r\), \(o(y)=s\), and \(o(xy)=t\).
 \end{solution}
 
 \begin{exercise}
@@ -361,6 +541,38 @@ Let $r, s$, and $t$ be positive integers greater than 1. Show that there is a fi
 Let $X$ and $Y$ be subsets of a group $G$. Are $\langle X \rangle \cap \langle Y \rangle$ and $\langle X \cap Y \rangle$ necessarily equal? Are $\langle \langle X \rangle \cup \langle Y \rangle \rangle$ and $\langle X \cup Y \rangle$ necessarily equal?
 \end{exercise}
 \begin{solution}
+The first pair need not be equal. Let \(G = C_3 = \langle g \rangle\), \(X = \{1,g\}\), and \(Y = \{1,g^2\}\). Then \(\langle X\rangle = G\), since \(g \in X\), and \(\langle Y\rangle = G\), since \(g^2\) also generates \(C_3\). Hence
+\[
+    \langle X\rangle \cap \langle Y\rangle = G.
+\]
+However, \(X \cap Y = \{1\}\), so
+\[
+    \langle X \cap Y\rangle = \{1\}.
+\]
+Thus \(\langle X\rangle \cap \langle Y\rangle\) and \(\langle X \cap Y\rangle\) are not necessarily equal. \\
+The second pair is always equal. Since \(X \subseteq \langle X\rangle\) and \(Y \subseteq \langle Y\rangle\), we have
+\[
+    X \cup Y \subseteq \langle X\rangle \cup \langle Y\rangle.
+\]
+Therefore
+\[
+    \langle X \cup Y\rangle \leq \langle \langle X\rangle \cup \langle Y\rangle\rangle.
+\]
+Conversely, since \(X \subseteq X \cup Y\) and \(Y \subseteq X \cup Y\), we have
+\[
+    \langle X\rangle \leq \langle X \cup Y\rangle,
+    \qquad
+    \langle Y\rangle \leq \langle X \cup Y\rangle.
+\]
+Hence
+\[
+    \langle X\rangle \cup \langle Y\rangle \subseteq \langle X \cup Y\rangle.
+\]
+Since \(\langle X \cup Y\rangle\) is a subgroup containing \(\langle X\rangle \cup \langle Y\rangle\), it contains the subgroup generated by that union, so
+\[
+    \langle \langle X\rangle \cup \langle Y\rangle\rangle \leq \langle X \cup Y\rangle.
+\]
+\(\therefore \langle \langle X\rangle \cup \langle Y\rangle\rangle = \langle X \cup Y\rangle\).
 \end{solution}
 
 \begin{exercise}
@@ -368,6 +580,50 @@ Let $X$ and $Y$ be subsets of a group $G$. Are $\langle X \rangle \cap \langle Y
 Let $G$ be a finite group and let $H \leq G$. Show that there is a subset $T$ of $G$ which is simultaneously a left transversal for $H$ and a right transversal for $H$.
 \end{exercise}
 \begin{solution}
+We use the following elementary matching fact. Suppose \(A_1,\dots,A_n\) are finite sets of possible choices. If, for every \(I \subseteq \{1,\dots,n\}\),
+\[
+    \left|\bigcup_{i \in I} A_i\right| \geq |I|,
+\]
+then we can choose distinct representatives \(a_i \in A_i\). \\
+Let
+\[
+    L_1,\dots,L_n
+\]
+be the distinct left cosets of \(H\), and let
+\[
+    R_1,\dots,R_n
+\]
+be the distinct right cosets of \(H\). There are the same number \(n\) of each, since both left and right cosets partition \(G\) into subsets of size \(|H|\). For each \(i\), define
+\[
+    A_i = \{j \in \{1,\dots,n\} \mid L_i \cap R_j \ne \emptyset\}.
+\]
+Thus \(A_i\) is the set of right cosets which the left coset \(L_i\) meets. We check the matching condition. Choose any \(m\) left cosets, say those indexed by \(I\), where \(|I|=m\). Suppose these \(m\) left cosets meet \(q\) right cosets. Since distinct left cosets are disjoint,
+\[
+    \left|\bigcup_{i \in I} L_i\right| = m|H|.
+\]
+This union is contained in the union of the \(q\) right cosets it meets, whose total size is \(q|H|\). Hence
+\[
+    m|H| \leq q|H|,
+\]
+so \(m \leq q\). Therefore any \(m\) left cosets meet at least \(m\) right cosets. In terms of the sets \(A_i\), this says exactly that
+\[
+    \left|\bigcup_{i \in I} A_i\right| \geq |I|.
+\]
+By the matching fact, choose distinct \(j_1,\dots,j_n\) such that \(j_i \in A_i\) for every \(i\). Since \(j_i \in A_i\),
+\[
+    L_i \cap R_{j_i} \ne \emptyset,
+\]
+so choose
+\[
+    t_i \in L_i \cap R_{j_i}.
+\]
+Set
+\[
+    T = \{t_1,\dots,t_n\}.
+\]
+Because \(t_i \in L_i\), the set \(T\) contains one element from each left coset. Since the \(L_i\) are disjoint, it contains exactly one element from each left coset, so \(T\) is a left transversal for \(H\). \\
+Because the indices \(j_1,\dots,j_n\) are distinct, the right cosets \(R_{j_1},\dots,R_{j_n}\) are all distinct. There are \(n\) of them, and there are only \(n\) right cosets in total, so they are all the right cosets. Since \(t_i \in R_{j_i}\), the set \(T\) also contains exactly one element from each right coset. Hence \(T\) is a right transversal for \(H\). \\
+\(\therefore\) there exists a subset \(T \subseteq G\) which is simultaneously a left transversal and a right transversal for \(H\).
 \end{solution}
 
 \begin{exercise}
@@ -375,6 +631,14 @@ Let $G$ be a finite group and let $H \leq G$. Show that there is a subset $T$ of
 Suppose that $\mathcal{C}$ is a family of subsets of a group $G$ which forms a partition of $G$, and suppose further that $gC \in \mathcal{C}$ for any $g \in G$ and $C \in \mathcal{C}$. (Recall that a \emph{partition} of a set $S$ is a collection $\mathcal{S}$ of subsets of $S$ with the property that every element of $S$ lies in exactly one member of $\mathcal{S}$.) Show that $\mathcal{C}$ is the set of cosets of some subgroup of $G$.
 \end{exercise}
 \begin{solution}
+Since \(\mathcal C\) is a partition of \(G\), there is a unique member \(H \in \mathcal C\) such that \(1 \in H\). We first show that \(H \leq G\). \\
+Let \(h \in H\). By the hypothesis, \(hH \in \mathcal C\). Also, since \(1 \in H\), we have \(h = h1 \in hH\). Thus both \(H\) and \(hH\) are members of \(\mathcal C\) containing \(h\). Since \(\mathcal C\) is a partition, we must have
+\[
+    hH = H.
+\]
+Hence for any \(h,k \in H\), we have \(hk \in hH = H\), so \(H\) is closed under multiplication. Also, since \(1 \in H = hH\), there exists \(u \in H\) such that \(hu = 1\). Thus \(u = h^{-1}\), so \(h^{-1} \in H\). Therefore \(H \leq G\). \\
+Now let \(C \in \mathcal C\). Choose \(g \in C\). By the hypothesis, \(gH \in \mathcal C\), and since \(1 \in H\), we have \(g \in gH\). Thus both \(C\) and \(gH\) are members of \(\mathcal C\) containing \(g\). Since \(\mathcal C\) is a partition, \(C = gH\). Therefore every member of \(\mathcal C\) is a left coset of \(H\). Conversely, for every \(g \in G\), the set \(gH\) belongs to \(\mathcal C\) by the hypothesis. \\
+\(\therefore \mathcal C = \{gH \mid g \in G\}\), the set of left cosets of the subgroup \(H\).
 \end{solution}
 
 \begin{exercise}
@@ -382,6 +646,29 @@ Suppose that $\mathcal{C}$ is a family of subsets of a group $G$ which forms a p
 Suppose that $\mathcal{C}$ is a family of subsets of a group $G$ which forms a partition of $G$, and suppose further that $XY \in \mathcal{C}$ for any $X, Y \in \mathcal{C}$. Show that exactly one of the sets belonging to $\mathcal{C}$ is a subgroup of $G$, that this subgroup is normal in $G$, and that $\mathcal{C}$ consists of its cosets.
 \end{exercise}
 \begin{solution}
+Since \(\mathcal C\) is a partition of \(G\), there is a unique member \(H \in \mathcal C\) such that \(1 \in H\). We first show that \(H \leq G\). \\
+By the hypothesis, \(HH \in \mathcal C\). Since \(1 \in H\), we have \(1 = 1 \cdot 1 \in HH\). Thus \(H\) and \(HH\) are both members of \(\mathcal C\) containing \(1\), so \(HH = H\). Hence \(H\) is closed under multiplication. \\
+Now let \(h \in H\). Let \(K \in \mathcal C\) be the unique member containing \(h^{-1}\). By the hypothesis, \(HK \in \mathcal C\). Since \(h \in H\) and \(h^{-1} \in K\), we have \(1 = hh^{-1} \in HK\). Thus \(HK\) and \(H\) are both members of \(\mathcal C\) containing \(1\), so \(HK = H\). Since \(1 \in H\) and \(h^{-1} \in K\), it follows that \(h^{-1} = 1h^{-1} \in HK = H\). Therefore \(H \leq G\). \\
+We now show that every member of \(\mathcal C\) is a left coset of \(H\). Let \(X \in \mathcal C\), and choose \(x \in X\). By the hypothesis, \(XH \in \mathcal C\). Since \(1 \in H\), we have \(x = x1 \in XH\). Thus \(XH\) and \(X\) are both members of \(\mathcal C\) containing \(x\), so \(XH = X\). Hence \(xH \subseteq XH = X\). \\
+For the reverse inclusion, let \(X' \in \mathcal C\) be the unique member containing \(x^{-1}\). By the hypothesis, \(X'X \in \mathcal C\). Since \(x^{-1}x = 1 \in X'X\), we have \(X'X = H\). If \(y \in X\), then \(x^{-1}y \in X'X = H\), and hence
+\[
+    y = x(x^{-1}y) \in xH.
+\]
+Thus \(X \subseteq xH\). Therefore \(X = xH\), and so every member of \(\mathcal C\) is a left coset of \(H\). Conversely, if \(g \in G\), and \(X \in \mathcal C\) contains \(g\), then \(X = gH\). Hence
+\[
+    \mathcal C = \{gH \mid g \in G\}.
+\]
+The subgroup \(H\) is the only member of \(\mathcal C\) which is a subgroup, since it is the only member containing \(1\). \\
+It remains to show that \(H\) is normal. Let \(g \in G\). Since \(gH,g^{-1}H \in \mathcal C\), the product \((gH)(g^{-1}H)\) is a member of \(\mathcal C\). It contains \(1\), since \(g \in gH\), \(g^{-1} \in g^{-1}H\), and \(gg^{-1}=1\). Thus
+\[
+    (gH)(g^{-1}H)=H.
+\]
+Now let \(h \in H\). Since \(gh \in gH\) and \(g^{-1} \in g^{-1}H\), we have
+\[
+    ghg^{-1} \in (gH)(g^{-1}H)=H.
+\]
+Thus \(gHg^{-1} \subseteq H\). Replacing \(g\) by \(g^{-1}\), we also have \(g^{-1}Hg \subseteq H\), and conjugating this inclusion by \(g\) gives \(H \subseteq gHg^{-1}\). Hence \(gHg^{-1}=H\) for all \(g \in G\). Therefore \(H \trianglelefteq G\). \\
+\(\therefore\) exactly one member of \(\mathcal C\) is a subgroup, this subgroup is normal in \(G\), and \(\mathcal C\) consists of its cosets.
 \end{solution}
 
 \begin{exercise}
@@ -389,6 +676,46 @@ Suppose that $\mathcal{C}$ is a family of subsets of a group $G$ which forms a p
 Prove the following generalization of Proposition~\ref{prop:1.8}: If $G$ is a finite group and $H \leq G$ is such that $|G : H|$ is equal to the smallest prime divisor of $|G|$, then $H \trianglelefteq G$.
 \end{exercise}
 \begin{solution}
+Let \(p = |G:H|\). By hypothesis, \(p\) is the smallest prime divisor of \(|G|\). Let
+\[
+    \Omega = \{xH \mid x \in G\}
+\]
+be the set of left cosets of \(H\). Then \(|\Omega|=p\). Define
+\[
+    \varphi \colon G \to S_\Omega
+\]
+by
+\[
+    \varphi(g)(xH) = gxH
+\]
+for all \(g,x \in G\). This is well-defined: if \(xH = yH\), then \(gxH = gyH\). For each \(g \in G\), the map \(\varphi(g)\) is a permutation of \(\Omega\), with inverse \(\varphi(g^{-1})\). Also,
+\[
+    \varphi(g_1g_2)(xH) = g_1g_2xH
+    =
+    \varphi(g_1)(g_2xH)
+    =
+    \bigl(\varphi(g_1)\varphi(g_2)\bigr)(xH),
+\]
+so \(\varphi\) is a homomorphism. \\
+Let \(K = \ker \varphi\). Then \(K \trianglelefteq G\). We claim that \(K \leq H\). If \(k \in K\), then \(\varphi(k)\) fixes every left coset, so in particular
+\[
+    H = \varphi(k)(H) = kH.
+\]
+Thus \(k \in H\), and hence \(K \leq H\). \\
+By the \nameref{thm:fth}, \(G/K \cong \operatorname{im}\varphi \leq S_\Omega\). Hence
+\[
+    |G:K| = |\operatorname{im}\varphi| \mid |S_\Omega| = p!.
+\]
+Also, by \nameref{thm:lagrange}, \(|G:K| \mid |G|\). Therefore every prime divisor of \(|G:K|\) is a prime divisor of \(|G|\), and hence is at least \(p\). On the other hand, since \(|G:K| \mid p!\), every prime divisor of \(|G:K|\) is at most \(p\). Thus the only possible prime divisor of \(|G:K|\) is \(p\). \\
+Since \(K \leq H \leq G\), we have
+\[
+    |G:K| = |G:H|\,|H:K| = p|H:K|.
+\]
+Thus \(p \mid |G:K|\). Since the only possible prime divisor of \(|G:K|\) is \(p\), we may write \(|G:K|=p^a\) for some \(a \geq 1\). But \(|G:K| \mid p!\), and \(p^2 \nmid p!\), so \(a=1\). Hence
+\[
+    |G:K|=p.
+\]
+It follows that \(p|H:K|=p\), so \(|H:K|=1\). Therefore \(H=K\). Since \(K \trianglelefteq G\), we conclude that \(H \trianglelefteq G\).
 \end{solution}
 
 \subsection*{Further Exercises}
