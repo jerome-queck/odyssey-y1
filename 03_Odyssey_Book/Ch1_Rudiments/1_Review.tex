@@ -473,6 +473,65 @@ Therefore \(y' = g^{am} = y\). Hence the required elements \(x\) and \(y\) exist
 Let $r, s$, and $t$ be positive integers greater than 1. Show that there is a finite group $G$ having elements $x$ and $y$ such that $x$ has order $r$, $y$ has order $s$, and $xy$ has order $t$.
 \end{exercise}
 \begin{solution}
+\noindent\emph{First approach: a linear construction.}
+Let
+\[
+    N = 2rst.
+\]
+Choose a prime \(p \nmid N\). By taking a suitable power \(q=p^d\), we may arrange that
+\[
+    q \equiv 1 \pmod N,
+\]
+since \(p\) is invertible modulo \(N\). Thus \(2r,2s,2t\) all divide \(q-1\). Since \(\mathbb F_q^{\times}\) is cyclic, we may choose elements \(u,v,w \in \mathbb F_q^{\times}\) of orders \(2r,2s,2t\), respectively. Define
+\[
+    A =
+    \begin{pmatrix}
+        u & 1 \\
+        0 & u^{-1}
+    \end{pmatrix},
+    \qquad
+    B =
+    \begin{pmatrix}
+        v & 0 \\
+        \lambda & v^{-1}
+    \end{pmatrix},
+\]
+where
+\[
+    \lambda = w+w^{-1}-uv-u^{-1}v^{-1}.
+\]
+Then \(A,B \in \SL(2,\mathbb F_q)\). The characteristic polynomial of \(A\) is
+\[
+    X^2-(u+u^{-1})X+1,
+\]
+with distinct roots \(u,u^{-1}\), since \(u\) has order \(2r>2\). Hence \(A\) is conjugate over \(\mathbb F_q\) to \(\operatorname{diag}(u,u^{-1})\), and so \(A\) has order \(2r\). Similarly, \(B\) has characteristic polynomial
+\[
+    X^2-(v+v^{-1})X+1
+\]
+with distinct roots \(v,v^{-1}\), and therefore \(B\) has order \(2s\). Finally,
+\[
+    AB =
+    \begin{pmatrix}
+        uv+\lambda & v^{-1} \\
+        u^{-1}\lambda & u^{-1}v^{-1}
+    \end{pmatrix},
+\]
+so
+\[
+    \operatorname{tr}(AB)=uv+\lambda+u^{-1}v^{-1}=w+w^{-1}.
+\]
+Since \(\det(AB)=1\), the characteristic polynomial of \(AB\) is
+\[
+    X^2-(w+w^{-1})X+1,
+\]
+with distinct roots \(w,w^{-1}\). Thus \(AB\) has order \(2t\). \\
+Now pass to the finite quotient
+\[
+    G = \SL(2,\mathbb F_q)/\{\pm I\}.
+\]
+The element \(-I\) is the unique element of order \(2\) in \(\SL(2,\mathbb F_q)\): indeed, if \(C^2=I\), then \(C\) is diagonalizable with eigenvalues in \(\{\pm1\}\), and the condition \(\det C=1\) forces either \(C=I\) or \(C=-I\). Hence, if an element \(g \in \SL(2,\mathbb F_q)\) has order \(2n\), its image modulo \(\{\pm I\}\) has order \(n\). For \(g^n\) is the unique element of order \(2\), hence \(g^n=-I\), so the image has order dividing \(n\); and if a smaller positive power became trivial in the quotient, then \(g^m=\pm I\) for some \(m<n\). The case \(g^m=I\) contradicts \(o(g)=2n\), while \(g^m=-I=g^n\) gives \(g^{n-m}=I\), again impossible. Therefore the images \(x,y\) of \(A,B\) in \(G\) have orders \(r,s\), respectively, and \(xy\), the image of \(AB\), has order \(t\).
+
+\smallskip\noindent\emph{Second approach: finite quotients of triangle groups.}
 We use one standard fact about a particular group given by generators and relations. For \(a,b,c > 1\), the triangle group \(\Delta(a,b,c)\) is the abstract group
 \[
     \Delta(a,b,c)
@@ -532,8 +591,83 @@ Since \(Q\) is finite, \(G\) is finite. Also, since \(X^r = 1\), \(Y^s = 1\), an
 \]
 Thus \(o(x) \mid r\), \(o(y) \mid s\), and \(o(xy) \mid t\). \\
 It remains to show that no smaller positive powers become trivial in this finite quotient. Suppose \(1 \leq i < r\). Since \(X^i \in \mathcal S\), the \(X^i\)-coordinate of \(\Phi(X^i)\) is \(\varphi_{X^i}(X^i)\), which is not \(1\). Hence \(\Phi(X^i) \ne 1\), so \(x^i \ne 1\). Therefore \(o(x) = r\). \\
-Similarly, if \(1 \leq j < s\), then the \(Y^j\)-coordinate of \(\Phi(Y^j)\) is \(\varphi_{Y^j}(Y^j) \ne 1\), so \(y^j \ne 1\). Hence \(o(y) = s\). Finally, if \(1 \leq k < t\), then the \((XY)^k\)-coordinate of \(\Phi((XY)^k)\) is \(\varphi_{(XY)^k}((XY)^k) \ne 1\), so \((xy)^k \ne 1\). Hence \(o(xy) = t\). \\
-\(\therefore\) the finite group \(G\) contains elements \(x,y\) such that \(o(x)=r\), \(o(y)=s\), and \(o(xy)=t\).
+Similarly, if \(1 \leq j < s\), then the \(Y^j\)-coordinate of \(\Phi(Y^j)\) is \(\varphi_{Y^j}(Y^j) \ne 1\), so \(y^j \ne 1\). Hence \(o(y) = s\). Finally, if \(1 \leq k < t\), then the \((XY)^k\)-coordinate of \(\Phi((XY)^k)\) is \(\varphi_{(XY)^k}((XY)^k) \ne 1\), so \((xy)^k \ne 1\). Hence \(o(xy) = t\).
+
+\smallskip\noindent\emph{Third approach: Miller's permutation construction.}
+We now give Miller's construction in modern notation. Miller's ``substitutions'' are permutations, and his ``circular substitutions'' are cycles. The proof is based on the following explicit overlap calculation. Let two cycles share a consecutive block
+\[
+    a_1,a_2,\dots,a_c
+\]
+and have no other letters in common. If \(c=2h+1\) is odd, arrange the two cycles as
+\[
+    S_1=(a_1\,\cdots\,a_{2j}\,a_{2j+1}\,\cdots\,a_{2h+1}\,b_1\,\cdots\,b_p),
+\]
+\[
+    S_2=(a_{2j+1}\,\cdots\,a_1\,a_{2j+2}\,\cdots\,a_{2h+1}\,d_1\,\cdots\,d_q).
+\]
+Tracing the product gives
+\[
+    S_1S_2
+    =
+    (a_{2j+1}\,a_{2j+3}\,\cdots\,a_{2h+1}\,
+     b_1\,\cdots\,b_p\,
+     a_{2j+2}\,a_{2j+4}\,\cdots\,a_{2h}\,
+     d_1\,\cdots\,d_q),
+\]
+so \(S_1S_2\) is one cycle and the omitted common letters are exactly
+\[
+    a_1,\dots,a_{2j}.
+\]
+Thus an odd overlap lets us omit any prescribed even number of common letters. Similarly, if \(c=2h\) is even and the same calculation is made with the first omitted block \(a_1,\dots,a_{2j-1}\), then the product is one cycle omitting exactly \(2j-1\) common letters. Thus an even overlap lets us omit any prescribed odd number of common letters. \\
+If the required parity is opposite to the parity supplied by the two-cycle calculation, Miller uses one cycle together with a permutation of the form
+\[
+    (\text{one transposition})(\text{one disjoint cycle}).
+\]
+The same trace shows that this changes the parity of the number of omitted common letters. This is harmless whenever the corresponding order is even, since the least common multiple of \(2\) and an even cycle length is still the required even order. When both relevant orders are odd, no transposition is inserted; instead, one uses two adjacent odd cycles and performs the same overlap twice. The first overlap changes the parity, and the second restores the required odd order. This is the only extra bookkeeping in Miller's all-odd case. \\
+We now use this calculation to build permutations \(L,M,N\) of prescribed orders \(\ell,m,n>1\) with \(LM=N\). Since
+\[
+    LM=N
+    \quad\Longleftrightarrow\quad
+    MN^{-1}=L^{-1}
+    \quad\Longleftrightarrow\quad
+    N^{-1}L=M^{-1},
+\]
+we may construct the triple after arranging the desired orders as \(\ell \leq m \leq n\), and then translate back to the original order. Write
+\[
+    n=am+b,\qquad 0\leq b<m.
+\]
+Take \(M\) to be a product of \(a\) disjoint \(m\)-cycles,
+\[
+    M=(a_1\,\cdots\,a_m)(a_{m+1}\,\cdots\,a_{2m})\cdots
+      (a_{(a-1)m+1}\,\cdots\,a_{am}).
+\]
+The permutation \(L\) is chosen so that its cycles join these \(m\)-cycles end-to-end. If \(a=1\), this is exactly the overlap calculation above, since \(m\leq n<m+\ell\). For instance, when \(\ell\) is even and \(a>1\), the joining part may be written schematically as
+\[
+\begin{aligned}
+    L={}&(a_1\,a_{am+1})(a_2\,a_{am+2})\cdots(a_b\,a_{am+b})  \\
+       &\cdot (a_m\,a_{m+1})(a_{2m}\,a_{2m+1})\cdots \\
+       &\cdot
+       (a_{(a-1)m}\,a_{(a-1)m+1}\,\cdots\,a_{(a-1)m+\ell-1}).
+\end{aligned}
+\]
+where the first row is omitted if \(b=0\). Here the displayed transpositions perform the ordinary joins, and the final \(\ell\)-cycle makes \(o(L)=\ell\). A direct trace explains the construction: starting at \(a_1\), the product \(LM\) first follows the first \(m\)-cycle of \(M\); when it reaches the end of that cycle, the next factor of \(L\) sends it to the beginning of the next \(m\)-cycle; the same process repeats until the trace reaches the final block. At the final block the overlap calculation above omits exactly \(m-b\) common letters, so the resulting product has precisely
+\[
+    am+b=n
+\]
+letters. Hence \(LM\) is an \(n\)-cycle. \\
+If \(\ell\) is odd, the same threading is done with \(\ell\)-cycles rather than transpositions. The only issue is parity of the number of omitted common letters in the final overlap. When \(m\) is even, the transposition-plus-cycle variant above supplies the missing parity while keeping \(o(M)=m\). When both \(\ell\) and \(m\) are odd, two neighboring odd overlaps are used: the first overlap changes the parity of the omitted block and the second overlap joins the next \(m\)-cycle back into the same long trace. Since every component of \(L\) is then an \(\ell\)-cycle and every component of \(M\) is an \(m\)-cycle, the orders remain
+\[
+    o(L)=\ell,\qquad o(M)=m.
+\]
+The same trace as before shows that the product is still a single \(n\)-cycle. Thus in all cases we have constructed permutations \(L,M,N\) such that
+\[
+    o(L)=\ell,\qquad o(M)=m,\qquad o(N)=n,\qquad LM=N.
+\]
+We now return to \(r,s,t\). If \(t\) is the largest of the three orders, take \(\ell=r\), \(m=s\), and \(n=t\), and set \(x=L\), \(y=M\). If \(r\) is the largest, take \(\ell=s\), \(m=t\), and \(n=r\). Then \(LM=N\), so \(N^{-1}L=M^{-1}\); setting \(x=N^{-1}\) and \(y=L\) gives \(o(x)=r\), \(o(y)=s\), and \(o(xy)=t\). If \(s\) is the largest, take \(\ell=t\), \(m=r\), and \(n=s\). Then \(LM=N\), so \(MN^{-1}=L^{-1}\); setting \(x=M\) and \(y=N^{-1}\) gives \(o(x)=r\), \(o(y)=s\), and \(o(xy)=t\). In all cases the permutations act on a finite set \(\Omega\). Let
+\[
+    G=\langle x,y\rangle \leq \mathrm{Sym}(\Omega).
+\]
+Then \(G\) is finite, and by construction \(o(x)=r\), \(o(y)=s\), and \(o(xy)=t\). \(\therefore\) the required finite group exists.
 \end{solution}
 
 \begin{exercise}
@@ -727,13 +861,83 @@ It follows that \(p|H:K|=p\), so \(|H:K|=1\). Therefore \(H=K\). Since \(K \tria
 Show that incident sections are isomorphic.
 \end{exercise}
 \begin{solution}
+Let \(H_1/K_1\) and \(H_2/K_2\) be incident sections of \(G\). Define
+\[
+    \varphi \colon H_1/K_1 \to H_2/K_2
+\]
+by letting \(\varphi(xK_1)\) be the unique coset \(yK_2\) such that
+\[
+    xK_1 \cap yK_2 \neq \varnothing .
+\]
+This is well-defined by the definition of incidence. We first show that \(\varphi\) is bijective. If \(\varphi(xK_1)=\varphi(x'K_1)=yK_2\), then \(yK_2\) has non-empty intersection with both \(xK_1\) and \(x'K_1\). Since incidence also says that each coset of \(K_2\) in \(H_2\) has non-empty intersection with exactly one coset of \(K_1\) in \(H_1\), we have \(xK_1=x'K_1\). Hence \(\varphi\) is injective. If \(yK_2 \in H_2/K_2\), then, again by incidence, \(yK_2\) has non-empty intersection with some coset \(xK_1 \in H_1/K_1\), and then \(\varphi(xK_1)=yK_2\). Hence \(\varphi\) is surjective.
+
+It remains to show that \(\varphi\) is a homomorphism. Suppose
+\[
+    \varphi(xK_1)=yK_2
+    \quad\text{and}\quad
+    \varphi(x'K_1)=y'K_2.
+\]
+Choose
+\[
+    a \in xK_1 \cap yK_2
+    \quad\text{and}\quad
+    b \in x'K_1 \cap y'K_2.
+\]
+Then \(a=xk\) and \(b=x'k'\) for some \(k,k' \in K_1\). Hence
+\[
+    ab = xkx'k' = xx'(x'^{-1}kx')k' \in xx'K_1,
+\]
+because \(K_1 \trianglelefteq H_1\) and \(x' \in H_1\). Similarly, writing \(a=y\ell\) and \(b=y'\ell'\) with \(\ell,\ell' \in K_2\), we get
+\[
+    ab = y\ell y'\ell' = yy'(y'^{-1}\ell y')\ell' \in yy'K_2,
+\]
+because \(K_2 \trianglelefteq H_2\) and \(y' \in H_2\). Therefore
+\[
+    xx'K_1 \cap yy'K_2 \neq \varnothing .
+\]
+By the uniqueness in the definition of incidence, this implies
+\[
+    \varphi(xx'K_1)=yy'K_2.
+\]
+On the other hand,
+\[
+    \varphi(xK_1)\varphi(x'K_1)
+    = (yK_2)(y'K_2)
+    = yy'K_2.
+\]
+Thus
+\[
+    \varphi((xK_1)(x'K_1))
+    = \varphi(xK_1)\varphi(x'K_1).
+\]
+Therefore \(\varphi\) is a bijective homomorphism, so \(H_1/K_1 \cong H_2/K_2\).
 \end{solution}
 
 \begin{exercise}
 \label{ex:1.12}
-(cont.) Suppose that $N \trianglelefteq G$ and $H \leq G$. Show that $HN/N$ and $H/H \cap N$ are incident. (Exercises~\ref{ex:1.11} and~\ref{ex:1.12} provide an alternate proof of the \nameref{thm:first-iso}.)
+(cont.) Suppose that $N \trianglelefteq G$ and $H \leq G$. Show that $HN/N$ and $H/(H \cap N)$ are incident. (Exercises~\ref{ex:1.11} and~\ref{ex:1.12} provide an alternate proof of the \nameref{thm:first-iso}.)
 \end{exercise}
 \begin{solution}
+Let \(K = H \cap N\). By Proposition~\ref{prop:1.7}, \(HN \leq G\) and \(K \trianglelefteq H\). Since \(N \trianglelefteq G\) and \(HN \leq G\), we also have \(N \trianglelefteq HN\), so \(HN/N\) and \(H/K\) are sections of \(G\). We show that they are incident. \\
+First let \(xN \in HN/N\). Since \(x \in HN\), we may write \(x=hn\) for some \(h \in H\) and \(n \in N\). Hence
+\[
+    xN = hnN = hN.
+\]
+Since \(1 \in K\), we have \(h \in hN \cap hK\), so \(hN \cap hK \neq \varnothing\). Thus every coset of \(N\) in \(HN\) has non-empty intersection with at least one coset of \(K\) in \(H\). We now prove uniqueness. Suppose that
+\[
+    hN \cap h'K \neq \varnothing
+\]
+for some \(h' \in H\). Choose \(z \in hN \cap h'K\). Then \(z=hn_1=h'k\) for some \(n_1 \in N\) and \(k \in K\), and hence
+\[
+    h^{-1}h' = n_1k^{-1}.
+\]
+Since \(n_1 \in N\) and \(k \in K \leq N\), we have \(n_1k^{-1} \in N\). Since also \(h,h' \in H\), we have \(h^{-1}h' \in H\). Hence \(h^{-1}h' \in H \cap N = K\), so \(hK=h'K\). Therefore each coset of \(N\) in \(HN\) intersects exactly one coset of \(K\) in \(H\). \\
+Conversely, let \(hK \in H/K\). Since \(h \in hK \cap hN\), the coset \(hK\) has non-empty intersection with at least one coset of \(N\) in \(HN\). Suppose that \(hK \cap xN \neq \varnothing\) for some \(xN \in HN/N\). As above, we may write \(xN=h'N\) for some \(h' \in H\). Choose \(z \in hK \cap h'N\). Then \(z=hk=h'n_2\) for some \(k \in K\) and \(n_2 \in N\), and hence
+\[
+    h^{-1}h' = kn_2^{-1}.
+\]
+Since \(k \in K \leq N\) and \(n_2 \in N\), we get \(h^{-1}h' \in N\). Therefore \(h'N=hN\). Thus each coset of \(K\) in \(H\) intersects exactly one coset of \(N\) in \(HN\). \\
+\(\therefore HN/N\) and \(H/(H \cap N)\) are incident.
 \end{solution}
 
 \noindent If $L/M$ is a section of $G$ and $H \leq G$, then the \emph{projection} of $H$ on $L/M$ is the subset of $L/M$ consisting of those cosets of $M$ in $L$ which contain elements of $H$.
@@ -743,6 +947,22 @@ Show that incident sections are isomorphic.
 (cont.) Show that the projection of $H$ on $L/M$ is the subgroup $(L \cap H)M/M$ of $L/M$.
 \end{exercise}
 \begin{solution}
+Let
+\[
+    P = \{lM \in L/M \mid lM \cap H \neq \varnothing\}
+\]
+be the projection of \(H\) on \(L/M\). Since \(L/M\) is a section of \(G\), we have \(M \trianglelefteq L\). Let \(\eta \colon L \to L/M\) be the natural map. By Proposition~\ref{prop:1.11},
+\[
+    \eta(L \cap H) = (L \cap H)M/M
+\]
+is a subgroup of \(L/M\). It remains to show that \(P = \eta(L \cap H)\). \\
+First let \(lM \in P\). Then \(lM \cap H \neq \varnothing\), so we may choose \(h \in lM \cap H\). Since \(h \in lM \subseteq L\), and also \(h \in H\), we have \(h \in L \cap H\). Moreover \(h \in lM\), so \(hM=lM\). Hence
+\[
+    lM = hM \in \eta(L \cap H).
+\]
+Thus \(P \subseteq \eta(L \cap H)\). \\
+Conversely, let \(xM \in \eta(L \cap H)\). Then \(xM=hM\) for some \(h \in L \cap H\). Since \(h \in H\) and \(h \in hM=xM\), we have \(xM \cap H \neq \varnothing\). Hence \(xM \in P\). Thus \(\eta(L \cap H) \subseteq P\). \\
+\(\therefore P = \eta(L \cap H) = (L \cap H)M/M\), so the projection of \(H\) on \(L/M\) is the subgroup \((L \cap H)M/M\) of \(L/M\).
 \end{solution}
 
 \noindent Let $H_1/K_1$ and $H_2/K_2$ be sections of a group $G$.
@@ -752,6 +972,119 @@ Show that incident sections are isomorphic.
 (cont.) Show that the projection of $K_2$ on $H_1/K_1$ is a normal subgroup of the projection of $H_2$ on $H_1/K_1$. The quotient group obtained thereby is called the projection of $H_2/K_2$ on $H_1/K_1$.
 \end{exercise}
 \begin{solution}
+By Exercise~\ref{ex:1.13}, the projection of \(K_2\) on \(H_1/K_1\) is
+\[
+    (H_1 \cap K_2)K_1/K_1,
+\]
+and the projection of \(H_2\) on \(H_1/K_1\) is
+\[
+    (H_1 \cap H_2)K_1/K_1.
+\]
+We first show that \(H_1 \cap K_2 \trianglelefteq H_1 \cap H_2\). Let \(x \in H_1 \cap K_2\) and \(y \in H_1 \cap H_2\). Since \(x,y \in H_1\), we have \(yxy^{-1} \in H_1\). Since \(x \in K_2\), \(y \in H_2\), and \(K_2 \trianglelefteq H_2\), we also have \(yxy^{-1} \in K_2\). Hence
+\[
+    yxy^{-1} \in H_1 \cap K_2.
+\]
+Therefore \(H_1 \cap K_2 \trianglelefteq H_1 \cap H_2\). \\
+Now take
+\[
+    xK_1 \in (H_1 \cap K_2)K_1/K_1
+    \quad\text{and}\quad
+    yK_1 \in (H_1 \cap H_2)K_1/K_1,
+\]
+where \(x \in H_1 \cap K_2\) and \(y \in H_1 \cap H_2\). Then
+\[
+    (yK_1)(xK_1)(yK_1)^{-1}
+    = (yxy^{-1})K_1.
+\]
+By the first paragraph, \(yxy^{-1} \in H_1 \cap K_2\), so
+\[
+    (yxy^{-1})K_1 \in (H_1 \cap K_2)K_1/K_1.
+\]
+Thus
+\[
+    (H_1 \cap K_2)K_1/K_1
+    \trianglelefteq
+    (H_1 \cap H_2)K_1/K_1.
+\]
+\(\therefore\) the projection of \(K_2\) on \(H_1/K_1\) is a normal subgroup of the projection of \(H_2\) on \(H_1/K_1\).
+\end{solution}
+
+\begin{exercise}
+\label{ex:1.15}
+(cont.) Show that the projection of $H_1/K_1$ on $H_2/K_2$ and the projection of $H_2/K_2$ on $H_1/K_1$ are incident. Deduce that, if $H_1, H_2 \leq G$, \(K_1 \trianglelefteq H_1\), and \(K_2 \trianglelefteq H_2\), then
+\[
+    (H_1 \cap H_2)K_1/(H_1 \cap K_2)K_1
+    \cong
+    (H_1 \cap H_2)K_2/(K_1 \cap H_2)K_2.
+\]
+\end{exercise}
+\begin{solution}
+Let
+\[
+    A = H_1 \cap H_2,\quad
+    B_1 = (H_1 \cap K_2)K_1,\quad
+    B_2 = (K_1 \cap H_2)K_2.
+\]
+By Exercise~\ref{ex:1.13} and Exercise~\ref{ex:1.14}, the projection of \(H_2/K_2\) on \(H_1/K_1\) is
+\[
+    AK_1/B_1,
+\]
+and the projection of \(H_1/K_1\) on \(H_2/K_2\) is
+\[
+    AK_2/B_2.
+\]
+Every coset of \(B_1\) in \(AK_1\) has the form \(aB_1\) for some \(a \in A\), since \(K_1 \leq B_1\). Similarly, every coset of \(B_2\) in \(AK_2\) has the form \(aB_2\) for some \(a \in A\), since \(K_2 \leq B_2\). For each \(a \in A\), the two cosets \(aB_1\) and \(aB_2\) have non-empty intersection, since both contain \(a\). \\
+We now prove uniqueness. Suppose that
+\[
+    aB_1 \cap bB_2 \neq \varnothing
+\]
+for some \(a,b \in A\). Choose \(z \in aB_1 \cap bB_2\). Then \(z=as=bt\) for some \(s \in B_1\) and \(t \in B_2\). Write
+\[
+    s=ck,\quad c \in H_1 \cap K_2,\quad k \in K_1,
+\]
+and
+\[
+    t=d\ell,\quad d \in K_1 \cap H_2,\quad \ell \in K_2.
+\]
+From \(ack=bd\ell\), we get
+\[
+    k = c^{-1}a^{-1}bd\ell.
+\]
+Since \(a,b \in A \leq H_2\), \(c \in K_2 \leq H_2\), \(d \in H_2\), and \(\ell \in K_2 \leq H_2\), it follows that \(k \in H_2\). Thus \(k \in K_1 \cap H_2\). Since \(c \in K_2\) and \(K_2 \trianglelefteq H_2\), we have
+\[
+    s=ck=k(k^{-1}ck) \in (K_1 \cap H_2)K_2 = B_2.
+\]
+Since \(t \in B_2\), the equality \(as=bt\) gives
+\[
+    b^{-1}a=ts^{-1}\in B_2.
+\]
+Hence \(aB_2=bB_2\). Therefore each coset of \(B_1\) in \(AK_1\) intersects at most one coset of \(B_2\) in \(AK_2\). \\
+Conversely, suppose that
+\[
+    aB_2 \cap bB_1 \neq \varnothing
+\]
+for some \(a,b \in A\). Choose \(z \in aB_2 \cap bB_1\). Then \(z=at=bs\) with \(t \in B_2\) and \(s \in B_1\). Write
+\[
+    t=d\ell,\quad d \in K_1 \cap H_2,\quad \ell \in K_2,
+\]
+and
+\[
+    s=ck,\quad c \in H_1 \cap K_2,\quad k \in K_1.
+\]
+From \(ad\ell=bck\), we get
+\[
+    \ell = d^{-1}a^{-1}bck.
+\]
+Since \(a,b \in A \leq H_1\), \(d \in K_1 \leq H_1\), \(c \in H_1\), and \(k \in K_1 \leq H_1\), it follows that \(\ell \in H_1\). Thus \(\ell \in H_1 \cap K_2\). Since \(d \in K_1\) and \(K_1 \trianglelefteq H_1\), we have
+\[
+    t=d\ell=\ell(\ell^{-1}d\ell) \in (H_1 \cap K_2)K_1 = B_1.
+\]
+Since \(s \in B_1\), the equality \(at=bs\) gives
+\[
+    b^{-1}a=st^{-1}\in B_1.
+\]
+Hence \(aB_1=bB_1\). Therefore each coset of \(B_2\) in \(AK_2\) intersects at most one coset of \(B_1\) in \(AK_1\). \\
+Thus the projections \(AK_1/B_1\) and \(AK_2/B_2\) are incident.
 \end{solution}
 
 \begin{namedtheorem}[Third Isomorphism Theorem]
@@ -760,15 +1093,20 @@ Let $H_1, H_2 \leq G$, let $K_1 \trianglelefteq H_1$, and let $K_2 \triangleleft
 \[(H_1 \cap H_2)K_1/(H_1 \cap K_2)K_1 \cong (H_1 \cap H_2)K_2/(K_1 \cap H_2)K_2.\]
 \end{namedtheorem}
 \begin{proof}
+By Exercise~\ref{ex:1.15}, the sections
+\[
+    (H_1 \cap H_2)K_1/(H_1 \cap K_2)K_1
+    \quad\text{and}\quad
+    (H_1 \cap H_2)K_2/(K_1 \cap H_2)K_2
+\]
+are incident. By Exercise~\ref{ex:1.11}, incident sections are isomorphic. Hence
+\[
+    (H_1 \cap H_2)K_1/(H_1 \cap K_2)K_1
+    \cong
+    (H_1 \cap H_2)K_2/(K_1 \cap H_2)K_2.
+\]
 \end{proof}
 \smallskip
 \noindent (This result is also called the fourth isomorphism theorem, or Zassenhaus' lemma --- after its discoverer, who proved it as a student at the age of 21 --- or even the butterfly lemma. The last name refers to the shape of the diagram showing the inclusion relations between the many subgroups involved.)
-
-\begin{exercise}
-\label{ex:1.15}
-(cont.) Show that the projection of $H_1/K_1$ on $H_2/K_2$ and the projection of $H_2/K_2$ on $H_1/K_1$ are incident. Deduce the \nameref{thm:third-iso}.
-\end{exercise}
-\begin{solution}
-\end{solution}
 
 \end{document}
