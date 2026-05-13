@@ -14,7 +14,7 @@
 
 \subsubsection*{Inner Automorphisms, $\operatorname{Inn}(G)$, and the Center}
 \begin{itemize}
-    \item Each $g \in G$ defines a conjugation homomorphism $\varphi_g : G \to G$ by $\varphi_g(x) = gxg^{-1}$. (Indeed $\varphi_g(xy) = \varphi_g(x)\varphi_g(y)$ and $\varphi_g(x^{-1}) = \varphi_g(x)^{-1}$.)
+    \item Each $g \in G$ defines a conjugation homomorphism $\varphi_g : G \to G$ by $\varphi_g(x) = gxg^{-1}$.
     \item Each $\varphi_g$ is an automorphism: for $x \in G$, $x = \varphi_g(g^{-1}xg)$, and if $\varphi_g(x) = \varphi_g(y)$ then $x = y$ by cancellation. These are the \emph{inner automorphisms} of $G$.
     \item $\varphi_g \varphi_h = \varphi_{gh}$ for $g,h \in G$, since $g(hxh^{-1})g^{-1} = (gh)x(gh)^{-1}$. Hence there is a homomorphism $G \to \operatorname{Aut}(G)$ sending $g$ to $\varphi_g$.
     \item Its image is the \emph{inner automorphism group} of $G$, denoted $\operatorname{Inn}(G)$; its kernel is the \emph{center} of $G$, denoted $Z(G)$. Observe
@@ -30,13 +30,12 @@
 \begin{itemize}
     \item If $\sigma \in \operatorname{Aut}(G)$ and $\varphi_g \in \operatorname{Inn}(G)$, then $\sigma \varphi_g \sigma^{-1} = \varphi_{\sigma(g)}$. Hence $\operatorname{Inn}(G) \trianglelefteq \operatorname{Aut}(G)$.
     \item The quotient $\operatorname{Aut}(G)/\operatorname{Inn}(G)$ is the \emph{outer automorphism group} of $G$, denoted $\operatorname{Out}(G)$.
-    \item ``Outer automorphism'' usually refers not to elements of $\operatorname{Out}(G)$, but rather to automorphisms of $G$ which are not inner and which thus have non-trivial image in $\operatorname{Out}(G)$.
-    \item If $G$ is abelian, then all non-trivial automorphisms of $G$ are outer in this sense, since in this case $\operatorname{Inn}(G) = 1$.
+    \item ``Outer automorphism'' refers to automorphisms of $G$ which are not inner and which thus have non-trivial image in $\operatorname{Out}(G)$.
+    \item If $G$ is abelian, then all non-trivial automorphisms of $G$ are outer in this sense, since $\operatorname{Inn}(G) = 1$.
 \end{itemize}
 
 \subsubsection*{Automorphism Groups of Cyclic Groups}
 \begin{itemize}
-    \item Determining the structure of the automorphism group of a given group is often difficult. We focus on cyclic groups.
     \item Let $G = \langle x \rangle \cong \Z$, and let $\varphi$ be an automorphism of $G$. Then $\varphi(x)$ must generate $G$; the only generators are $x$ and $x^{-1}$. So $\varphi$ either fixes each element or sends each to its inverse, and $\operatorname{Aut}(G) \cong \Z_2$.
     \item Let $n \in \N$ and $G = \langle x \rangle \cong \Z_n$. Suppose $\varphi$ is an endomorphism of $G$. Then $\varphi(x) = x^m$ for some $0 \leq m < n$, so $\varphi$ sends every element to its $m$th power. Hence $G$ has exactly $n$ endomorphisms, namely the $m$th power maps $\sigma_m$ for $0 \leq m < n$.
 \end{itemize}
@@ -46,12 +45,32 @@
 Let $G = \langle x \rangle \cong \Z_n$ for $n \in \N$, and for each $0 \leq m < n$ let $\sigma_m$ be the endomorphism of $G$ sending $x$ to $x^m$. Then $\operatorname{Aut}(G)$ consists precisely of those $\sigma_m$ for which $m \neq 0$ and $\gcd(m,n) = 1$. Furthermore, $\operatorname{Aut}(G)$ is abelian and is isomorphic with the group $(\Z/n\Z)^{\times}$ of units of the ring $\Z/n\Z$.
 \end{proposition}
 \begin{proof}
+    The map $\sigma_0$ has trivial image, so it is not an automorphism. Let $1 \leq m < n$ and consider $\sigma_m$. Suppose first that $\gcd(m,n) = 1$. Then there exist $a,b \in \Z$ such that $am + bn = 1$, and hence
+    \[
+        \sigma_m(x^a) = x^{am} = x^{1 - bn} = x(x^n)^{-b} = x.
+    \]
+    Thus $x \in \operatorname{im}\sigma_m$, so $\sigma_m$ is surjective. Since $G$ is finite, $\sigma_m$ is also injective, and therefore $\sigma_m \in \operatorname{Aut}(G)$. \\
+    Conversely, suppose that $\sigma_m \in \operatorname{Aut}(G)$. Since $\sigma_m$ is surjective, there is some $a \in \Z$ such that $x = \sigma_m(x^a) = x^{am}$. Hence $x^{am - 1} = 1$, so $am - 1 = bn$ for some $b \in \Z$. It follows that any common divisor of $m$ and $n$ divides $1$, and therefore $\gcd(m,n) = 1$. This proves the first assertion. \\
+    Now let $1 \leq m_1,m_2 < n$ with $\gcd(m_1,n) = \gcd(m_2,n) = 1$. If $t$ is chosen with $1 \leq t < n$ and $m_1m_2 \equiv t \pmod{n}$, then
+    \[
+        (\sigma_{m_1}\sigma_{m_2})(x) = \sigma_{m_1}(x^{m_2}) = x^{m_1m_2} = x^t.
+    \]
+    Hence $\sigma_{m_1}\sigma_{m_2} = \sigma_t = \sigma_{m_2}\sigma_{m_1}$, so $\operatorname{Aut}(G)$ is abelian. Finally, the map
+    \[
+        \operatorname{Aut}(G) \to (\Z/n\Z)^{\times}, \qquad \sigma_m \mapsto m + n\Z
+    \]
+    is a bijection by the first assertion, and the computation above shows that it preserves multiplication. Hence $\operatorname{Aut}(G) \cong (\Z/n\Z)^{\times}$.
 \end{proof}
 
 \subsubsection*{The Totient and Primitive Roots}
 \begin{itemize}
     \item The \emph{totient} of $n \in \N$ is the number of positive integers less than $n$ and coprime to $n$ (the value at $n$ of the Euler phi-function).
-    \item If $n = p_1^{a_1} \cdots p_r^{a_r}$ with the $p_i$ distinct primes, then the totient of $n$ is $(p_1^{a_1} - p_1^{a_1 - 1}) \cdots (p_r^{a_r} - p_r^{a_r - 1})$.
+    \item If $n = p_1^{a_1} \cdots p_r^{a_r}$ with the $p_i$ distinct primes, then the totient of $n$ is $(p_1^{a_1} - p_1^{a_1 - 1}) \cdots (p_r^{a_r} - p_r^{a_r - 1})$. To see this, note that $m$ is coprime to $n$ iff no $p_i$ divides $m$. Among $1,\dots,n$, exactly $n/p_i$ integers are divisible by $p_i$, exactly $n/(p_i p_j)$ are divisible by both $p_i$ and $p_j$, and so on. Hence inclusion-exclusion gives
+    \[
+        \varphi(n)
+        = n \prod_{i = 1}^r \left(1 - \frac{1}{p_i}\right)
+        = \prod_{i = 1}^r \left(p_i^{a_i} - p_i^{a_i - 1}\right).
+    \]
     \item By Proposition~\ref{prop:2.1}, the order of $\operatorname{Aut}(\Z_n)$ is the totient of $n$. In particular, $|\operatorname{Aut}(\Z_p)| = p - 1$ when $p$ is prime.
 \end{itemize}
 
@@ -60,6 +79,21 @@ Let $G = \langle x \rangle \cong \Z_n$ for $n \in \N$, and for each $0 \leq m < 
 Let $p$ be a prime. Then $\operatorname{Aut}(\Z_p) \cong \Z_{p-1}$.
 \end{proposition}
 \begin{proof}
+    Let $F = \mathbb{F}_p$. By Proposition~\ref{prop:2.1}, $\operatorname{Aut}(\Z_p)$ is isomorphic with $F^{\times} = (\Z/p\Z)^{\times}$. Thus it suffices to show that $F^{\times}$ is cyclic of order $p - 1$. \\
+    For each divisor $d$ of $p - 1$, define
+    \[
+        f_d = \lvert \{x \in F^{\times} \mid o(x) = d\} \rvert,
+        \qquad
+        z_d = \lvert \{x \in \Z_{p - 1} \mid o(x) = d\} \rvert.
+    \]
+    We first show that $f_d \leq z_d$ for every $d \mid (p - 1)$. If $x \in F^{\times}$ has order dividing $d$, then $x^d = 1$, so $x$ is a root of $T^d - 1 \in F[T]$. Since this polynomial has degree $d$, it has at most $d$ roots in $F$. Now suppose $F^{\times}$ has an element $x$ of order $d$. Then the $d$ elements of $\langle x \rangle$ are all roots of $T^d - 1$, so they are all the roots. Hence every element of $F^{\times}$ of order $d$ lies in $\langle x \rangle \cong \Z_d$. Therefore either $f_d = 0$, or $f_d$ is the number of elements of order $d$ in a cyclic group of order $d$. By Theorem~\ref{thm:1.4}, the cyclic group $\Z_{p - 1}$ has a unique subgroup of order $d$; every element of order $d$ generates a subgroup of order $d$, so all elements of order $d$ in $\Z_{p - 1}$ lie in this unique subgroup. This subgroup is cyclic of order $d$, and hence $f_d \leq z_d$. \\
+    Since every element of $F^{\times}$ has order dividing $\lvert F^{\times} \rvert = p - 1$, and every element of $\Z_{p - 1}$ has order dividing $p - 1$, we have
+    \[
+        \sum_{d \mid (p - 1)} f_d = \lvert F^{\times} \rvert = p - 1
+        = \lvert \Z_{p - 1} \rvert = \sum_{d \mid (p - 1)} z_d.
+    \]
+    Since $f_d \leq z_d$ for every $d \mid (p - 1)$ and the sums are equal, we must have $f_d = z_d$ for every $d \mid (p - 1)$. In particular, $f_{p - 1} = z_{p - 1}$. But $\Z_{p - 1}$ has an element of order $p - 1$, so $z_{p - 1} > 0$, and hence $f_{p - 1} > 0$. Therefore $F^{\times}$ has an element of order $p - 1$, so $F^{\times} \cong \Z_{p - 1}$. \\
+    \(\therefore \operatorname{Aut}(\Z_p) \cong \Z_{p - 1}\).
 \end{proof}
 
 \subsubsection*{Primitive Roots Modulo $n$}
@@ -73,12 +107,64 @@ Let $p$ be a prime. Then $\operatorname{Aut}(\Z_p) \cong \Z_{p-1}$.
 
 \begin{theorem}
 \label{thm:2.3}
-$\operatorname{Aut}(\Z_n)$ is cyclic iff $n = 2$ or $4$, or $n = p^k$ or $2p^k$ for some odd prime $p$ and some $k \in \N$.
+For $n > 1$, $\operatorname{Aut}(\Z_n)$ is cyclic iff $n = 2$ or $4$, or $n = p^k$ or $2p^k$ for some odd prime $p$ and some $k \in \N$.
 \end{theorem}
 \begin{proof}
+    By Proposition~\ref{prop:2.1},
+    \[
+        \operatorname{Aut}(\Z_n) \cong (\Z/n\Z)^{\times}.
+    \]
+    Under this isomorphism, $\sigma_m$ corresponds to the unit $m + n\Z$, and the order of $\sigma_m$ is the least $k \in \N$ such that $m^k \equiv 1 \pmod{n}$. Hence $\operatorname{Aut}(\Z_n)$ is cyclic iff there is a primitive root modulo $n$. It remains to prove the number-theoretic classification of those $n > 1$ which have primitive roots. \\
+    We use Euler's theorem in the following form: if $\gcd(a,q) = 1$, then $a^{\varphi(q)} \equiv 1 \pmod{q}$. First suppose $q = 2^s$ with $s \geq 3$. If $a$ is odd, then $a^2 \equiv 1 \pmod{8}$. We claim that
+    \[
+        a^{2^{s-2}} \equiv 1 \pmod{2^s}
+    \]
+    for all $s \geq 3$. The case $s = 3$ is the congruence just observed. If $a^{2^{s-2}} = 1 + b2^s$, then
+    \[
+        a^{2^{s-1}} = (1 + b2^s)^2 \equiv 1 \pmod{2^{s+1}},
+    \]
+    so the claim follows by induction. But $\varphi(2^s) = 2^{s-1}$, so every odd residue modulo $2^s$ has order at most $2^{s-2} < \varphi(2^s)$. Thus $2^s$ has no primitive root for $s \geq 3$. \\
+    Next suppose $\gcd(u,v) = 1$ with $u,v > 2$. Let $a$ be coprime to $uv$, and put
+    \[
+        h = \operatorname{lcm}(\varphi(u), \varphi(v)).
+    \]
+    Since $u,v > 2$, both $\varphi(u)$ and $\varphi(v)$ are even (the reduced residue classes pair as $b$ and $-b$), so
+    \[
+        h \leq \frac{\varphi(u)\varphi(v)}{2} = \frac{\varphi(uv)}{2}.
+    \]
+    Euler's theorem gives $a^h \equiv 1 \pmod{u}$ and $a^h \equiv 1 \pmod{v}$; since $\gcd(u,v) = 1$, this implies $a^h \equiv 1 \pmod{uv}$. Hence no unit modulo $uv$ can have order $\varphi(uv)$, and $uv$ has no primitive root. \\
+    These two obstructions leave only $2$, $4$, odd prime powers, and twice odd prime powers. Indeed, if
+    \[
+        n = 2^a p_1^{e_1} \cdots p_t^{e_t}
+    \]
+    is the prime factorization of $n > 1$, then two distinct odd prime factors are ruled out by the previous paragraph, as is $2^a p^e$ with $a \geq 2$ and $p$ odd. The pure powers $2^a$ with $a \geq 3$ were ruled out in the paragraph before that. Therefore any $n > 1$ with a primitive root must be one of $2$, $4$, $p^e$, or $2p^e$ with $p$ odd. \\
+    It remains to see that all numbers in this list actually have primitive roots. Clearly $1$ is a primitive root modulo $2$, and $3$ is a primitive root modulo $4$. Now let $p$ be an odd prime. By Proposition~\ref{prop:2.2}, there is a primitive root $r$ modulo $p$. We may choose such an $r$ with
+    \[
+        r^{p-1} \not\equiv 1 \pmod{p^2}.
+    \]
+    For if a chosen primitive root $r$ satisfies $r^{p-1} \equiv 1 \pmod{p^2}$, then $r + p$ is still primitive modulo $p$, and
+    \[
+        (r+p)^{p-1} \equiv r^{p-1} + (p-1)pr^{p-2}
+        \equiv 1 - pr^{p-2} \not\equiv 1 \pmod{p^2}.
+    \]
+    We claim that this $r$ is primitive modulo $p^e$ for every $e \in \N$. For $e = 1$ this is how $r$ was chosen. For $e \geq 2$, we first show by induction that
+    \[
+        r^{p^{e-2}(p-1)} \not\equiv 1 \pmod{p^e}.
+    \]
+    The case $e = 2$ is our choice of $r$. If the assertion holds for $e$, then Euler's theorem modulo $p^{e-1}$ gives
+    \[
+        r^{p^{e-2}(p-1)} = 1 + cp^{e-1}
+    \]
+    for some integer $c$ not divisible by $p$. Raising both sides to the $p$th power gives
+    \[
+        r^{p^{e-1}(p-1)} = (1 + cp^{e-1})^p \equiv 1 + cp^e \not\equiv 1 \pmod{p^{e+1}},
+    \]
+    proving the induction step. Now let $d$ be the order of $r$ modulo $p^e$. Then $d \mid \varphi(p^e) = p^{e-1}(p-1)$, and reducing modulo $p$ shows $p-1 \mid d$. Hence $d = p^j(p-1)$ for some $0 \leq j \leq e-1$. If $j < e-1$, then $d \mid p^{e-2}(p-1)$, contradicting the congruence just proved. Thus $d = p^{e-1}(p-1) = \varphi(p^e)$, so $r$ is primitive modulo $p^e$. \\
+    Finally, let $r$ be primitive modulo $p^e$. Replacing $r$ by $r+p^e$ if necessary, we may assume that $r$ is odd; this does not change its residue modulo $p^e$. Let $d$ be the order of $r$ modulo $2p^e$. Since $r^d \equiv 1 \pmod{2p^e}$ implies $r^d \equiv 1 \pmod{p^e}$, we have $\varphi(p^e) \mid d$. Also $d \mid \varphi(2p^e) = \varphi(p^e)$. Therefore $d = \varphi(2p^e)$, and $r$ is primitive modulo $2p^e$. \\
+    We have proved that primitive roots exist exactly for $n = 2$, $4$, $p^e$, and $2p^e$ with $p$ odd. Therefore $\operatorname{Aut}(\Z_n)$ is cyclic exactly for the same values of $n$.
 \end{proof}
 
-\noindent A proof of the equivalent result about the existence and non-existence of primitive roots modulo $n$ is given in [9, Section 8.3].
+\noindent The number-theoretic primitive-root classification used in this proof follows [9, Section 8.3].
 
 \subsubsection*{Fixed and Characteristic Subgroups}
 \begin{itemize}

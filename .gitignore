@@ -48,6 +48,9 @@ build/
 .DS_Store
 ._*
 
+# Cloud sync / Finder conflict copies of Git metadata
+.git (*)/
+
 # Editor / IDE scratch (project-level .vscode/settings.json + wrapper script
 # stay tracked; ignore user-state workspace files)
 .vscode/*.code-workspace
