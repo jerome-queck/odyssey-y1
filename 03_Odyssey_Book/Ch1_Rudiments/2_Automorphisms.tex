@@ -596,6 +596,29 @@ The important point is not the formula itself at this stage, but the method behi
 Let $H$ be a subgroup of a cyclic group $G$. Show that every automorphism of $H$ is the restriction to $H$ of an automorphism of $G$.
 \end{exercise}
 \begin{solution}
+    Let $G = \langle g \rangle$ and let $H \leq G$. Since every subgroup of a cyclic group is cyclic, we may write $H = \langle g^k \rangle$ for some integer $k$. \\
+    First suppose that $G$ is infinite cyclic. If $H = 1$, then the only automorphism of $H$ is the restriction of the identity automorphism of $G$. Otherwise $H = \langle g^k \rangle$ is infinite cyclic, and every automorphism of $H$ sends the generator $g^k$ either to $g^k$ or to $g^{-k}$. These two automorphisms are respectively the restrictions of the automorphisms of $G$ given by $g \mapsto g$ and $g \mapsto g^{-1}$. Hence the claim holds when $G$ is infinite cyclic. \\
+    Now suppose that $G$ is finite of order $n$, and put $\lvert H \rvert = m$. Let $\psi \in \operatorname{Aut}(H)$. Since $g^k$ generates $H$, we have
+    \[
+        \psi(g^k) = (g^k)^a
+    \]
+    for some integer $a$ with $\gcd(a,m) = 1$. We want to choose an automorphism $\varphi \in \operatorname{Aut}(G)$ whose restriction to $H$ is $\psi$. By Proposition~\ref{prop:2.1}, an automorphism of $G$ has the form $\varphi(g) = g^b$ for some integer $b$ with $\gcd(b,n) = 1$. For such a map,
+    \[
+        \varphi(g^k) = \varphi(g)^k = (g^b)^k = g^{bk} = (g^k)^b.
+    \]
+    Thus $\varphi$ will agree with $\psi$ on $H$ provided $b \equiv a \pmod{m}$, since $g^k$ has order $m$. \\
+    It remains to choose $b$ so that $b \equiv a \pmod{m}$ and $\gcd(b,n) = 1$. Let $q$ be the product of the distinct prime divisors of $n$ which do not divide $m$; if there are no such primes, take $q = 1$. Then $\gcd(m,q) = 1$, so by the Chinese Remainder Theorem there is an integer $b$ such that
+    \[
+        b \equiv a \pmod{m},
+        \qquad
+        b \equiv 1 \pmod{q}.
+    \]
+    If $p$ is a prime divisor of $n$ and $p \mid m$, then $p \nmid a$, since $\gcd(a,m) = 1$, and hence $p \nmid b$ because $b \equiv a \pmod{m}$. If $p \mid n$ but $p \nmid m$, then $p \mid q$, so $b \equiv 1 \pmod{p}$, and again $p \nmid b$. Therefore no prime divisor of $n$ divides $b$, so $\gcd(b,n) = 1$. \\
+    Define $\varphi(g) = g^b$. Then $\varphi \in \operatorname{Aut}(G)$ by Proposition~\ref{prop:2.1}, and
+    \[
+        \varphi(g^k) = (g^k)^b = (g^k)^a = \psi(g^k).
+    \]
+    Since $g^k$ generates $H$, it follows that $\varphi|_H = \psi$. Thus every automorphism of $H$ is the restriction to $H$ of an automorphism of $G$.
 \end{solution}
 
 \begin{exercise}
@@ -603,6 +626,22 @@ Let $H$ be a subgroup of a cyclic group $G$. Show that every automorphism of $H$
 Show that $\operatorname{Aut}(\Z_8) \cong \Z_2 \times \Z_2$.
 \end{exercise}
 \begin{solution}
+    By Proposition~\ref{prop:2.1},
+    \[
+        \operatorname{Aut}(\Z_8) \cong (\Z/8\Z)^{\times}.
+    \]
+    The units modulo $8$ are precisely the residue classes represented by integers coprime to $8$, so
+    \[
+        (\Z/8\Z)^{\times} = \{1 + 8\Z, 3 + 8\Z, 5 + 8\Z, 7 + 8\Z\}.
+    \]
+    Each non-identity element has order $2$, since
+    \[
+        3^2 \equiv 5^2 \equiv 7^2 \equiv 1 \pmod{8}.
+    \]
+    Thus $(\Z/8\Z)^{\times}$ has four elements and every non-identity element has order $2$. Therefore it is isomorphic to $\Z_2 \times \Z_2$, and hence
+    \[
+        \operatorname{Aut}(\Z_8) \cong \Z_2 \times \Z_2.
+    \]
 \end{solution}
 
 \begin{exercise}
@@ -610,6 +649,40 @@ Show that $\operatorname{Aut}(\Z_8) \cong \Z_2 \times \Z_2$.
 Show that $\operatorname{Aut}(\Z_{p^2}) \cong \Z_{p^2-p}$ for $p$ a prime. (\textsc{Hint:} Let $m$ be a primitive root modulo $p$, and show that either $m$ or $m+p$ be a primitive root modulo $p^2$.)
 \end{exercise}
 \begin{solution}
+    If $p = 2$, then Proposition~\ref{prop:2.1} gives
+    \[
+        \operatorname{Aut}(\Z_4) \cong (\Z/4\Z)^{\times} = \{1 + 4\Z, 3 + 4\Z\} \cong \Z_2,
+    \]
+    and this is $\Z_{p^2 - p}$. Hence we may assume that $p$ is odd. \\
+    By Proposition~\ref{prop:2.1},
+    \[
+        \operatorname{Aut}(\Z_{p^2}) \cong (\Z/p^2\Z)^{\times}.
+    \]
+    The latter group has order $\varphi(p^2) = p^2 - p = p(p - 1)$. It remains to show that it has an element of order $p(p - 1)$. By Proposition~\ref{prop:2.2}, there is a primitive root $m$ modulo $p$, so $m$ has order $p - 1$ modulo $p$. Consider $m$ as a unit modulo $p^2$. If $d$ is its order modulo $p^2$, then $d \mid p(p - 1)$ by Euler's theorem. Also, reducing $m^d \equiv 1 \pmod{p^2}$ modulo $p$ gives $m^d \equiv 1 \pmod{p}$, so $p - 1 \mid d$. Therefore $d$ is either $p - 1$ or $p(p - 1)$. If $d = p(p - 1)$, then $m$ is already a primitive root modulo $p^2$, so $(\Z/p^2\Z)^{\times}$ is cyclic of order $p(p - 1)$. \\
+    It remains to handle the case $d = p - 1$. Then
+    \[
+        m^{p - 1} \equiv 1 \pmod{p^2}.
+    \]
+    We claim that $m + p$ has order $p(p - 1)$ modulo $p^2$. Since $m + p \equiv m \pmod{p}$, the order of $m + p$ modulo $p^2$ is again divisible by $p - 1$ and divides $p(p - 1)$. Thus it is enough to show that $(m + p)^{p - 1} \not\equiv 1 \pmod{p^2}$. By the binomial theorem,
+    \[
+        (m + p)^{p - 1}
+        \equiv m^{p - 1} + (p - 1)pm^{p - 2}
+        \pmod{p^2},
+    \]
+    since all remaining terms contain a factor $p^2$. Using $m^{p - 1} \equiv 1 \pmod{p^2}$, we obtain
+    \[
+        (m + p)^{p - 1}
+        \equiv 1 + p(p - 1)m^{p - 2}
+        \pmod{p^2}.
+    \]
+    Since $p \nmid m$ and $p \nmid (p - 1)$, the integer $(p - 1)m^{p - 2}$ is not divisible by $p$. Hence $p(p - 1)m^{p - 2}$ is divisible by $p$ but not by $p^2$, and therefore
+    \[
+        (m + p)^{p - 1} \not\equiv 1 \pmod{p^2}.
+    \]
+    Thus $m + p$ has order $p(p - 1)$ modulo $p^2$. In either case, $(\Z/p^2\Z)^{\times}$ is cyclic of order $p(p - 1) = p^2 - p$. Therefore
+    \[
+        \operatorname{Aut}(\Z_{p^2}) \cong \Z_{p^2 - p}.
+    \]
 \end{solution}
 
 \begin{exercise}
@@ -617,6 +690,21 @@ Show that $\operatorname{Aut}(\Z_{p^2}) \cong \Z_{p^2-p}$ for $p$ a prime. (\tex
 Show that if $H \trianglelefteq G$, then any characteristic subgroup of $H$ is normal in $G$.
 \end{exercise}
 \begin{solution}
+    Let $N$ be a characteristic subgroup of $H$. We want to show that $N \trianglelefteq G$. Let $g \in G$ be arbitrary, and consider the inner automorphism
+    \[
+        \varphi \colon G \to G,
+        \qquad
+        \varphi(x) = gxg^{-1}.
+    \]
+    Since $H \trianglelefteq G$, we have
+    \[
+        \varphi(H) = gHg^{-1} = H.
+    \]
+    Hence the restriction $\varphi|_H \colon H \to H$ is an automorphism of $H$. Since $N$ is characteristic in $H$, every automorphism of $H$ fixes $N$, so
+    \[
+        \varphi|_H(N) = N.
+    \]
+    But $\varphi|_H(N) = gNg^{-1}$. Therefore $gNg^{-1} = N$. Since $g \in G$ was arbitrary, $N \trianglelefteq G$.
 \end{solution}
 
 \begin{exercise}
