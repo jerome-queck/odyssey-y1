@@ -712,6 +712,23 @@ Show that if $H \trianglelefteq G$, then any characteristic subgroup of $H$ is n
 Let $F$ be a field, and consider $F$ as a group under its additive operation. Show that $F$ has no non-trivial proper characteristic subgroups.
 \end{exercise}
 \begin{solution}
+    The subgroups $0$ and $F$ are characteristic, so it remains to show that no other characteristic subgroups exist. Let $H$ be a characteristic subgroup of the additive group of $F$, and suppose that $H$ is non-trivial. Then there is some $h \in H$ with $h \neq 0$. \\
+    For each $a \in F^{\times}$, define
+    \[
+        \varphi_a \colon F \to F,
+        \qquad
+        \varphi_a(f) = af.
+    \]
+    Since
+    \[
+        \varphi_a(f_1+f_2) = a(f_1+f_2) = af_1+af_2 = \varphi_a(f_1)+\varphi_a(f_2),
+    \]
+    and $\varphi_{a^{-1}}$ is inverse to $\varphi_a$, the map $\varphi_a$ is an automorphism of the additive group of $F$. Since $H$ is characteristic, we have $\varphi_a(H) = H$ for every $a \in F^{\times}$. \\
+    Now let $f \in F$. If $f = 0$, then $f \in H$ because $H$ is a subgroup. If $f \neq 0$, then $a = fh^{-1}$ lies in $F^{\times}$, and hence
+    \[
+        f = (fh^{-1})h = \varphi_a(h) \in H.
+    \]
+    Thus every element of $F$ lies in $H$, so $H = F$. Therefore the only characteristic subgroups of the additive group of $F$ are $0$ and $F$, and hence $F$ has no non-trivial proper characteristic subgroups.
 \end{solution}
 
 \begin{exercise}
@@ -719,6 +736,62 @@ Let $F$ be a field, and consider $F$ as a group under its additive operation. Sh
 Verify the claim made on page 19 that if (1) holds, then (2) holds iff (3) and (4) hold.
 \end{exercise}
 \begin{solution}
+    Assume throughout that (1) holds, so $H_i \trianglelefteq G$ for every $1 \leq i \leq n$. Suppose first that (2) holds. Then every $g \in G$ has an expression $g = h_1\cdots h_n$ with $h_i \in H_i$, so $G \subseteq H_1\cdots H_n$. Conversely, since each $H_i \leq G$, every product $h_1\cdots h_n$ lies in $G$. Hence $H_1\cdots H_n \subseteq G$, and therefore
+    \[
+        G = H_1\cdots H_n.
+    \]
+    Thus (3) holds. \\
+    To prove (4), fix $i$ and take
+    \[
+        x \in H_i \cap H_1\cdots H_{i-1}H_{i+1}\cdots H_n.
+    \]
+    Since $x \in H_i$, we have one expression
+    \[
+        x = 1\cdots 1 \cdot x \cdot 1\cdots 1,
+    \]
+    where $x$ appears in the $i$th position. Since $x \in H_1\cdots H_{i-1}H_{i+1}\cdots H_n$, we also have an expression
+    \[
+        x = h_1\cdots h_{i-1}\cdot 1 \cdot h_{i+1}\cdots h_n
+    \]
+    with $h_j \in H_j$ for $j \neq i$. By uniqueness in (2), the $i$th factors in these two expressions are equal, so $x = 1$. Hence
+    \[
+        H_i \cap H_1\cdots H_{i-1}H_{i+1}\cdots H_n = 1
+    \]
+    for every $i$, proving (4). \\
+    Conversely, suppose that (3) and (4) hold. By (3), every $g \in G$ has at least one expression $g = h_1\cdots h_n$ with $h_i \in H_i$. It remains to show that this expression is unique. We first observe that elements from different factors commute. Let $i \neq j$, and take $h_i \in H_i$, $h_j \in H_j$. Since $H_j \trianglelefteq G$, we have $h_i h_j h_i^{-1} \in H_j$, and hence
+    \[
+        [h_i,h_j] = (h_i h_j h_i^{-1})h_j^{-1} \in H_j.
+    \]
+    Similarly, since $H_i \trianglelefteq G$, we have $h_j h_i^{-1}h_j^{-1} \in H_i$, and hence
+    \[
+        [h_i,h_j] = h_i(h_j h_i^{-1}h_j^{-1}) \in H_i.
+    \]
+    Therefore $[h_i,h_j] \in H_i \cap H_j$. But $H_j \leq H_1\cdots H_{i-1}H_{i+1}\cdots H_n$, so (4) gives $H_i \cap H_j = 1$. Thus $[h_i,h_j] = 1$, and hence $h_i$ and $h_j$ commute. \\
+    Now suppose
+    \[
+        g = h_1\cdots h_n = h_1'\cdots h_n',
+        \qquad
+        h_i,h_i' \in H_i.
+    \]
+    Fix $i$. Since elements from different factors commute, we may write
+    \[
+        g = h_i k_i = h_i' k_i',
+    \]
+    where
+    \[
+        k_i \in H_1\cdots H_{i-1}H_{i+1}\cdots H_n,
+        \qquad
+        k_i' \in H_1\cdots H_{i-1}H_{i+1}\cdots H_n.
+    \]
+    Since the factors in $H_1\cdots H_{i-1}H_{i+1}\cdots H_n$ commute with one another, this product is closed under multiplication and inverses. Also, from $h_i k_i = h_i' k_i'$ we get
+    \[
+        h_i'^{-1}h_i = k_i'k_i^{-1}.
+    \]
+    The left hand side lies in $H_i$, and the right hand side lies in $H_1\cdots H_{i-1}H_{i+1}\cdots H_n$. Therefore, by (4),
+    \[
+        h_i'^{-1}h_i = 1.
+    \]
+    Hence $h_i = h_i'$. Since this holds for every $i$, the expression of $g$ is unique. Thus (2) holds.
 \end{solution}
 
 \begin{exercise}
@@ -726,6 +799,29 @@ Verify the claim made on page 19 that if (1) holds, then (2) holds iff (3) and (
 Verify the claim made on page 19 that (1) and (2) together imply (3) through (6).
 \end{exercise}
 \begin{solution}
+    Assume that (1) and (2) hold. By Exercise~\ref{ex:2.6}, conditions (1) and (2) imply (3) and (4). It remains to prove (5) and (6). \\
+    To prove (5), let $i \neq j$, and take $h_i \in H_i$, $h_j \in H_j$. Since $H_j \trianglelefteq G$, we have $h_i h_j h_i^{-1} \in H_j$, and hence
+    \[
+        [h_i,h_j] = (h_i h_j h_i^{-1})h_j^{-1} \in H_j.
+    \]
+    Similarly, since $H_i \trianglelefteq G$, we have $h_j h_i^{-1}h_j^{-1} \in H_i$, and hence
+    \[
+        [h_i,h_j] = h_i(h_j h_i^{-1}h_j^{-1}) \in H_i.
+    \]
+    Thus $[h_i,h_j] \in H_i \cap H_j$. But $H_j \leq H_1\cdots H_{i-1}H_{i+1}\cdots H_n$, so (4) gives $H_i \cap H_j = 1$. Hence $[h_i,h_j] = 1$, and therefore $h_i$ and $h_j$ commute. Since $i \neq j$ was arbitrary, elements of distinct factors commute. \\
+    Finally, let
+    \[
+        g = h_1\cdots h_n,
+        \qquad
+        g' = h_1'\cdots h_n',
+    \]
+    where $h_i,h_i' \in H_i$ for each $i$. By (5), elements from distinct factors commute, so we may move each $h_i'$ left across all factors $h_j$ with $j \neq i$. Therefore
+    \[
+        gg'
+        = h_1\cdots h_n h_1'\cdots h_n'
+        = (h_1h_1')\cdots(h_nh_n').
+    \]
+    This proves (6), and hence (1) and (2) together imply (3) through (6).
 \end{solution}
 
 \begin{exercise}
@@ -745,6 +841,184 @@ and analogously define subsets $P_2$ and $I_2$ of $G_2$.
 \end{enumerate}
 \end{exercise}
 \begin{solution}
+    \phantom{}\par
+    \begin{enumerate}
+        \item[(a)] Fix $i \in \{1,2\}$, and let $j$ be the other index. First we show that $P_i \leq G_i$. Since $(1,1) \in H$, we have $1 \in P_i$, so $P_i$ is non-empty. Let $a,b \in P_i$. By definition of $P_i$, there are elements $a_j,b_j \in G_j$ such that
+    \[
+        (a_1,a_2),(b_1,b_2) \in H,
+        \qquad
+        a_i = a,\quad b_i = b.
+    \]
+    Since $H \leq G_1 \times G_2$, we have
+    \[
+        (a_1,a_2)(b_1,b_2)^{-1}
+        =
+        (a_1b_1^{-1},a_2b_2^{-1})
+        \in H.
+    \]
+    The $i$th coordinate of this element is $ab^{-1}$, so $ab^{-1} \in P_i$. Hence $P_i \leq G_i$. \\
+    Next we show that $I_i \trianglelefteq P_i$. First, $I_i \leq P_i$: if $x \in I_i$, then the element with $x$ in the $i$th coordinate and $1$ in the $j$th coordinate lies in $H$, so $x \in P_i$; and the same subgroup test as above, with the $j$th coordinate always equal to $1$, shows that $I_i \leq G_i$. \\
+    It remains to prove normality in $P_i$. Let $a \in P_i$ and $x \in I_i$. Since $a \in P_i$, there is some $a_j \in G_j$ such that, putting $a_i = a$, we have
+    \[
+        (a_1,a_2) \in H.
+    \]
+    Since $x \in I_i$, putting $x_i = x$ and $x_j = 1$, we have
+    \[
+        (x_1,x_2) \in H.
+    \]
+    Since $H$ is a subgroup,
+    \[
+        (a_1,a_2)(x_1,x_2)(a_1,a_2)^{-1}
+        =
+        (a_1x_1a_1^{-1},a_2x_2a_2^{-1})
+        \in H.
+    \]
+    The $i$th coordinate of this element is $axa^{-1}$, and the $j$th coordinate is $a_j1a_j^{-1} = 1$. Hence $axa^{-1} \in I_i$. Therefore $I_i \trianglelefteq P_i$.
+
+        \item[(b)] Define
+    \[
+        \varphi \colon P_1/I_1 \to P_2/I_2
+    \]
+    by setting $\varphi(xI_1) = yI_2$, where $y \in G_2$ is chosen so that $(x,y) \in H$. We first check that this is well-defined. Suppose $(x,y),(x,y') \in H$. Since $H$ is a subgroup,
+    \[
+        (x,y)^{-1}(x,y') = (1,y^{-1}y') \in H.
+    \]
+    Hence $y^{-1}y' \in I_2$, so $yI_2 = y'I_2$. Thus the choice of $y$ does not matter. \\
+    Now suppose $xI_1 = x'I_1$, and choose $y,y' \in G_2$ such that $(x,y),(x',y') \in H$. Since $xI_1 = x'I_1$, we have $x^{-1}x' \in I_1$, so
+    \[
+        (x^{-1}x',1) \in H.
+    \]
+    Also,
+    \[
+        (x,y)^{-1}(x',y') = (x^{-1}x',y^{-1}y') \in H.
+    \]
+    Hence
+    \[
+        (x^{-1}x',1)^{-1}(x^{-1}x',y^{-1}y') = (1,y^{-1}y') \in H.
+    \]
+    Therefore $y^{-1}y' \in I_2$, so $yI_2 = y'I_2$. Thus $\varphi$ is well-defined on cosets. \\
+    Next, $\varphi$ is a homomorphism. Let $(x,y),(x',y') \in H$. Then $(xx',yy') \in H$, and hence
+    \[
+        \varphi(xI_1 \cdot x'I_1)
+        =
+        \varphi(xx'I_1)
+        =
+        yy'I_2
+        =
+        yI_2 \cdot y'I_2
+        =
+        \varphi(xI_1)\varphi(x'I_1).
+    \]
+    Define
+    \[
+        \psi \colon P_2/I_2 \to P_1/I_1
+    \]
+    by setting $\psi(yI_2) = xI_1$, where $x \in G_1$ is chosen so that $(x,y) \in H$. By the same argument with the two coordinates interchanged, $\psi$ is a well-defined homomorphism. Moreover, if $(x,y) \in H$, then
+    \[
+        \psi(\varphi(xI_1)) = \psi(yI_2) = xI_1,
+        \qquad
+        \varphi(\psi(yI_2)) = \varphi(xI_1) = yI_2.
+    \]
+    Thus $\psi \circ \varphi$ and $\varphi \circ \psi$ are the identity maps, so $\varphi$ is a bijection. Therefore $\varphi$ is an isomorphism. \\
+    Finally, suppose $\varphi' \colon P_1/I_1 \to P_2/I_2$ is another function satisfying the same rule: whenever $(x,y) \in H$, we have $\varphi'(xI_1) = yI_2$. Every coset of $P_1/I_1$ has the form $xI_1$ with $x \in P_1$, and by definition of $P_1$ there is some $y \in G_2$ such that $(x,y) \in H$. Hence
+    \[
+        \varphi'(xI_1) = yI_2 = \varphi(xI_1).
+    \]
+    Therefore $\varphi' = \varphi$, proving uniqueness.
+
+        \item[(c)] Let
+    \[
+        A = \{H \mid H \leq G_1 \times G_2\},
+    \]
+    and let
+    \[
+        B
+        =
+        \{(S_1,S_2,\varphi) \mid S_i \text{ is a section of } G_i,\,
+        \varphi \colon S_1 \to S_2 \text{ is an isomorphism}\}.
+    \]
+    Define
+    \[
+        \theta \colon A \to B
+    \]
+    as follows. Given $H \in A$, let $P_i$ and $I_i$ be the subgroups defined above. By (a), $I_i \trianglelefteq P_i \leq G_i$, so $P_i/I_i$ is a section of $G_i$. By (b), there is a unique isomorphism
+    \[
+        \varphi_H \colon P_1/I_1 \to P_2/I_2
+    \]
+    such that $\varphi_H(xI_1) = yI_2$ whenever $(x,y) \in H$. Thus we define
+    \[
+        \theta(H) = (P_1/I_1,P_2/I_2,\varphi_H).
+    \]
+    Define
+    \[
+        \theta' \colon B \to A
+    \]
+    as follows. Let $(S_1,S_2,\varphi) \in B$. Since $S_i$ is a section of $G_i$, there are subgroups $M_i \trianglelefteq L_i \leq G_i$ such that
+    \[
+        S_i = L_i/M_i.
+    \]
+    Define
+    \[
+        H_{\varphi}
+        =
+        \{(x,y) \in L_1 \times L_2 \mid \varphi(xM_1) = yM_2\}.
+    \]
+    Let $(x,y),(x',y') \in H_{\varphi}$. Since $\varphi$ is an isomorphism,
+    \[
+        \varphi(xM_1) = yM_2,
+        \qquad
+        \varphi(x'M_1) = y'M_2,
+    \]
+    and hence
+    \[
+        \varphi(xx'^{-1}M_1)
+        =
+        \varphi(xM_1)\varphi(x'M_1)^{-1}
+        =
+        (yM_2)(y'M_2)^{-1}
+        =
+        yy'^{-1}M_2.
+    \]
+    Therefore $(xx'^{-1},yy'^{-1}) \in H_{\varphi}$, so
+    \[
+        H_{\varphi} \leq L_1 \times L_2 \leq G_1 \times G_2.
+    \]
+    Thus $H_{\varphi} \in A$, and we define
+    \[
+        \theta'(S_1,S_2,\varphi) = H_{\varphi}.
+    \]
+    We now show that $\theta$ and $\theta'$ are inverse maps. First let $H \in A$, and form $\theta(H) = (P_1/I_1,P_2/I_2,\varphi_H)$. Then
+    \[
+        \theta'(\theta(H))
+        =
+        \{(x,y) \in P_1 \times P_2 \mid \varphi_H(xI_1) = yI_2\}.
+    \]
+    If $(x,y) \in H$, then $\varphi_H(xI_1) = yI_2$, so $(x,y) \in \theta'(\theta(H))$. Conversely, suppose $(x,y) \in \theta'(\theta(H))$. Since $x \in P_1$, there is some $z \in G_2$ such that $(x,z) \in H$. Then $\varphi_H(xI_1) = zI_2$, while $\varphi_H(xI_1) = yI_2$ by assumption. Hence $zI_2 = yI_2$, so $z^{-1}y \in I_2$ and therefore $(1,z^{-1}y) \in H$. Thus
+    \[
+        (x,z)(1,z^{-1}y) = (x,y) \in H.
+    \]
+    Hence $\theta'(\theta(H)) = H$. \\
+    Conversely, let $(S_1,S_2,\varphi) \in B$, and write $S_i = L_i/M_i$ with $M_i \trianglelefteq L_i \leq G_i$. Form $H_{\varphi} = \theta'(S_1,S_2,\varphi)$. We compute the subgroups associated to $H_{\varphi}$. If $(x,y) \in H_{\varphi}$, then $x \in L_1$, so $P_1 \leq L_1$. Conversely, if $x \in L_1$, then $\varphi(xM_1) = yM_2$ for some $y \in L_2$, and so $(x,y) \in H_{\varphi}$. Thus $P_1 = L_1$. By a similar argument, using the surjectivity of $\varphi$, we have $P_2 = L_2$. \\
+    For $I_1$, we have
+    \[
+        x \in I_1
+        \Longleftrightarrow
+        (x,1) \in H_{\varphi}
+        \Longleftrightarrow
+        \varphi(xM_1) = M_2
+        \Longleftrightarrow
+        xM_1 = M_1
+        \Longleftrightarrow
+        x \in M_1,
+    \]
+    so $I_1 = M_1$. Similarly, $I_2 = M_2$. Therefore the first two entries recovered by $\theta$ are
+    \[
+        P_1/I_1 = L_1/M_1 = S_1,
+        \qquad
+        P_2/I_2 = L_2/M_2 = S_2.
+    \]
+    Finally, the isomorphism recovered by (b) sends $xM_1$ to $yM_2$ whenever $(x,y) \in H_{\varphi}$. By the definition of $H_{\varphi}$, this means exactly that $yM_2 = \varphi(xM_1)$. Hence, by the uniqueness in (b), the recovered isomorphism is $\varphi$. Thus $\theta(\theta'(S_1,S_2,\varphi)) = (S_1,S_2,\varphi)$. Therefore $\theta$ and $\theta'$ are inverse maps, so $\theta$ is a bijection.
+    \end{enumerate}
 \end{solution}
 
 \begin{exercise}
@@ -752,6 +1026,59 @@ and analogously define subsets $P_2$ and $I_2$ of $G_2$.
 (cont.) Use Exercise~\ref{ex:2.8} to give a different proof of Proposition~\ref{prop:2.10}.
 \end{exercise}
 \begin{solution}
+    Suppose that
+    \[
+        G = H_1 \times \cdots \times H_n
+    \]
+    where the orders $|H_i|$ are pairwise coprime. We want to show that any subgroup $L \leq G$ is the direct product of $L \cap H_1,\dots,L \cap H_n$. We prove this by induction on $n$. \\
+    First suppose $n = 2$, and write $G = H \times K$ with $\gcd(|H|,|K|) = 1$. Let $L \leq H \times K$. By Exercise~\ref{ex:2.8}, the subgroup $L$ corresponds to a triple
+    \[
+        (P_H/I_H,P_K/I_K,\varphi),
+    \]
+    where $P_H/I_H$ is a section of $H$, $P_K/I_K$ is a section of $K$, and
+    \[
+        \varphi \colon P_H/I_H \to P_K/I_K
+    \]
+    is an isomorphism. Hence
+    \[
+        |P_H/I_H| = |P_K/I_K|.
+    \]
+    Since $I_H \trianglelefteq P_H \leq H$, we have $|P_H/I_H| \mid |P_H|$ and $|P_H| \mid |H|$, so $|P_H/I_H| \mid |H|$. Similarly, $|P_K/I_K| \mid |K|$. But $\gcd(|H|,|K|) = 1$, and the two quotient groups have the same order, so
+    \[
+        |P_H/I_H| = |P_K/I_K| = 1.
+    \]
+    Therefore $P_H/I_H$ and $P_K/I_K$ are trivial, and hence $P_H = I_H$ and $P_K = I_K$. By the reconstruction in Exercise~\ref{ex:2.8}, we have
+    \[
+        L
+        =
+        \{(h,k) \in P_H \times P_K \mid \varphi(hI_H) = kI_K\}.
+    \]
+    Since both quotient groups are trivial, the condition $\varphi(hI_H) = kI_K$ is automatic, so
+    \[
+        L = P_H \times P_K.
+    \]
+    Also $I_H = L \cap H$ and $I_K = L \cap K$, so $P_H = L \cap H$ and $P_K = L \cap K$. Thus
+    \[
+        L = (L \cap H) \times (L \cap K),
+    \]
+    proving the case $n = 2$. \\
+    Now suppose $n > 2$ and that the result is known for direct products with $n-1$ factors. Put
+    \[
+        M = H_1 \times \cdots \times H_{n-1}.
+    \]
+    Then $G = M \times H_n$. Since the orders $|H_i|$ are pairwise coprime, we have $\gcd(|M|,|H_n|) = 1$. Applying the $n = 2$ case to $G = M \times H_n$ gives
+    \[
+        L = (L \cap M) \times (L \cap H_n).
+    \]
+    Now $L \cap M$ is a subgroup of $M = H_1 \times \cdots \times H_{n-1}$, and the orders $|H_1|,\dots,|H_{n-1}|$ are still pairwise coprime. By the induction hypothesis,
+    \[
+        L \cap M = (L \cap H_1) \times \cdots \times (L \cap H_{n-1}).
+    \]
+    Substituting this into the preceding expression gives
+    \[
+        L = (L \cap H_1) \times \cdots \times (L \cap H_n).
+    \]
+    This proves the result for all $n$.
 \end{solution}
 
 \begin{exercise}
@@ -759,6 +1086,37 @@ and analogously define subsets $P_2$ and $I_2$ of $G_2$.
 Let $G = N \rtimes H$, and suppose that $N \leq K \leq G$. Show that $K = N \rtimes (K \cap H)$.
 \end{exercise}
 \begin{solution}
+    We check the internal semidirect product conditions inside $K$. Since $G = N \rtimes H$, we have $N \trianglelefteq G$, $G = NH$, and $N \cap H = 1$. Since $N \trianglelefteq G$ and $N \leq K \leq G$, it follows that $N \trianglelefteq K$. Also, since $K$ and $H$ are subgroups of $G$, their intersection $K \cap H$ is a subgroup of $K$. \\
+    Next,
+    \[
+        N \cap (K \cap H)
+        =
+        K \cap (N \cap H)
+        =
+        K \cap 1
+        =
+        1.
+    \]
+    It remains to show that $K = N(K \cap H)$. First, since $N \leq K$ and $K \cap H \leq K$, and since $K$ is a subgroup, we have
+    \[
+        N(K \cap H) \leq K.
+    \]
+    Conversely, take $k \in K$. Since $G = N \rtimes H$, there are $n \in N$ and $h \in H$ such that
+    \[
+        k = nh.
+    \]
+    Since $N \leq K$, we have $n \in K$. Also $k \in K$, so
+    \[
+        h = n^{-1}k \in K.
+    \]
+    Since $h \in H$, we have $h \in K \cap H$. Therefore
+    \[
+        k = nh \in N(K \cap H).
+    \]
+    Hence $K \leq N(K \cap H)$, and so $K = N(K \cap H)$. Thus $K$ is the internal semidirect product
+    \[
+        K = N \rtimes (K \cap H).
+    \]
 \end{solution}
 
 \subsection*{Further Exercises}
@@ -770,6 +1128,87 @@ Let $G = N \rtimes H$, and suppose that $N \leq K \leq G$. Show that $K = N \rti
 We say that an extension $E$ of $N$ by $H$ is a \emph{split extension} if there is a homomorphism $t : H \to E$ (called a \emph{splitting map} for the extension) such that $\pi \circ t$ is the identity map on $H$, in which case $t(H)$ will be a transversal for $N$ in $E$. Show that $E$ is a split extension iff it is a semidirect product of $N$ by $H$.
 \end{exercise}
 \begin{solution}
+    $(\Rightarrow)$ Suppose that $E$ is a split extension of $N$ by $H$. Thus there are homomorphisms
+    \[
+        i \colon N \to E,
+        \qquad
+        \pi \colon E \to H,
+        \qquad
+        t \colon H \to E
+    \]
+    such that $i$ is injective, $\pi$ is surjective, $i(N) = \ker\pi$, and $\pi \circ t = \operatorname{id}_H$. Following the convention above, identify $N$ with $i(N)$. Then
+    \[
+        N = \ker\pi \trianglelefteq E.
+    \]
+    Also $t(H) \leq E$, since $t$ is a homomorphism. We show that
+    \[
+        E = N \rtimes t(H).
+    \]
+    First let $x \in N \cap t(H)$. Since $x \in t(H)$, we may write $x = t(h)$ for some $h \in H$. Since $x \in N = \ker\pi$, we have
+    \[
+        1 = \pi(x) = \pi(t(h)) = (\pi \circ t)(h) = h.
+    \]
+    Hence $x = t(1) = 1$, so $N \cap t(H) = 1$. \\
+    Next let $e \in E$, and put $h = \pi(e)$. Then
+    \[
+        \pi(et(h)^{-1})
+        =
+        \pi(e)\pi(t(h))^{-1}
+        =
+        h(\pi \circ t)(h)^{-1}
+        =
+        hh^{-1}
+        =
+        1.
+    \]
+    Therefore $et(h)^{-1} \in \ker\pi = N$. Say $et(h)^{-1} = n$ with $n \in N$. Then
+    \[
+        e = nt(h) \in Nt(H),
+    \]
+    so $E \leq Nt(H)$. Since $N \leq E$ and $t(H) \leq E$, the reverse inclusion is clear, and hence $E = Nt(H)$. Thus $E = N \rtimes t(H)$. Finally, $t(H) \cong H$ because $\pi \circ t = \operatorname{id}_H$ forces $t$ to be injective. Therefore $E$ is a semidirect product of $N$ by $H$. \\
+    $(\Leftarrow)$ Conversely, suppose that $E$ is a semidirect product of $N$ by $H$. Thus, after identifying $N$ and $H$ with their copies inside $E$, we have
+    \[
+        E = N \rtimes H.
+    \]
+    Hence $N \trianglelefteq E$, $H \leq E$, $E = NH$, and $N \cap H = 1$. Every element $e \in E$ has a unique expression $e = nh$ with $n \in N$ and $h \in H$. Define
+    \[
+        i \colon N \to E,
+        \qquad
+        i(n) = n,
+    \]
+    and
+    \[
+        \pi \colon E \to H,
+        \qquad
+        \pi(nh) = h.
+    \]
+    The map $i$ is the inclusion map, so it is injective. We check that $\pi$ is a homomorphism. Let $e_1 = n_1h_1$ and $e_2 = n_2h_2$. Since $N \trianglelefteq E$, we have $h_1n_2h_1^{-1} \in N$, and hence
+    \[
+        e_1e_2
+        =
+        n_1h_1n_2h_2
+        =
+        n_1(h_1n_2h_1^{-1})h_1h_2.
+    \]
+    Therefore the $H$-part of $e_1e_2$ is $h_1h_2$, so
+    \[
+        \pi(e_1e_2) = h_1h_2 = \pi(e_1)\pi(e_2).
+    \]
+    Thus $\pi$ is a homomorphism. It is surjective because $\pi(h) = h$ for all $h \in H$, and
+    \[
+        \ker\pi = \{nh \in E \mid h = 1\} = N.
+    \]
+    Hence $E$ is an extension of $N$ by $H$. Now define
+    \[
+        t \colon H \to E,
+        \qquad
+        t(h) = h,
+    \]
+    the inclusion of $H$ into $E$. Then $t$ is a homomorphism, and for every $h \in H$,
+    \[
+        (\pi \circ t)(h) = \pi(h) = h.
+    \]
+    Therefore $\pi \circ t = \operatorname{id}_H$, so the extension splits.
 \end{solution}
 
 \begin{exercise}
@@ -777,6 +1216,69 @@ We say that an extension $E$ of $N$ by $H$ is a \emph{split extension} if there 
 (cont.) Let $Q$ be the quaternion group of order 8. (We can consider $Q$ as the set $\{\pm 1, \pm i, \pm j, \pm k\}$ with multiplication given by the rules $i^2 = j^2 = k^2 = -1$ and $ij = k = -ji$.) Show that $Q$ can be realized as a non-trivial extension in four ways---thrice as an extension of $\Z_4$ by $\Z_2$, and once as an extension of $\Z_2$ by $\Z_2 \times \Z_2$---but that none of these extensions is split. (In other words, $Q$ cannot be written non-trivially as a semidirect product.)
 \end{exercise}
 \begin{solution}
+    From Exercise~\ref{ex:2.11}, an extension of $N$ by $H$ splits exactly when $Q$ can be written as
+    \[
+        Q = N \rtimes t(H)
+    \]
+    for some subgroup $t(H) \leq Q$ with $t(H) \cong H$ and $N \cap t(H) = 1$. We first exhibit the four extensions. \\
+    For the extensions of $\Z_4$ by $\Z_2$, take
+    \[
+        N = \langle i\rangle,
+        \qquad
+        N = \langle j\rangle,
+        \qquad
+        N = \langle k\rangle.
+    \]
+    Each of these subgroups has order $4$, since
+    \[
+        \langle i\rangle = \{1,i,-1,-i\},
+    \]
+    and similarly for $j$ and $k$. Hence each is isomorphic to $\Z_4$. Also each has index $2$ in $Q$, so each is normal in $Q$. Thus for each of these choices of $N$,
+    \[
+        Q/N \cong \Z_2.
+    \]
+    Therefore $Q$ is an extension of $\Z_4$ by $\Z_2$ in three ways. \\
+    For the extension of $\Z_2$ by $\Z_2 \times \Z_2$, take
+    \[
+        N = Z(Q) = \{1,-1\}.
+    \]
+    Indeed, $-1$ commutes with every element of $Q$, while $i,j,k$ do not commute with one another, for example $ij = k$ but $ji = -k$. The same is true for $-i,-j,-k$, so $Z(Q) = \{1,-1\}$. Thus $N \cong \Z_2$ and $N \trianglelefteq Q$. The quotient $Q/N$ has four cosets:
+    \[
+        N,\qquad iN,\qquad jN,\qquad kN.
+    \]
+    Moreover,
+    \[
+        (iN)^2 = i^2N = (-1)N = N,
+    \]
+    and the same argument gives $(jN)^2 = N$ and $(kN)^2 = N$. Hence every non-identity element of $Q/N$ has order $2$. Therefore
+    \[
+        Q/N \cong \Z_2 \times \Z_2.
+    \]
+    Thus $Q$ is an extension of $\Z_2$ by $\Z_2 \times \Z_2$. \\
+    It remains to show that none of these extensions splits. The only element of order $2$ in $Q$ is $-1$: the elements $\pm i,\pm j,\pm k$ all have order $4$, and $1$ has order $1$. \\
+    First consider one of the three extensions with
+    \[
+        N \in \{\langle i\rangle,\langle j\rangle,\langle k\rangle\}.
+    \]
+    If the extension split, then by Exercise~\ref{ex:2.11} there would be a subgroup
+    \[
+        t(H) \cong \Z_2
+    \]
+    such that $N \cap t(H) = 1$. But the only subgroup of $Q$ isomorphic to $\Z_2$ is
+    \[
+        \langle -1\rangle = \{1,-1\}.
+    \]
+    Since $-1 \in N$ for each of $N = \langle i\rangle,\langle j\rangle,\langle k\rangle$, we would have
+    \[
+        N \cap t(H) = \{1,-1\} \neq 1,
+    \]
+    a contradiction. Hence none of the three extensions of $\Z_4$ by $\Z_2$ splits. \\
+    Now consider the extension with $N = Z(Q) = \{1,-1\}$. If this extension split, then there would be a subgroup
+    \[
+        t(H) \cong \Z_2 \times \Z_2
+    \]
+    of $Q$. But $\Z_2 \times \Z_2$ has three non-identity elements, all of order $2$, while $Q$ has only one element of order $2$, namely $-1$. Thus $Q$ has no subgroup isomorphic to $\Z_2 \times \Z_2$. This is again a contradiction. Therefore this extension also does not split. \\
+    Hence $Q$ has the four stated non-trivial extensions, but none is split. Equivalently, $Q$ cannot be written non-trivially as a semidirect product.
 \end{solution}
 
 \noindent If $E$ is an extension of $N$ by $H$, then we cannot expect to find a homomorphism $t : H \to E$ such that $t(H)$ will be a transversal for $N$ in $E$, for if such a $t$ existed then $E$ would be split. However, since $H \cong E/N$, we can always find a set map $t : H \to E$ whose image is a transversal for $N$; such a map is called a \emph{section} of the extension. Moreover, we can always choose $t$ so that $t(1) = 1$, in which case we say that $t$ is \emph{normalized}. (We use normalized sections instead of arbitrary sections in order to keep the notational complexity to a minimum.)
@@ -798,6 +1300,133 @@ We call $(f, \varphi)$ the \emph{factor pair} arising from $t$. Show that $(f, \
 \end{enumerate}
 \end{exercise}
 \begin{solution}
+    Let $\pi \colon E \to H$ be the epimorphism of the extension, and identify $N$ with $\ker \pi$. Since $t$ is a section, we have
+    \[
+        \pi(t(\alpha)) = \alpha
+    \]
+    for every $\alpha \in H$. First note that
+    \[
+        \pi(f(\alpha,\beta))
+        =
+        \pi(t(\alpha)t(\beta)t(\alpha\beta)^{-1})
+        =
+        \alpha\beta(\alpha\beta)^{-1}
+        =
+        1,
+    \]
+    so $f(\alpha,\beta) \in \ker\pi = N$. Also, since $N \trianglelefteq E$, conjugation by any element of $E$ restricts to an automorphism of $N$. Thus $\varphi(\alpha) = \Psi(t(\alpha))$ is indeed an element of $\operatorname{Aut}(N)$.
+
+    \begin{enumerate}
+        \item[1] Since $t$ is normalized, $t(1) = 1$. Hence
+        \[
+            f(\alpha,1)
+            =
+            t(\alpha)t(1)t(\alpha\cdot 1)^{-1}
+            =
+            t(\alpha)t(\alpha)^{-1}
+            =
+            1,
+        \]
+        and similarly
+        \[
+            f(1,\alpha)
+            =
+            t(1)t(\alpha)t(1\cdot \alpha)^{-1}
+            =
+            t(\alpha)t(\alpha)^{-1}
+            =
+            1.
+        \]
+        Moreover,
+        \[
+            \varphi(1)
+            =
+            \Psi(t(1))
+            =
+            \Psi(1).
+        \]
+        For every $n \in N$, we have
+        \[
+            \Psi(1)(n) = 1n1^{-1} = n,
+        \]
+        so $\varphi(1) = \operatorname{id}_N$.
+
+        \item[2] By the definition of $f$, we have
+        \[
+            t(\alpha)t(\beta) = f(\alpha,\beta)t(\alpha\beta).
+        \]
+        Since $\Psi$ is a homomorphism,
+        \[
+            \varphi(\alpha)\varphi(\beta)
+            =
+            \Psi(t(\alpha))\Psi(t(\beta))
+            =
+            \Psi(t(\alpha)t(\beta)).
+        \]
+        Using the displayed identity, this becomes
+        \[
+            \Psi(t(\alpha)t(\beta))
+            =
+            \Psi(f(\alpha,\beta)t(\alpha\beta))
+            =
+            \Psi(f(\alpha,\beta))\Psi(t(\alpha\beta)).
+        \]
+        Therefore
+        \[
+            \varphi(\alpha)\varphi(\beta)
+            =
+            \Psi(f(\alpha,\beta))\varphi(\alpha\beta).
+        \]
+
+        \item[3] Again using
+        \[
+            t(\alpha)t(\beta) = f(\alpha,\beta)t(\alpha\beta),
+        \]
+        we compute
+        \[
+            (t(\alpha)t(\beta))t(\gamma)
+            =
+            f(\alpha,\beta)t(\alpha\beta)t(\gamma)
+            =
+            f(\alpha,\beta)f(\alpha\beta,\gamma)t(\alpha\beta\gamma).
+        \]
+        On the other hand,
+        \[
+            t(\alpha)(t(\beta)t(\gamma))
+            =
+            t(\alpha)f(\beta,\gamma)t(\beta\gamma).
+        \]
+        Since
+        \[
+            \varphi(\alpha)(n) = t(\alpha)nt(\alpha)^{-1}
+        \]
+        for every $n \in N$, we have
+        \[
+            t(\alpha)f(\beta,\gamma)
+            =
+            \varphi(\alpha)(f(\beta,\gamma))t(\alpha).
+        \]
+        Thus
+        \[
+            t(\alpha)(t(\beta)t(\gamma))
+            =
+            \varphi(\alpha)(f(\beta,\gamma))t(\alpha)t(\beta\gamma)
+            =
+            \varphi(\alpha)(f(\beta,\gamma))f(\alpha,\beta\gamma)t(\alpha\beta\gamma).
+        \]
+        By associativity in $E$,
+        \[
+            (t(\alpha)t(\beta))t(\gamma)
+            =
+            t(\alpha)(t(\beta)t(\gamma)).
+        \]
+        Comparing the two expressions and cancelling $t(\alpha\beta\gamma)$ on the right, we obtain
+        \[
+            f(\alpha,\beta)f(\alpha\beta,\gamma)
+            =
+            \varphi(\alpha)(f(\beta,\gamma))f(\alpha,\beta\gamma).
+        \]
+    \end{enumerate}
 \end{solution}
 
 \begin{exercise}
@@ -805,6 +1434,191 @@ We call $(f, \varphi)$ the \emph{factor pair} arising from $t$. Show that $(f, \
 (cont.) Just as we were able to externalize the notion of semidirect product, so should we be able to externalize the notion of extension; that is, given groups $N$ and $H$ and appropriate additional data, we should be able to construct an extension of $N$ by $H$. Using Exercise~\ref{ex:2.13} as a guide, formulate such an external construction and prove that it works.
 \end{exercise}
 \begin{solution}
+    Suppose that we are given groups $N$ and $H$, together with set maps
+    \[
+        f \colon H \times H \to N,
+        \qquad
+        \varphi \colon H \to \operatorname{Aut}(N),
+    \]
+    satisfying the three identities from Exercise~\ref{ex:2.13}. Thus, for all $\alpha,\beta,\gamma \in H$,
+    \[
+        f(\alpha,1) = f(1,\alpha) = 1,
+        \qquad
+        \varphi(1) = \operatorname{id}_N,
+    \]
+    \[
+        \varphi(\alpha)\varphi(\beta)
+        =
+        \Psi(f(\alpha,\beta))\varphi(\alpha\beta),
+    \]
+    and
+    \[
+        f(\alpha,\beta)f(\alpha\beta,\gamma)
+        =
+        \varphi(\alpha)(f(\beta,\gamma))f(\alpha,\beta\gamma),
+    \]
+    where, for $a \in N$, $\Psi(a)$ denotes conjugation by $a$ on $N$. We construct a group $E$ whose underlying set is
+    \[
+        E = N \times H.
+    \]
+    If $(n,\alpha),(m,\beta) \in N \times H$, where $n,m \in N$ and $\alpha,\beta \in H$, define
+    \[
+        (n,\alpha)(m,\beta)
+        =
+        \bigl(n\varphi(\alpha)(m)f(\alpha,\beta),\alpha\beta\bigr).
+    \]
+    This is a well-defined element of $N \times H$, since $\varphi(\alpha)(m) \in N$, $f(\alpha,\beta) \in N$, and $\alpha\beta \in H$. \\
+    We first check that this multiplication makes $E$ into a group. The identity element is $(1,1)$. Indeed, for $n \in N$ and $\alpha \in H$,
+    \[
+        (1,1)(n,\alpha)
+        =
+        \bigl(\varphi(1)(n)f(1,\alpha),\alpha\bigr)
+        =
+        (n,\alpha),
+    \]
+    and
+    \[
+        (n,\alpha)(1,1)
+        =
+        \bigl(n\varphi(\alpha)(1)f(\alpha,1),\alpha\bigr)
+        =
+        (n,\alpha).
+    \]
+    Next we prove associativity. Let
+    \[
+        (n,\alpha),\quad (m,\beta),\quad (\ell,\gamma) \in N \times H,
+    \]
+    where $n,m,\ell \in N$ and $\alpha,\beta,\gamma \in H$. First,
+    \[
+        ((n,\alpha)(m,\beta))(\ell,\gamma)
+    \]
+    has first coordinate
+    \[
+        n\varphi(\alpha)(m)f(\alpha,\beta)\varphi(\alpha\beta)(\ell)f(\alpha\beta,\gamma),
+    \]
+    and second coordinate $\alpha\beta\gamma$. On the other hand,
+    \[
+        (n,\alpha)((m,\beta)(\ell,\gamma))
+    \]
+    has first coordinate
+    \[
+        n\varphi(\alpha)\bigl(m\varphi(\beta)(\ell)f(\beta,\gamma)\bigr)f(\alpha,\beta\gamma).
+    \]
+    Since $\varphi(\alpha)$ is an automorphism of $N$, this is
+    \[
+        n\varphi(\alpha)(m)\varphi(\alpha)\varphi(\beta)(\ell)\varphi(\alpha)(f(\beta,\gamma))f(\alpha,\beta\gamma).
+    \]
+    By the second identity,
+    \[
+        \varphi(\alpha)\varphi(\beta)(\ell)
+        =
+        f(\alpha,\beta)\varphi(\alpha\beta)(\ell)f(\alpha,\beta)^{-1}.
+    \]
+    Therefore the first coordinate of $(n,\alpha)((m,\beta)(\ell,\gamma))$ is
+    \[
+        n\varphi(\alpha)(m)f(\alpha,\beta)\varphi(\alpha\beta)(\ell)
+        f(\alpha,\beta)^{-1}\varphi(\alpha)(f(\beta,\gamma))f(\alpha,\beta\gamma).
+    \]
+    By the third identity,
+    \[
+        f(\alpha,\beta)^{-1}\varphi(\alpha)(f(\beta,\gamma))f(\alpha,\beta\gamma)
+        =
+        f(\alpha\beta,\gamma),
+    \]
+    so this becomes
+    \[
+        n\varphi(\alpha)(m)f(\alpha,\beta)\varphi(\alpha\beta)(\ell)f(\alpha\beta,\gamma).
+    \]
+    This agrees with the first coordinate of $((n,\alpha)(m,\beta))(\ell,\gamma)$, and the second coordinates are both $\alpha\beta\gamma$. Hence multiplication is associative. \\
+    Now we find inverses. For $(n,\alpha) \in N \times H$, put
+    \[
+        (n,\alpha)^{-1}
+        =
+        \bigl(f(\alpha^{-1},\alpha)^{-1}\varphi(\alpha^{-1})(n^{-1}),\alpha^{-1}\bigr).
+    \]
+    Let
+    \[
+        p = f(\alpha^{-1},\alpha)^{-1}\varphi(\alpha^{-1})(n^{-1}).
+    \]
+    Then
+    \[
+        (p,\alpha^{-1})(n,\alpha)
+        =
+        \bigl(p\varphi(\alpha^{-1})(n)f(\alpha^{-1},\alpha),1\bigr)
+        =
+        (1,1).
+    \]
+    It remains only to check the product in the other order. Taking $(\alpha,\beta,\gamma) = (\alpha,\alpha^{-1},\alpha)$ in the third identity gives
+    \[
+        f(\alpha,\alpha^{-1})
+        =
+        \varphi(\alpha)(f(\alpha^{-1},\alpha)).
+    \]
+    Also, taking $(\alpha,\beta) = (\alpha,\alpha^{-1})$ in the second identity gives
+    \[
+        \varphi(\alpha)\varphi(\alpha^{-1})
+        =
+        \Psi(f(\alpha,\alpha^{-1})).
+    \]
+    Hence
+    \begin{align*}
+        (n,\alpha)(p,\alpha^{-1})
+        &=
+        \bigl(n\varphi(\alpha)(p)f(\alpha,\alpha^{-1}),1\bigr) \\
+        &=
+        \bigl(n\varphi(\alpha)(f(\alpha^{-1},\alpha)^{-1})
+        \varphi(\alpha)\varphi(\alpha^{-1})(n^{-1})f(\alpha,\alpha^{-1}),1\bigr) \\
+        &=
+        \bigl(nf(\alpha,\alpha^{-1})^{-1}
+        f(\alpha,\alpha^{-1})n^{-1}f(\alpha,\alpha^{-1})^{-1}
+        f(\alpha,\alpha^{-1}),1\bigr) \\
+        &=
+        (1,1).
+    \end{align*}
+    Thus every element has an inverse, and so $E = N \times H$ is a group under the multiplication above. \\
+    Finally, define
+    \[
+        i \colon N \to E,
+        \qquad
+        i(n) = (n,1),
+    \]
+    and
+    \[
+        \pi \colon E \to H,
+        \qquad
+        \pi(n,\alpha) = \alpha.
+    \]
+    The map $i$ is injective, and for $n,m \in N$,
+    \[
+        i(n)i(m)
+        =
+        (n,1)(m,1)
+        =
+        (nm,1)
+        =
+        i(nm),
+    \]
+    so $i$ is a monomorphism. Also $\pi$ is a homomorphism, since
+    \[
+        \pi((n,\alpha)(m,\beta))
+        =
+        \pi\bigl(n\varphi(\alpha)(m)f(\alpha,\beta),\alpha\beta\bigr)
+        =
+        \alpha\beta
+        =
+        \pi(n,\alpha)\pi(m,\beta).
+    \]
+    It is surjective because $\pi(1,\alpha) = \alpha$ for every $\alpha \in H$. Finally,
+    \[
+        \ker\pi
+        =
+        \{(n,\alpha) \in E \mid \alpha = 1\}
+        =
+        \{(n,1) \mid n \in N\}
+        =
+        i(N).
+    \]
+    Therefore $(E,i,\pi)$ is an extension of $N$ by $H$.
 \end{solution}
 
 \noindent We shall return to these ideas in the further exercises to Section 9.
