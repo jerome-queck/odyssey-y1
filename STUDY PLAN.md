@@ -1,6 +1,6 @@
 # Odyssey Y1 Study Plan
 
-Last updated: 2026-05-10
+Last updated: 2026-05-17
 
 ## Assumptions
 
@@ -31,6 +31,8 @@ Last updated: 2026-05-10
 ## Week Due 2026-05-17
 
 Capacity: 28 hours.
+
+Status: Completed early on Saturday, 2026-05-16. All Week 1 reading/proof and exercise scope was finished before the Sunday due date.
 
 Google Tasks:
 - Odyssey Section 1-2

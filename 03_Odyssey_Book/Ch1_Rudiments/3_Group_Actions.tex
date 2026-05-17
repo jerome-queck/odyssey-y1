@@ -7,7 +7,6 @@
 \subsubsection*{Defining group actions}
 \begin{itemize}
     \item A (\emph{left}) \emph{action} of $G$ on a set $X$ is a map $G \times X \to X$, the image of $(g,x)$ denoted $gx$, satisfying $1x = x$ for every $x \in X$ and $(g_1 g_2) x = g_1 (g_2 x)$ for all $g_1, g_2 \in G$, $x \in X$.
-    \item Right actions are defined analogously, but in this book virtually all actions considered are left actions.
     \item If $G$ acts on $X$, we say $X$ is a $G$-set; for any $H \leq G$, $X$ is also an $H$-set by restriction.
     \item For $H \leq G$, the coset space $G/H$ is a $G$-set under left multiplication: $(g, xH) \mapsto gxH$.
 \end{itemize}
@@ -18,11 +17,50 @@ There is a natural bijective correspondence between the set of actions of $G$ on
 \end{proposition}
 
 \begin{proof}
+    Suppose first that $G$ acts on $X$. For each $g \in G$, define a function
+    \[
+        \sigma_g \colon X \to X, \qquad \sigma_g(x) = gx.
+    \]
+    We claim that $\sigma_g$ is a permutation of $X$. Indeed, $\sigma_{g^{-1}}$ is its inverse, since for every $x \in X$,
+    \[
+        \sigma_{g^{-1}}(\sigma_g(x)) = g^{-1}(gx) = (g^{-1}g)x = 1x = x
+    \]
+    and similarly $\sigma_g(\sigma_{g^{-1}}(x)) = x$. Hence $\sigma_g \in S_X$. Now define
+    \[
+        \Phi \colon G \to S_X, \qquad \Phi(g) = \sigma_g.
+    \]
+    For $g_1,g_2 \in G$ and $x \in X$, the action law gives
+    \[
+        \Phi(g_1g_2)(x)
+        = \sigma_{g_1g_2}(x)
+        = (g_1g_2)x
+        = g_1(g_2x)
+        = \sigma_{g_1}(\sigma_{g_2}(x)).
+    \]
+    Thus $\Phi(g_1g_2) = \Phi(g_1)\Phi(g_2)$, so $\Phi$ is a homomorphism.
+    Conversely, suppose that $\Phi \colon G \to S_X$ is a homomorphism. Define a rule $G \times X \to X$ by
+    \[
+        gx = \Phi(g)(x).
+    \]
+    This rule lands in $X$ because each $\Phi(g)$ is a permutation of $X$. Also,
+    \[
+        1x = \Phi(1)(x) = x,
+    \]
+    since $\Phi(1)$ is the identity permutation of $X$. For $g_1,g_2 \in G$ and $x \in X$,
+    \[
+        (g_1g_2)x
+        = \Phi(g_1g_2)(x)
+        = (\Phi(g_1)\Phi(g_2))(x)
+        = \Phi(g_1)(\Phi(g_2)(x))
+        = g_1(g_2x).
+    \]
+    Therefore this rule is an action of $G$ on $X$.
+    Finally, these two constructions undo one another. Starting from an action, the homomorphism sends $g$ to the permutation $x \mapsto gx$, so reconstructing the action gives the same rule. Starting from a homomorphism $\Phi$, the action is defined by $gx = \Phi(g)(x)$, so the permutation attached to $g$ is exactly $\Phi(g)$. Hence the correspondence is bijective.
 \end{proof}
 
 \subsubsection*{Faithful actions and Cayley's Theorem}
 \begin{itemize}
-    \item If $G$ has a proper subgroup $H$ with $|G:H| = n$, then the action of $G$ on $G/H$ gives a non-trivial homomorphism $G \to S_n$ via Proposition~\ref{prop:3.1}; if $G$ is simple, this homomorphism must be injective.
+    \item If $H < G$ with $|G:H| = n$, then the action of $G$ on $G/H$ gives a non-trivial homomorphism $G \to S_n$ via Proposition~\ref{prop:3.1}; if $G$ is simple, this homomorphism must be injective.
     \item The action of $G$ on $X$ is \emph{faithful} (or $G$ acts \emph{faithfully}) if the corresponding homomorphism $G \to S_X$ is injective; equivalently, the only $g \in G$ satisfying $gx = x$ for every $x \in X$ is the identity.
     \item If $G$ acts faithfully on $X$, we call $G$ a \emph{permutation group} on $X$, since $G$ is then imbedded isomorphically in $S_X$.
 \end{itemize}
@@ -33,6 +71,30 @@ $G$ is isomorphic with a subgroup of $S_G$; in particular, if $G$ is finite with
 \end{namedtheorem}
 
 \begin{proof}
+    Let $G$ act on itself by left multiplication. In other words, for $g,x \in G$, define
+    \[
+        gx
+    \]
+    to be the product of $g$ and $x$ in the group $G$. This is an action: the identity satisfies $1x = x$, and associativity in $G$ gives
+    \[
+        (g_1g_2)x = g_1(g_2x)
+    \]
+    for all $g_1,g_2,x \in G$.
+    By Proposition~\ref{prop:3.1}, this action gives a homomorphism
+    \[
+        \Phi \colon G \to S_G.
+    \]
+    Explicitly, $\Phi(g)$ is the permutation of $G$ given by left multiplication by $g$:
+    \[
+        \Phi(g)(x) = gx.
+    \]
+    We now show that $\Phi$ is injective. Suppose $g \in \ker\Phi$. Then $\Phi(g)$ is the identity permutation of $G$, so
+    \[
+        gx = x
+    \]
+    for every $x \in G$. Taking $x = 1$, we get $g1 = 1$, and hence $g = 1$. Thus $\ker\Phi = 1$, so $\Phi$ is injective.
+    Therefore $G \cong \operatorname{im}\Phi$, and $\operatorname{im}\Phi \leq S_G$. Hence $G$ is isomorphic with a subgroup of $S_G$.
+    Finally, if $G$ is finite with $|G| = n$, then $S_G$ is isomorphic with $S_n$, since both are symmetric groups on sets with $n$ elements. Thus $G$ is isomorphic with a subgroup of $S_n$.
 \end{proof}
 
 \subsubsection*{$G$-set homomorphisms and orbits}
@@ -48,6 +110,22 @@ If $X$ is a $G$-set, then $G_{gx} = g G_x g^{-1}$ for any $g \in G$ and $x \in X
 \end{lemma}
 
 \begin{proof}
+    Let $u \in G$. We show that $u \in G_{gx}$ iff $u \in gG_xg^{-1}$.
+    By definition, $u \in G_{gx}$ means that $u$ fixes the element $gx$, so
+    \[
+        u \in G_{gx}
+        \Longleftrightarrow u(gx) = gx.
+    \]
+    Using the action law, this is equivalent to
+    \[
+        (ug)x = gx.
+    \]
+    Now act on both sides by $g^{-1}$. Again using the action law, we get
+    \[
+        (g^{-1}ug)x = x.
+    \]
+    This means exactly that $g^{-1}ug \in G_x$. Equivalently, $u \in gG_xg^{-1}$.
+    Therefore $G_{gx} = gG_xg^{-1}$.
 \end{proof}
 
 \subsubsection*{Transitive actions and the orbit decomposition}
@@ -63,6 +141,33 @@ Any $G$-set has a unique partition consisting of transitive $G$-sets, namely its
 \end{proposition}
 
 \begin{proof}
+    We first show that the orbits form a partition of $X$. Every $x \in X$ lies in its own orbit $Gx$, since $x = 1x$. Now let $x,y \in X$, and suppose that $Gx \cap Gy \neq \varnothing$. Then there are $g_1,g_2 \in G$ such that
+    \[
+        g_1x = g_2y.
+    \]
+    Hence
+    \[
+        y = (g_2^{-1}g_1)x,
+    \]
+    so $y \in Gx$. It follows that $Gy \subseteq Gx$, since for any $u \in G$,
+    \[
+        uy = u((g_2^{-1}g_1)x) = (ug_2^{-1}g_1)x \in Gx.
+    \]
+    By symmetry, we also have $Gx \subseteq Gy$. Therefore $Gx = Gy$. Thus any two orbits are either equal or disjoint, so the orbits partition $X$.
+    Each orbit is a transitive $G$-set. Indeed, if $y,z \in Gx$, then $y = g_1x$ and $z = g_2x$ for some $g_1,g_2 \in G$, and
+    \[
+        (g_2g_1^{-1})y = (g_2g_1^{-1})(g_1x) = g_2x = z.
+    \]
+    Hence any element of the orbit can be moved to any other element of the same orbit.
+    Finally, we prove uniqueness. Suppose $X$ has some partition into transitive $G$-sets, and let $P$ be one piece of this partition. Choose some $x \in P$. Since $P$ is itself a $G$-set, it is closed under the action of $G$. Thus
+    \[
+        Gx \subseteq P.
+    \]
+    On the other hand, since $P$ is transitive, every $y \in P$ can be reached from $x$. That is, for every $y \in P$, there is some $g \in G$ such that $gx = y$. Hence every $y \in P$ lies in $Gx$, so
+    \[
+        P \subseteq Gx.
+    \]
+    Therefore $P = Gx$. Since every transitive piece $P$ is an orbit, the only possible partition into transitive $G$-sets is the partition into orbits.
 \end{proof}
 
 \subsubsection*{Classification of transitive $G$-sets}
@@ -77,6 +182,26 @@ If $X$ is a transitive $G$-set, then $X \cong G/G_x$ as $G$-sets for any $x \in 
 \end{proposition}
 
 \begin{proof}
+    Fix $x \in X$. Define
+    \[
+        \varphi \colon G/G_x \to X, \qquad \varphi(gG_x) = gx.
+    \]
+    We first check that $\varphi$ is well-defined. Suppose $gG_x = hG_x$. Then $h^{-1}g \in G_x$, so $(h^{-1}g)x = x$. Acting by $h$ on both sides gives
+    \[
+        gx = hx.
+    \]
+    Hence $\varphi(gG_x) = \varphi(hG_x)$.
+    We next show that $\varphi$ is injective. Suppose $\varphi(gG_x) = \varphi(hG_x)$. Then $gx = hx$, so acting by $h^{-1}$ on both sides gives
+    \[
+        (h^{-1}g)x = x.
+    \]
+    Thus $h^{-1}g \in G_x$, and therefore $gG_x = hG_x$. Hence $\varphi$ is injective.
+    Since $X$ is transitive, for every $y \in X$ there exists some $g \in G$ such that $gx = y$. Thus $y = \varphi(gG_x)$, so $\varphi$ is surjective.
+    Finally, we check that $\varphi$ is a $G$-set homomorphism. For $u,g \in G$,
+    \[
+        \varphi(u(gG_x)) = \varphi(ugG_x) = (ug)x = u(gx) = u\varphi(gG_x).
+    \]
+    Therefore $\varphi$ is a bijective $G$-set homomorphism, and hence $X \cong G/G_x$ as $G$-sets.
 \end{proof}
 
 \begin{corollary}[Orbit-Stabilizer]
@@ -85,6 +210,15 @@ Let $X$ be a $G$-set. Then $Gx \cong G/G_x$ as $G$-sets for any $x \in X$; in pa
 \end{corollary}
 
 \begin{proof}
+    The orbit $Gx$ is a transitive $G$-set under the induced action. The stabilizer of $x$ for this restricted action is still $G_x$. Hence, by Proposition~\ref{prop:3.4},
+    \[
+        Gx \cong G/G_x
+    \]
+    as $G$-sets.
+    If $G$ is finite, then the number of left cosets of $G_x$ in $G$ is $|G : G_x|$. Since $Gx$ is in bijection with $G/G_x$, we have
+    \[
+        |Gx| = |G/G_x| = |G : G_x|.
+    \]
 \end{proof}
 
 \subsubsection*{When are transitive $G$-sets isomorphic?}
