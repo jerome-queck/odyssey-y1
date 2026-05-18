@@ -232,6 +232,16 @@ Let $\varphi : X \to Y$ be a homomorphism of $G$-sets, and let $x \in X$. Then $
 \end{lemma}
 
 \begin{proof}
+    Let $g \in G_x$. Then $gx = x$. Since $\varphi$ is a $G$-set homomorphism, we have
+    \[
+        g\varphi(x) = \varphi(gx) = \varphi(x).
+    \]
+    Thus $g \in G_{\varphi(x)}$, and therefore $G_x \leq G_{\varphi(x)}$.
+    Now suppose that $\varphi$ is an isomorphism. Then $\varphi^{-1} \colon Y \to X$ is also a $G$-set homomorphism. Applying the first part to $\varphi^{-1}$ and the element $\varphi(x) \in Y$, we obtain
+    \[
+        G_{\varphi(x)} \leq G_{\varphi^{-1}(\varphi(x))} = G_x.
+    \]
+    Together with the inclusion $G_x \leq G_{\varphi(x)}$, this gives $G_x = G_{\varphi(x)}$.
 \end{proof}
 
 \begin{proposition}
@@ -240,6 +250,21 @@ If $H$ and $K$ are subgroups of $G$, then the $G$-sets $G/H$ and $G/K$ are isomo
 \end{proposition}
 
 \begin{proof}
+    The stabilizer of the coset $H \in G/H$ is exactly $H$. Since every coset of $G/H$ has the form $gH$ for some $g \in G$, Lemma~\ref{lem:3.2} shows that the set of stabilizers arising from the $G$-set $G/H$ is precisely the set of conjugates of $H$. Similarly, the set of stabilizers arising from $G/K$ is precisely the set of conjugates of $K$.
+    Suppose first that $\varphi \colon G/H \to G/K$ is a $G$-set isomorphism. By Lemma~\ref{lem:3.6},
+    \[
+        H = G_H = G_{\varphi(H)}.
+    \]
+    Now $\varphi(H)$ is some coset $gK \in G/K$, and by Lemma~\ref{lem:3.2} its stabilizer is $gKg^{-1}$. Hence
+    \[
+        H = G_{\varphi(H)} = G_{gK} = gKg^{-1}.
+    \]
+    Thus $H$ and $K$ are conjugate in $G$.
+    Conversely, suppose that $H = gKg^{-1}$ for some $g \in G$. Then $H$ is the stabilizer of the coset $gK \in G/K$. Since $G/K$ is transitive, Proposition~\ref{prop:3.4} gives
+    \[
+        G/K \cong G/H
+    \]
+    as $G$-sets. Therefore $G/H$ and $G/K$ are isomorphic as $G$-sets.
 \end{proof}
 
 \subsubsection*{Doubly transitive actions and maximality}
@@ -255,6 +280,26 @@ Let $G$ be a group, let $X$ be a doubly transitive $G$-set, and let $x \in X$. T
 \end{proposition}
 
 \begin{proof}
+    By Proposition~\ref{prop:3.4}, we have $X \cong G/G_x$ as $G$-sets. Thus we may work with the doubly transitive $G$-set $G/G_x$. Suppose, for a contradiction, that $G_x$ is not maximal. Then there exists a subgroup $K$ such that
+    \[
+        G_x < K < G.
+    \]
+    Choose $g \in G$ with $g \notin K$, and choose $k \in K$ with $k \notin G_x$. Since $k \notin G_x$, the cosets $G_x$ and $kG_x$ are distinct. Since $g \notin K$ and $G_x \leq K$, the cosets $G_x$ and $gG_x$ are also distinct.
+    Because $G/G_x$ is doubly transitive, there exists some $u \in G$ such that
+    \[
+        uG_x = G_x
+        \quad\text{and}\quad
+        u(kG_x) = gG_x.
+    \]
+    The first equality gives $u \in G_x$, and hence $u \in K$. Since $k \in K$, we have $uk \in K$. The second equality says
+    \[
+        ukG_x = gG_x,
+    \]
+    so $g^{-1}uk \in G_x \leq K$. Since both $uk$ and $g^{-1}uk$ lie in $K$, it follows that
+    \[
+        g = uk(g^{-1}uk)^{-1} \in K,
+    \]
+    contradicting our choice of $g \notin K$. Therefore no subgroup lies strictly between $G_x$ and $G$, and so $G_x$ is maximal.
 \end{proof}
 
 \subsubsection*{Blocks and primitivity}
@@ -269,6 +314,42 @@ There is a natural bijective correspondence between the set of blocks of a trans
 \end{proposition}
 
 \begin{proof}
+    Let $B$ be a block of $X$ containing $x$, and define
+    \[
+        H_B = \{g \in G \mid gx \in B\}.
+    \]
+    We first show that $H_B$ is a subgroup of $G$. Since $x \in B$, we have $1x = x \in B$, so $1 \in H_B$. Now let $g,g' \in H_B$. Then $gx \in B$ and $g'x \in B$. Since both $x$ and $gx$ lie in $B$, the sets $B$ and $gB$ meet, and therefore $gB = B$ because $B$ is a block. Hence
+    \[
+        (gg')x = g(g'x) \in gB = B,
+    \]
+    so $gg' \in H_B$. Similarly, if $g \in H_B$, then $gx \in B$. Since $g^{-1}(gx) = x \in B$, the sets $g^{-1}B$ and $B$ meet, and therefore $g^{-1}B = B$. Thus $g^{-1}x \in B$, so $g^{-1} \in H_B$. Therefore $H_B \leq G$. Also, if $u \in G_x$, then $ux = x \in B$, so $u \in H_B$. Hence $G_x \leq H_B$.\\
+    Thus every block $B$ containing $x$ gives a subgroup $H_B$ containing $G_x$. We now show that this assignment is injective. Suppose $B$ and $B'$ are distinct blocks containing $x$. Choose $y \in B'$ with $y \notin B$. Since $X$ is transitive, there exists some $g \in G$ such that $gx = y$. Then $g \in H_{B'}$, but $g \notin H_B$. Hence $H_B \neq H_{B'}$. \\
+    Conversely, let $H$ be a subgroup of $G$ containing $G_x$, and define
+    \[
+        B_H = Hx = \{hx \mid h \in H\}.
+    \]
+    Clearly $x \in B_H$, so $B_H$ is non-empty. We claim that $B_H$ is a block. If $g \in H$, then $gB_H = B_H$. Now suppose that $gB_H \cap B_H \neq \varnothing$. Then for some $h_1,h_2 \in H$,
+    \[
+        gh_1x = h_2x.
+    \]
+    Hence
+    \[
+        (h_2^{-1}gh_1)x = x,
+    \]
+    so $h_2^{-1}gh_1 \in G_x \leq H$. Since $h_1,h_2 \in H$, we get
+    \[
+        g = h_2(h_2^{-1}gh_1)h_1^{-1} \in H.
+    \]
+    Therefore, whenever $gB_H$ meets $B_H$, we must have $g \in H$, and hence $gB_H = B_H$. If $gB_H$ does not meet $B_H$, then it is disjoint from $B_H$. Thus $B_H$ is a block.\\
+    Finally, we check that this construction gives back the subgroup $H$. By definition,
+    \[
+        H_{B_H} = \{g \in G \mid gx \in B_H\}.
+    \]
+    If $g \in H$, then $gx \in Hx = B_H$, so $g \in H_{B_H}$. Thus $H \leq H_{B_H}$. Conversely, if $g \in H_{B_H}$, then $gx = hx$ for some $h \in H$. Therefore
+    \[
+        (h^{-1}g)x = x,
+    \]
+    so $h^{-1}g \in G_x \leq H$. Since $h \in H$, we get $g \in H$. Hence $H_{B_H} = H$, proving that every subgroup containing $G_x$ arises from a unique block containing $x$.
 \end{proof}
 
 \begin{corollary}
@@ -277,6 +358,16 @@ Let $X$ be a transitive $G$-set. Then $X$ is primitive iff $G_x$ is a maximal su
 \end{corollary}
 
 \begin{proof}
+    Suppose first that $X$ is primitive, and fix $x \in X$. By Proposition~\ref{prop:3.9}, the blocks of $X$ which contain $x$ correspond exactly to the subgroups of $G$ which contain $G_x$. Since $X$ is primitive, the only blocks containing $x$ are $\{x\}$ and $X$. These correspond to the subgroups $G_x$ and $G$, respectively. Hence there is no subgroup $H$ with
+    \[
+        G_x < H < G.
+    \]
+    Therefore $G_x$ is maximal in $G$. \\
+    Conversely, suppose that $G_x$ is maximal in $G$ for every $x \in X$. Let $B$ be a block of $X$, and choose some $x \in B$. Again by Proposition~\ref{prop:3.9}, the block $B$ corresponds to a subgroup $H_B$ satisfying
+    \[
+        G_x \leq H_B \leq G.
+    \]
+    Since $G_x$ is maximal, either $H_B = G_x$ or $H_B = G$. If $H_B = G_x$, then the corresponding block is $\{x\}$; if $H_B = G$, then the corresponding block is $X$. Thus every block of $X$ is either a one-element subset or all of $X$. Hence $X$ is primitive.
 \end{proof}
 
 \subsubsection*{Consequences for primitivity}
@@ -290,12 +381,11 @@ Any doubly transitive $G$-set is primitive.
 \end{corollary}
 
 \begin{proof}
+    This follows from Proposition~\ref{prop:3.8} and Corollary~\ref{cor:3.10}. Indeed, if $X$ is doubly transitive, then Proposition~\ref{prop:3.8} shows that $G_x$ is maximal in $G$ for every $x \in X$. Hence, by Corollary~\ref{cor:3.10}, the $G$-set $X$ is primitive.
 \end{proof}
 
 \subsubsection*{Counting via group actions}
-\begin{itemize}
-    \item In the remainder of this section, we apply the theory of group actions to elementary counting results. As before, $G$ denotes an arbitrary group.
-\end{itemize}
+
 
 \begin{proposition}
 \label{prop:3.12}
@@ -304,6 +394,31 @@ If $G$ is finite and $H, K \leq G$, then
 \end{proposition}
 
 \begin{proof}
+    Let $X = G/K$, and consider $X$ as an $H$-set by restricting the usual left multiplication action of $G$ on $G/K$. The orbit of the coset $K \in G/K$ under this action is $\{hK \mid h \in H\}$.
+    The union of the cosets in this orbit is exactly
+    \[
+        \bigcup_{h \in H} hK = HK.
+    \]
+    Since distinct left cosets of $K$ are disjoint and each has $|K|$ elements, we have
+    \[
+        |HK| = |\{hK \mid h \in H\}|\,|K|.
+    \]
+    The stabilizer of $K$ under the action of $H$ is
+    \[
+        H_K = \{h \in H \mid hK = K\}.
+    \]
+    But $hK = K$ iff $h \in K$, and we already have $h \in H$. Hence
+    \[
+        H_K = H \cap K.
+    \]
+    By Corollary~\ref{cor:3.5}, this orbit has size
+    \[
+        |\{hK \mid h \in H\}| = |H : H \cap K| = \frac{|H|}{|H \cap K|}.
+    \]
+    Therefore
+    \[
+        |HK| = |\{hK \mid h \in H\}|\,|K| = \frac{|H|}{|H \cap K|}|K| = \frac{|H||K|}{|H \cap K|}.
+    \]
 \end{proof}
 
 \subsubsection*{Centralizers and conjugacy classes}
@@ -312,6 +427,11 @@ If $G$ is finite and $H, K \leq G$, then
     \item For $S \subseteq G$, $C_G(S) = \{g \in G \mid gx = xg \text{ for all } x \in S\} = \bigcap_{x \in S} C_G(x)$, called the centralizer of $S$ in $G$.
     \item $Z(G) = C_G(G)$, and $x \in Z(G)$ iff $C_G(x) = G$.
     \item The \emph{conjugacy class} of $x \in G$ is $\{gxg^{-1} \mid g \in G\}$. By Proposition~\ref{prop:1.10}, the conjugacy class of $\rho \in S_n$ consists of all elements of $S_n$ having the same cycle structure as $\rho$.
+    \item More explicitly, if $\rho \in S_n$ has $m_i$ cycles of length $i$ for each $i \geq 1$, then the size of its conjugacy class in $S_n$ is
+          \[
+              \frac{n!}{\prod_{i \geq 1} i^{m_i}m_i!}.
+          \]
+          To see the denominator, first arrange the $n$ symbols in an ordered list and then cut this list into $m_i$ blocks of length $i$ for each $i$. This gives $n!$ arrangements. However, each $i$-cycle can be written in $i$ cyclic rotations, and these rotations define the same cycle; this gives a factor of $i^{m_i}$. Also, the $m_i$ cycles of the same length may be permuted among themselves without changing the resulting disjoint cycle decomposition; this gives a factor of $m_i!$. Dividing by all these repetitions gives the formula [24, p.~47].
 \end{itemize}
 
 \begin{proposition}
@@ -320,6 +440,31 @@ The conjugacy classes of $G$ form a partition of $G$, and if $G$ is finite then 
 \end{proposition}
 
 \begin{proof}
+    Let $G$ act on itself by conjugation: for $g,x \in G$, define
+    \[
+        g \cdot x = gxg^{-1}.
+    \]
+    This is a left action, since $1 \cdot x = x$ and
+    \[
+        g_1 \cdot (g_2 \cdot x)
+        = g_1(g_2xg_2^{-1})g_1^{-1}
+        = (g_1g_2)x(g_1g_2)^{-1}
+        = (g_1g_2)\cdot x.
+    \]
+    The orbit of $x \in G$ under this action is
+    \[
+        \{gxg^{-1} \mid g \in G\},
+    \]
+    which is exactly the conjugacy class of $x$. Hence the first assertion follows from Proposition~\ref{prop:3.3}, since the orbits of any group action form a partition.
+    If $G$ is finite, then Corollary~\ref{cor:3.5} says that the size of the orbit of $x$ is the index of the stabilizer of $x$. The stabilizer is
+    \[
+        G_x = \{g \in G \mid gxg^{-1} = x\}.
+    \]
+    But $gxg^{-1}=x$ iff $gx=xg$, so
+    \[
+        G_x = C_G(x).
+    \]
+    Therefore the conjugacy class of $x$ has size $|G : C_G(x)|$.
 \end{proof}
 
 \subsubsection*{Normalizers and conjugates of subgroups}
@@ -335,6 +480,35 @@ A subgroup $H$ of a finite group $G$ has exactly $|G : N_G(H)|$ conjugates in $G
 \end{proposition}
 
 \begin{proof}
+    Let $\mathcal{P}(G)$ be the set of subsets of $G$, and let $G$ act on $\mathcal{P}(G)$ by conjugation:
+    \[
+        g \cdot S = gSg^{-1}
+    \]
+    for $g \in G$ and $S \subseteq G$. This is a left action, since $1S1^{-1} = S$ and
+    \[
+        g_1 \cdot (g_2 \cdot S)
+        = g_1(g_2Sg_2^{-1})g_1^{-1}
+        = (g_1g_2)S(g_1g_2)^{-1}
+        = (g_1g_2)\cdot S.
+    \]
+    The orbit of $H$ under this action is
+    \[
+        \{gHg^{-1} \mid g \in G\},
+    \]
+    which is precisely the set of conjugates of $H$ in $G$. The stabilizer of $H$ is
+    \[
+        \{g \in G \mid gHg^{-1} = H\} = N_G(H).
+    \]
+    Therefore, by Corollary~\ref{cor:3.5}, the number of conjugates of $H$ in $G$ is
+    \[
+        |G : N_G(H)|.
+    \]
+    Since $H \leq N_G(H) \leq G$, we have
+    \[
+        |G : H| = |G : N_G(H)|\,|N_G(H) : H|.
+    \]
+    Hence the number of conjugates of $H$ divides $|G : H|$.
+    Finally, $H$ has exactly one conjugate iff $|G : N_G(H)| = 1$, iff $N_G(H)=G$. This is equivalent to $gHg^{-1}=H$ for every $g \in G$, which is exactly the condition that $H \trianglelefteq G$.
 \end{proof}
 
 \subsubsection*{Double cosets}
@@ -350,6 +524,45 @@ If $G$ is finite and $H, K \leq G$, then for any $x \in G$ we have
 \end{proposition}
 
 \begin{proof}
+    Consider $G/K$ as an $H$-set by restricting the usual left multiplication action. The orbit of $xK \in G/K$ under this action is
+    \[
+        \{hxK \mid h \in H\}.
+    \]
+    The union in $G$ of the cosets in this orbit is exactly $HxK$. Since distinct left cosets of $K$ are disjoint and each has $|K|$ elements, we have
+    \[
+        |HxK| = |\{hxK \mid h \in H\}|\,|K|.
+    \]
+    The stabilizer of $xK$ under the action of $H$ is
+    \[
+        \{h \in H \mid hxK = xK\}.
+    \]
+    Now
+    \[
+        hxK = xK
+        \Longleftrightarrow x^{-1}hx \in K
+        \Longleftrightarrow h \in xKx^{-1}.
+    \]
+    Thus the stabilizer is $H \cap xKx^{-1}$. By Corollary~\ref{cor:3.5},
+    \[
+        |\{hxK \mid h \in H\}| = |H : H \cap xKx^{-1}|
+        = \frac{|H|}{|H \cap xKx^{-1}|}.
+    \]
+    Therefore
+    \[
+        |HxK|
+        = \frac{|H|}{|H \cap xKx^{-1}|}|K|
+        = \frac{|H||K|}{|H \cap xKx^{-1}|}.
+    \]
+    Finally, conjugating the denominator by $x^{-1}$ gives
+    \[
+        x^{-1}(H \cap xKx^{-1})x = x^{-1}Hx \cap K.
+    \]
+    Conjugation is a bijection, so these two intersections have the same order. Hence
+    \[
+        \frac{|H||K|}{|H \cap xKx^{-1}|}
+        =
+        \frac{|H||K|}{|x^{-1}Hx \cap K|}.
+    \]
 \end{proof}
 
 \subsection*{Exercises}
