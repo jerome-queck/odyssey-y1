@@ -572,6 +572,25 @@ If $G$ is finite and $H, K \leq G$, then for any $x \in G$ we have
 Show that a finite simple group whose order is at least $r!$ cannot have a proper subgroup of index $r$.
 \end{exercise}
 \begin{solution}
+    Suppose, for a contradiction, that $H < G$ and $|G:H| = r$.
+    Let $G$ act on the coset space $G/H$ by left multiplication. Since $G/H$ has $r$ elements, Proposition~\ref{prop:3.1} gives a homomorphism
+    \[
+        \Phi \colon G \to S_{G/H} \cong S_r.
+    \]
+    This is the same permutation-representation idea as in \nameref{thm:cayley}, with the coset space $G/H$ in place of $G$ itself.
+    Now $\ker\Phi \trianglelefteq G$. Since $G$ is simple, either $\ker\Phi = G$ or $\ker\Phi = 1$.
+    If $\ker\Phi = G$, then every $g \in G$ fixes every coset. In particular,
+    \[
+        gH = H
+    \]
+    for every $g \in G$. Hence every $g \in G$ lies in $H$, so $G = H$, contradicting that $H$ is proper. Therefore $\ker\Phi \neq G$, and so $\ker\Phi = 1$.
+    Thus $\Phi$ is injective, so $G$ is isomorphic to a subgroup of $S_r$. Hence
+    \[
+        |G| \leq |S_r| = r!.
+    \]
+    By hypothesis $|G| \geq r!$, so $|G| = r!$. Therefore $\Phi(G)$ is a subgroup of $S_r$ with the same order as $S_r$, and hence $\Phi(G) = S_r$. Thus $G \cong S_r$.
+    For $r \geq 3$, this is impossible because $A_r \trianglelefteq S_r$ is a non-trivial proper normal subgroup. Hence no such subgroup $H$ exists.
+    As stated, the exercise also needs the condition $r \geq 3$: for $r = 2$, the group $C_2$ is simple, has order $2 = 2!$, and has the proper subgroup $1$ of index $2$.
 \end{solution}
 
 \begin{exercise}
@@ -579,6 +598,38 @@ Show that a finite simple group whose order is at least $r!$ cannot have a prope
 Show that a group $G$ acts doubly transitively on a set $X$ iff $G_x$ acts transitively on $X - \{x\}$ for every $x \in X$. (Here we must assume that $X$ has more than two elements.)
 \end{exercise}
 \begin{solution}
+    Suppose first that $G$ acts doubly transitively on $X$, and fix $x \in X$. We show that $G_x$ acts transitively on $X - \{x\}$.
+    First, $G_x$ preserves $X - \{x\}$. Indeed, if $g \in G_x$ and $y \neq x$, then $gy \neq x$; otherwise $gy = x$, and applying $g^{-1}$ gives $y = g^{-1}x = x$, a contradiction.
+    Now let $y,z \in X - \{x\}$. Then $(x,y)$ and $(x,z)$ are ordered pairs of distinct elements of $X$. Since $G$ acts doubly transitively on $X$, there exists $g \in G$ such that
+    \[
+        gx = x
+        \quad\text{and}\quad
+        gy = z.
+    \]
+    The first equality says that $g \in G_x$, and the second says that this element of $G_x$ sends $y$ to $z$. Hence $G_x$ acts transitively on $X - \{x\}$.
+    Conversely, suppose that $G_x$ acts transitively on $X - \{x\}$ for every $x \in X$. Let $(x_1,x_2)$ and $(y_1,y_2)$ be ordered pairs of distinct elements of $X$. We must find some $g \in G$ such that $gx_1 = y_1$ and $gx_2 = y_2$.
+    We first find an element $a \in G$ such that $ax_1 = y_1$. If $x_1 = y_1$, take $a = 1$. If $x_1 \neq y_1$, choose
+    \[
+        w \in X - \{x_1,y_1\},
+    \]
+    which is possible since $X$ has more than two elements. By hypothesis, $G_w$ acts transitively on $X - \{w\}$. Since $x_1,y_1 \in X - \{w\}$, there exists $a \in G_w$ such that
+    \[
+        ax_1 = y_1.
+    \]
+    Thus, in either case, we have some $a \in G$ with $ax_1 = y_1$.
+    Since $a$ acts as a bijection on $X$ and $x_2 \neq x_1$, we have $ax_2 \neq ax_1 = y_1$. Hence $ax_2 \in X - \{y_1\}$. Also $y_2 \in X - \{y_1\}$, since $y_2 \neq y_1$. By hypothesis, $G_{y_1}$ acts transitively on $X - \{y_1\}$, so there exists $b \in G_{y_1}$ such that
+    \[
+        b(ax_2) = y_2.
+    \]
+    Since $b \in G_{y_1}$, we also have $by_1 = y_1$. Now set $g = ba$. Then
+    \[
+        gx_1 = b(ax_1) = by_1 = y_1
+    \]
+    and
+    \[
+        gx_2 = b(ax_2) = y_2.
+    \]
+    Therefore $G$ acts doubly transitively on $X$.
 \end{solution}
 
 \begin{exercise}
@@ -586,6 +637,26 @@ Show that a group $G$ acts doubly transitively on a set $X$ iff $G_x$ acts trans
 Show directly from the definitions (that is, without reference to Propositions~\ref{prop:3.8} and~\ref{prop:3.9}) that a doubly transitive $G$-set is primitive.
 \end{exercise}
 \begin{solution}
+    Let $B$ be a block of $X$. We show that $B$ is either a one-element subset of $X$ or all of $X$.
+    If $B$ has exactly one element, then $B$ is one of the trivial blocks. Suppose instead that $B$ has at least two elements, and choose distinct elements $x,y \in B$. We will show that $B = X$.
+    Let $z \in X$. If $z = x$, then $z \in B$. So suppose that $z \neq x$. Since $x \neq y$ and $x \neq z$, the ordered pairs
+    \[
+        (x,y)
+        \quad\text{and}\quad
+        (x,z)
+    \]
+    are pairs of distinct elements of $X$. Since $G$ acts doubly transitively on $X$, there exists $g \in G$ such that
+    \[
+        gx = x
+        \quad\text{and}\quad
+        gy = z.
+    \]
+    Now $x \in B$ and $gx = x \in B$, so $gB$ meets $B$. Since $B$ is a block, this forces $gB = B$. But $y \in B$, so $gy \in gB$. Therefore
+    \[
+        z = gy \in gB = B.
+    \]
+    Hence every $z \in X$ lies in $B$, so $B = X$.
+    Thus every block of $X$ is either a one-element subset or all of $X$. Therefore $X$ is primitive.
 \end{solution}
 
 \begin{exercise}
@@ -593,6 +664,19 @@ Show directly from the definitions (that is, without reference to Propositions~\
 Let $G$ be the subgroup of $S_5$ generated by $(1\ 2\ 3\ 4\ 5)$, and let $G$ act on $X = \{1,2,3,4,5\}$ in the canonical way. Show that this action is primitive, but not doubly transitive.
 \end{exercise}
 \begin{solution}
+    Let $\sigma = (1\ 2\ 3\ 4\ 5)$, so $G = \langle \sigma \rangle$ has order $5$.
+    First we show that the action is primitive. The action is transitive, since powers of $\sigma$ move any element of $X$ to any other element of $X$. Fix $x \in X$. No non-identity power of $\sigma$ fixes $x$, since $\sigma^k$ moves $x$ by $k$ steps around the $5$-cycle for $1 \leq k \leq 4$. Hence
+    \[
+        G_x = 1.
+    \]
+    Since $G$ has prime order, its only subgroups are $1$ and $G$. Therefore $G_x = 1$ is maximal in $G$. By Corollary~\ref{cor:3.10}, the action of $G$ on $X$ is primitive.
+    We now show that the action is not doubly transitive. If it were doubly transitive, then there would exist some $g \in G$ sending the ordered pair $(1,2)$ to the ordered pair $(1,3)$; that is,
+    \[
+        g1 = 1
+        \quad\text{and}\quad
+        g2 = 3.
+    \]
+    But the only element of $G$ which fixes $1$ is the identity, and the identity sends $2$ to $2$, not to $3$. Thus no such $g$ exists. Therefore the action is not doubly transitive.
 \end{solution}
 
 \begin{exercise}
@@ -600,6 +684,63 @@ Let $G$ be the subgroup of $S_5$ generated by $(1\ 2\ 3\ 4\ 5)$, and let $G$ act
 Let $N \trianglelefteq G$, and let $y \in N$. Show that the conjugacy class of $y$ in $G$ is a union of conjugacy classes of the group $N$. Show further that there is a bijective correspondence between the conjugacy classes of $N$ which comprise the conjugacy class of $y$ in $G$ and the cosets of $N C_G(y)$ in $G$.
 \end{exercise}
 \begin{solution}
+    Let
+    \[
+        \mathcal{C} = \{gyg^{-1} \mid g \in G\}
+    \]
+    be the conjugacy class of $y$ in $G$. Since $N \trianglelefteq G$ and $y \in N$, every element $gyg^{-1}$ lies in $N$. Hence $\mathcal{C} \subseteq N$.
+    Now let $z \in \mathcal{C}$. By definition of $\mathcal{C}$, there is some $g \in G$ such that
+    \[
+        z = gyg^{-1}.
+    \]
+    If $n \in N$, then
+    \[
+        nzn^{-1}
+        = n(gyg^{-1})n^{-1}
+        = (ng)y(ng)^{-1}.
+    \]
+    Since $ng \in G$, this is again an element of $\mathcal{C}$. Therefore, whenever $\mathcal{C}$ contains one element $z$, it contains every $N$-conjugate of $z$. Thus $\mathcal{C}$ is a union of conjugacy classes of $N$.
+    For the second assertion, set $C = C_G(y)$. Since $N \trianglelefteq G$, the product $NC$ is a subgroup of $G$. We define a map from the left cosets of $NC$ in $G$ to the $N$-conjugacy classes contained in $\mathcal{C}$ by
+    \[
+        \Psi \colon G/NC \to \{\text{$N$-conjugacy classes contained in }\mathcal{C}\},
+        \qquad
+        \Psi(gNC) = \{n(gyg^{-1})n^{-1} \mid n \in N\}.
+    \]
+    In words, the coset $gNC$ is sent to the $N$-conjugacy class of $gyg^{-1}$.
+    We first check that this is well-defined. Suppose $hNC = gNC$. Then $h = gmc$ for some $m \in N$ and $c \in C$. Since $c \in C_G(y)$, we have $cyc^{-1} = y$. Hence
+    \[
+        hyh^{-1}
+        = gmcyc^{-1}m^{-1}g^{-1}
+        = gmym^{-1}g^{-1}.
+    \]
+    But
+    \[
+        gmym^{-1}g^{-1}
+        =
+        (gmg^{-1})(gyg^{-1})(gmg^{-1})^{-1}.
+    \]
+    Since $N \trianglelefteq G$, we have $gmg^{-1} \in N$. Therefore $hyh^{-1}$ is $N$-conjugate to $gyg^{-1}$. Thus $hNC$ and $gNC$ give the same $N$-conjugacy class, so $\Psi$ is well-defined.
+    The map $\Psi$ is onto. Indeed, take any $N$-conjugacy class contained in $\mathcal{C}$. It contains some element $gyg^{-1}$ with $g \in G$, so it is exactly the image of the coset $gNC$.
+    Finally, we show that $\Psi$ is one-to-one. Suppose
+    \[
+        \Psi(gNC) = \Psi(hNC).
+    \]
+    Then $gyg^{-1}$ and $hyh^{-1}$ are $N$-conjugate, so there exists $n \in N$ such that
+    \[
+        hyh^{-1}
+        = n(gyg^{-1})n^{-1}
+        = (ng)y(ng)^{-1}.
+    \]
+    This means that $h$ and $ng$ conjugate $y$ to the same element. Equivalently,
+    \[
+        ((ng)^{-1}h)y((ng)^{-1}h)^{-1} = y.
+    \]
+    Hence $(ng)^{-1}h \in C_G(y) = C$. So $h = ngc$ for some $c \in C$. Since $N$ is normal in $G$, we have $g^{-1}ng \in N$, and therefore
+    \[
+        h = ngc = g(g^{-1}ng)c \in gNC.
+    \]
+    Thus $hNC = gNC$. Therefore $\Psi$ is injective.
+    Hence the $N$-conjugacy classes which make up the $G$-conjugacy class of $y$ are in bijective correspondence with the cosets of $NC_G(y)$ in $G$.
 \end{solution}
 
 \begin{exercise}
@@ -607,6 +748,42 @@ Let $N \trianglelefteq G$, and let $y \in N$. Show that the conjugacy class of $
 Let $G$ be a finite group, and let $r$ be the number of conjugacy classes of $G$. Show that $|\{(a,b) \in G \times G \mid ab = ba\}| = r|G|$.
 \end{exercise}
 \begin{solution}
+    We count the same set in a slower way. Fix $a \in G$. The elements $b \in G$ such that $ab = ba$ are exactly the elements of the centralizer $C_G(a)$. Hence the number of commuting pairs is
+    \[
+        \sum_{a \in G} |C_G(a)|.
+    \]
+    We now group this sum by conjugacy classes. Let $K$ be one conjugacy class of $G$, and choose a representative $x \in K$.
+    If $a \in K$, then $a = gxg^{-1}$ for some $g \in G$. Conjugation by $g$ gives a bijection
+    \[
+        C_G(x) \to C_G(a), \qquad u \mapsto gug^{-1},
+    \]
+    so $|C_G(a)| = |C_G(x)|$. Thus, as $a$ runs through the elements of $K$, the number $|C_G(a)|$ is always the same number $|C_G(x)|$.
+    Therefore the part of the sum coming from this one conjugacy class is
+    \[
+        \sum_{a \in K} |C_G(a)|
+        =
+        \underbrace{|C_G(x)| + \cdots + |C_G(x)|}_{|K|\text{ times}}
+        =
+        |K|\,|C_G(x)|.
+    \]
+    By Proposition~\ref{prop:3.13},
+    \[
+        |K| = |G : C_G(x)|.
+    \]
+    Since $G$ is finite, this means
+    \[
+        |K|\,|C_G(x)|
+        =
+        |G : C_G(x)|\,|C_G(x)|
+        =
+        |G|.
+    \]
+    Hence each conjugacy class contributes exactly $|G|$ to the total sum. Since there are $r$ conjugacy classes, we get
+    \[
+        |\{(a,b) \in G \times G \mid ab = ba\}|
+        =
+        r|G|.
+    \]
 \end{solution}
 
 \begin{exercise}
@@ -614,6 +791,29 @@ Let $G$ be a finite group, and let $r$ be the number of conjugacy classes of $G$
 Show that $C_G(gxg^{-1}) = g C_G(x) g^{-1}$ for any elements $g$ and $x$ of a group $G$.
 \end{exercise}
 \begin{solution}
+    Let $G$ act on itself by conjugation, so that $u \cdot x = uxu^{-1}$ for $u,x \in G$.
+    Under this action, the stabilizer of $x$ is
+    \[
+        G_x = \{u \in G \mid uxu^{-1} = x\}.
+    \]
+    But $uxu^{-1}=x$ iff $ux=xu$, so
+    \[
+        G_x = C_G(x).
+    \]
+    Also, the image of $x$ under $g$ is
+    \[
+        g \cdot x = gxg^{-1}.
+    \]
+    Therefore Lemma~\ref{lem:3.2}, applied to this conjugation action, gives
+    \[
+        C_G(gxg^{-1})
+        =
+        G_{g \cdot x}
+        =
+        gG_xg^{-1}
+        =
+        gC_G(x)g^{-1}.
+    \]
 \end{solution}
 
 \begin{exercise}
@@ -621,6 +821,60 @@ Show that $C_G(gxg^{-1}) = g C_G(x) g^{-1}$ for any elements $g$ and $x$ of a gr
 Let $n \geq 5$, and assume that $A_n$ is simple. (A proof of this fact is outlined in Exercise~\ref{ex:7.8}.) Use Exercise~\ref{ex:3.1} to show that $S_n$ has no proper subgroup of index less than $n$ other than $A_n$.
 \end{exercise}
 \begin{solution}
+    Let $H < S_n$ be a proper subgroup with
+    \[
+        |S_n : H| < n.
+    \]
+    We show that $H = A_n$.
+    Suppose, for a contradiction, that $H \neq A_n$, and set
+    \[
+        K = H \cap A_n.
+    \]
+    We first check that $K$ is a proper subgroup of $A_n$. If $K = A_n$, then $A_n \leq H$. Since $H \neq A_n$, the subgroup $H$ must contain some odd permutation. But then $H$ contains all even permutations and at least one odd permutation. Multiplying that odd permutation by the elements of $A_n$ gives all odd permutations, so $H = S_n$, contradicting that $H$ is proper. Hence
+    \[
+        K < A_n.
+    \]
+    We now show that $K$ has index less than $n$ in $A_n$. There are two cases.
+    First suppose that $H \leq A_n$. Then $K = H$, and
+    \[
+        |S_n : H|
+        =
+        |S_n : A_n|\,|A_n : H|
+        =
+        2|A_n : K|.
+    \]
+    Therefore $|A_n : K| < n$.
+    Now suppose that $H \nleq A_n$. Then $H$ contains an odd permutation, so
+    \[
+        HA_n = S_n.
+    \]
+    By Proposition~\ref{prop:3.12},
+    \[
+        |S_n|
+        =
+        |HA_n|
+        =
+        \frac{|H||A_n|}{|H \cap A_n|}
+        =
+        \frac{|H||A_n|}{|K|}.
+    \]
+    Dividing by $|H|$ gives
+    \[
+        |S_n : H|
+        =
+        |A_n : K|.
+    \]
+    Hence again $|A_n : K| < n$.
+    Thus, in either case, $K$ is a proper subgroup of $A_n$ of index
+    \[
+        s = |A_n : K| < n.
+    \]
+    Since $s < n$, we have $s \leq n-1$, and hence
+    \[
+        s! \leq (n-1)! \leq \frac{n!}{2} = |A_n|
+    \]
+    because $n \geq 5$. If $s = 2$, then $K$ is a subgroup of index $2$ in $A_n$, hence normal in $A_n$, contradicting the simplicity of $A_n$. If $s \geq 3$, then Exercise~\ref{ex:3.1} applies to the simple group $A_n$ and rules out a proper subgroup of index $s$.
+    This contradiction shows that our assumption $H \neq A_n$ was false. Therefore the only proper subgroup of $S_n$ of index less than $n$ is $A_n$.
 \end{solution}
 
 \subsection*{Further Exercises}
@@ -632,6 +886,36 @@ Let $X$ be a transitive $G$-set. A \emph{system of imprimitivity} of $X$ is a pa
 Show that there is a bijective correspondence between the set of blocks which contain a given element of $X$ and the set of systems of imprimitivity of $X$. (Observe that when $X$ is finite, this implies that any two elements of $X$ lie in the same number of blocks.)
 \end{exercise}
 \begin{solution}
+    Fix $x \in X$. We construct maps in both directions.
+    First let $B$ be a block of $X$ with $x \in B$. Define
+    \[
+        \mathcal{P}_B = \{gB \mid g \in G\}.
+    \]
+    We show that $\mathcal{P}_B$ is a system of imprimitivity of $X$.
+    The sets in $\mathcal{P}_B$ are either equal or disjoint. Indeed, suppose
+    \[
+        gB \cap hB \neq \varnothing.
+    \]
+    Applying $g^{-1}$ gives
+    \[
+        B \cap g^{-1}hB \neq \varnothing.
+    \]
+    Since $B$ is a block, this forces $B = g^{-1}hB$. Multiplying by $g$, we get $gB = hB$.
+    The sets in $\mathcal{P}_B$ also cover $X$. Let $y \in X$. Since $X$ is transitive, there exists $g \in G$ such that $gx = y$. Since $x \in B$, we have $y = gx \in gB$. Hence every element of $X$ lies in some member of $\mathcal{P}_B$.
+    Thus $\mathcal{P}_B$ is a partition of $X$. Moreover, $G$ permutes the pieces, because if $u \in G$, then
+    \[
+        u(gB) = (ug)B,
+    \]
+    which is again an element of $\mathcal{P}_B$. Hence $\mathcal{P}_B$ is a system of imprimitivity.
+    Conversely, let $\mathcal{P}$ be a system of imprimitivity of $X$. Since $\mathcal{P}$ is a partition, there is a unique piece $B \in \mathcal{P}$ such that $x \in B$. We claim that $B$ is a block. Let $g \in G$. Since $\mathcal{P}$ is permuted by $G$, the set $gB$ is also a piece of $\mathcal{P}$. Since $\mathcal{P}$ is a partition, the two pieces $B$ and $gB$ are either equal or disjoint. Therefore $B$ is a block containing $x$.
+    These two constructions undo one another. Starting with a block $B$ containing $x$, the system $\mathcal{P}_B$ contains the piece $B = 1B$. Since $\mathcal{P}_B$ is a partition and $x \in B$, this is the unique piece of $\mathcal{P}_B$ containing $x$. Thus passing from $B$ to $\mathcal{P}_B$ and then taking the piece containing $x$ returns the original block $B$.
+    Conversely, start with a system of imprimitivity $\mathcal{P}$, and let $B$ be the unique piece of $\mathcal{P}$ containing $x$. We claim that the system obtained from this block is the original system:
+    \[
+        \mathcal{P} = \{gB \mid g \in G\}.
+    \]
+    Since $\mathcal{P}$ is permuted by $G$, every set $gB$ is a piece of $\mathcal{P}$. Conversely, let $P \in \mathcal{P}$. Choose $y \in P$. Since $X$ is transitive, there exists $g \in G$ such that $gx = y$. Now $x \in B$, so $y = gx \in gB$. Also $gB$ is a piece of $\mathcal{P}$. Thus $P$ and $gB$ are two pieces of the partition $\mathcal{P}$ containing $y$, so they must be equal. Hence $P = gB$, and every piece of $\mathcal{P}$ is a translate of $B$.
+    Therefore the blocks containing $x$ are in bijective correspondence with the systems of imprimitivity of $X$.
+    If $X$ is finite, then for each chosen element $x \in X$, the blocks containing $x$ are in bijection with the same set of systems of imprimitivity. Hence the number of blocks containing $x$ is independent of $x$, so any two elements of $X$ lie in the same number of blocks.
 \end{solution}
 
 \begin{exercise}
@@ -639,8 +923,44 @@ Show that there is a bijective correspondence between the set of blocks which co
 Suppose that the $G$-set $Y$ is an epimorphic image of a $G$-set $X$. Show that there is a $G$-set isomorphism between $Y$ and some system of imprimitivity of $X$.
 \end{exercise}
 \begin{solution}
+    Since $Y$ is an epimorphic image of $X$, there is a surjective $G$-set homomorphism
+    \[
+        \varphi \colon X \to Y.
+    \]
+    For each $y \in Y$, let
+    \[
+        X_y = \varphi^{-1}(y) = \{x \in X \mid \varphi(x) = y\}.
+    \]
+    Since $\varphi$ is surjective, each $X_y$ is non-empty. The fibers of $\varphi$ form a partition of $X$, so set
+    \[
+        \mathcal{P} = \{X_y \mid y \in Y\}.
+    \]
+    We show that $\mathcal{P}$ is a system of imprimitivity. Let $g \in G$ and $y \in Y$. We claim that
+    \[
+        gX_y = X_{gy}.
+    \]
+    Indeed, if $x \in X_y$, then $\varphi(x)=y$, and since $\varphi$ is a $G$-set homomorphism,
+    \[
+        \varphi(gx) = g\varphi(x) = gy.
+    \]
+    Thus $gx \in X_{gy}$, so $gX_y \subseteq X_{gy}$.
+    Conversely, if $z \in X_{gy}$, then $\varphi(z)=gy$. Since $g^{-1}z \in X$, we have
+    \[
+        \varphi(g^{-1}z) = g^{-1}\varphi(z) = g^{-1}(gy)=y.
+    \]
+    Hence $g^{-1}z \in X_y$, and therefore $z \in gX_y$. Thus $X_{gy} \subseteq gX_y$, proving $gX_y=X_{gy}$.
+    Therefore the action of $G$ permutes the pieces of $\mathcal{P}$, so $\mathcal{P}$ is a system of imprimitivity of $X$.
+    Now define
+    \[
+        \theta \colon Y \to \mathcal{P}, \qquad \theta(y)=X_y.
+    \]
+    This map is surjective by definition of $\mathcal{P}$. It is injective because distinct elements of $Y$ have disjoint fibers: if $X_y=X_{y'}$, then this common fiber is non-empty, so choose $x$ in it. Then $\varphi(x)=y$ and $\varphi(x)=y'$, hence $y=y'$.
+    Finally, $\theta$ is a $G$-set homomorphism. For $g \in G$ and $y \in Y$,
+    \[
+        \theta(gy)=X_{gy}=gX_y=g\theta(y).
+    \]
+    Therefore $\theta$ is a $G$-set isomorphism between $Y$ and the system of imprimitivity $\mathcal{P}$.
 \end{solution}
-
 If $X$ is a $G$-set, we use $[X]$ to denote the isomorphism class of $X$.
 
 \begin{exercise}
@@ -648,6 +968,54 @@ If $X$ is a $G$-set, we use $[X]$ to denote the isomorphism class of $X$.
 Let $G$ be a finite group, and let $S(G)$ be the set of isomorphism classes of finite $G$-sets. Show that we can define sum and product operations on $S(G)$ by $[X] + [Y] = [X \cup Y]$ and $[X][Y] = [X \times Y]$.
 \end{exercise}
 \begin{solution}
+    We must check that these operations do not depend on the chosen representatives of the isomorphism classes.
+    Suppose $X \cong X'$ and $Y \cong Y'$ as $G$-sets. Choose $G$-set isomorphisms
+    \[
+        \alpha \colon X \to X'
+        \quad\text{and}\quad
+        \beta \colon Y \to Y'.
+    \]
+    First consider the sum operation. We regard $X \cup Y$ as the disjoint union of $X$ and $Y$, with $G$ acting on each piece in the usual way. Define
+    \[
+        \alpha \cup \beta \colon X \cup Y \to X' \cup Y'
+    \]
+    by
+    \[
+        (\alpha \cup \beta)(z)
+        =
+        \begin{cases}
+            \alpha(z), & z \in X,\\
+            \beta(z),  & z \in Y.
+        \end{cases}
+    \]
+    Since $\alpha$ and $\beta$ are bijections, $\alpha \cup \beta$ is a bijection. It also commutes with the $G$-action, because if $z \in X$, then
+    \[
+        (\alpha \cup \beta)(gz)=\alpha(gz)=g\alpha(z)=g(\alpha \cup \beta)(z),
+    \]
+    and the same calculation using $\beta$ works when $z \in Y$. Thus $X \cup Y \cong X' \cup Y'$ as $G$-sets, so $[X]+[Y]=[X \cup Y]$ is well-defined.
+    Now consider the product operation. The product $X \times Y$ is a $G$-set by the diagonal action
+    \[
+        g(x,y)=(gx,gy).
+    \]
+    Define
+    \[
+        \alpha \times \beta \colon X \times Y \to X' \times Y',
+        \qquad
+        (\alpha \times \beta)(x,y)=(\alpha(x),\beta(y)).
+    \]
+    Since $\alpha$ and $\beta$ are bijections, $\alpha \times \beta$ is a bijection. Also,
+    \[
+        (\alpha \times \beta)(g(x,y))
+        =
+        (\alpha \times \beta)(gx,gy)
+        =
+        (\alpha(gx),\beta(gy))
+        =
+        (g\alpha(x),g\beta(y))
+        =
+        g(\alpha(x),\beta(y)).
+    \]
+    Therefore $\alpha \times \beta$ is a $G$-set isomorphism, so $X \times Y \cong X' \times Y'$ as $G$-sets. Hence $[X][Y]=[X \times Y]$ is well-defined.
 \end{solution}
 
 \begin{exercise}
