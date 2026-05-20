@@ -1023,6 +1023,65 @@ Let $G$ be a finite group, and let $S(G)$ be the set of isomorphism classes of f
 (cont.) Let $B(G)$ be the set obtained from $S(G)$ by adjoining formal additive inverses of isomorphism classes, in the same way that $\Z$ is obtained from $\N$ by adjoining the additive inverses of positive integers. (The additive identity here will be the isomorphism class of the empty set.) Show that the operations defined above on $S(G)$ extend to give a commutative ring structure on $B(G)$. This ring $B(G)$ is called the \emph{Burnside ring} of $G$.
 \end{exercise}
 \begin{solution}
+    By Exercise~\ref{ex:3.11}, the operations
+    \[
+        [X]+[Y]=[X\cup Y],
+        \qquad
+        [X][Y]=[X\times Y]
+    \]
+    are well-defined on isomorphism classes of finite $G$-sets. The set $B(G)$ is obtained by formally adjoining additive inverses, so every element of $B(G)$ may be represented as a formal difference
+    \[
+        [X]-[Y],
+    \]
+    where $X$ and $Y$ are finite $G$-sets.
+    Addition is then defined by collecting the positive and negative parts:
+    \[
+        ([X]-[Y])+([U]-[V])
+        =
+        [X\cup U]-[Y\cup V].
+    \]
+    This gives an abelian group under addition. The zero element is $[\varnothing]$, and the additive inverse of $[X]-[Y]$ is $[Y]-[X]$, since
+    \[
+        ([X]-[Y])+([Y]-[X])
+        =
+        [X\cup Y]-[Y\cup X]
+        =
+        [\varnothing]
+    \]
+    in the formal group obtained from $S(G)$.
+    We extend multiplication by the distributive rule:
+    \[
+        ([X]-[Y])([U]-[V])
+        =
+        [X\times U]-[X\times V]-[Y\times U]+[Y\times V].
+    \]
+    This agrees with the original product on $S(G)$ when $Y=V=\varnothing$.
+    The usual bijections
+    \[
+        X\cup Y \cong Y\cup X,
+        \qquad
+        (X\cup Y)\cup Z \cong X\cup (Y\cup Z)
+    \]
+    are $G$-set isomorphisms, so addition is commutative and associative. Similarly,
+    \[
+        X\times Y \cong Y\times X,
+        \qquad
+        (X\times Y)\times Z \cong X\times (Y\times Z)
+    \]
+    as $G$-sets, so multiplication is commutative and associative.
+    The multiplicative identity is the class $[\{*\}]$ of the one-point $G$-set, where $g*=*$ for every $g\in G$, because
+    \[
+        X\times \{*\}\cong X
+    \]
+    as $G$-sets.
+    Finally, Cartesian product distributes over disjoint union:
+    \[
+        X\times (Y\cup Z)
+        \cong
+        (X\times Y)\cup (X\times Z)
+    \]
+    as $G$-sets. Hence multiplication distributes over addition in $B(G)$.
+    Therefore the operations on $S(G)$ extend to make $B(G)$ a commutative ring.
 \end{solution}
 
 \begin{exercise}
@@ -1030,6 +1089,42 @@ Let $G$ be a finite group, and let $S(G)$ be the set of isomorphism classes of f
 (cont.) Show that any element of $B(G)$ can be written uniquely as a $\Z$-linear combination of isomorphism classes of transitive $G$-sets.
 \end{exercise}
 \begin{solution}
+    Let $\mathcal{T}$ be the set of isomorphism classes of transitive finite $G$-sets.
+    Let $X$ be a finite $G$-set. By Proposition~\ref{prop:3.3}, $X$ has a unique decomposition into orbits:
+    \[
+        X = O_1\cup \cdots \cup O_r.
+    \]
+    Each orbit $O_i$ is a transitive $G$-set, and hence
+    \[
+        [X]=[O_1]+\cdots+[O_r]
+    \]
+    in $S(G)$. If several of the orbits are isomorphic as $G$-sets, we collect their isomorphism classes together. Thus
+    \[
+        [X]=n_1[T_1]+\cdots+n_k[T_k],
+    \]
+    where the $T_i$ are pairwise non-isomorphic transitive $G$-sets and $n_i\in \N$ records the number of orbits of $X$ isomorphic to $T_i$.
+    This expression is unique in $S(G)$, because the coefficient $n_i$ is exactly the number of orbits of $X$ whose isomorphism class is $[T_i]$.
+    Therefore $S(G)$ is the free commutative monoid on the set $\mathcal{T}$.
+    Now let $\alpha\in B(G)$. By construction of $B(G)$, we may write
+    \[
+        \alpha=[X]-[Y]
+    \]
+    for finite $G$-sets $X$ and $Y$. Decompose both $X$ and $Y$ into transitive orbits:
+    \[
+        [X]=n_1[T_1]+\cdots+n_k[T_k],
+        \qquad
+        [Y]=m_1[T_1]+\cdots+m_k[T_k],
+    \]
+    after enlarging the list of $T_i$ if necessary. Then
+    \[
+        \alpha
+        =
+        [X]-[Y]
+        =
+        (n_1-m_1)[T_1]+\cdots+(n_k-m_k)[T_k].
+    \]
+    Hence every element of $B(G)$ is a $\Z$-linear combination of isomorphism classes of transitive $G$-sets.
+    Since $S(G)$ is the free commutative monoid on $\mathcal{T}$, adjoining formal additive inverses turns it into the free abelian group on $\mathcal{T}$. Thus an element of $B(G)$ is determined by its integer coefficient attached to each transitive isomorphism class. Therefore no non-trivial $\Z$-linear relation among distinct transitive isomorphism classes is possible, and the expression above is unique.
 \end{solution}
 
 \begin{exercise}
@@ -1037,6 +1132,66 @@ Let $G$ be a finite group, and let $S(G)$ be the set of isomorphism classes of f
 (cont.) Let $H \leq G$. Show that there is a unique ring homomorphism from $B(G)$ to $\Z$ which sends an isomorphism class $[X]$ to the number of elements of $X$ fixed by $H$.
 \end{exercise}
 \begin{solution}
+    For a finite $G$-set $X$, define
+    \[
+        X^H=\{x\in X\mid hx=x \text{ for every } h\in H\}.
+    \]
+    We first check that the rule $[X]\mapsto |X^H|$ is well-defined on isomorphism classes. Suppose that $X\cong Y$ as $G$-sets, and let
+    \[
+        f\colon X\to Y
+    \]
+    be a $G$-set isomorphism. If $x\in X^H$, then for every $h\in H$,
+    \[
+        hf(x)=f(hx)=f(x),
+    \]
+    so $f(x)\in Y^H$. Applying the same argument to $f^{-1}$ shows that $f$ restricts to a bijection $X^H\to Y^H$. Hence $|X^H|=|Y^H|$.
+    Define
+    \[
+        \varphi_H([X])=|X^H|
+    \]
+    on $S(G)$. This map respects addition, because
+    \[
+        (X\cup Y)^H=X^H\cup Y^H
+    \]
+    as a disjoint union. Hence
+    \[
+        \varphi_H([X]+[Y])
+        =
+        |(X\cup Y)^H|
+        =
+        |X^H|+|Y^H|
+        =
+        \varphi_H([X])+\varphi_H([Y]).
+    \]
+    It also respects multiplication, because an element $(x,y)\in X\times Y$ is fixed by every element of $H$ iff both $x$ and $y$ are fixed by every element of $H$. Thus
+    \[
+        (X\times Y)^H=X^H\times Y^H,
+    \]
+    and so
+    \[
+        \varphi_H([X][Y])
+        =
+        |(X\times Y)^H|
+        =
+        |X^H|\,|Y^H|
+        =
+        \varphi_H([X])\varphi_H([Y]).
+    \]
+    The multiplicative identity $[\{*\}]$ is sent to $1$, since the one point of $\{*\}$ is fixed by every element of $H$.
+    Since $B(G)$ is obtained from $S(G)$ by adjoining formal additive inverses, the additive map $\varphi_H$ extends uniquely to $B(G)$ by
+    \[
+        \varphi_H([X]-[Y])=|X^H|-|Y^H|.
+    \]
+    The multiplication calculation above shows that this extension is multiplicative, so it is a ring homomorphism $B(G)\to \Z$.
+    Finally, this homomorphism is unique. If $\psi\colon B(G)\to \Z$ is any ring homomorphism satisfying $\psi([X])=|X^H|$ for every finite $G$-set $X$, then for every formal difference $[X]-[Y]\in B(G)$,
+    \[
+        \psi([X]-[Y])
+        =
+        \psi([X])-\psi([Y])
+        =
+        |X^H|-|Y^H|.
+    \]
+    Thus $\psi$ must agree with $\varphi_H$ on every element of $B(G)$, proving uniqueness.
 \end{solution}
 
 \begin{exercise}
@@ -1044,6 +1199,95 @@ Let $G$ be a finite group, and let $S(G)$ be the set of isomorphism classes of f
 (cont.) Show that any non-zero homomorphism from $B(G)$ to $\Z$ arises from the construction in Exercise~\ref{ex:3.14} and that the intersection of the kernels of all such homomorphisms is zero.
 \end{exercise}
 \begin{solution}
+    By Proposition~\ref{prop:3.4}, every transitive finite $G$-set is isomorphic to $G/K$ for some subgroup $K\leq G$. Here $G/K$ means the set of left cosets of $K$ in $G$, with $G$ acting by left multiplication; it is not being used as a quotient group. Thus, by Exercise~\ref{ex:3.13}, the elements $[G/K]$, with $K$ running over representatives of conjugacy classes of subgroups, generate $B(G)$ additively.\\
+    Let $\psi\colon B(G)\to \Z$ be a non-zero ring homomorphism. Since $[G/G]$ is the multiplicative identity of $B(G)$, we have
+    \[
+        \psi([G/G])^2=\psi([G/G]^2)=\psi([G/G]).
+    \]
+    The only integers satisfying $n^2=n$ are $0$ and $1$. Hence $\psi([G/G])$ is either $0$ or $1$. If it were $0$, then for every $\alpha\in B(G)$,
+    \[
+        \psi(\alpha)=\psi([G/G]\alpha)=\psi([G/G])\psi(\alpha)=0,
+    \]
+    contrary to the assumption that $\psi$ is non-zero. Thus $\psi([G/G])=1$.
+    Choose a subgroup $H \leq G$ with $\psi([G/H])\neq 0$ and with $|H|$ minimal among all such subgroups. We claim that $\psi=\varphi_H$, where $\varphi_H$ is the fixed-point homomorphism from Exercise~\ref{ex:3.14}.
+    Let $K \leq G$. We decompose the product $G/H\times G/K$ into $G$-orbits using Proposition~\ref{prop:3.3}, where $G$ acts diagonally:
+    \[
+        u(aH,bK)=(uaH,ubK).
+    \]
+    Since the first coordinate of an element of $G/H\times G/K$ has the form $aH$, acting by $a^{-1}$ sends $(aH,bK)$ to
+    \[
+        (H,a^{-1}bK).
+    \]
+    Hence every $G$-orbit has a representative of the form $(H,gK)$. We now compute the stabilizer of this representative. An element $u\in G$ fixes $(H,gK)$ iff
+    \[
+        u(H,gK)=(H,gK),
+    \]
+    which is equivalent to the two conditions
+    \[
+        uH=H
+        \qquad\text{and}\qquad
+        ugK=gK.
+    \]
+    The first condition says $u\in H$. The second condition says $g^{-1}ug\in K$, or equivalently $u\in gKg^{-1}$. Therefore the stabilizer is
+    \[
+        H\cap gKg^{-1}.
+    \]
+    By Proposition~\ref{prop:3.4}, the orbit of $(H,gK)$ is therefore isomorphic to
+    \[
+        G/(H\cap gKg^{-1}).
+    \]
+    Combining the orbit decomposition from Proposition~\ref{prop:3.3} with the orbit-stabilizer identification from Proposition~\ref{prop:3.4}, we get
+    \[
+        [G/H][G/K]
+        =
+        \sum [G/(H\cap gKg^{-1})],
+    \]
+    where the sum runs over representatives of the $H$-orbits on $G/K$. Applying $\psi$ gives
+    \[
+        \psi([G/H])\psi([G/K])
+        =
+        \sum \psi([G/(H\cap gKg^{-1})]).
+    \]
+    If $H\cap gKg^{-1}$ is a proper subgroup of $H$, then its order is smaller than $|H|$, so its term is zero by the minimal choice of $H$. The only remaining terms occur when
+    \[
+        H\cap gKg^{-1}=H,
+    \]
+    equivalently when $H \leq gKg^{-1}$. This is exactly the condition that the coset $gK$ is fixed by every element of $H$. Indeed, $gK$ is fixed by $H$ iff for every $h\in H$,
+    \[
+        hgK=gK.
+    \]
+    Multiplying on the left by $g^{-1}$, this is equivalent to
+    \[
+        g^{-1}hgK=K,
+    \]
+    which holds iff $g^{-1}hg\in K$. Thus $gK$ is fixed by every element of $H$ iff $g^{-1}Hg\leq K$, equivalently iff $H\leq gKg^{-1}$.
+    Hence the number of remaining terms is $|(G/K)^H|$, and the equality above becomes
+    \[
+        \psi([G/H])\psi([G/K])
+        =
+        |(G/K)^H|\psi([G/H]).
+    \]
+    Since $\psi([G/H])\neq 0$, we may cancel it in $\Z$, obtaining
+    \[
+        \psi([G/K])=|(G/K)^H|=\varphi_H([G/K]).
+    \]
+    Since the classes $[G/K]$ generate $B(G)$ additively, this proves that $\psi=\varphi_H$. Thus every non-zero homomorphism $B(G)\to \Z$ arises from the construction in Exercise~\ref{ex:3.14}.\\
+    It remains to prove that the intersection of the kernels is zero. Let
+    \[
+        \alpha=\sum_K a_K[G/K]\in B(G),
+    \]
+    where $K$ runs over one representative from each conjugacy class of subgroups of $G$. Suppose that $\alpha\neq 0$. Choose $K$ with $a_K\neq 0$ and with $|K|$ maximal among all subgroups appearing with non-zero coefficient.
+    We evaluate at the fixed-point homomorphism $\varphi_K$. For another subgroup $L$, the set $(G/L)^K$ is non-empty iff some coset $gL$ is fixed by $K$, which is equivalent to
+    \[
+        g^{-1}Kg \leq L.
+    \]
+    Thus, if $(G/L)^K$ is non-empty, then $|K|\leq |L|$. If also $a_L\neq 0$, maximality of $|K|$ gives $|L|\leq |K|$, and hence $|L|=|K|$. Therefore $g^{-1}Kg=L$, so $L$ is conjugate to $K$. Since we chose one representative from each conjugacy class, this forces $L=K$.
+    Hence all non-zero coefficient terms except the $K$-term make no contribution to $\varphi_K(\alpha)$, and
+    \[
+        \varphi_K(\alpha)=a_K |(G/K)^K|.
+    \]
+    The coset $K\in G/K$ is fixed by every element of $K$, so $|(G/K)^K|>0$. Since $a_K\neq 0$, we have $\varphi_K(\alpha)\neq 0$. Therefore $\alpha$ is not in the kernel of $\varphi_K$.
+    Thus no non-zero element of $B(G)$ lies in the kernels of all fixed-point homomorphisms, and so the intersection of all these kernels is zero.
 \end{solution}
 
 An element $e$ of a ring $R$ is called an \emph{idempotent} if $e^2 = e$.
@@ -1053,6 +1297,64 @@ An element $e$ of a ring $R$ is called an \emph{idempotent} if $e^2 = e$.
 (cont.) Show that if $G$ has no self-normalizing proper subgroup, then $B(G)$ has no idempotents other than the additive and multiplicative identities. (A subgroup $H$ of $G$ is called \emph{self-normalizing} if $N_G(H) = H$. We shall see in Section~11 that there is an important class of groups, namely the nilpotent groups, that have no self-normalizing proper subgroups.)
 \end{exercise}
 \begin{solution}
+    Let $e\in B(G)$ be an idempotent, so $e^2=e$. For every subgroup $H\leq G$, let
+    \[
+        \varphi_H\colon B(G)\to \Z
+    \]
+    be the fixed-point homomorphism defined by
+    \[
+        \varphi_H([X])=|X^H|
+    \]
+    for every finite $G$-set $X$. Since $\varphi_H$ is a ring homomorphism,
+    \[
+        \varphi_H(e)^2=\varphi_H(e^2)=\varphi_H(e).
+    \]
+    Hence $\varphi_H(e)$ is an integer satisfying $n^2=n$, so
+    \[
+        \varphi_H(e)\in\{0,1\}.
+    \]
+    We next show that these values do not change when we enlarge a subgroup inside its normalizer. Suppose that
+    \[
+        H<K\leq N_G(H)
+    \]
+    and that $|K:H|=p$ is prime. Since $K\leq N_G(H)$, the quotient group $K/H$ acts on $X^H$ for every finite $G$-set $X$. The fixed points of this action are exactly $X^K$. Since $K/H$ has prime order $p$, Corollary~\ref{cor:3.5} shows that each orbit of $K/H$ on $X^H$ has size either $1$ or $p$. The orbits of size $1$ are precisely the points of $X^K$, while every other orbit has size $p$. Hence, for some integer $r\geq 0$,
+    \[
+        |X^H|=|X^K|+rp.
+    \]
+    Therefore
+    \[
+        |X^H|\equiv |X^K|\pmod p.
+    \]
+    By additivity, the same congruence holds for every element of $B(G)$; in particular,
+    \[
+        \varphi_H(e)\equiv \varphi_K(e)\pmod p.
+    \]
+    Since both $\varphi_H(e)$ and $\varphi_K(e)$ are either $0$ or $1$, this congruence forces
+    \[
+        \varphi_H(e)=\varphi_K(e).
+    \]
+    Now let $H<G$ be a proper subgroup. By hypothesis, $H$ is not self-normalizing, so
+    \[
+        H<N_G(H).
+    \]
+    Thus $N_G(H)/H$ is a non-trivial finite group. Choose a subgroup $K/H$ of prime order in $N_G(H)/H$. Then
+    \[
+        H<K\leq N_G(H),
+    \]
+    and the previous paragraph gives $\varphi_H(e)=\varphi_K(e)$. If $K<G$, we repeat the same argument with $K$ in place of $H$. Since $G$ is finite, this process must eventually reach $G$. Hence
+    \[
+        \varphi_H(e)=\varphi_G(e)
+    \]
+    for every subgroup $H\leq G$.\\
+    Therefore all fixed-point homomorphisms take the same value on $e$, and this common value is either $0$ or $1$. If it is $0$, then $e$ lies in the kernel of every $\varphi_H$, so Exercise~\ref{ex:3.15} gives $e=0$. If it is $1$, then for every $H\leq G$,
+    \[
+        \varphi_H(e-[G/G])=\varphi_H(e)-\varphi_H([G/G])=1-1=0,
+    \]
+    since $G/G$ is the one-point $G$-set. Again by Exercise~\ref{ex:3.15}, we get
+    \[
+        e-[G/G]=0.
+    \]
+    Thus $e=[G/G]$, the multiplicative identity of $B(G)$. Therefore the only idempotents in $B(G)$ are $0$ and $1$.
 \end{solution}
 
 \end{document}
