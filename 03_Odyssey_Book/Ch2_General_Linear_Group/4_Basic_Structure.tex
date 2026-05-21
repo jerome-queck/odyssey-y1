@@ -16,10 +16,39 @@
 \label{prop:4.1}
 Let $E$ be a finite abelian group of exponent $p$, where $p$ is prime. Then $\mathrm{Aut}(E) \cong \mathrm{GL}(n, p)$, where $n \in \N$ is such that $|E| = p^n$.
 \end{proposition}
-
 (Recall that the exponent of a group is the least common multiple of the orders of its elements.)
+\begin{proof}
+Let $K = \Z/p\Z$. We give $E$ the structure of a $K$-vector space. Since $E$ is abelian, we may define vector addition by
+\[
+    x + y = xy
+\]
+for $x, y \in E$, with the identity element of $E$ serving as the zero vector. If $a \in K$, choose an integer representative $r$ of $a$, and define scalar multiplication by
+\[
+    a x = x^r.
+\]
+This is well-defined: if $r \equiv s \pmod p$, then $r - s = mp$ for some $m \in \Z$, and since $E$ has exponent $p$ we have $x^{r-s} = (x^p)^m = e$, so $x^r = x^s$.
 
-\begin{proof}\end{proof}
+The vector-space axioms follow from the group law in $E$. For instance, if $a \in K$ is represented by $r$, then
+\[
+    a(x+y) = (xy)^r = x^r y^r = ax + ay,
+\]
+where we use that $E$ is abelian. The remaining compatibility laws are checked similarly from the identities $x^{r+s} = x^r x^s$, $x^{rs} = (x^s)^r$, and $x^1=x$. Thus $E$ is a vector space over $K$.
+
+Now every group endomorphism of $E$ is automatically $K$-linear. Indeed, if $\varphi \in \End(E)$ and $a \in K$ is represented by $r$, then
+\[
+    \varphi(x+y) = \varphi(xy) = \varphi(x)\varphi(y) = \varphi(x)+\varphi(y)
+\]
+and
+\[
+    \varphi(ax) = \varphi(x^r) = \varphi(x)^r = a\varphi(x).
+\]
+Conversely, every $K$-linear transformation of $E$ is a homomorphism of the underlying abelian group, because it preserves vector addition, which is precisely the group operation on $E$. Hence the automorphisms of $E$ as a group are exactly the invertible $K$-linear transformations of $E$.\\
+If $\dim_K E = n$, then $|E| = |K|^n = p^n$. Therefore
+\[
+    \Aut(E) \cong \GL(E) \cong \GL(n,p),
+\]
+as required.
+\end{proof}
 
 \subsubsection*{Elementary abelian \texorpdfstring{$p$}{p}-groups}
 \begin{itemize}
@@ -37,7 +66,30 @@ Let $n \in \N$, and let $q$ be a prime power. Then
 \]
 \end{proposition}
 
-\begin{proof}\end{proof}
+\begin{proof}
+Let $F$ be the field of order $q$. An $n \times n$ matrix over $F$ is invertible if and only if its rows form a linearly independent subset of $F^n$. We therefore count the number of ways to choose the rows of such a matrix.
+
+The first row may be any non-zero vector of $F^n$, so there are $q^n - 1$ choices. Suppose now that $1 < k \leq n$ and that the first $k-1$ rows have already been chosen to be linearly independent. Their span is a $(k-1)$-dimensional subspace of $F^n$, and hence contains $q^{k-1}$ vectors. The $k$th row must avoid this span, and so there are
+\[
+    q^n - q^{k-1}
+\]
+choices for it.
+
+Multiplying these independent choices gives
+\[
+    |\mathrm{GL}(n,q)| = \prod_{k=1}^n (q^n - q^{k-1}).
+\]
+Finally, since
+\[
+    q^n - q^{k-1} = q^{k-1}(q^{n-k+1}-1),
+\]
+we obtain
+\[
+    \prod_{k=1}^n (q^n - q^{k-1})
+    = q^{0+1+\cdots+(n-1)}(q^n-1)(q^{n-1}-1)\cdots(q-1)
+    = q^{\frac{n(n-1)}{2}}(q^n-1)\cdots(q-1).
+\]
+\end{proof}
 
 \subsubsection*{Fixing notation for the section}
 \begin{itemize}
@@ -52,8 +104,24 @@ Let $n \in \N$, and let $q$ be a prime power. Then
 The set $B$ consisting of all invertible upper triangular matrices is a subgroup of $G$, called the \emph{standard Borel subgroup}.
 \end{proposition}
 
-\begin{proof}\end{proof}
-
+\begin{proof}
+The identity matrix lies in $B$. If $M=(m_{ij})$ and $N=(n_{ij})$ are upper triangular, then for $i>j$ the $(i,j)$-entry of $MN$ is
+\[
+    \sum_{k=1}^n m_{ik}n_{kj}.
+\]
+If $k<i$, then $m_{ik}=0$, while if $k\geq i>j$, then $n_{kj}=0$. Hence every term in the sum is zero, so $MN$ is again upper triangular. Since $M$ and $N$ are invertible, $MN$ is also invertible; hence $MN \in B$. \\
+It remains to show that inverses of elements of $B$ again lie in $B$. Let $M=(m_{ij}) \in B$, and let $N=(n_{ij})=M^{-1}$. Since $M$ is upper triangular, its determinant is the product of its diagonal entries. As $M$ is invertible, this determinant is non-zero, and hence each $m_{ii}$ is non-zero. \\
+We show that $n_{ij}=0$ whenever $i>j$. Since $MN=I$, for each $i$ and $j$ we have
+\[
+    \sum_{k=1}^n m_{ik}n_{kj}=\delta_{ij}.
+\]
+Fix $j$. Taking $i=n$ and $j<n$ gives $m_{nn}n_{nj}=0$, and hence $n_{nj}=0$. Now argue upward from the bottom row. Suppose that for some $i$ we already know $n_{kj}=0$ whenever $k>i$ and $j<k$. If $j<i$, then the $(i,j)$-entry of $MN=I$ gives
+\[
+    0=\sum_{k=1}^n m_{ik}n_{kj}=m_{ii}n_{ij}+\sum_{k=i+1}^n m_{ik}n_{kj}.
+\]
+The sum on the right is zero by the induction hypothesis, so $m_{ii}n_{ij}=0$. Since $m_{ii}\neq 0$, it follows that $n_{ij}=0$. Thus $N$ is upper triangular. \\
+Therefore $B$ contains the identity, is closed under multiplication, and is closed under inverses. Hence $B \leq G$.
+\end{proof}
 More generally, a \emph{Borel subgroup} of $G$ is any conjugate of the standard Borel subgroup $B$.
 
 \subsubsection*{Permutation matrices}
