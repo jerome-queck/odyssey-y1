@@ -136,7 +136,22 @@ More generally, a \emph{Borel subgroup} of $G$ is any conjugate of the standard 
 The set $W$ consisting of all permutation matrices is a subgroup of $G$, called the \emph{Weyl subgroup}.
 \end{proposition}
 
-\begin{proof}\end{proof}
+\begin{proof}
+We already know that the identity matrix lies in $W$, and that the inverse of a permutation matrix is again a permutation matrix. It remains to check closure under multiplication. Let $M=(m_{ij})$ and $N=(n_{ij})$ be permutation matrices, and set $P=MN=(p_{ij})$. Then
+\[
+    p_{ij}=\sum_{k=1}^{n}m_{ik}n_{kj}.
+\]
+Fix a row $i$. Since $M$ is a permutation matrix, there is a unique $k_i$ such that $m_{ik_i}=1$, and all other entries in row $i$ of $M$ are zero. Hence
+\[
+    p_{ij}=n_{k_i j}
+\]
+for every $j$. The $k_i$th row of $N$ has exactly one non-zero entry, and that entry is $1$, so the $i$th row of $P$ has exactly one non-zero entry, also equal to $1$.\\
+Similarly, fix a column $j$. Since $N$ is a permutation matrix, there is a unique $l_j$ such that $n_{l_jj}=1$, and all other entries in column $j$ of $N$ are zero. Hence
+\[
+    p_{ij}=m_{il_j}
+\]
+for every $i$. The $l_j$th column of $M$ has exactly one non-zero entry, and that entry is $1$, so the $j$th column of $P$ has exactly one non-zero entry, also equal to $1$. Thus $P$ is a permutation matrix. Therefore $W$ is closed under multiplication, and so $W \leq G$.
+\end{proof}
 
 \subsubsection*{Action on the standard basis}
 \begin{itemize}
@@ -149,7 +164,25 @@ The set $W$ consisting of all permutation matrices is a subgroup of $G$, called 
 $W \cong S_n$.
 \end{proposition}
 
-\begin{proof}\end{proof}
+\begin{proof}
+Let $X=\{1,\ldots,n\}$. For each $w \in W$ and each $i \in X$, the $i$th column of $w$ is some standard basis vector $\mathbf{v}_k$. Define
+\[
+    \varphi(w)(i)=k
+\]
+where $w\mathbf{v}_i=\mathbf{v}_k$. Since $w$ is a permutation matrix, each standard basis vector appears exactly once among the columns of $w$. Hence $\varphi(w)$ is a bijection $X \to X$, so $\varphi(w) \in S_n$. This gives a map $\varphi \colon W \to S_n$.\\
+If $w,u \in W$, then for each $i \in X$ we have
+\[
+    u\mathbf{v}_i=\mathbf{v}_{\varphi(u)(i)}
+\]
+and therefore
+\[
+    wu\mathbf{v}_i
+    =w\mathbf{v}_{\varphi(u)(i)}
+    =\mathbf{v}_{\varphi(w)(\varphi(u)(i))}.
+\]
+Thus $\varphi(wu)=\varphi(w)\circ\varphi(u)$, and $\varphi$ is a homomorphism.\\
+If $\varphi(w)=\varphi(u)$, then $w\mathbf{v}_i=u\mathbf{v}_i$ for every $i$, so $w$ and $u$ have the same columns. Hence $w=u$, and $\varphi$ is injective. Conversely, if $\sigma \in S_n$, let $w_\sigma$ be the matrix whose $i$th column is $\mathbf{v}_{\sigma(i)}$ for each $i$. Then $w_\sigma$ is a permutation matrix and $\varphi(w_\sigma)=\sigma$, so $\varphi$ is surjective. Therefore $W \cong S_n$.
+\end{proof}
 
 \subsubsection*{Permutation matrices as permutations}
 \begin{itemize}
@@ -186,7 +219,51 @@ Let $\alpha, \beta \in F$, and let $i$ and $j$ be distinct.
 \end{enumerate}
 \end{lemma}
 
-\begin{proof}\end{proof}
+\begin{proof}
+For this proof, write $E_{rs}$ for the matrix with $1$ in the $(r,s)$-entry and $0$ everywhere else. Thus
+\[
+    X_{ij}(\alpha)=I+\alpha E_{ij}.
+\]
+For (i), if $i<j$, then $X_{ij}(\alpha)$ is upper triangular with every diagonal entry equal to $1$; if $i>j$, then it is lower triangular with every diagonal entry equal to $1$. In either case its determinant is $1$, and hence $X_{ij}(\alpha) \in G$.\\
+For (ii), assume $\alpha\neq 0$. If $i<j$, then the only possible non-zero off-diagonal entry of $X_{ij}(\alpha)$ lies above the main diagonal, so $X_{ij}(\alpha) \in B$. If $i>j$, then the $(i,j)$-entry lies below the main diagonal and is non-zero, so $X_{ij}(\alpha)$ is not upper triangular. Hence $X_{ij}(\alpha) \in B$ iff $i<j$.\\
+For (iii), since $i\neq j$ we have $E_{ij}^2=0$. Therefore
+\[
+    X_{ij}(\alpha)X_{ij}(\beta)
+    =(I+\alpha E_{ij})(I+\beta E_{ij})
+    =I+(\alpha+\beta)E_{ij}
+    =X_{ij}(\alpha+\beta).
+\]
+Taking $\beta=-\alpha$ gives $X_{ij}(\alpha)X_{ij}(-\alpha)=I$, and hence $X_{ij}(\alpha)^{-1}=X_{ij}(-\alpha)$.\\
+For (iv), suppose that $i,j,k$ are distinct. Using the convention $[x,y]=xyx^{-1}y^{-1}$ and part (iii), we compute
+\[
+\begin{aligned}
+    [X_{ij}(\alpha),X_{jk}(\beta)]
+    &=(I+\alpha E_{ij})(I+\beta E_{jk})(I-\alpha E_{ij})(I-\beta E_{jk})\\
+    &=(I+\alpha E_{ij}+\beta E_{jk}+\alpha\beta E_{ik})(I-\alpha E_{ij})(I-\beta E_{jk})\\
+    &=(I+\beta E_{jk}+\alpha\beta E_{ik})(I-\beta E_{jk})\\
+    &=I+\alpha\beta E_{ik}\\
+    &=X_{ik}(\alpha\beta).
+\end{aligned}
+\]
+Here we used $E_{ij}E_{jk}=E_{ik}$, together with the fact that the other products of these matrix units which occur in the calculation vanish because $i,j,k$ are distinct.\\
+For (v), let $w\in W$. Since we are regarding $w$ as the corresponding permutation of $\{1,\ldots,n\}$, we have $w\mathbf{v}_r=\mathbf{v}_{w(r)}$ for every $r$. If $r=w(j)$, then
+\[
+    wX_{ij}(\alpha)w^{-1}\mathbf{v}_r
+    =wX_{ij}(\alpha)\mathbf{v}_j
+    =w(\mathbf{v}_j+\alpha\mathbf{v}_i)
+    =\mathbf{v}_{w(j)}+\alpha\mathbf{v}_{w(i)}.
+\]
+If $r\neq w(j)$, then $w^{-1}(r)\neq j$, so $X_{ij}(\alpha)$ fixes $\mathbf{v}_{w^{-1}(r)}$, and hence $wX_{ij}(\alpha)w^{-1}$ fixes $\mathbf{v}_r$. Thus $wX_{ij}(\alpha)w^{-1}$ sends $\mathbf{v}_{w(j)}$ to $\mathbf{v}_{w(j)}+\alpha\mathbf{v}_{w(i)}$ and fixes all other standard basis vectors. Therefore
+\[
+    wX_{ij}(\alpha)w^{-1}=X_{w(i)\,w(j)}(\alpha).
+\]
+For (vi), the $j$th column of $X_{ij}(\alpha)$ is $\mathbf{v}_j+\alpha\mathbf{v}_i$, while its $k$th column is $\mathbf{v}_k$ whenever $k\neq j$. Since multiplying $\mathbf{v}_k$ on the left by a matrix gives the $k$th column of that matrix, the asserted action on the standard basis follows.\\
+For (vii), let $M=(m_{rs})\in\mathcal{M}_n(F)$, and write $X_{ij}(\alpha)M=(p_{rs})$. Then
+\[
+    p_{rs}=\sum_{t=1}^{n}(X_{ij}(\alpha))_{rt}m_{ts}.
+\]
+If $r=i$, this gives $p_{is}=m_{is}+\alpha m_{js}$ for every $s$, so the $i$th row of $X_{ij}(\alpha)M$ is the $i$th row of $M$ plus $\alpha$ times the $j$th row of $M$. If $r\neq i$, then the $r$th row of $X_{ij}(\alpha)$ is the $r$th row of the identity matrix, so $p_{rs}=m_{rs}$ for every $s$. Hence every row other than the $i$th row is unchanged.
+\end{proof}
 
 \subsubsection*{Root subgroups}
 \begin{itemize}
@@ -200,15 +277,65 @@ Let $\alpha, \beta \in F$, and let $i$ and $j$ be distinct.
 Let $M \in G$. Then there is a product $b$ of upper triangular transvections such that the following property holds: For each $1 \leq i \leq n$, $bM$ has exactly one row, say the $k_i$th row, whose entries in the first $i - 1$ columns are zero and which has a non-zero entry in the $i$th column.
 \end{lemma}
 
-\begin{proof}\end{proof}
+\begin{proof}
+Let $M=(m_{ij})\in G$. Since $M$ is invertible, its first column is not the zero column. Choose $k_1$ maximal such that $m_{k_1,1}\neq 0$; equivalently, $m_{i,1}=0$ for all $i>k_1$. For example, if $n=5$ and $k_1=3$, then $M$ has the schematic form
+\[
+    M=
+    \begin{pmatrix}
+        \ast & \ast & \ast & \ast & \ast\\
+        \ast & \ast & \ast & \ast & \ast\\
+        \ast & \ast & \ast & \ast & \ast\\
+        0    & \ast & \ast & \ast & \ast\\
+        0    & \ast & \ast & \ast & \ast
+    \end{pmatrix},
+\]
+where the symbol $\ast$ denotes an entry whose value is not relevant to the argument.\\
+We now premultiply by transvections of the form $X_{i k_1}(\alpha)$ with $i<k_1$, choosing $\alpha=-m_{i,1}m_{k_1,1}^{-1}$ in order to clear the $(i,1)$-entry. By Lemma~\ref{lem:4.6}(vii), this replaces row $i$ by $(\text{row }i)+\alpha(\text{row }k_1)$; since row $k_1$ has first entry $m_{k_1,1}$, the new first entry in row $i$ is $0$. Each such transvection is upper triangular because $i<k_1$. Thus we obtain a matrix $M'=(m'_{ij})$ whose only non-zero entry in the first column lies in row $k_1$. In the example above,
+\[
+    M'=
+    \begin{pmatrix}
+        0    & \ast & \ast & \ast & \ast\\
+        0    & \ast & \ast & \ast & \ast\\
+        \ast & \ast & \ast & \ast & \ast\\
+        0    & \ast & \ast & \ast & \ast\\
+        0    & \ast & \ast & \ast & \ast
+    \end{pmatrix}.
+\]
+All transvections used so far lie in $B$, and the resulting matrix is still invertible.\\
+Since $M'$ is invertible, its first two columns are linearly independent. Therefore the second column of $M'$ has a non-zero entry in some row other than the $k_1$th row. Choose $k_2\neq k_1$ maximal such that $m'_{k_2,2}\neq 0$ and $m'_{i,2}=0$ for all $i>k_2$ with $i\neq k_1$. We premultiply $M'$ by transvections of the form $X_{i k_2}(\alpha)$, where $i<k_2$ and $i\neq k_1$, so as to clear all entries in the second column except those in rows $k_1$ and $k_2$. These transvections are again upper triangular, and they do not disturb the first column because row $k_2$ has zero first entry.\\
+We continue in this way. Suppose that the rows $k_1,\ldots,k_{r-1}$ have already been chosen, and that after the preceding operations the first $r-1$ columns have the required shape. Since the matrix is still invertible, the first $r$ columns are linearly independent, so the $r$th column must have a non-zero entry in some row not among $k_1,\ldots,k_{r-1}$. Choose $k_r$ maximal among such rows. Then premultiply by transvections $X_{i k_r}(\alpha)$ with $i<k_r$ and $i\notin\{k_1,\ldots,k_{r-1}\}$ to clear the other entries in the $r$th column among the rows whose first $r-1$ entries are zero. Because row $k_r$ has zero entries in the first $r-1$ columns, these operations preserve all earlier columns.\\
+After $n$ stages we obtain a matrix $bM$, where $b$ is a product of upper triangular transvections, with the desired property. For example, if $n=5$ and
+\[
+    (k_1,k_2,k_3,k_4,k_5)=(3,5,4,1,2),
+\]
+then the final shape is
+\[
+    bM=
+    \begin{pmatrix}
+        0    & 0    & 0    & \ast & \ast\\
+        0    & 0    & 0    & 0    & \ast\\
+        \ast & \ast & \ast & \ast & \ast\\
+        0    & 0    & \ast & \ast & \ast\\
+        0    & \ast & \ast & \ast & \ast
+    \end{pmatrix}.
+\]
+Of course, the numbers $k_1,\ldots,k_n$ are just $1,\ldots,n$ in some order. Thus for each $1\leq i\leq n$, the matrix $bM$ has exactly one row, namely row $k_i$, whose entries in the first $i-1$ columns are zero and whose entry in the $i$th column is non-zero.
+\end{proof}
 
 \begin{namedtheorem}[Bruhat Decomposition Theorem]
 \label{thm:bruhat}
 $G = BWB$.
 \end{namedtheorem}
 
-\begin{proof}\end{proof}
-
+\begin{proof}
+Let $M\in G$. By Lemma~\ref{lem:4.7}, there is a product $b$ of upper triangular transvections such that, for each $1\leq i\leq n$, the matrix $bM$ has exactly one row, say the $k_i$th row, whose entries in the first $i-1$ columns are zero and whose entry in the $i$th column is non-zero. Since each upper triangular transvection lies in $B$, and since $B\leq G$ by Proposition~\ref{prop:4.3}, we have $b\in B$.\\
+Let $w\in W$ be the permutation matrix whose $k_i$th column is $\mathbf{v}_i$ for each $i$. Equivalently, $w(k_i)=i$. By the row-permutation observation above, the $i$th row of $wbM$ is equal to the $k_i$th row of $bM$. Hence the entries of the $i$th row of $wbM$ in columns $1,\ldots,i-1$ are all zero. This holds for every $i$, so $wbM$ is upper triangular. Since $w$, $b$, and $M$ are invertible, $wbM$ is also invertible; therefore $wbM\in B$.\\
+It follows that
+\[
+    M=b^{-1}w^{-1}(wbM)\in BWB.
+\]
+Thus $G\subseteq BWB$. The reverse inclusion is immediate from $B\leq G$ and $W\leq G$, so $G=BWB$.
+\end{proof}
 We have now expressed $G$ as a union of the double cosets $BwB$, as $w$ ranges through $W$. We will now show that this union is disjoint. Again we first need a lemma.
 
 \begin{lemma}
@@ -216,23 +343,70 @@ We have now expressed $G$ as a union of the double cosets $BwB$, as $w$ ranges t
 If $w_1, w_2 \in W$ and $b \in B$ are such that $w_1 b w_2 \in B$, then $w_2 = w_1^{-1}$.
 \end{lemma}
 
-\begin{proof}\end{proof}
+\begin{proof}
+Fix $j\in\{1,\ldots,n\}$. Choose $i$ such that $w_1(i)=j$, and then choose $k$ such that $w_2(k)=i$. With our convention for permutation matrices, $w_1(i)=j$ means that left multiplication by $w_1$ sends row $i$ to row $j$. Thus the $j$th row of $w_1b$ is the $i$th row of $b$. Also, since $w_2(k)=i$, the $k$th column of $(w_1b)w_2$ is the $i$th column of $w_1b$. Therefore the $(j,k)$-entry of $w_1bw_2$ is the $(i,i)$-entry of $b$.\\
+Since $b\in B$, its diagonal entries are non-zero, so this $(j,k)$-entry of $w_1bw_2$ is non-zero. But $w_1bw_2\in B$ is upper triangular, and hence a non-zero $(j,k)$-entry can occur only when $j\leq k$. By construction,
+\[
+    k=w_2^{-1}(i)=w_2^{-1}w_1^{-1}(j).
+\]
+Thus the permutation $\sigma=w_2^{-1}w_1^{-1}$ satisfies $\sigma(j)\geq j$ for every $j$. Summing these inequalities over all $j$ gives
+\[
+    \sum_{j=1}^n \sigma(j)\geq \sum_{j=1}^n j.
+\]
+The two sums are equal because $\sigma$ is a permutation of $\{1,\ldots,n\}$, so every inequality $\sigma(j)\geq j$ must in fact be an equality. Hence $\sigma(j)=j$ for every $j$, and so $\sigma=1$. Therefore $w_2^{-1}w_1^{-1}=1$, which is equivalent to $w_2=w_1^{-1}$.
+\end{proof}
 
 \begin{corollary}
 \label{cor:4.9}
 If $w$ and $w'$ are distinct elements of $W$, then $BwB$ and $Bw'B$ are disjoint; consequently, $G$ is the disjoint union as $w$ runs through $W$ of the $n!$ double cosets $BwB$.
 \end{corollary}
 
-\begin{proof}\end{proof}
-
+\begin{proof}
+Suppose first that $BwB\cap Bw'B$ is non-empty. Since double cosets are either equal or disjoint, this gives $BwB=Bw'B$. In particular, $w'\in BwB$, so there exist $b,b'\in B$ such that
+\[
+    w'=bwb'.
+\]
+Rearranging, we obtain
+\[
+    w^{-1}b^{-1}w'=b'\in B.
+\]
+Applying Lemma~\ref{lem:4.8} with $w_1=w^{-1}$, $b=b^{-1}$, and $w_2=w'$, we get
+\[
+    w'=(w^{-1})^{-1}=w.
+\]
+Thus if $w\neq w'$, then $BwB$ and $Bw'B$ are disjoint.\\
+By \nameref{thm:bruhat}, every element of $G$ lies in $BWB$, so
+\[
+    G=\bigcup_{w\in W} BwB.
+\]
+The disjointness just proved shows that this is a disjoint union. Finally, by Proposition~\ref{prop:4.5}, we have $W\cong S_n$, and hence $|W|=n!$. Therefore $G$ is the disjoint union of the $n!$ double cosets $BwB$.
+\end{proof}
 The following somewhat technical observation, which we shall need in the next section, is an immediate consequence of what we have done.
-
 \begin{corollary}
 \label{cor:4.10}
 Let $M \in G$, and let $w$ be the unique element of $W$ such that $M \in BwB$. Then $w$ sends $\mathbf{v}_i$ to $\mathbf{v}_{k_i}$ for each $i$, where the numbers $k_i$ are as defined in the statement of Lemma~\ref{lem:4.7}. In particular, if $M$ sends $\mathbf{v}_1$ to $\alpha_1 \mathbf{v}_1 + \cdots + \alpha_k \mathbf{v}_k$ where $\alpha_k \neq 0$, then $w$ sends $\mathbf{v}_1$ to $\mathbf{v}_k$.
 \end{corollary}
 
-\begin{proof}\end{proof}
+\begin{proof}
+In the proof of \nameref{thm:bruhat}, Lemma~\ref{lem:4.7} gives row indices $k_1,\ldots,k_n$ and an element $b\in B$ such that $bM$ has the prescribed row-echelon form. The permutation matrix used there is the matrix $p\in W$ satisfying
+\[
+    p(k_i)=i
+\]
+for every $i$, or equivalently, the $k_i$th column of $p$ is $\mathbf{v}_i$. With this choice, left multiplication by $p$ moves row $k_i$ of $bM$ to row $i$, and hence $pbM\in B$. It follows that
+\[
+    M\in Bp^{-1}B.
+\]
+By the uniqueness of the Bruhat double coset from Corollary~\ref{cor:4.9}, the unique element $w\in W$ such that $M\in BwB$ is $w=p^{-1}$. Therefore
+\[
+    w(i)=p^{-1}(i)=k_i,
+\]
+and so $w\mathbf{v}_i=\mathbf{v}_{k_i}$ for each $i$.\\
+For the final assertion, $M\mathbf{v}_1$ is the first column of $M$. If
+\[
+    M\mathbf{v}_1=\alpha_1\mathbf{v}_1+\cdots+\alpha_k\mathbf{v}_k
+\]
+with $\alpha_k\neq 0$ and no later terms, then $k$ is precisely the lowest row in which the first column of $M$ has a non-zero entry. Thus the index selected in Lemma~\ref{lem:4.7} for the first column is $k_1=k$, and the result above gives $w\mathbf{v}_1=\mathbf{v}_k$.
+\end{proof}
 
 We close this section with a result giving a smaller generating set for $G$ than that given by the Bruhat decomposition. Once again, we start with a lemma.
 
@@ -241,14 +415,41 @@ We close this section with a result giving a smaller generating set for $G$ than
 Let $b \in B$. Then there exists a product $t$ of transvections such that $tb$ is a diagonal matrix having the same main diagonal entries as $b$.
 \end{lemma}
 
-\begin{proof}\end{proof}
+\begin{proof}
+Write $b=(b_{ij})$. Since $b\in B$, it is upper triangular and invertible, so each diagonal entry $b_{ii}$ is non-zero. We shall clear the entries above the main diagonal by premultiplying by transvections, beginning at the far right. This direction is important: operations used to clear column $j$ will add multiples of row $j$ to rows above it, and if we have already treated columns to the right of $j$, then row $j$ has zero entries in those right-hand columns except at its own diagonal position where appropriate, so the lower-right block is not disturbed.\\
+Start with column $n$. For each $i<n$, premultiply by
+\[
+    X_{in}(-b_{in}b_{nn}^{-1}).
+\]
+By Lemma~\ref{lem:4.6}(vii), this adds $-b_{in}b_{nn}^{-1}$ times row $n$ to row $i$, and therefore clears the $(i,n)$-entry. These operations do not change any diagonal entry: row $n$ has zeros in columns $1,\ldots,n-1$, so adding a multiple of row $n$ to row $i<n$ does not affect the $(i,i)$-entry, and row $n$ itself is unchanged.\\
+Now move to column $n-1$. Using transvections of the form $X_{i,n-1}(\alpha)$ with $i<n-1$, and choosing $\alpha$ so as to cancel the current $(i,n-1)$-entry, we clear all entries above the $(n-1,n-1)$-entry. These operations do not alter the diagonal entries, and they do not reintroduce entries in column $n$, because after the previous stage row $n-1$ has zero in column $n$.\\
+Continuing leftward in this way, at the stage for column $j$ we use transvections $X_{ij}(\alpha)$ with $i<j$ to clear the entries above the $(j,j)$-entry. The lower-right block formed by columns and rows $j+1,\ldots,n$ has already been put in diagonal form, and it is not disturbed because row $j$ has zeros in those columns. The diagonal entries are preserved throughout.\\
+Let $t$ be the product of all the transvections used, in the order in which they are applied. Then $tb$ has every off-diagonal entry equal to zero and has the same main diagonal entries as $b$. Hence $tb$ is the required diagonal matrix.
+\end{proof}
 
 \begin{theorem}
 \label{thm:4.12}
 $G$ is generated by the set consisting of all invertible diagonal matrices and all transvections.
 \end{theorem}
 
-\begin{proof}\end{proof}
+\begin{proof}
+Let $H$ be the subgroup of $G$ generated by all invertible diagonal matrices and all transvections. By \nameref{thm:bruhat}, it is enough to prove that $B\leq H$ and $W\leq H$.\\
+First let $b\in B$. By Lemma~\ref{lem:4.11}, there is a product $t$ of transvections such that $tb=d$, where $d$ is a diagonal matrix with the same main diagonal entries as $b$. Since $b$ is invertible, $d$ is an invertible diagonal matrix. Thus $t\in H$ and $d\in H$, so
+\[
+    b=t^{-1}d\in H.
+\]
+Hence $B\leq H$.\\
+It remains to show that $W\leq H$. By Proposition~\ref{prop:4.5}, the group $W$ is generated by the permutation matrices corresponding to transpositions. Let $i\neq j$. Consider
+\[
+    X_{ji}(1)X_{ij}(-1)X_{ji}(1).
+\]
+Using Lemma~\ref{lem:4.6}(vi), this product sends $\mathbf{v}_i$ to $\mathbf{v}_j$, sends $\mathbf{v}_j$ to $-\mathbf{v}_i$, and fixes every $\mathbf{v}_k$ with $k\notin\{i,j\}$. Now premultiply by the diagonal matrix whose $(i,i)$-entry is $-1$ and whose other diagonal entries are $1$. The resulting matrix sends $\mathbf{v}_i$ to $\mathbf{v}_j$, sends $\mathbf{v}_j$ to $\mathbf{v}_i$, and fixes all other standard basis vectors, so it is exactly the permutation matrix for the transposition $(i\;j)$. In characteristic $2$ this argument still works, since then $-1=1$. Therefore each transposition matrix lies in $H$, and hence $W\leq H$.\\
+Now \nameref{thm:bruhat} gives
+\[
+    G=BWB\leq H.
+\]
+The reverse inclusion $H\leq G$ is immediate from the definition of $H$, so $G=H$.
+\end{proof}
 
 \subsection*{Exercises}
 

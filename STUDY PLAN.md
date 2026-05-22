@@ -1,6 +1,6 @@
 # Odyssey Y1 Study Plan
 
-Last updated: 2026-05-17
+Last updated: 2026-05-20
 
 ## Assumptions
 
@@ -57,6 +57,8 @@ Risk:
 
 Capacity: 28 hours.
 
+Status: Section 3 completed early on Wednesday, 2026-05-20. The next active work is Section 4.
+
 Google Tasks:
 - Odyssey Section 3
 - Odyssey Ex 3.1-3.16
@@ -78,9 +80,17 @@ Risk:
 
 Capacity: 28 hours.
 
+Status: Section 4 tasks created on Wednesday, 2026-05-20 after Section 3 was completed early. Section 5 remains in this weekly block and should be scheduled after Section 4 is complete.
+
 Google Tasks:
-- Odyssey Section 4-5
-- Odyssey Ex 4.1-5.8
+- Odyssey Proofs 4: prop:4.1-prop:4.3
+- Odyssey Proofs 4: prop:4.4-lem:4.7
+- Odyssey Proofs 4: thm:bruhat, lem:4.8-cor:4.10
+- Odyssey Proofs 4: lem:4.11-thm:4.12
+- Odyssey Ex 4.1-4.3
+- Odyssey Ex 4.4-4.6
+- Odyssey Ex 4.7-4.9
+- Section 5 tasks remain to be created after Section 4 is complete.
 
 Reading and proof scope:
 - Section 4, Basic Structure: `GL(n,F)`, elementary abelian `p`-groups, standard basis notation, permutation matrices, action on the standard basis, transvections, root subgroups, Bruhat decomposition, and generation by root subgroups.
