@@ -417,6 +417,22 @@ Let $b \in B$. Then there exists a product $t$ of transvections such that $tb$ i
 
 \begin{proof}
 Write $b=(b_{ij})$. Since $b\in B$, it is upper triangular and invertible, so each diagonal entry $b_{ii}$ is non-zero. We shall clear the entries above the main diagonal by premultiplying by transvections, beginning at the far right. This direction is important: operations used to clear column $j$ will add multiples of row $j$ to rows above it, and if we have already treated columns to the right of $j$, then row $j$ has zero entries in those right-hand columns except at its own diagonal position where appropriate, so the lower-right block is not disturbed.\\
+For example, in the $3\times 3$ case, clearing the $(1,2)$-entry first would give
+\[
+    X_{12}(-ad_2^{-1})
+    \begin{pmatrix}
+        d_1 & a   & c\\
+        0   & d_2 & e\\
+        0   & 0   & d_3
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        d_1 & 0   & c-ad_2^{-1}e\\
+        0   & d_2 & e\\
+        0   & 0   & d_3
+    \end{pmatrix},
+\]
+so an operation aimed at column $2$ can change an entry in column $3$. This is precisely what the right-to-left procedure avoids. By contrast, within one fixed column the relevant transvections may be applied in any order: they add the same pivot row to different rows, and they leave that pivot row unchanged.\\
 Start with column $n$. For each $i<n$, premultiply by
 \[
     X_{in}(-b_{in}b_{nn}^{-1}).
@@ -443,7 +459,28 @@ It remains to show that $W\leq H$. By Proposition~\ref{prop:4.5}, the group $W$ 
 \[
     X_{ji}(1)X_{ij}(-1)X_{ji}(1).
 \]
-Using Lemma~\ref{lem:4.6}(vi), this product sends $\mathbf{v}_i$ to $\mathbf{v}_j$, sends $\mathbf{v}_j$ to $-\mathbf{v}_i$, and fixes every $\mathbf{v}_k$ with $k\notin\{i,j\}$. Now premultiply by the diagonal matrix whose $(i,i)$-entry is $-1$ and whose other diagonal entries are $1$. The resulting matrix sends $\mathbf{v}_i$ to $\mathbf{v}_j$, sends $\mathbf{v}_j$ to $\mathbf{v}_i$, and fixes all other standard basis vectors, so it is exactly the permutation matrix for the transposition $(i\;j)$. In characteristic $2$ this argument still works, since then $-1=1$. Therefore each transposition matrix lies in $H$, and hence $W\leq H$.\\
+This product only acts non-trivially on the two-dimensional subspace spanned by $\mathbf{v}_i$ and $\mathbf{v}_j$. With respect to the ordered basis $(\mathbf{v}_i,\mathbf{v}_j)$, its action is represented by
+\[
+    \begin{pmatrix}
+        1 & 0\\
+        1 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+        1 & -1\\
+        0 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+        1 & 0\\
+        1 & 1
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        0 & -1\\
+        1 & 0
+    \end{pmatrix}.
+\]
+Thus, equivalently by Lemma~\ref{lem:4.6}(vi), this product sends $\mathbf{v}_i$ to $\mathbf{v}_j$, sends $\mathbf{v}_j$ to $-\mathbf{v}_i$, and fixes every $\mathbf{v}_k$ with $k\notin\{i,j\}$. Now premultiply by the diagonal matrix whose $(i,i)$-entry is $-1$ and whose other diagonal entries are $1$. The resulting matrix sends $\mathbf{v}_i$ to $\mathbf{v}_j$, sends $\mathbf{v}_j$ to $\mathbf{v}_i$, and fixes all other standard basis vectors, so it is exactly the permutation matrix for the transposition $(i\;j)$. In characteristic $2$ this argument still works, since then $-1=1$.\\
+Therefore each transposition matrix lies in $H$. Since every permutation is a product of transpositions, every permutation matrix is a product of such transposition matrices. Hence $W\leq H$.\\
 Now \nameref{thm:bruhat} gives
 \[
     G=BWB\leq H.
