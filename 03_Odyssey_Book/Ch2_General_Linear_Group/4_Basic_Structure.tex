@@ -963,6 +963,77 @@ Thus
 Let $\beta$ be a non-trivial automorphism of the field $F$. Use $\beta$ to construct an outer automorphism of $\mathrm{GL}(n, F)$. Do all outer automorphisms of $\mathrm{GL}(n, F)$ arise in this way?
 \end{exercise}
 \begin{solution}
+For $A=(a_{ij})\in \GL(n,F)$, define
+\[
+    \Phi_\beta(A)=(\beta(a_{ij})).
+\]
+That is, $\Phi_\beta$ applies $\beta$ to every entry of the matrix. Since $\beta$ preserves addition and multiplication, the $(i,j)$-entry of $\Phi_\beta(AB)$ is
+\[
+    \beta\left(\sum_{k=1}^n a_{ik}b_{kj}\right)
+    =
+    \sum_{k=1}^n \beta(a_{ik})\beta(b_{kj}),
+\]
+which is exactly the $(i,j)$-entry of $\Phi_\beta(A)\Phi_\beta(B)$. Hence
+\[
+    \Phi_\beta(AB)=\Phi_\beta(A)\Phi_\beta(B).
+\]
+If $A\in \GL(n,F)$, then $A^{-1}$ exists and
+\[
+    \Phi_\beta(A)\Phi_\beta(A^{-1})
+    =
+    \Phi_\beta(AA^{-1})
+    =
+    I,
+\]
+so $\Phi_\beta(A)$ is again invertible. Thus $\Phi_\beta$ is a homomorphism $\GL(n,F)\to \GL(n,F)$. Its inverse is obtained by applying $\beta^{-1}$ entry by entry, and hence $\Phi_\beta$ is an automorphism of $\GL(n,F)$.\\
+We now show that it is outer. Suppose, for contradiction, that $\Phi_\beta$ is inner. Then there exists $P\in \GL(n,F)$ such that
+\[
+    \Phi_\beta(A)=PAP^{-1}
+\]
+for every $A\in \GL(n,F)$. Since $\beta$ is non-trivial and fixes $0$ and $1$, choose $\lambda\in F^\times$ such that $\beta(\lambda)\neq \lambda$. Taking $A=\lambda I$, we get on one hand
+\[
+    \Phi_\beta(\lambda I)=\beta(\lambda)I.
+\]
+On the other hand, if $\Phi_\beta$ were conjugation by $P$, then
+\[
+    \Phi_\beta(\lambda I)
+    =
+    P(\lambda I)P^{-1}
+    =
+    \lambda PP^{-1}
+    =
+    \lambda I.
+\]
+Thus $\beta(\lambda)I=\lambda I$, forcing $\beta(\lambda)=\lambda$, a contradiction. Therefore $\Phi_\beta$ is not inner, and hence it is outer.\\
+Not all outer automorphisms arise in this way. For $n\geq 2$, define
+\[
+    \tau(A)=(A^{-1})^T.
+\]
+Then
+\[
+    \tau(AB)
+    =
+    ((AB)^{-1})^T
+    =
+    (B^{-1}A^{-1})^T
+    =
+    (A^{-1})^T(B^{-1})^T
+    =
+    \tau(A)\tau(B),
+\]
+so $\tau$ is an automorphism of $\GL(n,F)$. It is outer by the same scalar-matrix test: choose $\lambda\in F^\times$ with $\lambda^{-1}\neq\lambda$; such a $\lambda$ exists under the present hypothesis, since otherwise every non-zero element of $F$ would satisfy $x^2=1$, forcing $|F^\times|\leq 2$ and leaving no non-trivial field automorphism. Then $\tau(\lambda I)=\lambda^{-1}I$, while every inner automorphism fixes $\lambda I$. Finally, $\tau$ is not obtained from a field automorphism, because a field automorphism $\gamma$ sends
+\[
+    X_{ij}(\alpha)\mapsto X_{ij}(\gamma(\alpha)),
+\]
+keeping the same matrix position $(i,j)$, whereas
+\[
+    \tau(X_{ij}(\alpha))
+    =
+    (X_{ij}(\alpha)^{-1})^T
+    =
+    X_{ji}(-\alpha),
+\]
+which swaps the position from $(i,j)$ to $(j,i)$. Therefore field automorphisms give outer automorphisms of $\GL(n,F)$, but they do not account for all of them.
 \end{solution}
 
 \subsection*{Further Exercises}
@@ -972,6 +1043,139 @@ Let $\beta$ be a non-trivial automorphism of the field $F$. Use $\beta$ to const
 A matrix is said to be \emph{monomial} if each row and column has exactly one non-zero entry. Let $N$ be the subset of $G = \mathrm{GL}(n, F)$ consisting of all monomial matrices. Show that $N \leq G$, that $T = B \cap N$ is the subgroup of $G$ consisting of all diagonal matrices, that $N = N_G(T)$, and that $N = T \rtimes W$.
 \end{exercise}
 \begin{solution}
+Let $\mathcal D$ denote the subgroup of $G$ consisting of all invertible diagonal matrices. We first show that
+\[
+    N=\mathcal D W.
+\]
+Let $m=(m_{ij})\in N$. In each row $i$ of $m$, there is exactly one non-zero entry. Let that entry occur in column $\sigma(i)$. Since each column also has exactly one non-zero entry, $\sigma$ is a permutation of $\{1,\ldots,n\}$. Let $w$ be the permutation matrix whose non-zero entries occur in the same positions as the non-zero entries of $m$, and let
+\[
+    D=\operatorname{diag}(m_{1,\sigma(1)},\ldots,m_{n,\sigma(n)}).
+\]
+Then $D\in \mathcal D$, because all these entries are non-zero, and left multiplication by $D$ scales row $i$ of $w$ by $m_{i,\sigma(i)}$. Hence $m=Dw$, so $m\in \mathcal D W$. Thus $N\subseteq \mathcal D W$. Conversely, if $D\in\mathcal D$ and $w\in W$, then $Dw$ is obtained from the permutation matrix $w$ by scaling each row by a non-zero scalar. Therefore every row and column still has exactly one non-zero entry, so $Dw\in N$. Hence $\mathcal D W\subseteq N$, and therefore $N=\mathcal D W$.\\
+We now prove that $N\leq G$. The identity matrix is monomial, so $N$ is non-empty. Let $m,l\in N$. Write
+\[
+    m=Dw,\qquad l=Eu,
+\]
+where $D,E\in\mathcal D$ and $w,u\in W$. Then
+\[
+    ml
+    =
+    DwEu
+    =
+    D(wEw^{-1})(wu).
+\]
+The matrix $wEw^{-1}$ is diagonal, because conjugating a diagonal matrix by a permutation matrix only permutes the diagonal entries. Also $wu\in W$. Hence $ml$ is diagonal times permutation, so $ml\in N$. Similarly,
+\[
+    m^{-1}
+    =
+    (Dw)^{-1}
+    =
+    w^{-1}D^{-1}
+    =
+    (w^{-1}D^{-1}w)w^{-1}.
+\]
+Again $w^{-1}D^{-1}w$ is diagonal and $w^{-1}\in W$, so $m^{-1}\in N$. Therefore $N\leq G$.\\
+Next we identify $B\cap N$. Let $x\in B\cap N$. Since $x\in N$, the non-zero entries of $x$ have the form of a permutation: in row $i$, the unique non-zero entry occurs in column $\sigma(i)$, where $\sigma$ is a permutation of $\{1,\ldots,n\}$. Since $x\in B$, all entries below the diagonal are zero, so this non-zero entry cannot lie below the diagonal. Hence
+\[
+    \sigma(i)\geq i
+\]
+for every $i$. But $\sigma$ is a permutation, so
+\[
+    \sum_{i=1}^n \sigma(i)=\sum_{i=1}^n i.
+\]
+Since each $\sigma(i)\geq i$, equality of the sums forces $\sigma(i)=i$ for every $i$. Thus the only non-zero entries of $x$ are diagonal entries, so $x$ is diagonal. Therefore $B\cap N\subseteq \mathcal D$. Conversely, every invertible diagonal matrix is both upper triangular and monomial, so $\mathcal D\subseteq B\cap N$. Hence
+\[
+    T=B\cap N=\mathcal D.
+\]
+In particular, $T$ is the subgroup of $G$ consisting of all invertible diagonal matrices.\\
+We now prove that $N=N_G(T)$. For this assertion we assume $F\neq\mathbb F_2$; otherwise, if $n>1$, then $T=\{I\}$ and $N_G(T)=G$, so the displayed equality is false. First let $m\in N$. Write $m=Dw$ with $D\in T$ and $w\in W$. If $t\in T$, then
+\[
+    mtm^{-1}
+    =
+    Dw t w^{-1}D^{-1}.
+\]
+The matrix $w t w^{-1}$ is diagonal, hence lies in $T$. Since diagonal matrices commute, we get
+\[
+    Dw t w^{-1}D^{-1}=w t w^{-1}\in T.
+\]
+Thus $mTm^{-1}\subseteq T$. Applying the same argument to $m^{-1}\in N$ gives $T\subseteq mTm^{-1}$, and hence $mTm^{-1}=T$. Therefore $m\in N_G(T)$, so $N\subseteq N_G(T)$.\\
+Conversely, let $g\in N_G(T)$. We prove that $g$ is monomial. Let
+\[
+    V=F^n
+\]
+with standard basis $\mathbf v_1,\ldots,\mathbf v_n$. Every matrix $A\in G$ acts on $V$ by left multiplication:
+\[
+    L_A\colon V\to V,\qquad L_A(x)=Ax.
+\]
+In particular, $g\mathbf v_i=L_g(\mathbf v_i)$ is exactly the $i$th column of the matrix $g$. Since $F\neq\mathbb F_2$, choose $\lambda\in F^\times$ with $\lambda\neq 1$. For each $i$, define
+\[
+    t_i=\operatorname{diag}(1,\ldots,1,\lambda,1,\ldots,1),
+\]
+where $\lambda$ is in the $i$th diagonal position. Then $t_i\in T$. As a linear transformation, $L_{t_i}$ satisfies
+\[
+    L_{t_i}(\mathbf v_i)=\lambda\mathbf v_i,
+\]
+and, for $k\neq i$,
+\[
+    L_{t_i}(\mathbf v_k)=\mathbf v_k.
+\]
+Thus the $\lambda$-eigenspace of $L_{t_i}$ is exactly
+\[
+    E_\lambda(L_{t_i})=F\mathbf v_i=\{\alpha\mathbf v_i\mid \alpha\in F\}.
+\]
+Indeed, if $x=\sum_{k=1}^n a_k\mathbf v_k$ and $t_i x=\lambda x$, then for every $k\neq i$ we have $a_k=\lambda a_k$, so $(\lambda-1)a_k=0$, and hence $a_k=0$. Thus only the $\mathbf v_i$-coordinate can remain.\\
+Because $g\in N_G(T)$ and $t_i\in T$, the conjugate
+\[
+    s_i=gt_i g^{-1}
+\]
+also lies in $T$. Hence $s_i$ is diagonal. Now compute the action of $s_i$ on $g\mathbf v_i$:
+\[
+    s_i(g\mathbf v_i)
+    =
+    (gt_i g^{-1})(g\mathbf v_i)
+    =
+    gt_i\mathbf v_i
+    =
+    g(\lambda\mathbf v_i)
+    =
+    \lambda g\mathbf v_i.
+\]
+So $g\mathbf v_i$ is a $\lambda$-eigenvector of the diagonal matrix $s_i$. More precisely, conjugation transports eigenspaces:
+\[
+    E_\lambda(L_{s_i})=g(E_\lambda(L_{t_i}))=g(F\mathbf v_i).
+\]
+Since $s_i$ is diagonal, its $\lambda$-eigenspace is spanned by those standard basis vectors whose diagonal entries in $s_i$ are equal to $\lambda$. Since $s_i$ is conjugate to $t_i$, this eigenspace has the same dimension as $E_\lambda(L_{t_i})$, namely dimension $1$. Therefore there is some index $j$ such that
+\[
+    E_\lambda(L_{s_i})=F\mathbf v_j.
+\]
+In particular,
+\[
+    g\mathbf v_i\in F\mathbf v_j.
+\]
+Thus there is some $\alpha_i\in F^\times$ such that
+\[
+    g\mathbf v_i=\alpha_i\mathbf v_j.
+\]
+But $g\mathbf v_i$ is the $i$th column of $g$, so the $i$th column of $g$ has exactly one non-zero entry. Since this holds for every $i$, every column of $g$ has exactly one non-zero entry. Finally, $g$ is invertible, so its columns are linearly independent. Hence two different columns cannot be non-zero scalar multiples of the same standard basis vector. Therefore the non-zero entries occur in different rows, and every row also has exactly one non-zero entry. Thus $g$ is monomial, so $g\in N$. Hence $N_G(T)\subseteq N$. Combining both inclusions gives
+\[
+    N=N_G(T).
+\]
+It remains to prove the semidirect product statement. We already proved $N=TW$, since $T=\mathcal D$. Also $T\trianglelefteq N$: if $m=Dw\in N$ and $t\in T$, then the same computation as above gives
+\[
+    mtm^{-1}=w t w^{-1}\in T.
+\]
+Finally,
+\[
+    T\cap W=\{I\}.
+\]
+Indeed, if $x\in T\cap W$, then $x$ is diagonal, say
+\[
+    x=\operatorname{diag}(\mu_1,\ldots,\mu_n),
+\]
+and $x$ is also a permutation matrix. Since $x$ is diagonal, the only possible non-zero entry in row $i$ is the diagonal entry $\mu_i$. Since $x$ is a permutation matrix, the non-zero entry in each row is equal to $1$. Hence $\mu_i=1$ for every $i$, and so $x=I$. The reverse inclusion $I\in T\cap W$ is immediate. Therefore $T\cap W=\{I\}$. Since $N=TW$, $T\trianglelefteq N$, and $T\cap W=\{I\}$, we conclude that
+\[
+    N=T\rtimes W.
+\]
 \end{solution}
 
 Let $G$ be a group. Suppose that $G$ has subgroups $B$ and $N$ of $G$ satisfying the following conditions:
@@ -991,6 +1195,129 @@ In this case we say that $B$ and $N$ form a \emph{$BN$-pair} of $G$, or that $(G
 (cont.) Let $G = \mathrm{GL}(n, F)$, let $B$ be the standard Borel subgroup of $G$, let $N$ be the subgroup of $G$ consisting of all monomial matrices, and let $T = B \cap N$. By Exercise~\ref{ex:4.7} above, we know that we can regard $W = N/T$ as being imbedded in $G$ as the group of permutation matrices. (By making this identification, we can replace $\dot{w}$ by $w$ in the above formulas.) Let $S$ be the subset of $W$ consisting of those permutation matrices that are obtained from the identity matrix by switching two adjacent columns. (In other words, if we identify $W$ with $S_n$ as in Proposition~\ref{prop:4.5}, then $S$ corresponds to the set $\{(1\;2), (2\;3), \ldots, (n-1\;n)\}$.) Show that $(G, B, N, S)$ is a Tits system of rank $n - 1$.
 \end{exercise}
 \begin{solution}
+We check the defining conditions one at a time. To keep the quotient notation separate from the matrix notation, write $s_i\in S\leq N/T$ for the generator corresponding to the adjacent transposition $(i\;i+1)$, and write $w_i\in W\leq G$ for its permutation-matrix representative. Thus, in the notation of the definition above, we choose
+\[
+    \dot{s_i}=w_i.
+\]
+Similarly, for an element $w\in W$, we use the same symbol $w$ for its permutation-matrix representative in $G$; in the dotted notation this means $\dot{w}=w$. With these choices, the condition
+\[
+    \dot{s}B\dot{w}\subseteq B\dot{w}B\cup B\dot{s}\dot{w}B
+\]
+becomes
+\[
+    w_iBw\subseteq BwB\cup Bw_iwB.
+\]
+We now verify the defining conditions using these representatives.\\
+First, by the \nameref{thm:bruhat},
+\[
+    G=BWB.
+\]
+Since every permutation matrix is monomial, we have $W\leq N$. Hence
+\[
+    G=BWB\subseteq \langle B,N\rangle.
+\]
+The reverse inclusion is automatic because $B\leq G$ and $N\leq G$. Therefore
+\[
+    G=\langle B,N\rangle.
+\]
+Second, Exercise~\ref{ex:4.7} gives $T\trianglelefteq N$.\\
+Third, Exercise~\ref{ex:4.7} gives $N=T\rtimes W$. Thus the quotient $N/T$ is naturally isomorphic to $W$: the map
+\[
+    W\to N/T,\qquad w\mapsto wT
+\]
+is surjective because every element of $N$ has the form $tw$ with $t\in T$ and $w\in W$, and it is injective because its kernel is $T\cap W=\{I\}$. By Proposition~\ref{prop:4.5}, $W\cong S_n$. Write
+\[
+    S=\{s_1,\ldots,s_{n-1}\},
+\]
+where $s_i$ is the generator of $N/T$ corresponding to the adjacent transposition
+\[
+    (i\;i+1).
+\]
+The representative $w_i\in W$ switches the adjacent basis vectors $\mathbf v_i$ and $\mathbf v_{i+1}$. Then $w_i^2=I$, so $s_i$ has order $2$ in $N/T$. The elements $s_i$ generate $N/T$, because their representatives $w_i$ generate the permutation-matrix subgroup $W$: by repeatedly swapping neighbouring entries, we can move any chosen entry to any chosen position, and hence build any permutation matrix. Therefore $N/T$ is generated by the finite set $S$ of involutions. Since $|S|=n-1$, the rank will be $n-1$ once the remaining two conditions are checked.\\
+It remains to verify the two double-coset conditions. If $n=1$, then $S=\varnothing$ and these conditions are vacuous, so assume $n\geq2$. Fix $s_i\in S$, and let $w_i\in W$ be its adjacent permutation-matrix representative. Write
+\[
+    X_i(\alpha)=X_{i,i+1}(\alpha).
+\]
+We first prove that
+\[
+    w_iBw\subseteq BwB\cup Bw_iwB
+\]
+for all $w\in W$. Let $b=(b_{rs})\in B$. Since $b$ is invertible upper triangular, $b_{ii}\neq0$. Set
+\[
+    \alpha=b_{i,i+1}b_{ii}^{-1},
+    \qquad
+    b_0=bX_i(-\alpha).
+\]
+Right multiplication by $X_i(-\alpha)$ subtracts $\alpha$ times column $i$ from column $i+1$. Hence the $(i,i+1)$-entry of $b_0$ is
+\[
+    b_{i,i+1}-\alpha b_{ii}=0.
+\]
+Thus $b=b_0X_i(\alpha)$, with $b_0\in B$. Moreover $w_ib_0w_i\in B$. Indeed, conjugating by $w_i$ only swaps the adjacent rows and columns $i$ and $i+1$; the only possible below-diagonal entry which could appear is the old $(i,i+1)$-entry of $b_0$, and this entry is zero. Hence $b_0\in B\cap w_iBw_i$.\\
+Now
+\[
+    w_ibw
+    =
+    w_ib_0X_i(\alpha)w
+    =
+    (w_ib_0w_i)(w_iX_i(\alpha)w).
+\]
+Since $w_ib_0w_i\in B$, it is enough to show that $w_iX_i(\alpha)w$ lies in $BwB\cup Bw_iwB$. Put
+\[
+    p=w^{-1}(i),
+    \qquad
+    q=w^{-1}(i+1).
+\]
+By Lemma~\ref{lem:4.6}(v),
+\[
+    X_i(\alpha)w=wX_{pq}(\alpha).
+\]
+If $p<q$, then $X_{pq}(\alpha)\in B$, and therefore
+\[
+    w_iX_i(\alpha)w
+    =
+    w_iwX_{pq}(\alpha)
+    \in Bw_iwB.
+\]
+Now suppose that $p>q$. If $\alpha=0$, then $w_iX_i(0)w=w_iw\in Bw_iwB$. If $\alpha\neq0$, then in the rows and columns $i,i+1$ we have the $2\times2$ calculation
+\[
+    w_iX_i(\alpha)
+    =
+    \begin{pmatrix}
+        0&1\\
+        1&\alpha
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        -\alpha^{-1}&1\\
+        0&\alpha
+    \end{pmatrix}
+    \begin{pmatrix}
+        1&0\\
+        \alpha^{-1}&1
+    \end{pmatrix}.
+\]
+Thus $w_iX_i(\alpha)=b_1X_{i+1,i}(\alpha^{-1})$ for some $b_1\in B$. Therefore
+\[
+    w_iX_i(\alpha)w
+    =
+    b_1X_{i+1,i}(\alpha^{-1})w
+    =
+    b_1wX_{q p}(\alpha^{-1}).
+\]
+Since $p>q$, we have $q<p$, so $X_{q p}(\alpha^{-1})\in B$. Hence
+\[
+    w_iX_i(\alpha)w\in BwB.
+\]
+In all cases, $w_iX_i(\alpha)w\in BwB\cup Bw_iwB$, and so
+\[
+    w_iBw\subseteq BwB\cup Bw_iwB.
+\]
+Finally, we verify that the representative $w_i$ satisfies $w_iBw_i\nsubseteq B$. Take $X_i(1)=X_{i,i+1}(1)\in B$. Since $w_i=w_i^{-1}$, Lemma~\ref{lem:4.6}(v) gives
+\[
+    w_iX_i(1)w_i=X_{i+1,i}(1).
+\]
+This matrix has a non-zero entry below the diagonal, so it is not in $B$. Hence $w_iBw_i\nsubseteq B$.\\
+All the defining conditions of a Tits system are now verified. Therefore $(G,B,N,S)$ is a Tits system. Since $S$ consists of the $n-1$ adjacent transposition generators, its rank is $n-1$.
 \end{solution}
 
 \begin{exercise}
@@ -1002,6 +1329,163 @@ G = \bigcup_{w \in W} BwB
 in which the union is disjoint, where $BwB$ is taken to mean $B \dot{w} B$ for any $\dot{w} \in N$ with $\dot{w} T = w$.
 \end{exercise}
 \begin{solution}
+Let
+\[
+    T=B\cap N,
+    \qquad
+    W=N/T.
+\]
+For each $w\in W$, choose a representative $\dot w\in N$ with $\dot wT=w$, and write
+\[
+    D_w=B\dot wB.
+\]
+We will prove that $D_w$ is well-defined and that
+\[
+    G=\coprod_{w\in W}D_w,
+\]
+where $\coprod$ means that the union is disjoint.\\
+\emph{Step 1: $D_w$ does not depend on the representative.} Suppose that $n,n'\in N$ both represent the same element $w\in W$. This means
+\[
+    nT=n'T.
+\]
+Hence $n'=nt$ for some $t\in T$. Since $T=B\cap N$, we have $t\in B$. Therefore
+\[
+    Bn'B
+    =
+    BntB
+    =
+    BnB,
+\]
+because the final $B$ already contains $t$. Thus $B\dot wB$ depends only on $w$, not on the chosen representative $\dot w$.\\
+\emph{Step 2: multiplying by a simple double coset has only two possible outcomes.} Let $s\in S$ and $w\in W$. We claim that
+\[
+    D_sD_w\subseteq D_w\cup D_{sw}.
+\]
+Indeed,
+\[
+    D_sD_w
+    =
+    B\dot sB\dot wB
+    =
+    B(\dot sB\dot w)B.
+\]
+By the $BN$-pair axiom,
+\[
+    \dot sB\dot w\subseteq B\dot wB\cup B\dot s\dot wB.
+\]
+The element $\dot s\dot w$ represents $sw\in W$, so $B\dot s\dot wB=D_{sw}$. Multiplying the inclusion above on the left and right by $B$ gives
+\[
+    D_sD_w\subseteq D_w\cup D_{sw}.
+\]
+Also,
+\[
+    D_{sw}
+    =
+    B\dot s\dot wB
+    \subseteq
+    B\dot sB\dot wB
+    =
+    D_sD_w.
+\]
+So the useful statement is
+\[
+    D_{sw}\subseteq D_sD_w\subseteq D_w\cup D_{sw}.
+\]
+\emph{Step 3: the union covers $G$.} Let
+\[
+    X=\bigcup_{w\in W}D_w.
+\]
+We show that $X=G$. First,
+\[
+    B=D_1\subseteq X.
+\]
+Also, if $b\in B$, then
+\[
+    bD_w\subseteq D_w,
+\]
+because $D_w=B\dot wB$ already has $B$ on the left. Hence $X$ is closed under left multiplication by elements of $B$.\\
+Now take $s\in S$. If $x\in D_w$, then
+\[
+    \dot s x\in \dot sD_w=\dot sB\dot wB.
+\]
+By Step 2,
+\[
+    \dot sB\dot wB\subseteq D_w\cup D_{sw}\subseteq X.
+\]
+Thus $X$ is closed under left multiplication by each chosen representative $\dot s$.\\
+We now explain why these elements generate $G$. Since $G=\langle B,N\rangle$, it is enough to build every element of $N$ using elements of $B$ and the chosen representatives $\dot s$. Let $n\in N$. Since $W=N/T$ is generated by $S$, we can write
+\[
+    nT=s_1s_2\cdots s_m
+\]
+with each $s_i\in S$. Then $\dot s_1\dot s_2\cdots \dot s_m$ represents the same coset of $T$ as $n$, so
+\[
+    n=\dot s_1\dot s_2\cdots \dot s_m t
+\]
+for some $t\in T$. But $T\leq B$. Therefore every element of $N$ is built from elements of $B$ and the $\dot s$'s. Hence $G$ is generated by $B$ and the chosen $\dot s$'s. Since $1\in X$ and $X$ is closed under left multiplication by those generators, every element of $G$ lies in $X$. Therefore
+\[
+    G=\bigcup_{w\in W}D_w.
+\]
+\emph{Step 4: the union is disjoint.} We use the following elementary fact: two double cosets for the same subgroup $B$ are either equal or disjoint. So, to prove disjointness, it is enough to show that
+\[
+    D_w=D_v
+    \quad\Longrightarrow\quad
+    w=v.
+\]
+Assume $D_w=D_v$. We first show that left multiplication by a generator $s\in S$ preserves this equality, in the sense that
+\[
+    D_{sw}=D_{sv}.
+\]
+Since $D_w=D_v$, we have
+\[
+    D_sD_w=D_sD_v.
+\]
+By Step 2,
+\[
+    D_{sw}\subseteq D_sD_w.
+\]
+Thus
+\[
+    D_{sw}\subseteq D_sD_v\subseteq D_v\cup D_{sv}=D_w\cup D_{sv}.
+\]
+Since $D_{sw}$ is itself one double coset, it cannot be partly in two different double cosets. Therefore
+\[
+    D_{sw}=D_w
+    \qquad\text{or}\qquad
+    D_{sw}=D_{sv}.
+\]
+Doing the same argument with $w$ and $v$ switched gives
+\[
+    D_{sv}=D_w
+    \qquad\text{or}\qquad
+    D_{sv}=D_{sw}.
+\]
+In every case, $D_{sw}=D_{sv}$: either this is stated directly, or both double cosets are equal to $D_w$.\\
+Now repeat this argument. If $x=s_1\cdots s_m$ is any product of elements of $S$, then
+\[
+    D_{xw}=D_{xv}.
+\]
+Since $S$ generates $W$, this holds for every $x\in W$. Choose $x=v^{-1}$. Then
+\[
+    D_{v^{-1}w}=D_{v^{-1}v}=D_1=B.
+\]
+Let $y=v^{-1}w$. Choose a representative $\dot y\in N$. Since
+\[
+    D_y=B\dot yB=B,
+\]
+we have $\dot y\in B$. But $\dot y\in N$ as well, so $\dot y\in B\cap N=T$. Hence
+\[
+    y=\dot yT=T,
+\]
+which is the identity element of $W$. Therefore $v^{-1}w=1$, so $w=v$.\\
+Thus different elements of $W$ give different double cosets, and since double cosets are either equal or disjoint, the union is disjoint. We have proved
+\[
+    G=\coprod_{w\in W}B\dot wB.
+\]
+Since $B\dot wB$ is independent of the chosen representative, we may write this as
+\[
+    G=\coprod_{w\in W}BwB,
+\]
+where $BwB$ means $B\dot wB$ for any $\dot w\in N$ representing $w$.
 \end{solution}
 
 \end{document}
