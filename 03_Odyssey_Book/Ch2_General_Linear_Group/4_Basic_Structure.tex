@@ -495,6 +495,39 @@ The reverse inclusion $H\leq G$ is immediate from the definition of $H$, so $G=H
 Show that $\mathrm{GL}(2, 2) \cong S_3$.
 \end{exercise}
 \begin{solution}
+Let $E=\Z_2\times \Z_2$. Then $E$ is abelian, has exponent $2$, and $|E|=4=2^2$. Hence Proposition~\ref{prop:4.1} gives
+\[
+    \Aut(E)\cong \mathrm{GL}(2,2).
+\]
+It remains to show that $\Aut(E)\cong S_3$. Write
+\[
+    E=\{e,a,b,c\},
+\]
+where $e$ is the identity and $a,b,c$ are the three non-identity elements. Since $E$ has exponent $2$, each of $a,b,c$ has order $2$. Also, the product of two distinct elements among $a,b,c$ is the third one.\\
+Every automorphism of $E$ fixes $e$ and permutes the set $X=\{a,b,c\}$. Therefore we get a homomorphism
+\[
+    \theta \colon \Aut(E)\to S_X\cong S_3,
+    \qquad
+    \theta(\varphi)=\varphi|_X.
+\]
+If $\varphi,\psi\in \Aut(E)$ and $x\in X$, then $\psi(x)\in X$, and so
+\[
+    \theta(\varphi\circ\psi)(x)
+    =(\varphi\circ\psi)(x)
+    =\varphi(\psi(x))
+    =\theta(\varphi)(\theta(\psi)(x)).
+\]
+Hence $\theta(\varphi\circ\psi)=\theta(\varphi)\circ\theta(\psi)$, so $\theta$ is a homomorphism.\\
+If $\theta(\varphi)$ is the identity permutation of $X$, then $\varphi$ fixes $a,b,c$ and also fixes $e$, so $\varphi$ is the identity automorphism of $E$. Hence $\theta$ is injective.\\
+By Proposition~\ref{prop:4.2}, we have
+\[
+    |\mathrm{GL}(2,2)|=(2^2-1)(2^2-2)=6.
+\]
+Therefore $|\Aut(E)|=6$. Also $|S_X|=3!=6$. Since $\theta$ is an injective homomorphism between finite groups of the same order, $\theta$ is an isomorphism. Thus
+\[
+    \Aut(E)\cong S_X\cong S_3.
+\]
+Combining this with $\Aut(E)\cong \mathrm{GL}(2,2)$ gives $\mathrm{GL}(2,2)\cong S_3$.
 \end{solution}
 
 \begin{exercise}
@@ -502,6 +535,101 @@ Show that $\mathrm{GL}(2, 2) \cong S_3$.
 (cont.) Construct a monomorphism $\varphi \colon \mathrm{GL}(1, 4) \to \mathrm{GL}(2, 2)$ that corresponds to the inclusion of $A_3$ in $S_3$. (Recall that the field $\mathbb{F}_4$ of $4$ elements can be written as $\{0, 1, \alpha, \alpha^2\}$, where $\alpha + 1 = \alpha^2$ and $\lambda + \lambda = 0$ for all $\lambda \in \mathbb{F}_4$.) Show further that the extension of $\varphi$ to a map from $\mathbb{F}_4$ to $\mathcal{M}_2(\mathbb{F}_2)$, where $\mathbb{F}_2 = \{0, 1\}$ is the field of $2$ elements, is a monomorphism of rings.
 \end{exercise}
 \begin{solution}
+We regard $\mathbb{F}_4$ as a $2$-dimensional vector space over $\mathbb{F}_2$ with ordered basis
+\[
+    \mathcal B=(1,\alpha).
+\]
+For each $\lambda\in \mathbb{F}_4$, let
+\[
+    m_\lambda \colon \mathbb{F}_4\to \mathbb{F}_4,
+    \qquad
+    m_\lambda(x)=\lambda x
+\]
+be multiplication by $\lambda$. We define
+\[
+    \widetilde{\varphi}\colon \mathbb{F}_4\to \mathcal{M}_2(\mathbb{F}_2),
+    \qquad
+    \widetilde{\varphi}(\lambda)=[m_\lambda]_{\mathcal B}^{\mathcal B}.
+\]
+Thus $m_\lambda$ is the linear map, and $\widetilde{\varphi}(\lambda)$ is the matrix of that map in the basis $\mathcal B$.\\
+We compute this map on the elements of $\mathbb{F}_4$. Multiplication by $0$ is the zero map, so
+\[
+    \widetilde{\varphi}(0)=[m_0]_{\mathcal B}^{\mathcal B}=
+    \begin{pmatrix}
+        0&0\\
+        0&0
+    \end{pmatrix}.
+\]
+Multiplication by $1$ is the identity map, so
+\[
+    \widetilde{\varphi}(1)=[m_1]_{\mathcal B}^{\mathcal B}=
+    \begin{pmatrix}
+        1&0\\
+        0&1
+    \end{pmatrix}.
+\]
+Next, since $\alpha\cdot 1=\alpha$ and $\alpha\cdot \alpha=\alpha^2=1+\alpha$, the first column of $\widetilde{\varphi}(\alpha)$ is the coordinate column of $\alpha$, and the second column is the coordinate column of $1+\alpha$. Hence
+\[
+    \widetilde{\varphi}(\alpha)=[m_\alpha]_{\mathcal B}^{\mathcal B}=
+    \begin{pmatrix}
+        0&1\\
+        1&1
+    \end{pmatrix}.
+\]
+Finally, since $\alpha^2\cdot 1=\alpha^2=1+\alpha$ and $\alpha^2\cdot\alpha=\alpha^3=1$, we get
+\[
+    \widetilde{\varphi}(\alpha^2)=[m_{\alpha^2}]_{\mathcal B}^{\mathcal B}=
+    \begin{pmatrix}
+        1&1\\
+        1&0
+    \end{pmatrix}.
+\]
+Restricting $\widetilde{\varphi}$ to the non-zero elements $\mathbb{F}_4^\times=\{1,\alpha,\alpha^2\}=\mathrm{GL}(1,4)$ gives
+\[
+    \varphi \colon \mathrm{GL}(1,4)\to \mathrm{GL}(2,2),
+    \qquad
+    \varphi(\lambda)=[m_\lambda]_{\mathcal B}^{\mathcal B}.
+\]
+This is a group homomorphism because, for $\lambda,\mu\in \mathbb{F}_4^\times$,
+\[
+    m_{\lambda\mu}=m_\lambda\circ m_\mu,
+\]
+and taking matrices in the basis $\mathcal B$ gives
+\[
+    \varphi(\lambda\mu)
+    =[m_{\lambda\mu}]_{\mathcal B}^{\mathcal B}
+    =[m_\lambda]_{\mathcal B}^{\mathcal B}[m_\mu]_{\mathcal B}^{\mathcal B}
+    =\varphi(\lambda)\varphi(\mu).
+\]
+It is injective because if $\varphi(\lambda)=\varphi(\mu)$, then $[m_\lambda]_{\mathcal B}^{\mathcal B}=[m_\mu]_{\mathcal B}^{\mathcal B}$, so $m_\lambda=m_\mu$. Applying both maps to $1$ gives $\lambda=\mu$. Therefore $\varphi$ is a monomorphism.\\
+It remains to connect this with the inclusion $A_3\leq S_3$. Since $\varphi$ is injective and $\mathrm{GL}(1,4)=\mathbb{F}_4^\times$ has order $3$, the subgroup $\operatorname{im}\varphi$ has order $3$. Under the isomorphism $\mathrm{GL}(2,2)\cong S_3$ from Exercise~\ref{ex:4.1}, this image corresponds to a subgroup of $S_3$ of order $3$. The only such subgroup is
+\[
+    \{e,(1\;2\;3),(1\;3\;2)\}=A_3.
+\]
+Thus $\varphi$ corresponds to the usual inclusion $A_3\leq S_3$.
+Finally, the map $\widetilde{\varphi}\colon \mathbb{F}_4\to \mathcal{M}_2(\mathbb{F}_2)$ is a ring homomorphism. Indeed, for $\lambda,\mu,x\in \mathbb{F}_4$,
+\[
+    m_{\lambda+\mu}(x)=(\lambda+\mu)x=\lambda x+\mu x=(m_\lambda+m_\mu)(x),
+\]
+so $m_{\lambda+\mu}=m_\lambda+m_\mu$. Taking matrices in the basis $\mathcal B$ gives
+\[
+    \widetilde{\varphi}(\lambda+\mu)
+    =[m_{\lambda+\mu}]_{\mathcal B}^{\mathcal B}
+    =[m_\lambda]_{\mathcal B}^{\mathcal B}+[m_\mu]_{\mathcal B}^{\mathcal B}
+    =\widetilde{\varphi}(\lambda)+\widetilde{\varphi}(\mu).
+\]
+Similarly,
+\[
+    m_{\lambda\mu}=m_\lambda\circ m_\mu,
+\]
+so
+\[
+    \widetilde{\varphi}(\lambda\mu)
+    =[m_{\lambda\mu}]_{\mathcal B}^{\mathcal B}
+    =[m_\lambda]_{\mathcal B}^{\mathcal B}[m_\mu]_{\mathcal B}^{\mathcal B}
+    =\widetilde{\varphi}(\lambda)\widetilde{\varphi}(\mu),
+\]
+and $\widetilde{\varphi}(1)=I$. If $\widetilde{\varphi}(\lambda)=\widetilde{\varphi}(\mu)$, then $[m_\lambda]_{\mathcal B}^{\mathcal B}=[m_\mu]_{\mathcal B}^{\mathcal B}$, so $m_\lambda=m_\mu$. Applying both maps to $1$ gives $\lambda=\mu$. Hence $\widetilde{\varphi}$ is injective, and so it is a monomorphism of rings.
 \end{solution}
 
 \begin{exercise}
@@ -509,6 +637,45 @@ Show that $\mathrm{GL}(2, 2) \cong S_3$.
 (cont.) Construct an explicit monomorphism from $\mathrm{GL}(n, 4)$ to $\mathrm{GL}(2n, 2)$ for any $n \in \N$.
 \end{exercise}
 \begin{solution}
+Let $\mathcal B=(1,\alpha)$ be the ordered $\mathbb{F}_2$-basis of $\mathbb{F}_4$ used in Exercise~\ref{ex:4.2}. Write
+\[
+    \rho(\lambda)=[m_\lambda]_{\mathcal B}^{\mathcal B}
+    \in \mathcal{M}_2(\mathbb{F}_2)
+\]
+for the matrix of multiplication by $\lambda$ on $\mathbb{F}_4$. By Exercise~\ref{ex:4.2}, the map $\rho\colon \mathbb{F}_4\to \mathcal{M}_2(\mathbb{F}_2)$ is an injective ring homomorphism.\\
+Now let $M=(\lambda_{ij})\in \mathrm{GL}(n,4)$. Define $\Phi(M)$ to be the $2n\times 2n$ block matrix over $\mathbb{F}_2$ whose $(i,j)$-block is $\rho(\lambda_{ij})$:
+\[
+    \Phi(M)=
+    \begin{pmatrix}
+        \rho(\lambda_{11})&\rho(\lambda_{12})&\cdots&\rho(\lambda_{1n})\\
+        \rho(\lambda_{21})&\rho(\lambda_{22})&\cdots&\rho(\lambda_{2n})\\
+        \vdots&\vdots&\ddots&\vdots\\
+        \rho(\lambda_{n1})&\rho(\lambda_{n2})&\cdots&\rho(\lambda_{nn})
+    \end{pmatrix}.
+\]
+This is the same as replacing each entry of $M$ by its $2\times2$ multiplication matrix $[m_{\lambda_{ij}}]_{\mathcal B}^{\mathcal B}$.\\
+We claim that
+\[
+    \Phi\colon \mathrm{GL}(n,4)\to \mathrm{GL}(2n,2)
+\]
+is a monomorphism. First, if $M=(\lambda_{ij})$ and $N=(\mu_{ij})$ are in $\mathrm{GL}(n,4)$, then the $(i,j)$-block of $\Phi(M)\Phi(N)$ is
+\[
+    \sum_{k=1}^n \rho(\lambda_{ik})\rho(\mu_{kj}).
+\]
+Since $\rho$ is a ring homomorphism, this equals
+\[
+    \sum_{k=1}^n \rho(\lambda_{ik}\mu_{kj})
+    =
+    \rho\left(\sum_{k=1}^n \lambda_{ik}\mu_{kj}\right),
+\]
+which is exactly the $(i,j)$-block of $\Phi(MN)$. Hence $\Phi(MN)=\Phi(M)\Phi(N)$.\\
+If $M\in \mathrm{GL}(n,4)$, let $M^{-1}$ be its inverse over $\mathbb{F}_4$. Then
+\[
+    \Phi(M)\Phi(M^{-1})=\Phi(I_n)=I_{2n},
+\]
+so $\Phi(M)$ is invertible. Hence $\Phi(M)\in \mathrm{GL}(2n,2)$.\\
+Finally, suppose $\Phi(M)=\Phi(N)$. Then every corresponding $2\times2$ block is equal, so $\rho(\lambda_{ij})=\rho(\mu_{ij})$ for all $i,j$. Since $\rho$ is injective, $\lambda_{ij}=\mu_{ij}$ for all $i,j$, and therefore $M=N$. Thus $\Phi$ is injective.\\
+Therefore $\Phi$ is an explicit monomorphism from $\mathrm{GL}(n,4)$ to $\mathrm{GL}(2n,2)$.
 \end{solution}
 
 \begin{exercise}
@@ -516,6 +683,70 @@ Show that $\mathrm{GL}(2, 2) \cong S_3$.
 (cont.) More generally, show for any $n \in \N$ and any prime power $q$ that $\mathrm{GL}(2n, q)$ has a subgroup that is isomorphic with $\mathrm{GL}(n, q^2)$. Will $\mathrm{GL}(n, q^m)$ always have a subgroup isomorphic with $\mathrm{GL}(mn, q)$ for any $m, n \in \N$ and any prime power $q$?
 \end{exercise}
 \begin{solution}
+Let $\mathbb{F}_{q^2}$ be the field with $q^2$ elements. Since $\mathbb{F}_{q^2}$ is a $2$-dimensional vector space over $\mathbb{F}_q$, choose an ordered $\mathbb{F}_q$-basis
+\[
+    \mathcal B=(\beta_1,\beta_2)
+\]
+of $\mathbb{F}_{q^2}$. For each $\lambda\in \mathbb{F}_{q^2}$, let
+\[
+    m_\lambda\colon \mathbb{F}_{q^2}\to \mathbb{F}_{q^2},
+    \qquad
+    m_\lambda(x)=\lambda x,
+\]
+and define
+\[
+    \rho(\lambda)=[m_\lambda]_{\mathcal B}^{\mathcal B}
+    \in \mathcal{M}_2(\mathbb{F}_q).
+\]
+This is an injective ring homomorphism. Indeed, for $\lambda,\mu\in \mathbb{F}_{q^2}$ and $x\in \mathbb{F}_{q^2}$, we have
+\[
+    m_{\lambda+\mu}(x)=(\lambda+\mu)x=\lambda x+\mu x=(m_\lambda+m_\mu)(x),
+\]
+so $\rho(\lambda+\mu)=\rho(\lambda)+\rho(\mu)$. Also
+\[
+    m_{\lambda\mu}(x)=(\lambda\mu)x=\lambda(\mu x)=(m_\lambda\circ m_\mu)(x),
+\]
+so $\rho(\lambda\mu)=\rho(\lambda)\rho(\mu)$. Finally, if $\rho(\lambda)=\rho(\mu)$, then $m_\lambda=m_\mu$, so evaluating both maps at $1$ gives $\lambda=\mu$. Thus $\rho$ is injective.\\
+Now let $M=(\lambda_{ij})\in \mathrm{GL}(n,q^2)$. Define $\Phi(M)$ to be the $2n\times 2n$ block matrix over $\mathbb{F}_q$ whose $(i,j)$-block is $\rho(\lambda_{ij})$:
+\[
+    \Phi(M)=
+    \begin{pmatrix}
+        \rho(\lambda_{11})&\rho(\lambda_{12})&\cdots&\rho(\lambda_{1n})\\
+        \rho(\lambda_{21})&\rho(\lambda_{22})&\cdots&\rho(\lambda_{2n})\\
+        \vdots&\vdots&\ddots&\vdots\\
+        \rho(\lambda_{n1})&\rho(\lambda_{n2})&\cdots&\rho(\lambda_{nn})
+    \end{pmatrix}.
+\]
+Let $N=(\mu_{ij})\in \mathrm{GL}(n,q^2)$. The $(i,j)$-block of $\Phi(M)\Phi(N)$ is
+\[
+    \sum_{k=1}^n \rho(\lambda_{ik})\rho(\mu_{kj})
+    =
+    \sum_{k=1}^n \rho(\lambda_{ik}\mu_{kj})
+    =
+    \rho\left(\sum_{k=1}^n \lambda_{ik}\mu_{kj}\right),
+\]
+which is exactly the $(i,j)$-block of $\Phi(MN)$. Hence
+\[
+    \Phi(MN)=\Phi(M)\Phi(N)
+\]
+for $M,N\in \mathrm{GL}(n,q^2)$. If $M\in \mathrm{GL}(n,q^2)$, then
+\[
+    \Phi(M)\Phi(M^{-1})=\Phi(I_n)=I_{2n},
+\]
+so $\Phi(M)\in \mathrm{GL}(2n,q)$. Also, if $\Phi(M)=\Phi(N)$, then $\rho(\lambda_{ij})=\rho(\mu_{ij})$ for all $i,j$, and since $\rho$ is injective, $\lambda_{ij}=\mu_{ij}$ for all $i,j$. Hence $M=N$. Therefore $\Phi$ is an injective homomorphism
+\[
+    \Phi\colon \mathrm{GL}(n,q^2)\to \mathrm{GL}(2n,q).
+\]
+Thus $\mathrm{GL}(2n,q)$ has a subgroup isomorphic with $\mathrm{GL}(n,q^2)$.\\
+The proposed reverse-looking statement is not always true. Take $n=1$, $m=2$, and $q=2$. Then it would say that $\mathrm{GL}(1,4)$ has a subgroup isomorphic with $\mathrm{GL}(2,2)$. But
+\[
+    |\mathrm{GL}(1,4)|=|\mathbb{F}_4^\times|=3,
+\]
+whereas by Proposition~\ref{prop:4.2},
+\[
+    |\mathrm{GL}(2,2)|=(2^2-1)(2^2-2)=6.
+\]
+A group of order $3$ cannot have a subgroup of order $6$. Therefore $\mathrm{GL}(n,q^m)$ does not always have a subgroup isomorphic with $\mathrm{GL}(mn,q)$.
 \end{solution}
 
 \begin{exercise}
@@ -523,6 +754,208 @@ Show that $\mathrm{GL}(2, 2) \cong S_3$.
 Show that $\mathrm{GL}(4, 2) \cong A_8$.
 \end{exercise}
 \begin{solution}
+Let $G=\mathrm{GL}(4,2)$. We first record the plan. By Proposition~\ref{prop:4.2},
+\[
+    |G|=(2^4-1)(2^4-2)(2^4-2^2)(2^4-2^3)
+    =15\cdot 14\cdot 12\cdot 8
+    =20160.
+\]
+Also
+\[
+    |A_8|=\frac{8!}{2}=20160.
+\]
+Thus it is enough to construct an embedding
+\[
+    G\hookrightarrow S_8,
+\]
+because the image will then have order $8!/2$, hence will be an index $2$ subgroup of $S_8$. The unique index $2$ subgroup of $S_8$ is $A_8$.\\
+The hard part is finding the eight objects on which $G$ should act. We shall find them by first constructing a subgroup $H\leq G$ with $H\cong A_7$; then the eight objects will be the left cosets of $H$ in $G$.\\
+\noindent\textbf{Step 1: Constructing fifteen Fano planes.}\\
+Let $\Omega=\{1,\ldots,7\}$. A \emph{Fano plane structure} on $\Omega$ is a set of seven $3$-element subsets of $\Omega$, called lines, such that any two points of $\Omega$ lie in exactly one line. For example, take
+\[
+    \mathcal P_0=
+    \{\{1,2,3\},\{1,4,5\},\{1,6,7\},\{2,4,6\},\{2,5,7\},\{3,4,7\},\{3,5,6\}\}.
+\]
+We may identify the points $1,\ldots,7$ with the seven non-zero vectors of $\mathbb F_2^3$ by
+\[
+\begin{array}{c|ccccccc}
+    \text{point} & 1&2&3&4&5&6&7\\
+    \hline
+    \text{vector} & e_1&e_2&e_1+e_2&e_3&e_1+e_3&e_2+e_3&e_1+e_2+e_3.
+\end{array}
+\]
+With this identification, the lines of $\mathcal P_0$ are exactly the triples
+\[
+    \{u,v,u+v\}
+\]
+where $u$ and $v$ are distinct non-zero vectors. Therefore every invertible linear map of $\mathbb F_2^3$ permutes the seven points and preserves the lines, giving
+\[
+    \mathrm{GL}(3,2)\leq \Aut(\mathcal P_0).
+\]
+Conversely, every automorphism of $\mathcal P_0$ is determined by the images of three non-collinear points, for instance $1,2,4$. These images are again non-collinear, hence form a basis of $\mathbb F_2^3$, and so determine a unique invertible linear map. Thus
+\[
+    \Aut(\mathcal P_0)\cong \mathrm{GL}(3,2).
+\]
+By Proposition~\ref{prop:4.2},
+\[
+    |\Aut(\mathcal P_0)|=|\mathrm{GL}(3,2)|=(2^3-1)(2^3-2)(2^3-2^2)=168.
+\]
+Moreover $\Aut(\mathcal P_0)\leq A_7$. To see this, note that by Theorem~\ref{thm:4.12}, $\mathrm{GL}(3,2)$ is generated by transvections, since the only invertible diagonal matrix over $\mathbb F_2$ is the identity. A transvection of $\mathbb F_2^3$ fixes three non-zero vectors and interchanges the remaining four non-zero vectors in two pairs. Hence it is an even permutation of the seven non-zero vectors. So every element of $\Aut(\mathcal P_0)$ is an even permutation.\\
+Let
+\[
+    \mathcal P=A_7\mathcal P_0
+\]
+be the orbit of $\mathcal P_0$ under the natural action of $A_7$ on $\Omega$. Since the stabilizer of $\mathcal P_0$ in $A_7$ is $\Aut(\mathcal P_0)$, we have
+\[
+    |\mathcal P|
+    =
+    \frac{|A_7|}{|\Aut(\mathcal P_0)|}
+    =
+    \frac{7!/2}{168}
+    =
+    15.
+\]
+So $\mathcal P$ is a set of fifteen Fano plane structures on the same seven-point set $\Omega$.\\
+We shall need one elementary fact about these fifteen Fano planes: any two distinct elements of $\mathcal P$ have exactly one common line. It is enough to check this with one of the two planes equal to $\mathcal P_0$. Let $\ell=\{1,2,3\}$ and let $\tau=(1\;2\;3)$. Then $\tau\mathcal P_0$ and $\tau^2\mathcal P_0$ are the two Fano planes
+\[
+\begin{aligned}
+    \tau\mathcal P_0
+    &=
+    \{\{1,2,3\},\{2,4,5\},\{2,6,7\},\{3,4,6\},\{3,5,7\},\{1,4,7\},\{1,5,6\}\},\\
+    \tau^2\mathcal P_0
+    &=
+    \{\{1,2,3\},\{3,4,5\},\{3,6,7\},\{1,4,6\},\{1,5,7\},\{2,4,7\},\{2,5,6\}\}.
+\end{aligned}
+\]
+Each has exactly the line $\ell$ in common with $\mathcal P_0$. Since $\Aut(\mathcal P_0)$ is transitive on the seven lines of $\mathcal P_0$, the same statement holds for every line of $\mathcal P_0$. Thus the two rotations of each of the seven lines give fourteen distinct elements of $\mathcal P$ different from $\mathcal P_0$. Since $|\mathcal P|=15$, these are all the other elements of $\mathcal P$. Therefore every element of $\mathcal P-\{\mathcal P_0\}$ has exactly one line in common with $\mathcal P_0$. Applying an element of $A_7$ gives the same conclusion for every pair of distinct elements of $\mathcal P$.\\
+It follows also that if $\mathcal Q\in\mathcal P$ and $\ell$ is a line of $\mathcal Q$, then exactly three elements of $\mathcal P$ contain $\ell$: namely $\mathcal Q$ and the two rotations of $\mathcal Q$ around $\ell$.\\
+\noindent\textbf{Step 2: Turning the fifteen planes into a vector space.}\\
+We now put a vector space structure over $\mathbb F_2$ on
+\[
+    V=\mathcal P\cup\{0\}.
+\]
+The zero element is the new symbol $0$. For $\mathcal Q\in\mathcal P$, define
+\[
+    \mathcal Q+0=0+\mathcal Q=\mathcal Q,
+    \qquad
+    \mathcal Q+\mathcal Q=0.
+\]
+If $\mathcal Q_1,\mathcal Q_2\in\mathcal P$ are distinct, let $\ell$ be their unique common line. There is a unique third element $\mathcal Q_3\in\mathcal P$ which contains $\ell$. Define
+\[
+    \mathcal Q_1+\mathcal Q_2=\mathcal Q_3.
+\]
+This addition is commutative, has identity $0$, and every element has order $2$. We check associativity. If one of the three entries is $0$, or if two of the three entries are equal, associativity follows directly from the definition. If $\mathcal Q_1,\mathcal Q_2,\mathcal Q_3$ are distinct and have one common line, then
+\[
+    \mathcal Q_1+\mathcal Q_2=\mathcal Q_3,\qquad
+    \mathcal Q_2+\mathcal Q_3=\mathcal Q_1,
+\]
+and hence
+\[
+    (\mathcal Q_1+\mathcal Q_2)+\mathcal Q_3
+    =
+    \mathcal Q_3+\mathcal Q_3
+    =
+    0
+    =
+    \mathcal Q_1+\mathcal Q_1
+    =
+    \mathcal Q_1+(\mathcal Q_2+\mathcal Q_3).
+\]
+It remains to check the case where $\mathcal Q_1,\mathcal Q_2,\mathcal Q_3$ are distinct and do not all share one common line. There are $15\cdot 14\cdot 12=2520$ ordered triples of this type: after choosing $\mathcal Q_1$ and $\mathcal Q_2$, the third entry can be any element of $\mathcal P$ except the three planes containing the common line of $\mathcal Q_1$ and $\mathcal Q_2$. We show that $A_7$ is transitive on these triples by looking at one example. Take $\mathcal P_0$ as above and set
+\[
+\begin{aligned}
+    \mathcal Q_1&=\{\{1,2,3\},\{1,4,6\},\{1,5,7\},\{2,4,7\},\{2,5,6\},\{3,4,5\},\{3,6,7\}\},\\
+    \mathcal Q_2&=\{\{1,2,4\},\{1,3,5\},\{1,6,7\},\{2,3,7\},\{2,5,6\},\{3,4,6\},\{4,5,7\}\}.
+\end{aligned}
+\]
+The three pairwise common lines are
+\[
+    \mathcal P_0\cap\mathcal Q_1=\{\{1,2,3\}\},\qquad
+    \mathcal P_0\cap\mathcal Q_2=\{\{1,6,7\}\},\qquad
+    \mathcal Q_1\cap\mathcal Q_2=\{\{2,5,6\}\}.
+\]
+Any element of $A_7$ which fixes the ordered triple $(\mathcal P_0,\mathcal Q_1,\mathcal Q_2)$ must fix these three lines setwise. It therefore fixes their pairwise intersections $1$, $2$, and $6$; then it fixes the remaining point on each of the three lines, namely $3$, $7$, and $5$; and finally it fixes the last point $4$. Thus the stabilizer of this ordered triple is trivial. Its orbit has size $|A_7|=2520$, which is the total number of triples in this case. Hence every such triple is in this one orbit, so it is enough to check associativity for the displayed example. Direct use of the addition rule gives
+\[
+\begin{aligned}
+    \mathcal P_0+\mathcal Q_1
+    &=
+    \{\{1,2,3\},\{1,4,7\},\{1,5,6\},\{2,4,5\},\{2,6,7\},\{3,4,6\},\{3,5,7\}\},\\
+    \mathcal Q_1+\mathcal Q_2
+    &=
+    \{\{1,2,7\},\{1,3,6\},\{1,4,5\},\{2,3,4\},\{2,5,6\},\{3,5,7\},\{4,6,7\}\},
+\end{aligned}
+\]
+and both $(\mathcal P_0+\mathcal Q_1)+\mathcal Q_2$ and $\mathcal P_0+(\mathcal Q_1+\mathcal Q_2)$ are equal to
+\[
+    \{\{1,2,6\},\{1,3,7\},\{1,4,5\},\{2,3,5\},\{2,4,7\},\{3,4,6\},\{5,6,7\}\}.
+\]
+Thus $V$ is an elementary abelian group of order $16$, hence a $4$-dimensional vector space over $\mathbb F_2$.\\
+\noindent\textbf{Step 3: Getting $A_7$ inside $\mathrm{GL}(4,2)$.}\\
+The action of $A_7$ on $\mathcal P$ preserves the addition on $V$, since the definition of addition only uses common lines. Therefore we obtain a homomorphism
+\[
+    A_7\to \mathrm{GL}(V).
+\]
+We now show this homomorphism is injective. We use the elementary fact that $A_7$ is simple. Here is a proof. Let $1\neq N\trianglelefteq A_7$, and choose a non-identity element of $N$ moving as few letters as possible. The possible non-identity cycle types in $A_7$ are represented by
+\[
+    (1\;2\;3),\quad
+    (1\;2)(3\;4),\quad
+    (1\;2\;3\;4\;5),\quad
+    (1\;2\;3\;4\;5\;6\;7),\quad
+    (1\;2\;3)(4\;5\;6),\quad
+    (1\;2\;3\;4)(5\;6),\quad
+    (1\;2\;3)(4\;5)(6\;7).
+\]
+If the chosen element is not a $3$-cycle, then after conjugating in $A_7$ and replacing by its inverse if necessary, one of the following commutator calculations applies:
+\[
+\begin{aligned}
+    [(1\;2)(3\;4),(1\;2\;5)]&=(1\;2\;5),\\
+    [(1\;2\;3\;4\;5),(1\;2\;3)]&=(1\;4\;2),\\
+    [(1\;2\;3\;4\;5\;6\;7),(1\;2\;3)]&=(1\;4\;2),\\
+    [(1\;2\;3)(4\;5\;6),(1\;2\;4)]&=(1\;4\;3\;5\;2),\\
+    [(1\;2\;3\;4)(5\;6),(1\;2\;3)]&=(1\;4\;2),\\
+    [(1\;2\;3)(4\;5)(6\;7),(1\;2\;4)]&=(1\;4\;3\;5\;2).
+\end{aligned}
+\]
+Each commutator lies in $N$ because $N$ is normal in $A_7$, and each displayed commutator is non-trivial and moves fewer letters than the original element. This contradicts the minimal choice unless $N$ contains a $3$-cycle. Since all $3$-cycles are conjugate in $A_7$, $N$ contains every $3$-cycle. Finally, $3$-cycles generate $A_7$: every even permutation is a product of pairs of transpositions, and a product of two transpositions is either a $3$-cycle or, when the transpositions are disjoint,
+\[
+    (a\;b)(c\;d)=(a\;c\;b)(a\;c\;d).
+\]
+It follows that $N=A_7$. Thus $A_7$ is simple.\\
+The kernel of the action of $A_7$ on $V$ is a normal subgroup of $A_7$. The action is not trivial because the orbit $\mathcal P=A_7\mathcal P_0$ has $15$ elements. Hence the kernel is not all of $A_7$, and by simplicity it must be trivial. Thus
+\[
+    A_7\hookrightarrow \mathrm{GL}(V).
+\]
+Since $\dim_{\mathbb F_2}V=4$, we have $\mathrm{GL}(V)\cong \mathrm{GL}(4,2)$. Therefore $G=\mathrm{GL}(4,2)$ contains a subgroup
+\[
+    H\cong A_7.
+\]
+\noindent\textbf{Step 4: Acting on the eight cosets of $H$.}\\
+Since
+\[
+    |H|=|A_7|=\frac{7!}{2}=2520,
+\]
+we have
+\[
+    |G:H|=\frac{20160}{2520}=8.
+\]
+Thus $G$ acts by left multiplication on the set $G/H$ of eight left cosets of $H$. This gives a homomorphism
+\[
+    \varphi\colon G\to S_8.
+\]
+We claim that $\ker\varphi=1$. The kernel of the action is contained in $H$, because the identity coset $H$ is fixed precisely by elements of $H$. Also $\ker\varphi\trianglelefteq G$, so $\ker\varphi\trianglelefteq H$. Since $H\cong A_7$ is simple, $\ker\varphi$ is either $1$ or $H$.\\
+It remains to rule out $\ker\varphi=H$. If $\ker\varphi=H$, then $H\trianglelefteq G$ and $G/H$ has order $8$. But $G$ is generated by transvections: over $\mathbb F_2$ every invertible diagonal matrix is the identity, so Theorem~\ref{thm:4.12} says that $G$ is generated by transvections. Also, since $4\geq 3$, every transvection is a commutator. Indeed, for distinct $i,j$, choose $k$ distinct from both $i$ and $j$, and Lemma~\ref{lem:4.6}(iv) gives
+\[
+    [X_{ik}(1),X_{kj}(1)]=X_{ij}(1).
+\]
+Hence $G=G'$, so every quotient of $G$ is perfect. This is impossible for a quotient of order $8$. Indeed, if a group $Q$ has order $8$, then either $Q$ has an element of order $4$ or $8$, in which case it has a cyclic subgroup of index $2$ and therefore a non-trivial abelian quotient, or every non-identity element of $Q$ has order $2$, in which case $Q$ is abelian because $(ab)^2=1$ implies $ab=ba$. Thus no group of order $8$ is perfect. Therefore $\ker\varphi\neq H$, and so $\ker\varphi=1$.\\
+Therefore $\varphi$ embeds $G$ into $S_8$. Its image has order $20160=8!/2$, so it is an index $2$ subgroup of $S_8$. Finally, the unique index $2$ subgroup of $S_8$ is $A_8$. Indeed, an index $2$ subgroup is normal, so it is the kernel of a non-trivial homomorphism $S_8\to C_2$; since transpositions generate $S_8$ and are all conjugate, this kernel consists exactly of the even permutations. Hence
+\[
+    \varphi(G)=A_8.
+\]
+Thus
+\[
+    \mathrm{GL}(4,2)\cong A_8.
+\]
 \end{solution}
 
 \begin{exercise}
