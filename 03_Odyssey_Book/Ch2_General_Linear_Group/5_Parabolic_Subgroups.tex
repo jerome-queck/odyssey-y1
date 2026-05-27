@@ -212,6 +212,97 @@ Then $\beta_k\neq 0$, and the same matrix construction gives some $c\in B$ with 
 The only subgroups of $G$ that contain $B$ are the staircase groups.
 \end{theorem}
 \begin{proof}
+First observe that every staircase group contains $B$, because $B$ stabilizes every subspace in the standard flag and therefore stabilizes every subflag of the standard flag. We prove the converse. Let $H$ be a subgroup with
+\[
+    B \leq H \leq G.
+\]
+If a subspace of $V_n(F)$ is stabilized by $H$, then it is also stabilized by $B$. Hence Lemma~\ref{lem:5.3} shows that the only possible non-zero $H$-invariant subspaces are among
+\[
+    V_1,\dots,V_n.
+\]
+List the ones which are actually stabilized by $H$ as
+\[
+    V_{a_1},\dots,V_{a_r},
+    \qquad
+    1\leq a_1<\dots<a_r=n,
+\]
+and put $a_0=0$. Let $P$ be the staircase group stabilizing the subflag
+\[
+    0\subset V_{a_1}\subset\dots\subset V_{a_r}=V_n(F).
+\]
+Then $H\leq P$. We shall prove that $H=P$.\\
+First we prove the basic case in which the only $H$-invariant subspaces are $0$ and $V_n(F)$. In this case we claim that $H=G$. If $n=1$ this is immediate, so assume $n>1$. The subspace
+\[
+    Y=\langle h\mathbf{v}_1\mid h\in H\rangle
+\]
+is non-zero and $H$-invariant, so by assumption $Y=V_n(F)$. Thus some $h\in H$ sends $\mathbf{v}_1$ to a vector
+\[
+    h\mathbf{v}_1=\alpha_1\mathbf{v}_1+\dots+\alpha_n\mathbf{v}_n
+\]
+with $\alpha_n\neq 0$. By \nameref{thm:bruhat}, write $h=b_1wb_2$ with $b_1,b_2\in B$ and $w\in W$. Since $B\leq H$ and $h\in H$, it follows that $w\in H$. By Corollary~\ref{cor:4.10}, the fact that the last non-zero term in $h\mathbf{v}_1$ is the $\mathbf{v}_n$-term implies that $w(1)=n$. Let $j=w^{-1}(1)$. Then $j>1$, so $X_{1j}\leq B\leq H$. Using Lemma~\ref{lem:4.6}(v), we get
+\[
+    wX_{1j}(\alpha)w^{-1}=X_{n1}(\alpha)
+\]
+for every $\alpha\in F$. Hence $X_{n1}\leq H$.\\
+We now get all the remaining root subgroups from this one lower root subgroup. The upper root subgroups $X_{ij}$ with $i<j$ already lie in $B$, and hence in $H$. If $n=2$, this already gives every root subgroup. If $n>2$, then for $1<i<n$ and $\alpha\in F$, Lemma~\ref{lem:4.6}(iv) gives
+\[
+    X_{ni}(\alpha)=[X_{n1}(\alpha),X_{1i}(1)]\in H
+\]
+and
+\[
+    X_{i1}(\alpha)=[X_{in}(\alpha),X_{n1}(1)]\in H.
+\]
+For distinct $1<i,j<n$, the same commutator formula gives
+\[
+    X_{ij}(\alpha)=[X_{i1}(\alpha),X_{1j}(1)]\in H.
+\]
+Thus $H$ contains every root subgroup $X_{ij}$, and it also contains every invertible diagonal matrix because all diagonal matrices lie in $B$. By Theorem~\ref{thm:4.12}, $H=G$. This proves the basic case.\\
+We return to the general subgroup $H$. By Proposition~\ref{prop:5.2}, the staircase group $P$ decomposes as
+\[
+    P=U_P\rtimes L_P.
+\]
+Since $P$ is a staircase group, its unipotent radical $U_P$ is contained in $B$, so $U_P\leq H$. Therefore it is enough to show that a Levi complement $L_P$ is contained in $H$. We choose the standard Levi complement whose blocks are
+\[
+    F\mathbf{v}_{a_{k-1}+1}\oplus\dots\oplus F\mathbf{v}_{a_k},
+    \qquad
+    1\leq k\leq r.
+\]
+Fix one block, and write
+\[
+    s=a_{k-1}+1,
+    \qquad
+    t=a_k.
+\]
+If $s=t$, there is nothing to prove for this block. Assume $s<t$. Because there is no $H$-invariant standard flag subspace strictly between $V_{a_{k-1}}$ and $V_{a_k}$, the subspace
+\[
+    V_{a_{k-1}}+\langle h\mathbf{v}_s\mid h\in H\rangle
+\]
+must be all of $V_t$. Hence there is some $h\in H$ such that the coefficient of $\mathbf{v}_t$ in $h\mathbf{v}_s$ is non-zero. Write $h=b_1wb_2$ by \nameref{thm:bruhat}. Again $w\in H$. Also $w\in P$, because $b_1,b_2\in B\leq P$ and $h\in P$. Thus $w$ preserves each set of indices
+\[
+    \{1,\dots,a_\ell\}
+\]
+which comes from the subflag stabilized by $P$. In particular, $w$ sends the block $\{s,\dots,t\}$ to itself. The row-pivot description in Corollary~\ref{cor:4.10} applied to the $s$th column says that $w(s)=t$, because the first $s-1$ columns use only rows $1,\dots,s-1$, while the $s$th column has no entries below row $t$ and has a non-zero entry in row $t$. Let $q=w^{-1}(s)$. Since $w$ preserves the block and $w(s)=t$, we have $s<q\leq t$. Therefore $X_{sq}\leq B\leq H$, and Lemma~\ref{lem:4.6}(v) gives
+\[
+    wX_{sq}(\alpha)w^{-1}=X_{ts}(\alpha)
+\]
+for every $\alpha\in F$. Hence $X_{ts}\leq H$.\\
+Now the same commutator ladder used in the basic case works inside this block. All upper root subgroups $X_{ij}$ with $s\leq i<j\leq t$ lie in $B$, hence in $H$. Together with $X_{ts}\leq H$, this gives every root subgroup inside the block: for $s<i<t$,
+\[
+    X_{ti}(\alpha)=[X_{ts}(\alpha),X_{si}(1)]\in H
+\]
+and
+\[
+    X_{is}(\alpha)=[X_{it}(\alpha),X_{ts}(1)]\in H,
+\]
+while for distinct $s<i,j<t$,
+\[
+    X_{ij}(\alpha)=[X_{is}(\alpha),X_{sj}(1)]\in H.
+\]
+Thus, for each block of $L_P$, the subgroup $H$ contains all root subgroups supported inside that block. Since $H$ also contains all diagonal matrices, Theorem~\ref{thm:4.12} applied block-by-block shows that $L_P\leq H$. Hence
+\[
+    P=U_P\rtimes L_P\leq H.
+\]
+We already had $H\leq P$, so $H=P$. Therefore every subgroup of $G$ containing $B$ is a staircase group.
 \end{proof}
 
 \subsection*{Exercises}
@@ -223,6 +314,52 @@ Let $G = \mathrm{GL}(n, F)$, where $n \geq 2$.
 Suppose that $g \in G$ fixes some $0 \neq \mathbf{v} \in V_n(F)$ and induces the identity transformation on $V_n(F) / F\mathbf{v}$. Show that $g$ is conjugate with an element of the root subgroup $X_{12}$.
 \end{exercise}
 \begin{solution}
+Since $g$ induces the identity transformation on $V_n(F)/F\mathbf{v}$, for every $\mathbf{x}\in V_n(F)$ we have
+\[
+    g\mathbf{x}+F\mathbf{v}=\mathbf{x}+F\mathbf{v}.
+\]
+Equivalently,
+\[
+    g\mathbf{x}-\mathbf{x}\in F\mathbf{v}.
+\]
+Thus there is a scalar $\lambda(\mathbf{x})\in F$ such that
+\[
+    g\mathbf{x}=\mathbf{x}+\lambda(\mathbf{x})\mathbf{v}.
+\]
+The scalar $\lambda(\mathbf{x})$ is unique because $\mathbf{v}\neq 0$. The assignment $\lambda \colon V_n(F)\to F$ is linear: for example, comparing
+\[
+    g(\mathbf{x}+\mathbf{y})=(\mathbf{x}+\mathbf{y})+\lambda(\mathbf{x}+\mathbf{y})\mathbf{v}
+\]
+with
+\[
+    g\mathbf{x}+g\mathbf{y}
+    =\mathbf{x}+\lambda(\mathbf{x})\mathbf{v}
+     +\mathbf{y}+\lambda(\mathbf{y})\mathbf{v}
+\]
+gives $\lambda(\mathbf{x}+\mathbf{y})=\lambda(\mathbf{x})+\lambda(\mathbf{y})$, and scalar multiplication is similar. Also $g\mathbf{v}=\mathbf{v}$, so $\lambda(\mathbf{v})=0$.\\
+If $\lambda=0$, then $g\mathbf{x}=\mathbf{x}$ for every $\mathbf{x}$, so $g=I=X_{12}(0)$, and there is nothing to prove. Assume now that $\lambda\neq 0$. Choose $\mathbf{w}_1=\mathbf{v}$. Since $\lambda\neq 0$, there exists some vector $\mathbf{w}_2$ with
+\[
+    \lambda(\mathbf{w}_2)=\alpha\neq 0.
+\]
+Then
+\[
+    g\mathbf{w}_2=\mathbf{w}_2+\alpha\mathbf{w}_1.
+\]
+The kernel of $\lambda$ has dimension $n-1$. Since $\lambda(\mathbf{w}_1)=0$, we have $\mathbf{w}_1\in\ker\lambda$. Choose vectors $\mathbf{w}_3,\dots,\mathbf{w}_n$ such that
+\[
+    \mathbf{w}_1,\mathbf{w}_3,\dots,\mathbf{w}_n
+\]
+is a basis of $\ker\lambda$. Since $\mathbf{w}_2\notin\ker\lambda$, the list $\mathbf{w}_1,\mathbf{w}_2,\dots,\mathbf{w}_n$ is a basis of $V_n(F)$. In this basis, $g$ sends
+\[
+    \mathbf{w}_1\mapsto\mathbf{w}_1,\qquad
+    \mathbf{w}_2\mapsto\mathbf{w}_2+\alpha\mathbf{w}_1,\qquad
+    \mathbf{w}_i\mapsto\mathbf{w}_i \quad (i\geq 3).
+\]
+Therefore the matrix of $g$ in the basis $\mathbf{w}_1,\dots,\mathbf{w}_n$ is $X_{12}(\alpha)$. If $p\in G$ is the change-of-basis matrix whose columns are $\mathbf{w}_1,\dots,\mathbf{w}_n$, then
+\[
+    p^{-1}gp=X_{12}(\alpha).
+\]
+Hence $g$ is conjugate with an element of the root subgroup $X_{12}$.
 \end{solution}
 
 \begin{exercise}
@@ -234,6 +371,108 @@ We say a basis $\mathcal{B}$ of $V_n(F)$ \emph{belongs} to a complete flag $(V_1
 \end{enumerate}
 \end{exercise}
 \begin{solution}
+    \phantom{}\par
+    \begin{enumerate}
+        \item[(a)] Put $V_0=W_0=0$. We build the required basis one vector at a time from intersections of the two flags. Fix $i\in\{1,\dots,n\}$. Since $W_n=V_n(F)$, we have
+    \[
+        V_i\cap W_n=V_i,
+    \]
+    and this is not contained in $V_{i-1}$. Therefore there is a smallest integer $j_i$ such that
+    \[
+        V_i\cap W_{j_i}\not\leq V_{i-1}.
+    \]
+    Choose
+    \[
+        \mathbf{b}_i\in (V_i\cap W_{j_i})-V_{i-1}.
+    \]
+    This means that $\mathbf{b}_i$ enters the $V$-flag at the $i$th step, and it enters the $W$-flag no later than the $j_i$th step.\\
+    First we check that these vectors form a basis belonging to the $V$-flag. Since $\mathbf{b}_1\in V_1$ and $\mathbf{b}_1\neq0$, the first vector works. Suppose that $\mathbf{b}_1,\dots,\mathbf{b}_{i-1}$ are independent and span $V_{i-1}$. Since $\mathbf{b}_i\notin V_{i-1}$, the vector $\mathbf{b}_i$ is not in the span of the previous vectors. Hence $\mathbf{b}_1,\dots,\mathbf{b}_i$ are independent. They are $i$ independent vectors inside the $i$-dimensional space $V_i$, so they span $V_i$. By induction,
+    \[
+        V_i=\langle \mathbf{b}_1,\dots,\mathbf{b}_i\rangle
+    \]
+    for every $i$. Thus the basis belongs to the $V$-flag.\\
+    It remains to show that the same basis also belongs to the $W$-flag. Fix $m\in\{1,\dots,n\}$. For each $i$, the space
+    \[
+        V_{i-1}\cap W_m
+    \]
+    is contained in $V_i\cap W_m$, and the dimension can increase by at most $1$ because $V_i/V_{i-1}$ is one-dimensional. By the definition of $j_i$, this increase happens exactly when $j_i\leq m$. Therefore
+    \[
+        \#\{i\mid j_i\leq m\}
+        =
+        \sum_{i=1}^n
+        \bigl(\dim(V_i\cap W_m)-\dim(V_{i-1}\cap W_m)\bigr).
+    \]
+    The sum telescopes:
+    \[
+        \sum_{i=1}^n
+        \bigl(\dim(V_i\cap W_m)-\dim(V_{i-1}\cap W_m)\bigr)
+        =
+        \dim(V_n\cap W_m)-\dim(V_0\cap W_m)
+        =
+        \dim W_m
+        =
+        m.
+    \]
+    Also, by the minimality of $j_i$, the vector $\mathbf{b}_i$ lies in $W_m$ exactly when $j_i\leq m$. Thus exactly $m$ of the vectors $\mathbf{b}_1,\dots,\mathbf{b}_n$ lie in $W_m$. These $m$ vectors are independent and lie inside the $m$-dimensional space $W_m$, so they form a basis of $W_m$. Hence, when we pass from $W_{m-1}$ to $W_m$, exactly one new basis vector appears. Therefore the same basis belongs to the $W$-flag as well.
+
+        \item[(b)] Let
+    \[
+        \mathcal{F}_0=(V_1,\dots,V_n)
+    \]
+    be the standard complete flag, and let $g\in G$. Then
+    \[
+        g\mathcal{F}_0=(gV_1,\dots,gV_n)
+    \]
+    is also a complete flag. By part (a), there is a basis
+    \[
+        \mathcal{B}=\{\mathbf{b}_1,\dots,\mathbf{b}_n\}
+    \]
+    which belongs to both $\mathcal{F}_0$ and $g\mathcal{F}_0$. Order the basis so that
+    \[
+        \mathbf{b}_i\in V_i-V_{i-1}
+    \]
+    for every $i$. Let $a$ be the matrix whose $i$th column is $\mathbf{b}_i$. Since the $i$th column of $a$ lies in $V_i$, the matrix $a$ is upper triangular. Since its columns form a basis, $a$ is invertible. Hence
+    \[
+        a\in B.
+    \]
+    Now use the fact that the same basis also belongs to $g\mathcal{F}_0$. For each $r$, exactly one basis vector lies in
+    \[
+        gV_r-gV_{r-1}.
+    \]
+    Thus there is a permutation $\sigma$ of $\{1,\dots,n\}$ such that
+    \[
+        \mathbf{b}_{\sigma(r)}\in gV_r-gV_{r-1}
+    \]
+    for every $r$. Let $w\in W$ be the permutation matrix which reorders the columns of $a$ so that the $r$th column of $aw$ is $\mathbf{b}_{\sigma(r)}$. Then
+    \[
+        g^{-1}\mathbf{b}_{\sigma(r)}\in V_r-V_{r-1}
+    \]
+    for every $r$. Therefore the $r$th column of $g^{-1}aw$ lies in $V_r$. It follows that $g^{-1}aw$ is upper triangular. It is also invertible, so
+    \[
+        g^{-1}aw\in B.
+    \]
+    Write
+    \[
+        c=g^{-1}aw\in B.
+    \]
+    Then
+    \[
+        aw=gc,
+    \]
+    and therefore
+    \[
+        g=awc^{-1}.
+    \]
+    Since $a\in B$, $w\in W$, and $c^{-1}\in B$, we have $g\in BWB$. As $g\in G$ was arbitrary, this gives
+    \[
+        G\subseteq BWB.
+    \]
+    The reverse inclusion $BWB\subseteq G$ is immediate from $B\leq G$ and $W\leq G$. Hence
+    \[
+        G=BWB,
+    \]
+    which is the \nameref{thm:bruhat}.
+    \end{enumerate}
 \end{solution}
 
 \begin{exercise}
