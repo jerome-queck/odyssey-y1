@@ -105,30 +105,72 @@ Let $P$ be the stabilizer of the flag $(W_1,\dots,W_r)$, and put $W_0=0$. Choose
 \[
     V_n(F)=Y_1\oplus \dots \oplus Y_r.
 \]
-Since every element of $P$ stabilizes each $W_i$, its matrix with respect to this direct-sum decomposition is block upper triangular. Let $p\in P$. For each $i$, the induced map of $p$ on $W_i/W_{i-1}$ may be identified with an invertible linear map $a_i \colon Y_i\to Y_i$: explicitly, for $y_i\in Y_i$, write
+With respect to this direct-sum decomposition, elements of $P$ are block upper triangular. This means that if $p\in P$ and $y_i\in Y_i$, then $p(y_i)$ may have a part in the current block $Y_i$ and earlier blocks $Y_1,\dots,Y_{i-1}$, but it cannot have a part in any later block. Equivalently, there are maps $a_i \colon Y_i\to Y_i$ such that
 \[
     p(y_i)=w_{i-1}+a_i(y_i)
 \]
-with $w_{i-1}\in W_{i-1}$ and $a_i(y_i)\in Y_i$. Define $l\in G$ by letting $l$ act as $a_i$ on each $Y_i$ and by making $l$ preserve each $Y_i$. Then $l\in L_P$. Now set
+with $w_{i-1}\in W_{i-1}$. The map $a_i$ is the action induced by $p$ on the quotient $W_i/W_{i-1}$, so it is invertible.\\
+We now split $p$ into its diagonal-block part and its upper-block-unipotent part. Define $l\in G$ by letting $l$ act as $a_i$ on each $Y_i$ and by making $l$ preserve every $Y_i$. Then $l\in L_P$, because $l$ is exactly the block diagonal part of $p$. Set
 \[
     u=pl^{-1}.
 \]
-This choice is forced if we want $p=ul$ with $l$ as the chosen Levi part. We check that $u\in U_P$. If $y_i\in Y_i$ and $z_i=l^{-1}(y_i)\in Y_i$, then $a_i(z_i)=y_i$, so
+We claim that $u\in U_P$. Let $y_i\in Y_i$, and write $z_i=l^{-1}(y_i)\in Y_i$. Since $l$ acts as $a_i$ on $Y_i$, we have $a_i(z_i)=y_i$. Hence
 \[
     u(y_i)=p(z_i)=y_i+w_{i-1}
 \]
-for some $w_{i-1}\in W_{i-1}$. Thus $u$ stabilizes each $W_i$ and induces the identity transformation on each quotient $W_i/W_{i-1}$. Hence $u\in U_P$, and $p=ul\in U_PL_P$. Therefore $P=U_PL_P$.\\
-The subgroup $U_P$ is normal in $P$, since it is the kernel of the homomorphism
+for some $w_{i-1}\in W_{i-1}$. Therefore, modulo $W_{i-1}$, the vector $u(y_i)$ is the same as $y_i$. Since the $Y_i$ build the flag one block at a time, this says exactly that $u$ stabilizes every $W_i$ and induces the identity transformation on each quotient $W_i/W_{i-1}$. Thus $u\in U_P$, and
+\[
+    p=ul\in U_PL_P.
+\]
+Since $p\in P$ was arbitrary, $P=U_PL_P$.\\
+This product is a semidirect product. First, $U_P$ is normal in $P$, since it is the kernel of the homomorphism
 \[
     P\to \GL(W_1/W_0)\times \dots \times \GL(W_r/W_{r-1})
 \]
-which records the induced actions on the successive quotients. Also $U_P\cap L_P=1$: if an element lies in both subgroups, then it preserves each $Y_i$ and acts as the identity on each quotient $W_i/W_{i-1}$, so it is the identity on every $Y_i$. Thus $P=U_P\rtimes L_P$.\\
-It remains to prove that $P=N_G(U_P)$. Since $U_P\trianglelefteq P$, we have $P\leq N_G(U_P)$. Conversely, suppose that $g\in N_G(U_P)$. We claim first that $gW_1=W_1$. The subspace $W_1$ is exactly the common fixed subspace of $U_P$. Indeed, $U_P$ acts as the identity on $W_1/W_0=W_1$, so every vector in $W_1$ is fixed by every element of $U_P$. Conversely, write $v=y_1+\dots+y_r$ with $y_i\in Y_i$. If some $y_j\neq 0$ for $j>1$, choose a linear map $f\colon Y_j\to Y_1$ with $f(y_j)\neq 0$, and define an element of $U_P$ which sends $y\in Y_j$ to $y+f(y)$ and fixes all other $Y_k$. This element does not fix $v$. Hence the common fixed subspace of $U_P$ is exactly $W_1$. Since $g$ normalizes $U_P$, it sends this common fixed subspace to itself, so $gW_1=W_1$.\\
-Now pass to the quotient $V_n(F)/W_1$. The group $U_P$ induces on this quotient the unipotent radical corresponding to the flag
+which records the induced actions on the successive quotients. Second, $U_P\cap L_P=1$. Indeed, if $x\in U_P\cap L_P$, then $x$ preserves each $Y_i$, but it also acts as the identity on $W_i/W_{i-1}$. Therefore $x$ is the identity on every block $Y_i$, and hence $x=1$. We have proved
+\[
+    P=U_P\rtimes L_P.
+\]
+It remains to prove that $P=N_G(U_P)$. Since $U_P\trianglelefteq P$, every element of $P$ normalizes $U_P$, so
+\[
+    P\leq N_G(U_P).
+\]
+Conversely, suppose that $g\in N_G(U_P)$. We shall prove that $g$ stabilizes every space in the flag, and hence that $g\in P$.\\
+First we recover $W_1$ from $U_P$ alone. We claim that $W_1$ is exactly the common fixed subspace of $U_P$, meaning
+\[
+    W_1=\{v\in V_n(F)\mid uv=v \text{ for every }u\in U_P\}.
+\]
+Every vector in $W_1$ is fixed because elements of $U_P$ act as the identity on $W_1/W_0=W_1$. Conversely, take a vector
+\[
+    v=y_1+\dots+y_r
+\]
+with $y_i\in Y_i$. If some $y_j\neq0$ for $j>1$, choose a non-zero vector $x\in Y_1$. Extend $y_j$ to a basis of $Y_j$, and define a block-unitriangular element $u$ by
+\[
+    u(y_j)=y_j+x,
+\]
+while fixing the remaining basis vectors of $Y_j$ and fixing all other blocks. This element lies in $U_P$: it only adds an earlier-block vector to a vector in the $j$th block, so it acts as the identity on every quotient $W_i/W_{i-1}$. But then
+\[
+    uv=v+x\neq v.
+\]
+Thus any vector with a non-zero component outside $W_1$ is moved by some element of $U_P$. Hence the common fixed subspace of $U_P$ is exactly $W_1$.\\
+Now use the assumption that $g$ normalizes $U_P$. We show that $gW_1=W_1$. Let $w\in W_1$. To prove $gw\in W_1$, it is enough to show that $gw$ is fixed by every element of $U_P$. Let $u\in U_P$. Since $g\in N_G(U_P)$, we have $g^{-1}ug\in U_P$. Therefore
+\[
+    u(gw)=g(g^{-1}ug)w.
+\]
+The element $g^{-1}ug$ lies in $U_P$, and $w\in W_1$ is fixed by every element of $U_P$. Hence $(g^{-1}ug)w=w$, so
+\[
+    u(gw)=gw.
+\]
+This holds for every $u\in U_P$, so $gw$ belongs to the common fixed subspace of $U_P$, which is $W_1$. Thus $gW_1\leq W_1$, and equality follows because $g$ is invertible. Therefore $gW_1=W_1$.\\
+Now pass to the quotient $V_n(F)/W_1$. On this quotient, the group $U_P$ induces the unipotent radical corresponding to the shorter flag
 \[
     W_2/W_1\subset \dots \subset W_r/W_1.
 \]
-Because $g$ normalizes $U_P$ and stabilizes $W_1$, the induced map of $g$ on $V_n(F)/W_1$ normalizes this induced unipotent radical. The same fixed-subspace argument on the quotient shows that $g$ stabilizes $W_2/W_1$, and hence stabilizes $W_2$. Repeating this argument inductively gives $gW_i=W_i$ for every $i$. Therefore $g\in P$, so $N_G(U_P)\leq P$. We conclude that $P=N_G(U_P)$.
+Because $g$ normalizes $U_P$ and stabilizes $W_1$, the induced map of $g$ on $V_n(F)/W_1$ normalizes this induced unipotent radical. The same common-fixed-subspace argument on the quotient shows that the first fixed layer of the quotient, namely $W_2/W_1$, is stabilized by $g$. Hence $gW_2=W_2$. Repeating this argument one layer at a time gives
+\[
+    gW_i=W_i
+\]
+for every $i$. Thus $g$ stabilizes the whole flag, so $g\in P$. Therefore $N_G(U_P)\leq P$. Combining both inclusions gives $P=N_G(U_P)$.
 \end{proof}
 
 \subsubsection*{Subflags and Staircase Groups}
@@ -484,6 +526,140 @@ Let $P$ and $Q$ be distinct parabolic subgroups of $G$ containing the standard B
 \end{enumerate}
 \end{exercise}
 \begin{solution}
+    \phantom{}\par
+    \begin{enumerate}
+        \item[(a)] By Theorem~\ref{thm:5.4}, both $P$ and $Q$ are staircase groups. Thus there are subflags of the standard flag
+    \[
+        0\subset V_{a_1}\subset \dots \subset V_{a_r}=V_n(F)
+    \]
+    and
+    \[
+        0\subset V_{b_1}\subset \dots \subset V_{b_s}=V_n(F)
+    \]
+    such that $P$ is the stabilizer of the first subflag and $Q$ is the stabilizer of the second. If the two lists of indices were the same, then the two stabilized standard subflags would be the same, and hence their stabilizers would be the same. Since $P\neq Q$, we know that
+    \[
+        \{a_1,\dots,a_r\}\neq \{b_1,\dots,b_s\}.
+    \]
+    We first record the invariant-subspace fact we need. Let $R$ be the staircase group stabilizing
+    \[
+        0\subset V_{c_1}\subset \dots \subset V_{c_t}=V_n(F),
+    \]
+    and put $c_0=0$. We claim that the only non-zero subspaces of $V_n(F)$ stabilized by $R$ are
+    \[
+        V_{c_1},\dots,V_{c_t}.
+    \]
+    This is the block version of Lemma~\ref{lem:5.3}. Let $Y$ be a non-zero $R$-invariant subspace. Choose $k$ minimal such that
+    \[
+        Y\leq V_{c_k}.
+    \]
+    Then $Y\not\leq V_{c_{k-1}}$, so the image of $Y$ in the quotient
+    \[
+        V_{c_k}/V_{c_{k-1}}
+    \]
+    is non-zero. By Proposition~\ref{prop:5.2} and the block description of a staircase group, the standard Levi complement of $R$ acts as the full general linear group on the block
+    \[
+        F\mathbf{v}_{c_{k-1}+1}\oplus \dots \oplus F\mathbf{v}_{c_k}.
+    \]
+    Hence it acts on $V_{c_k}/V_{c_{k-1}}$ as the full group $\GL(c_k-c_{k-1},F)$. Since $Y$ is $R$-invariant, the image of $Y$ in this quotient is invariant under this full general linear group. But the only non-zero subspace invariant under the full general linear group is the whole quotient, because an invertible linear map can send any non-zero vector to any other non-zero vector. Therefore
+    \[
+        Y+V_{c_{k-1}}=V_{c_k}.
+    \]
+    We next show that $V_{c_{k-1}}\leq Y$. If $k=1$, this is immediate because $V_{c_0}=0$. Assume $k>1$. Since $Y+V_{c_{k-1}}=V_{c_k}$, there is some vector $y\in Y$ whose component in the $k$th block is non-zero. Choose an index $m$ in the $k$th block such that the coefficient of $\mathbf{v}_m$ in $y$ is a non-zero scalar $\beta$. Now let $x\in V_{c_{k-1}}$. Write
+    \[
+        x=\gamma_1\mathbf{v}_1+\dots+\gamma_{c_{k-1}}\mathbf{v}_{c_{k-1}}.
+    \]
+    For each $\ell\leq c_{k-1}$, the root subgroup element $X_{\ell m}(\alpha)$ sends $\mathbf{v}_m$ to $\mathbf{v}_m+\alpha\mathbf{v}_\ell$. Therefore, if we choose
+    \[
+        u=\prod_{\ell=1}^{c_{k-1}}X_{\ell m}(\gamma_\ell/\beta),
+    \]
+    then $u$ sends $y$ to $y+x$. These are upper root subgroup elements because $\ell<m$, so they lie in $B$. Since $B\leq R$, we have $u\in R$. Since $Y$ is $R$-invariant, both $y$ and $uy=y+x$ lie in $Y$, and hence
+    \[
+        x=(y+x)-y\in Y.
+    \]
+    Since $x\in V_{c_{k-1}}$ was arbitrary, $V_{c_{k-1}}\leq Y$. Together with $Y+V_{c_{k-1}}=V_{c_k}$, this gives $V_{c_k}\leq Y$. Since $Y\leq V_{c_k}$ by the choice of $k$, we get $Y=V_{c_k}$. This proves the claim.\\
+    Now suppose, for a contradiction, that $P$ and $Q$ are conjugate in $G$. Then there exists some $g\in G$ such that
+    \[
+        Q=gPg^{-1}.
+    \]
+    For each $i$, the subspace $V_{a_i}$ is stabilized by $P$. We claim that $gV_{a_i}$ is stabilized by $Q$. Indeed, if $q\in Q$, then $q=gpg^{-1}$ for some $p\in P$. If $gv\in gV_{a_i}$ with $v\in V_{a_i}$, then
+    \[
+        q(gv)=gpg^{-1}gv=gpv.
+    \]
+    Since $p$ stabilizes $V_{a_i}$, we have $pv\in V_{a_i}$, and hence $gpv\in gV_{a_i}$. Thus $gV_{a_i}$ is $Q$-invariant. By the claim applied to $Q$, the subspace $gV_{a_i}$ must be one of the subspaces
+    \[
+        V_{b_1},\dots,V_{b_s}.
+    \]
+    Taking dimensions gives
+    \[
+        a_i=\dim gV_{a_i}=b_j
+    \]
+    for some $j$. Therefore
+    \[
+        \{a_1,\dots,a_r\}\subseteq \{b_1,\dots,b_s\}.
+    \]
+    Applying the same argument to $P=g^{-1}Qg$ gives the reverse inclusion. Hence
+    \[
+        \{a_1,\dots,a_r\}=\{b_1,\dots,b_s\},
+    \]
+    contradicting the fact that these two sets are different. Therefore no such $g$ exists, and $P$ and $Q$ are not conjugate in $G$.
+
+        \item[(b)] Keep the notation from part (a), and put $a_0=b_0=0$. The standard Levi complement of $P$ is the subgroup which preserves each block
+    \[
+        Y_i=F\mathbf{v}_{a_{i-1}+1}\oplus \dots \oplus F\mathbf{v}_{a_i},
+    \]
+    and acts on that block as the full group $\GL(Y_i)$. Thus its block sizes are
+    \[
+        d_i=\dim Y_i=a_i-a_{i-1}
+        \qquad (1\leq i\leq r).
+    \]
+    Similarly, the standard Levi complement of $Q$ has blocks
+    \[
+        Z_j=F\mathbf{v}_{b_{j-1}+1}\oplus \dots \oplus F\mathbf{v}_{b_j}
+    \]
+    of sizes
+    \[
+        e_j=\dim Z_j=b_j-b_{j-1}
+        \qquad (1\leq j\leq s).
+    \]
+    We claim that $L_P$ and $L_Q$ are conjugate in $G$ exactly when the two lists
+    \[
+        d_1,\dots,d_r
+        \qquad\text{and}\qquad
+        e_1,\dots,e_s
+    \]
+    agree up to permutation.\\
+    First suppose that the block sizes agree up to permutation. Then $r=s$, and after reordering the $Q$-blocks there is a bijection $\sigma$ such that
+    \[
+        d_i=e_{\sigma(i)}
+    \]
+    for every $i$. Choose a permutation matrix $w$ which sends the standard basis vectors in $Y_i$ onto the standard basis vectors in $Z_{\sigma(i)}$. Conjugating by $w$ sends an arbitrary invertible linear transformation on $Y_i$ to an arbitrary invertible linear transformation on $Z_{\sigma(i)}$. Therefore
+    \[
+        wL_Pw^{-1}=L_Q.
+    \]
+    Hence $L_P$ and $L_Q$ are conjugate.\\
+    Conversely, suppose that $L_Q=gL_Pg^{-1}$ for some $g\in G$. Conjugation by $g$ sends the block decomposition
+    \[
+        V_n(F)=Y_1\oplus \dots \oplus Y_r
+    \]
+    to
+    \[
+        V_n(F)=gY_1\oplus \dots \oplus gY_r.
+    \]
+    On each $gY_i$, the conjugate subgroup $gL_Pg^{-1}=L_Q$ contains a factor acting as the full group $\GL(gY_i)$. Thus the spaces $gY_i$ are the same kind of full general-linear blocks for $L_Q$ as the standard blocks $Z_j$. The standard block decomposition of $L_Q$ has block dimensions $e_1,\dots,e_s$, so the dimensions
+    \[
+        \dim gY_i=\dim Y_i=d_i
+    \]
+    must be exactly the same dimensions as the $e_j$, possibly in a different order. Hence the block sizes of $P$ and $Q$ agree up to permutation.\\
+    Therefore the condition is:
+    \[
+        L_P\text{ and }L_Q\text{ are conjugate in }G
+        \quad\Longleftrightarrow\quad
+        \{a_i-a_{i-1}\mid 1\leq i\leq r\}
+        =
+        \{b_j-b_{j-1}\mid 1\leq j\leq s\}
+    \]
+    as multisets.
+    \end{enumerate}
 \end{solution}
 
 \begin{exercise}
@@ -491,6 +667,7 @@ Let $P$ and $Q$ be distinct parabolic subgroups of $G$ containing the standard B
 Prove Proposition~\ref{prop:5.2}.
 \end{exercise}
 \begin{solution}
+This is exactly Proposition~\ref{prop:5.2}, proved above.
 \end{solution}
 
 \begin{exercise}
@@ -498,6 +675,31 @@ Prove Proposition~\ref{prop:5.2}.
 Prove the following generalization of Lemma~\ref{lem:5.3}: If $P$ is a parabolic subgroup of $G$ which is the stabilizer of the flag $(W_1, \dots, W_r)$, then the $W_i$ are the only subspaces of $V_n(F)$ left invariant by $P$.
 \end{exercise}
 \begin{solution}
+Let
+\[
+    0\subset W_1\subset \dots \subset W_r=V_n(F)
+\]
+be the flag stabilized by $P$, and put $c_i=\dim_F W_i$. By the transitivity of the $G$-action on flags with a fixed dimension sequence, choose $g\in G$ such that
+\[
+    gW_i=V_{c_i}
+\]
+for every $i$. Hence $gPg^{-1}$ is the staircase group stabilizing the standard subflag
+\[
+    0\subset V_{c_1}\subset \dots \subset V_{c_r}=V_n(F).
+\]\\
+Now let $Y$ be a non-zero subspace of $V_n(F)$ stabilized by $P$. Then $gY$ is stabilized by $gPg^{-1}$: if $q=gpg^{-1}\in gPg^{-1}$ and $gy\in gY$, with $p\in P$ and $y\in Y$, then
+\[
+    q(gy)=gpy\in gY.
+\]
+By the staircase-group claim proved in Exercise~\ref{ex:5.3}(a), the only non-zero subspaces stabilized by $gPg^{-1}$ are
+\[
+    V_{c_1},\dots,V_{c_r}.
+\]
+Therefore $gY=V_{c_i}$ for some $i$. Applying $g^{-1}$ gives
+\[
+    Y=g^{-1}V_{c_i}=W_i.
+\]
+Thus the only non-zero subspaces stabilized by $P$ are $W_1,\dots,W_r$. Each $W_i$ is stabilized by $P$ by the definition of $P$ as the stabilizer of the flag, so these are exactly the non-zero $P$-invariant subspaces.
 \end{solution}
 
 \begin{exercise}
@@ -505,6 +707,44 @@ Prove the following generalization of Lemma~\ref{lem:5.3}: If $P$ is a parabolic
 (cont.) Using Exercise~\ref{ex:5.5}, show that any parabolic subgroup of $G$ is self-normalizing.
 \end{exercise}
 \begin{solution}
+Let $P$ be the stabilizer of the flag
+\[
+    0\subset W_1\subset \dots\subset W_r=V_n(F).
+\]
+We prove that $N_G(P)=P$. The inclusion
+\[
+    P\leq N_G(P)
+\]
+is automatic, because every element of a subgroup normalizes that subgroup. It remains to prove the reverse inclusion.\\
+Let $g\in N_G(P)$. We want to show that $g\in P$, i.e. that $g$ stabilizes every $W_i$. Fix $i$. We first show that $gW_i$ is stabilized by $P$. Let $p\in P$ and let $gw\in gW_i$, where $w\in W_i$. Since $g\in N_G(P)$, we have
+\[
+    g^{-1}pg\in P.
+\]
+Since $P$ stabilizes $W_i$, this gives
+\[
+    (g^{-1}pg)w\in W_i.
+\]
+Applying $g$ to both sides, we get
+\[
+    p(gw)=g(g^{-1}pg)w\in gW_i.
+\]
+Thus $gW_i$ is a non-zero subspace stabilized by $P$. By Exercise~\ref{ex:5.5}, the only non-zero subspaces stabilized by $P$ are exactly the spaces in its flag, so
+\[
+    gW_i=W_j
+\]
+for some $j$. But $g$ preserves dimension, so
+\[
+    \dim_F W_j=\dim_F(gW_i)=\dim_F W_i.
+\]
+The dimensions in a flag are strictly increasing, so $j=i$. Hence
+\[
+    gW_i=W_i
+\]
+for every $i$. Therefore $g$ stabilizes the whole flag, and so $g\in P$. This proves
+\[
+    N_G(P)\leq P.
+\]
+Combining the two inclusions gives $N_G(P)=P$, so every parabolic subgroup of $G$ is self-normalizing.
 \end{solution}
 
 \begin{exercise}
@@ -512,6 +752,84 @@ Prove the following generalization of Lemma~\ref{lem:5.3}: If $P$ is a parabolic
 Complete the outlined proof of Theorem~\ref{thm:5.4}.
 \end{exercise}
 \begin{solution}
+Let $H$ be a subgroup of $G$ with $B\leq H\leq G$. If a subspace is stabilized by $H$, then it is also stabilized by $B$. Hence Lemma~\ref{lem:5.3} says that the only possible non-zero subspaces stabilized by $H$ are among the standard flag subspaces. List the ones actually stabilized by $H$ as
+\[
+    V_{a_1},\dots,V_{a_r},
+    \qquad
+    1\leq a_1<\dots<a_r=n,
+\]
+and put $a_0=0$. Let $P$ be the staircase group stabilizing the subflag
+\[
+    0\subset V_{a_1}\subset \dots\subset V_{a_r}=V_n(F).
+\]
+Then $H\leq P$, because every element of $H$ stabilizes each of the spaces in this subflag. We prove the reverse inclusion.\\
+\textit{Step 1: reduce to the Levi complement.} By Proposition~\ref{prop:5.2}, we may write
+\[
+    P=U_P\rtimes L_P.
+\]
+Since $P$ is a staircase group, its unipotent radical $U_P$ is contained in $B$. Hence
+\[
+    U_P\leq B\leq H.
+\]
+Therefore, to prove $P\leq H$, it remains only to prove
+\[
+    L_P\leq H.
+\]
+Choose the standard Levi complement whose blocks are
+\[
+    F\mathbf{v}_{a_{k-1}+1}\oplus\dots\oplus F\mathbf{v}_{a_k},
+    \qquad
+    1\leq k\leq r.
+\]
+We will show that $H$ contains the full general linear group on each one of these blocks.\\
+\textit{Step 2: find one lower root subgroup in a fixed block.} Fix a block, and write
+\[
+    s=a_{k-1}+1,\qquad t=a_k.
+\]
+If $s=t$, then the block is one-dimensional, and there are no root subgroups to find in it. Assume $s<t$. Since there is no $H$-invariant standard flag subspace strictly between $V_{a_{k-1}}$ and $V_{a_k}$, the $H$-invariant subspace
+\[
+    V_{a_{k-1}}+\langle h\mathbf{v}_s\mid h\in H\rangle
+\]
+is stabilized by $H$. It contains $\mathbf{v}_s$, so it is larger than $V_{a_{k-1}}$; it is contained in $V_t$, because $H\leq P$ and $P$ stabilizes $V_t$. Therefore it must equal $V_t$. Thus there is some $h\in H$ such that the coefficient of $\mathbf{v}_t$ in $h\mathbf{v}_s$ is non-zero.\\
+Write $h=b_1wb_2$ by the \nameref{thm:bruhat}, with $b_1,b_2\in B$ and $w\in W$. Since $B\leq H$ and $h\in H$, we also have $w\in H$. Since $H\leq P$, the element $w$ lies in $P$, so it permutes the indices inside each block of the staircase. The row-pivot description in Corollary~\ref{cor:4.10}, applied to the $s$th column, gives
+\[
+    w(s)=t.
+\]
+Indeed, the first $s-1$ columns of $h$ lie in $V_{s-1}$, while the $s$th column lies in $V_t$ and has a non-zero $\mathbf{v}_t$-coefficient. Thus the row chosen by the Bruhat pivot construction for column $s$ is row $t$.\\
+Let $q=w^{-1}(s)$. Because $w$ preserves the block $\{s,\dots,t\}$ and sends $s$ to $t$, we have
+\[
+    s<q\leq t.
+\]
+Hence $X_{sq}\leq B\leq H$. By Lemma~\ref{lem:4.6}(v),
+\[
+    wX_{sq}(\alpha)w^{-1}=X_{ts}(\alpha)
+\]
+for every $\alpha\in F$. Therefore
+\[
+    X_{ts}\leq H.
+\]
+\textit{Step 3: use commutators to get all root subgroups in the block.} The upper root subgroups $X_{ij}$ with $s\leq i<j\leq t$ already lie in $B$, and hence in $H$. Together with $X_{ts}\leq H$, the commutator formula in Lemma~\ref{lem:4.6}(iv) gives the remaining root subgroups inside the block. For $s<i<t$ and $\alpha\in F$,
+\[
+    X_{ti}(\alpha)=[X_{ts}(\alpha),X_{si}(1)]\in H
+\]
+and
+\[
+    X_{is}(\alpha)=[X_{it}(\alpha),X_{ts}(1)]\in H.
+\]
+For distinct $s<i,j<t$,
+\[
+    X_{ij}(\alpha)=[X_{is}(\alpha),X_{sj}(1)]\in H.
+\]
+Thus $H$ contains every root subgroup $X_{ij}$ supported inside this block. Since $H$ also contains all diagonal matrices, Theorem~\ref{thm:4.12} applied to this block shows that $H$ contains the full general linear group on the block.\\
+\textit{Step 4: finish block by block.} Repeating Steps 2 and 3 for every block of the staircase shows that every block factor of $L_P$ is contained in $H$. Hence
+\[
+    L_P\leq H.
+\]
+Since $U_P\leq H$ as well, we have
+\[
+    P=U_P\rtimes L_P\leq H.
+\]
+We already had $H\leq P$, so $H=P$. Therefore every subgroup of $G$ containing $B$ is a staircase group, which completes the general case of Theorem~\ref{thm:5.4}.
 \end{solution}
 
 \begin{exercise}
@@ -519,6 +837,133 @@ Complete the outlined proof of Theorem~\ref{thm:5.4}.
 Assume that the case $r = 1$ of Theorem~\ref{thm:5.4} holds; we sketch an alternate proof of the general case of Theorem~\ref{thm:5.4}. We use induction on $n$, where $G = \mathrm{GL}(n, F)$. Let $H$ be a subgroup of $G$ which contains $B$, and suppose that $H$ stabilizes $V_m$, where $1 \leq m < n$. Let $S$ be the stabilizer of $V_m$; observe that $H \leq S$. We can write $S = U \rtimes (K_1 \times K_2)$, where the elements of $K_1 \cong \mathrm{GL}(m, F)$ have their only non-zero entries in the first $m$ rows and columns, and where $K_2$ is a direct product of general linear groups whose elements have their non-zero entries concentrated in the last $n - m$ rows and columns. Since $U \leq B \leq H$, by Exercise~\ref{ex:2.10} we have $H = U \rtimes Q$ for some $Q \leq K_1 \times K_2$. Use Goursat's theorem (Exercise~\ref{ex:2.8}), Exercise~\ref{ex:5.6}, and the induction hypothesis to analyze $Q$ and thereby conclude that $H$ is a staircase group.
 \end{exercise}
 \begin{solution}
+We prove the general case of Theorem~\ref{thm:5.4} by strong induction on $n$, assuming that the case $r=1$ is already known. Here the case $r=1$ means the following: if $B\leq H\leq \GL(n,F)$ and $H$ stabilizes no non-zero proper standard flag subspace, then $H=\GL(n,F)$. The case $n=1$ is immediate, so assume $n>1$ and that the result is known for all smaller dimensions.\\
+Let $H$ be a subgroup with $B\leq H\leq G$. If $H$ stabilizes no proper standard flag subspace $V_m$ with $1\leq m<n$, then the assumed $r=1$ case gives $H=G$, which is a staircase group. Thus we may assume that $H$ stabilizes some $V_m$, where $1\leq m<n$. Let $S$ be the stabilizer of $V_m$. Then $H\leq S$. With respect to the decomposition
+\[
+    V_n(F)=V_m\oplus \langle \mathbf{v}_{m+1},\dots,\mathbf{v}_n\rangle,
+\]
+the elements of $S$ have block form
+\[
+    \begin{pmatrix}
+        * & *\\
+        0 & *
+    \end{pmatrix}.
+\]
+Let $U$ be the subgroup with identity diagonal blocks and arbitrary upper-right block, let $K_1\cong \GL(m,F)$ be the upper-left diagonal block group, and let $K_2\cong \GL(n-m,F)$ be the lower-right diagonal block group. Then
+\[
+    S=U\rtimes (K_1\times K_2).
+\]
+Also $U\leq B\leq H$. By Exercise~\ref{ex:2.10}, if a subgroup of a semidirect product contains the normal factor, then it is the semidirect product of that normal factor with its intersection with the complement. Applying this to $U\leq H\leq S$, we get
+\[
+    H=U\rtimes Q,
+    \qquad
+    Q=H\cap (K_1\times K_2).
+\]
+Thus the problem has been reduced to understanding the subgroup $Q$ of the block diagonal group $K_1\times K_2$.\\
+\textit{Step 1: $Q$ contains the two block Borels.} Let
+\[
+    B_1=B\cap K_1,
+    \qquad
+    B_2=B\cap K_2.
+\]
+These are the standard Borel subgroups inside $K_1$ and $K_2$. Since every block diagonal element of $B_1\times B_2$ is also an element of $B$, we have
+\[
+    B_1\times B_2\leq B\leq H.
+\]
+But $B_1\times B_2\leq K_1\times K_2$, so
+\[
+    B_1\times B_2\leq H\cap (K_1\times K_2)=Q.
+\]
+\textit{Step 2: apply Goursat's theorem to $Q$.} By Exercise~\ref{ex:2.8}, Goursat's theorem says that a subgroup of a direct product is controlled by its two projections, its two coordinate kernels, and an isomorphism between the corresponding quotient groups. In our case, define
+\[
+    P_1=\{x\in K_1\mid (x,y)\in Q \text{ for some } y\in K_2\},
+    \qquad
+    I_1=\{x\in K_1\mid (x,1)\in Q\},
+\]
+and define $P_2$ and $I_2$ similarly. Then Exercise~\ref{ex:2.8} gives
+\[
+    I_i\trianglelefteq P_i\leq K_i
+    \qquad
+    (i=1,2),
+\]
+together with an isomorphism
+\[
+    P_1/I_1\cong P_2/I_2.
+\]
+Moreover, $Q$ is recovered from these data by
+\[
+    Q=\{(x,y)\in P_1\times P_2\mid \varphi(xI_1)=yI_2\}.
+\]
+The inclusion $B_1\times B_2\leq Q$ gives more than just $B_i\leq P_i$. Indeed, if $b_1\in B_1$, then $(b_1,1)\in Q$, so $b_1\in I_1$. Similarly, if $b_2\in B_2$, then $(1,b_2)\in Q$, so $b_2\in I_2$. Hence
+\[
+    B_i\leq I_i\leq P_i\leq K_i
+    \qquad
+    (i=1,2).
+\]
+\textit{Step 3: use induction and self-normalizing parabolics.} Since $K_1\cong \GL(m,F)$ and $K_2\cong \GL(n-m,F)$ have smaller dimension than $G$, the induction hypothesis applies inside both blocks. Because $P_i$ and $I_i$ contain the standard Borel subgroup $B_i$, the induction hypothesis tells us that $P_i$ and $I_i$ are staircase groups inside $K_i$. In particular, $I_i$ is a parabolic subgroup of $K_i$.\\
+Now $I_i\trianglelefteq P_i$. Therefore every element of $P_i$ normalizes $I_i$, so
+\[
+    P_i\leq N_{K_i}(I_i).
+\]
+By Exercise~\ref{ex:5.6}, parabolic subgroups are self-normalizing. Applying this inside $K_i$, we get
+\[
+    N_{K_i}(I_i)=I_i.
+\]
+Therefore
+\[
+    P_i\leq I_i.
+\]
+Since $I_i\leq P_i$ already, we conclude that
+\[
+    P_i=I_i
+    \qquad
+    (i=1,2).
+\]
+\textit{Step 4: the Goursat coupling disappears.} Since $P_i=I_i$, both quotient groups in Goursat's theorem are trivial:
+\[
+    P_1/I_1=1,
+    \qquad
+    P_2/I_2=1.
+\]
+Thus the condition $\varphi(xI_1)=yI_2$ in the description of $Q$ is automatic. Hence
+\[
+    Q=P_1\times P_2.
+\]
+The induction hypothesis also tells us that $P_1$ and $P_2$ are staircase groups inside their respective blocks.\\
+\textit{Step 5: combine the two block staircases.} Suppose $P_1$ stabilizes a standard subflag inside $V_m$, say
+\[
+    0\subset V_{a_1}\subset \dots\subset V_{a_r}=V_m.
+\]
+For the lower block, write
+\[
+    W_j=\langle \mathbf{v}_{m+1},\dots,\mathbf{v}_{m+j}\rangle
+    \qquad
+    (1\leq j\leq n-m).
+\]
+Thus $W_1\subset \dots\subset W_{n-m}$ is the standard flag inside the lower block. Suppose $P_2$ stabilizes the lower-block subflag
+\[
+    0\subset W_{b_1}\subset \dots\subset W_{b_s}=W_{n-m}.
+\]
+When these lower-block spaces are placed back inside $V_n(F)$, we must add the first block $V_m$. Thus
+\[
+    V_m\oplus W_{b_j}=V_{m+b_j}
+    \qquad
+    (1\leq j\leq s).
+\]
+Thus the two block flags combine to the standard subflag
+\[
+    0\subset V_{a_1}\subset \dots\subset V_m
+      \subset V_{m+b_1}\subset \dots\subset V_n(F).
+\]
+The stabilizer of this combined subflag is exactly the group of block upper triangular matrices whose upper-left diagonal block lies in $P_1$ and whose lower-right diagonal block lies in $P_2$:
+\[
+    U\rtimes(P_1\times P_2).
+\]
+But this group is $H$, since
+\[
+    H=U\rtimes Q=U\rtimes(P_1\times P_2).
+\]
+Therefore $H$ is a staircase group. This completes the induction step, and hence proves the general case of Theorem~\ref{thm:5.4} from the assumed $r=1$ case.
 \end{solution}
 
 \end{document}
