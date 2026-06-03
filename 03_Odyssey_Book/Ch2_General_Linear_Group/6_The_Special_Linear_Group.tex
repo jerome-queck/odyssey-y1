@@ -380,6 +380,52 @@ Thus every normal subgroup of $S$ is either contained in $Z_S$ or equal to $S$. 
 Let $B$ be the standard Borel subgroup of $\mathrm{GL}(n,F)$. Determine all subgroups of $\mathrm{SL}(n,F)$ which contain $B \cap \mathrm{SL}(n,F)$.
 \end{exercise}
 \begin{solution}
+Let $S=\SL(n,F)$ and put $B_S=B\cap S$. We claim that the required subgroups are precisely
+\[
+    P\cap S,
+\]
+where $P$ ranges over the staircase groups of $\GL(n,F)$. Indeed, if $P$ is a staircase group, then $B\leq P$, and hence $B_S\leq P\cap S\leq S$.\\
+Conversely, suppose that
+\[
+    B_S\leq H\leq S.
+\]
+If $n=1$, then $S=1$, so the assertion is immediate. Assume now that $n\geq2$. We first note that the only non-zero subspaces of $V_n(F)$ stabilized by $B_S$ are the standard flag subspaces $V_1,\ldots,V_n$. The proof is the same as Lemma~\ref{lem:5.3}, with one determinant correction. If
+\[
+    y=\alpha_1\mathbf{v}_1+\dots+\alpha_k\mathbf{v}_k\in V_k-V_{k-1},
+\]
+then $\alpha_k\neq0$, and because $n\geq2$ we can choose an upper triangular matrix of determinant $1$ whose $k$th column is $y$ by adjusting one diagonal entry different from the $k$th one. Thus the argument of Lemma~\ref{lem:5.3} applies with $B_S$ in place of $B$.\\
+List the standard flag subspaces stabilized by $H$ as
+\[
+    V_{a_1},\ldots,V_{a_r},
+    \qquad
+    1\leq a_1<\dots<a_r=n.
+\]
+Let $P$ be the staircase group stabilizing the subflag
+\[
+    0\subset V_{a_1}\subset\dots\subset V_{a_r}=V_n(F).
+\]
+Then $H\leq P\cap S$. It remains to prove the reverse containment.\\
+We use the same block argument as in Theorem~\ref{thm:5.4}. Fix a block
+\[
+    F\mathbf{v}_s\oplus\dots\oplus F\mathbf{v}_t,
+    \qquad
+    s=a_{k-1}+1,\quad t=a_k.
+\]
+If $s=t$, there is nothing to prove for this block. Assume $s<t$. Since there is no $H$-invariant standard flag subspace strictly between $V_{s-1}$ and $V_t$, there exists $h\in H$ such that the coefficient of $\mathbf{v}_t$ in $h\mathbf{v}_s$ is non-zero. Write $h=b_1wb_2$ by \nameref{thm:bruhat}, with $b_1,b_2\in B$ and $w$ a permutation matrix. Since $h\in S$, this Bruhat decomposition may be rewritten as
+\[
+    h=b_1'\dot{w}b_2',
+\]
+where $b_1',b_2'\in B_S$ and $\dot{w}\in S$ is a diagonal multiple of $w$. Indeed, choose a diagonal matrix $d$ with $\det(dw)=1$ and put $\dot{w}=dw$. If $\delta=\det(b_2)$, choose $t_0\in T$ with $\det(t_0)=\delta^{-1}$. Then
+\[
+    h=(b_1d^{-1}\dot{w}t_0^{-1}\dot{w}^{-1})\dot{w}(t_0b_2),
+\]
+and both outside factors lie in $B_S$. Since $h,b_1',b_2'\in H$, we get $\dot{w}\in H$.\\
+The diagonal factor in $\dot{w}$ does not change the permutation pattern, so the same argument used in Theorem~\ref{thm:5.4} gives $w(s)=t$. Put $q=w^{-1}(s)$. Then $s<q\leq t$, so the upper root subgroup $X_{sq}$ lies in $B_S\leq H$. Conjugating by $\dot{w}$ sends this root subgroup onto $X_{ts}$, up to a non-zero scalar change in the parameter. Hence $X_{ts}\leq H$. Since all upper root subgroups inside the block already lie in $B_S$, the commutator identities of Lemma~\ref{lem:4.6}(iv) give every root subgroup $X_{ij}$ with $s\leq i\neq j\leq t$.\\
+Therefore, in each block, $H$ contains all root subgroups supported inside that block. By Proposition~\ref{prop:6.2}, it contains the corresponding embedded special linear group on each block. It also contains every determinant-one diagonal matrix, since $T\cap S\leq B_S$. Hence $H$ contains the full group $L_P\cap S$, where $L_P$ is the standard Levi complement of $P$: any element of $L_P\cap S$ is block diagonal of total determinant $1$, and after multiplying by a suitable element of $T\cap S$ its blocks all have determinant $1$. Finally, the unipotent radical $U_P$ of $P$ lies in $B_S$, so Proposition~\ref{prop:5.2} gives
+\[
+    P\cap S=U_P(L_P\cap S)\leq H.
+\]
+Together with $H\leq P\cap S$, this proves $H=P\cap S$.
 \end{solution}
 
 \begin{exercise}
@@ -387,6 +433,47 @@ Let $B$ be the standard Borel subgroup of $\mathrm{GL}(n,F)$. Determine all subg
 Show that $\mathrm{PSL}(2,2) \cong S_3$ and $\mathrm{PSL}(2,3) \cong A_4$, and that these groups are not simple.
 \end{exercise}
 \begin{solution}
+By Proposition~\ref{prop:6.5},
+\[
+    \lvert \mathrm{PSL}(2,2)\rvert=2^3-2=6
+\]
+and
+\[
+    \lvert \mathrm{PSL}(2,3)\rvert=\frac{3^3-3}{2}=12.
+\]
+First let $F$ be the field with two elements. The group $\SL(2,F)$ acts on the three non-zero vectors of $V_2(F)$. If a matrix fixes all three non-zero vectors, then in particular it fixes the basis vectors $\mathbf{v}_1$ and $\mathbf{v}_2$, so it is the identity. Hence this action gives an embedding
+\[
+    \mathrm{PSL}(2,2)=\SL(2,F)\hookrightarrow S_3.
+\]
+Since both groups have order $6$, we get $\mathrm{PSL}(2,2)\cong S_3$.\\
+Now let $F$ be the field with three elements. The group $\SL(2,F)$ acts on the four one-dimensional subspaces of $V_2(F)$, namely
+\[
+    F\binom{1}{0},\quad
+    F\binom{0}{1},\quad
+    F\binom{1}{1},\quad
+    F\binom{1}{-1}.
+\]
+The kernel of this action consists of the scalar matrices in $\SL(2,F)$: indeed, if a matrix fixes the first two lines, it is diagonal, and if it also fixes the line $F(\mathbf{v}_1+\mathbf{v}_2)$, then its two diagonal entries are equal. Thus the kernel is $\{I,-I\}$, and the action induces an embedding
+\[
+    \mathrm{PSL}(2,3)\hookrightarrow S_4.
+\]
+We show that the image lies in $A_4$. By Proposition~\ref{prop:6.2}, $\SL(2,F)$ is generated by $X_{12}$ and $X_{21}$. Write the four lines as
+\[
+    L_0=F\binom{1}{0},\quad
+    L_1=F\binom{1}{1},\quad
+    L_{-1}=F\binom{1}{-1},\quad
+    M=F\binom{0}{1}.
+\]
+Then $X_{12}(1)$ acts as the cycle
+\[
+    (L_1\;L_{-1}\;M)
+\]
+and $X_{21}(1)$ acts as the cycle
+\[
+    (L_0\;L_1\;L_{-1}).
+\]
+These are even permutations, and their powers give the images of the whole root subgroups $X_{12}$ and $X_{21}$. Therefore the image of $\mathrm{PSL}(2,3)$ in $S_4$ is contained in $A_4$. Since this image has order $12$ and $\lvert A_4\rvert=12$, it follows that $\mathrm{PSL}(2,3)\cong A_4$.\\
+Finally, these groups are not simple: $A_3\trianglelefteq S_3$ is a non-trivial proper normal subgroup, and the Klein four-subgroup is a non-trivial proper normal subgroup of $A_4$.
 \end{solution}
 
 \begin{exercise}
@@ -394,6 +481,85 @@ Show that $\mathrm{PSL}(2,2) \cong S_3$ and $\mathrm{PSL}(2,3) \cong A_4$, and t
 Show that $\mathrm{PSL}(2,4)$ and $\mathrm{PSL}(2,5)$ are both isomorphic with $A_5$.
 \end{exercise}
 \begin{solution}
+By Proposition~\ref{prop:6.5},
+\[
+    \lvert \mathrm{PSL}(2,4)\rvert=4^3-4=60
+\]
+and
+\[
+    \lvert \mathrm{PSL}(2,5)\rvert=\frac{5^3-5}{2}=60.
+\]
+First let $F$ be the field with four elements. The group $\SL(2,F)$ acts on the five one-dimensional subspaces of $V_2(F)$. The kernel of this action consists of the scalar matrices in $\SL(2,F)$, and since $F$ has characteristic $2$, the only scalar matrix in $\SL(2,F)$ is $I$. Thus this action gives an embedding
+\[
+    \mathrm{PSL}(2,4)=\SL(2,F)\hookrightarrow S_5.
+\]
+We show that the image lies in $A_5$. Write the five lines as
+\[
+    L_a=F\binom{1}{a}\quad(a\in F),
+    \qquad
+    M=F\binom{0}{1}.
+\]
+For $\alpha\neq0$, the transvection $X_{21}(\alpha)$ fixes $M$ and sends
+\[
+    L_a\mapsto L_{a+\alpha}.
+\]
+Since the additive group of $F$ has characteristic $2$, the translation $a\mapsto a+\alpha$ on the four elements of $F$ is a product of two disjoint transpositions. Hence $X_{21}(\alpha)$ acts as an even permutation on the five lines. Similarly, $X_{12}(\alpha)$ fixes $L_0$ and, for $\alpha\neq0$, fixes no other line: if
+\[
+    X_{12}(\alpha)\binom{1}{a}
+    =
+    \binom{1+\alpha a}{a}
+\]
+spans the same line as $\binom{1}{a}$ and $a\neq0$, then the second coordinate forces the scalar to be $1$, and hence $\alpha a=0$, a contradiction. Also $M$ is sent to $L_{\alpha^{-1}}$. Thus $X_{12}(\alpha)$ is an involution fixing exactly one of the five lines, so it is again a product of two disjoint transpositions. By Proposition~\ref{prop:6.2}, the image of $\SL(2,F)$ in $S_5$ is generated by these even permutations, and hence lies in $A_5$. Since the image has order $60=\lvert A_5\rvert$, we conclude that
+\[
+    \mathrm{PSL}(2,4)\cong A_5.
+\]
+Now let $F$ be the field with five elements, and put $G=\mathrm{PSL}(2,5)$. We shall find a subgroup of $G$ of index $5$. In $\SL(2,F)$, let
+\[
+    C=
+    \begin{pmatrix}
+        0  & 1\\
+        -1 & 0
+    \end{pmatrix},
+    \qquad
+    D=
+    \begin{pmatrix}
+        2 & 0\\
+        0 & -2
+    \end{pmatrix},
+    \qquad
+    R=
+    \begin{pmatrix}
+        1 & 1\\
+        2 & 3
+    \end{pmatrix}.
+\]
+Let $c,d,r$ be their images in $G$. Since
+\[
+    C^2=D^2=(CD)^2=-I
+\]
+and $CD=-DC$, the subgroup
+\[
+    V=\{1,c,d,cd\}
+\]
+is a Klein four-subgroup of $G$. Also $R^3=I$, so $r$ has order $3$. A direct calculation, modulo the scalar subgroup $\{I,-I\}$, gives
+\[
+    rcr^{-1}=cd,\qquad
+    r(cd)r^{-1}=d,\qquad
+    rdr^{-1}=c.
+\]
+Thus $r$ normalizes $V$ and cyclically permutes its three non-identity elements. Therefore
+\[
+    H=V\langle r\rangle
+\]
+is a subgroup of $G$ of order $12$. Since $\lvert G\rvert=60$, the index of $H$ in $G$ is $5$.\\
+Let $G$ act on the five left cosets of $H$. This gives a homomorphism
+\[
+    G\to S_5.
+\]
+The kernel is normal in $G$. By Theorem~\ref{thm:6.8}, the group $G=\mathrm{PSL}(2,5)$ is simple, since this is not one of the exceptional cases. The action is not trivial because $H$ is a proper subgroup, so the kernel cannot be all of $G$. Hence the kernel is trivial, and $G$ embeds in $S_5$. Finally, composing this embedding with the sign homomorphism $S_5\to\{\pm1\}$ gives a homomorphism from the simple group $G$ to a group of order $2$. This homomorphism must be trivial, since a non-trivial one would have a non-trivial proper kernel. Therefore the image of $G$ lies in $A_5$. Since both $G$ and $A_5$ have order $60$, the image is all of $A_5$, and hence
+\[
+    \mathrm{PSL}(2,5)\cong A_5.
+\]
 \end{solution}
 
 \begin{exercise}
@@ -401,6 +567,157 @@ Show that $\mathrm{PSL}(2,4)$ and $\mathrm{PSL}(2,5)$ are both isomorphic with $
 Show that $\mathrm{PSL}(2,7) \cong \mathrm{GL}(3,2)$.
 \end{exercise}
 \begin{solution}
+Let $F$ be the field with seven elements, and put $G=\mathrm{PSL}(2,7)$. By Proposition~\ref{prop:6.5},
+\[
+    |G|=\frac{7^3-7}{2}=168.
+\]
+Also
+\[
+    |\mathrm{GL}(3,2)|=(2^3-1)(2^3-2)(2^3-2^2)=7\cdot 6\cdot 4=168.
+\]
+We shall construct the same faithful permutation group of degree $7$ from $G$ and from $\mathrm{GL}(3,2)$.\\
+First we construct a subgroup of $G$ of index $7$. In $\SL(2,F)$, let
+\[
+    C=
+    \begin{pmatrix}
+        0  & 1\\
+        -1 & 0
+    \end{pmatrix},
+    \quad
+    D=
+    \begin{pmatrix}
+        2 & 3\\
+        3 & -2
+    \end{pmatrix},
+    \quad
+    R=
+    \begin{pmatrix}
+        0 & 2\\
+        3 & 1
+    \end{pmatrix},
+    \quad
+    E=
+    \begin{pmatrix}
+        1 & -1\\
+        2 & -1
+    \end{pmatrix}.
+\]
+Let $c,d,r,e$ be their images in $G$. A direct calculation gives
+\[
+    C^2=D^2=(CD)^2=-I,\qquad CD=-DC.
+\]
+Thus
+\[
+    V=\{1,c,d,cd\}
+\]
+is a Klein four-subgroup of $G$. Also $R^3=-I$ and $E^2=-I$, so $r$ has order $3$ and $e$ has order $2$ in $G$. Conjugation gives
+\[
+    rcr^{-1}=d,\qquad rdr^{-1}=cd,\qquad r(cd)r^{-1}=c,
+\]
+and
+\[
+    ece^{-1}=cd,\qquad ede^{-1}=d,\qquad e(cd)e^{-1}=c.
+\]
+Moreover $ere^{-1}=r^{-1}$, so $\langle r,e\rangle\cong S_3$. Hence $r$ and $e$ act on the three non-identity elements of $V$ as a $3$-cycle and a transposition. This action is faithful, while every element of $V$ centralizes $V$, so $V\cap \langle r,e\rangle=1$. Therefore the subgroup
+\[
+    H=V\langle r,e\rangle
+\]
+has order $4\cdot 6=24$. Since $|G|=168$, the subgroup $H$ has index $7$ in $G$.\\
+Let $G$ act on the seven left cosets of $H$. The kernel is normal in $G$. By Theorem~\ref{thm:6.8}, the group $G=\mathrm{PSL}(2,7)$ is simple. The action is not trivial because $H$ is proper, so the kernel is not all of $G$. Hence the kernel is trivial, and this coset action embeds $G$ in $S_7$.\\
+Now take
+\[
+    S=
+    \begin{pmatrix}
+        0  & -1\\
+        1  & 0
+    \end{pmatrix},
+    \qquad
+    T=
+    \begin{pmatrix}
+        1 & 1\\
+        0 & 1
+    \end{pmatrix}.
+\]
+The images of $S$ and $T$ generate $G$: indeed, $T=X_{12}(1)$, and conjugating powers of $T$ by $S$ gives the lower root subgroup $X_{21}$, so Proposition~\ref{prop:6.2} applies. We now make the coset calculation explicit. Choose the following representatives $g_i$ for the seven left cosets of $H$ in $G$, where each displayed matrix denotes its image in $G$:
+\[
+\begin{array}{c|c}
+    i & g_i\\
+    \hline
+    1 & \bigl(\begin{smallmatrix}2&-3\\2&1\end{smallmatrix}\bigr)\\
+    2 & \bigl(\begin{smallmatrix}1&0\\2&1\end{smallmatrix}\bigr)\\
+    3 & \bigl(\begin{smallmatrix}2&3\\-2&1\end{smallmatrix}\bigr)\\
+    4 & \bigl(\begin{smallmatrix}3&0\\2&-2\end{smallmatrix}\bigr)\\
+    5 & \bigl(\begin{smallmatrix}3&-2\\0&-2\end{smallmatrix}\bigr)\\
+    6 & \bigl(\begin{smallmatrix}3&2\\0&-2\end{smallmatrix}\bigr)\\
+    7 & \bigl(\begin{smallmatrix}1&-1\\2&-1\end{smallmatrix}\bigr).
+\end{array}
+\]
+For $X\in\{S,T\}$, the equality $Xg_iH=g_jH$ is equivalent to
+\[
+    g_j^{-1}Xg_i\in H.
+\]
+Checking this membership for the displayed representatives gives
+\[
+\begin{array}{c|ccccccc}
+    i & 1&2&3&4&5&6&7\\
+    \hline
+    Sg_iH & g_1H&g_5H&g_4H&g_3H&g_2H&g_6H&g_7H\\
+    Tg_iH & g_3H&g_5H&g_6H&g_7H&g_4H&g_2H&g_1H.
+\end{array}
+\]
+For example,
+\[
+    g_5^{-1}Sg_2=
+    \begin{pmatrix}
+        1  & -2\\
+        -3 & 0
+    \end{pmatrix}
+    =R^{-1}\in H,
+\]
+so $Sg_2H=g_5H$. Reading the two rows of the table as permutations of the labels $1,\ldots,7$, we get
+\[
+    S\mapsto (2\;5)(3\;4),
+    \qquad
+    T\mapsto (1\;3\;6\;2\;5\;4\;7).
+\]
+Now consider the natural action of $\mathrm{GL}(3,2)$ on the seven non-zero vectors of $\mathbb F_2^3$. Label these vectors by
+\[
+\begin{array}{c|ccccccc}
+    \text{label} & 1&2&3&4&5&6&7\\
+    \hline
+    \text{vector} & e_1&e_2&e_1+e_2&e_3&e_1+e_3&e_2+e_3&e_1+e_2+e_3.
+\end{array}
+\]
+With respect to the basis $e_1,e_2,e_3$, the matrices
+\[
+    A=
+    \begin{pmatrix}
+        1&1&1\\
+        0&0&1\\
+        0&1&0
+    \end{pmatrix},
+    \qquad
+    B=
+    \begin{pmatrix}
+        1&1&1\\
+        1&0&1\\
+        0&1&1
+    \end{pmatrix}
+\]
+are invertible over $\mathbb F_2$. A direct calculation on the seven labelled vectors gives
+\[
+    A\mapsto (2\;5)(3\;4),
+    \qquad
+    B\mapsto (1\;3\;6\;2\;5\;4\;7).
+\]
+Thus the two generators of the image of $G$ in $S_7$ lie in the image of the natural embedding
+\[
+    \mathrm{GL}(3,2)\hookrightarrow S_7.
+\]
+Since $S$ and $T$ generate $G$, the whole image of $G$ lies in the image of $\mathrm{GL}(3,2)$. Both images have order $168$: the coset action of $G$ is faithful, and the natural action of $\mathrm{GL}(3,2)$ on the non-zero vectors is faithful. Therefore the two images in $S_7$ are equal, and hence
+\[
+    \mathrm{PSL}(2,7)\cong \mathrm{GL}(3,2).
+\]
 \end{solution}
 
 \begin{exercise}
