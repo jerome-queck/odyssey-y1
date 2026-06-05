@@ -38,6 +38,57 @@
 (iv) The number of Sylow $p$-subgroups of $G$ is congruent to $1$ modulo $p$.
 \end{namedtheorem}
 \begin{proof}
+Let $|G| = p^n m$, where $p^n = |G|_p$ and $p\nmid m$. Let $X$ be the set of all subsets of $G$ having $p^n$ elements. Then $G$ acts on $X$ by left multiplication.\\
+We first examine the orbits of this action whose sizes are not divisible by $p$. Suppose that $\mathcal{O}$ is such an orbit. Choose some $A \in \mathcal{O}$. Since $A$ is non-empty, there is some $a \in A$, and then $a^{-1}A$ lies in the same orbit and contains $1$. Replacing $A$ by $a^{-1}A$, we may assume that $1 \in A$. Let $P$ be the stabilizer of $A$. If $x \in P$, then $xA = A$, so $x = x1 \in A$. Hence $P \subseteq A$, and therefore
+\[
+    |P| \leq |A| = p^n.
+\]
+By Corollary~\ref{cor:3.5}, we have
+\[
+    |\mathcal{O}| = |G : P|,
+\]
+and hence $|G| = |P|\,|\mathcal{O}|$. Since $p\nmid |\mathcal{O}|$, the full $p$-part $p^n$ of $|G|$ must divide $|P|$. Together with $|P|\leq p^n$, this gives $|P|=p^n$. Thus $P$ is a Sylow $p$-subgroup of $G$. Since $P \subseteq A$ and $|P|=|A|$, we have $A=P$, so $\mathcal{O}$ is the coset space $G/P$.\\
+Conversely, if $P$ is a Sylow $p$-subgroup of $G$, then the set of left cosets $G/P$ is contained in $X$, and it is exactly the orbit of the subset $P$ under left multiplication. This orbit has size
+\[
+    |G : P| = m,
+\]
+which is not divisible by $p$. Therefore the Sylow $p$-subgroups of $G$ are in bijective correspondence with the orbits in $X$ whose sizes are not divisible by $p$.\\
+Let $X'$ be the union of all orbits in $X$ whose sizes are not divisible by $p$, and let $r$ be the number of Sylow $p$-subgroups of $G$. Every orbit in $X-X'$ has size divisible by $p$, so
+\[
+    |X| \equiv |X'| \pmod{p}.
+\]
+Each orbit contained in $X'$ has size $m$, and there are $r$ such orbits. Hence
+\[
+    |X'| = rm,
+\]
+so
+\[
+    rm \equiv |X| = \binom{p^n m}{p^n} \pmod{p}.
+\]
+This congruence depends only on the order of the group. Now compare with the cyclic group of order $p^n m$. By Theorem~\ref{thm:1.4}, this cyclic group has exactly one subgroup of order $p^n$, so the same congruence gives
+\[
+    m \equiv \binom{p^n m}{p^n} \pmod{p}.
+\]
+Since $p\nmid m$, we may cancel $m$ modulo $p$, obtaining
+\[
+    r \equiv 1 \pmod{p}.
+\]
+This proves (iv), and in particular $r>0$, so $G$ has at least one Sylow $p$-subgroup. This proves (i).\\
+It remains to prove conjugacy and containment. Let $P$ be a Sylow $p$-subgroup of $G$, and let $Q$ be an arbitrary $p$-subgroup of $G$. Let $Y$ be the set of conjugates of $P$ in $G$. The group $Q$ acts on $Y$ by conjugation. Each orbit of this action has size equal to the index of a subgroup of the $p$-group $Q$, and hence has size a power of $p$.\\
+By Proposition~\ref{prop:3.14},
+\[
+    |Y| = |G : N_G(P)|.
+\]
+Since $P \leq N_G(P)$, the index $|G : N_G(P)|$ divides
+\[
+    |G : P| = m.
+\]
+Thus $p\nmid |Y|$. Therefore at least one orbit of the action of $Q$ on $Y$ has size $1$. Let this orbit be $\{P_1\}$, where $P_1$ is a conjugate of $P$. Then $xP_1x^{-1}=P_1$ for every $x\in Q$, so $QP_1=P_1Q$. By Proposition~\ref{prop:1.3}, $QP_1\leq G$. Moreover, by Proposition~\ref{prop:3.12},
+\[
+    |QP_1|=\frac{|Q||P_1|}{|Q\cap P_1|},
+\]
+so $QP_1$ is a $p$-subgroup of $G$. Since $P_1$ is already a Sylow $p$-subgroup and $P_1\leq QP_1$, we must have $QP_1=P_1$. Hence $Q\leq P_1$. This proves that every $p$-subgroup of $G$ is contained in a Sylow $p$-subgroup, proving (iii).\\
+Finally, if $Q$ itself is a Sylow $p$-subgroup of $G$, then $Q\leq P_1$ and $|Q|=|P_1|$, so $Q=P_1$. Since $P_1$ is a conjugate of $P$, every Sylow $p$-subgroup of $G$ is conjugate to $P$. This proves (ii).
 \end{proof}
 
 \begin{corollary}
@@ -45,6 +96,19 @@
 The number of Sylow $p$-subgroups of $G$ divides $|G|/|G|_p$.
 \end{corollary}
 \begin{proof}
+Let $r$ be the number of Sylow $p$-subgroups of $G$, and let $P$ be one of them. By part (ii) of \nameref{thm:sylow}, every Sylow $p$-subgroup of $G$ is conjugate to $P$, so $r$ is exactly the number of conjugates of $P$ in $G$. By Proposition~\ref{prop:3.14}, this number is
+\[
+    r = |G : N_G(P)|.
+\]
+Since $P \leq N_G(P) \leq G$, we have
+\[
+    |G : P| = |G : N_G(P)|\,|N_G(P) : P|.
+\]
+Therefore $r=|G:N_G(P)|$ divides
+\[
+    |G:P|=\frac{|G|}{|P|}=\frac{|G|}{|G|_p},
+\]
+as required.
 \end{proof}
 
 \begin{namedtheorem}[Cauchy's Theorem]
@@ -52,6 +116,11 @@ The number of Sylow $p$-subgroups of $G$ divides $|G|/|G|_p$.
 $G$ has an element of order $p$.
 \end{namedtheorem}
 \begin{proof}
+By part (i) of \nameref{thm:sylow}, $G$ has a Sylow $p$-subgroup $P$. Since $p$ divides $|G|$, this subgroup is non-trivial. Choose some $1\neq x\in P$. Then $o(x)$ is a power of $p$, say $o(x)=p^k$ with $k\geq 1$. Therefore
+\[
+    o\left(x^{p^{k-1}}\right)=p.
+\]
+Thus $G$ has an element of order $p$.
 \end{proof}
 
 \noindent (Other proofs of \nameref{thm:sylow} often assume that \nameref{thm:cauchy} is already known, as was the case historically.)
@@ -67,6 +136,28 @@ $G$ has an element of order $p$.
 Let $N \trianglelefteq G$, and let $P$ be a Sylow $p$-subgroup of $G$. Then $PN/N$ is a Sylow $p$-subgroup of $G/N$, and $P \cap N$ is a Sylow $p$-subgroup of $N$.
 \end{proposition}
 \begin{proof}
+By Proposition~\ref{prop:1.7}, $PN$ is a subgroup of $G$. The \nameref{thm:correspondence} applied to the natural map $G\to G/N$ gives
+\[
+    |G/N : PN/N| = |G : PN|.
+\]
+Since $P \leq PN \leq G$, the index $|G:PN|$ divides $|G:P|$. But $P$ is a Sylow $p$-subgroup of $G$, so
+\[
+    |G:P|=\frac{|G|}{|G|_p}
+\]
+is not divisible by $p$. Hence $p\nmid |G/N:PN/N|$. On the other hand, by the \nameref{thm:first-iso},
+\[
+    PN/N \cong P/(P\cap N),
+\]
+so $PN/N$ is a $p$-group. Thus $PN/N$ is a $p$-subgroup of $G/N$ whose index in $G/N$ is not divisible by $p$, and therefore $PN/N$ is a Sylow $p$-subgroup of $G/N$.\\
+It remains to prove that $P\cap N$ is Sylow in $N$. Clearly $P\cap N$ is a $p$-subgroup. By Proposition~\ref{prop:3.12},
+\[
+    |PN|=\frac{|P||N|}{|P\cap N|},
+\]
+and hence
+\[
+    |N:P\cap N|=\frac{|N|}{|P\cap N|}=\frac{|PN|}{|P|}=|PN:P|.
+\]
+Since $P\leq PN\leq G$, the index $|PN:P|$ divides $|G:P|$, and again $p\nmid |G:P|$. Therefore $p\nmid |N:P\cap N|$. Hence $P\cap N$ is a $p$-subgroup of $N$ whose index in $N$ is not divisible by $p$, so $P\cap N$ is a Sylow $p$-subgroup of $N$.
 \end{proof}
 
 \subsubsection*{Applications: groups of order $pq$ and simplicity of $A_5$}
@@ -80,6 +171,31 @@ Let $N \trianglelefteq G$, and let $P$ be a Sylow $p$-subgroup of $G$. Then $PN/
 Let $p$ and $q$ be distinct primes, with $p > q$. If $p \not\equiv 1 \pmod{q}$, then any group of order $pq$ is isomorphic with $\Z_{pq}$. If $p \equiv 1 \pmod{q}$, then any abelian group of order $pq$ is isomorphic with $\Z_{pq}$, and there is exactly one isomorphism class of non-abelian groups of order $pq$.
 \end{proposition}
 \begin{proof}
+Let $G$ be a group of order $pq$. Let $P$ be a Sylow $p$-subgroup of $G$, and let $Q$ be a Sylow $q$-subgroup of $G$. Then $|P|=p$ and $|Q|=q$, so $P\cong \Z_p$ and $Q\cong \Z_q$. Also, $P\cap Q=1$, and Proposition~\ref{prop:3.12} gives
+\[
+    |PQ|=\frac{|P||Q|}{|P\cap Q|}=pq=|G|,
+\]
+so $G=PQ$.\\
+We first count the Sylow subgroups. By \nameref{thm:sylow} and Corollary~\ref{cor:7.1}, the number of Sylow $p$-subgroups divides $q$ and is congruent to $1$ modulo $p$. Since $p>q$, we have $q\not\equiv 1\pmod{p}$, so there is exactly one Sylow $p$-subgroup. Hence $P\trianglelefteq G$. Similarly, the number of Sylow $q$-subgroups divides $p$ and is congruent to $1$ modulo $q$. Therefore this number is either $1$ or $p$, and the second case can occur only when $p\equiv 1\pmod{q}$.\\
+If $Q\trianglelefteq G$, then both $P$ and $Q$ are normal in $G$. Since $G=PQ$ and $P\cap Q=1$, Lemma~\ref{lem:2.7} gives
+\[
+    G\cong P\times Q\cong \Z_p\times \Z_q\cong \Z_{pq},
+\]
+where the final isomorphism follows from Lemma~\ref{lem:2.8}. Thus $G$ is cyclic whenever $Q$ is normal. This proves the first assertion when $p\not\equiv 1\pmod{q}$, and it also proves that every abelian group of order $pq$ is cyclic, since then $Q$ is automatically normal.\\
+It remains to classify the non-abelian case, so assume $p\equiv 1\pmod{q}$ and that $G$ is non-abelian. Then $Q$ is not normal, while $P\trianglelefteq G$, $G=PQ$, and $P\cap Q=1$. Hence $G=P\rtimes Q$. Let
+\[
+    \varphi\colon Q\to \Aut(P)
+\]
+be the conjugation homomorphism. If $\ker\varphi\neq 1$, then $\ker\varphi=Q$, because $Q$ has prime order. In that case the action is trivial, so $G=P\times Q$, contradicting that $G$ is non-abelian. Therefore $\varphi$ is injective. Thus every non-abelian group of order $pq$ arises from a monomorphism
+\[
+    \Z_q\to \Aut(\Z_p).
+\]
+Conversely, any such monomorphism gives a non-abelian semidirect product $\Z_p\rtimes_{\varphi}\Z_q$ of order $pq$.\\
+By Proposition~\ref{prop:2.2}, we have $\Aut(\Z_p)\cong \Z_{p-1}$. Since $q\mid (p-1)$, Theorem~\ref{thm:1.4} shows that $\Aut(\Z_p)$ has a unique subgroup $K$ of order $q$. Hence a monomorphism $\varphi\colon \Z_q\to \Aut(\Z_p)$ exists, and every such monomorphism has image $K$. If $\psi\colon \Z_q\to \Aut(\Z_p)$ is another monomorphism, then $\varphi(\Z_q)=K=\psi(\Z_q)$, so Proposition~\ref{prop:2.11} gives
+\[
+    \Z_p\rtimes_{\varphi}\Z_q\cong \Z_p\rtimes_{\psi}\Z_q.
+\]
+Therefore, when $p\equiv 1\pmod{q}$, there is exactly one isomorphism class of non-abelian groups of order $pq$.
 \end{proof}
 
 \begin{theorem}
@@ -87,6 +203,31 @@ Let $p$ and $q$ be distinct primes, with $p > q$. If $p \not\equiv 1 \pmod{q}$, 
 $A_5$ is simple.
 \end{theorem}
 \begin{proof}
+We have
+\[
+    |A_5|=\frac{5!}{2}=60=2^2\cdot 3\cdot 5.
+\]
+We first count the elements of prime-power order that will be needed below. A $5$-cycle is even, and the number of $5$-cycles in $S_5$ is $4!=24$. Each Sylow $5$-subgroup of $A_5$ has order $5$ and hence contains $4$ non-identity elements, and two distinct subgroups of order $5$ intersect trivially. Thus $A_5$ has
+\[
+    \frac{24}{4}=6
+\]
+Sylow $5$-subgroups, and these account for all $24$ elements of order $5$. Similarly, the $3$-cycles are even, and there are
+\[
+    \binom{5}{3}\cdot 2=20
+\]
+of them. Each Sylow $3$-subgroup has two non-identity elements, so $A_5$ has $10$ Sylow $3$-subgroups, accounting for all $20$ elements of order $3$.\\
+Now consider the Sylow $2$-subgroups. For $1\leq i\leq 5$, let $\{a,b,c,d\}$ be the complement of $\{i\}$ in $\{1,2,3,4,5\}$, and put
+\[
+    V_i=\{1,(ab)(cd),(ac)(bd),(ad)(bc)\}.
+\]
+Then $V_i$ is a subgroup of $A_5$ of order $4$, hence a Sylow $2$-subgroup. If $i\neq j$, then $V_i\cap V_j=1$, since a non-identity element of $V_i$ fixes exactly the point $i$. Moreover, for $\sigma\in A_5$ we have
+\[
+    \sigma V_i\sigma^{-1}=V_{\sigma(i)}.
+\]
+Since $A_5$ acts transitively on $\{1,2,3,4,5\}$, the five subgroups $V_1,\ldots,V_5$ are conjugate. By part (ii) of \nameref{thm:sylow}, these are all the Sylow $2$-subgroups of $A_5$. Thus $A_5$ has $5(4-1)=15$ elements of order $2$. Also, every element of order $2$ in $A_5$ has a distinct conjugate in $A_5$: for instance, if $x=(ab)(cd)$, with $i$ the remaining point, then conjugation by the $3$-cycle $(acb)$ sends $x$ to $(ac)(bd)\neq x$.\\
+Now let $N\trianglelefteq A_5$ be a proper normal subgroup, and put $n=|N|$. By \nameref{thm:lagrange}, $n$ divides $60$, and since $N$ is proper we have $n\leq 30$. Suppose first that $5$ divides $n$. Then by \nameref{thm:cauchy}, $N$ contains an element of order $5$, and hence contains a Sylow $5$-subgroup of $A_5$. Since $N$ is normal in $A_5$, it contains every conjugate of this Sylow $5$-subgroup, so it contains all $24$ elements of order $5$. This forces $n=30$. But then $3$ divides $n$, so the same argument with Sylow $3$-subgroups shows that $N$ contains all $20$ elements of order $3$. These are disjoint from the $24$ elements of order $5$, and with the identity this gives more than $30$ elements in $N$, a contradiction. Therefore $5\nmid n$.\\
+If $3$ divides $n$, then again by \nameref{thm:cauchy}, $N$ contains an element of order $3$, and normality forces $N$ to contain all $20$ elements of order $3$. But $5\nmid n$ and $n\mid 60$, so $n\leq 12$, a contradiction. Hence $3\nmid n$. Therefore $n$ is one of $1,2,4$. If $n=4$, then $N$ is a Sylow $2$-subgroup of $A_5$, but a Sylow $2$-subgroup has five conjugates, contradicting the normality of $N$. If $n=2$, then $N=\{1,x\}$ for some element $x$ of order $2$, but we have just observed that $x$ has a conjugate different from itself, again contradicting normality. Hence $n=1$.\\
+Thus every proper normal subgroup of $A_5$ is trivial, and so $A_5$ is simple.
 \end{proof}
 
 \begin{theorem}
@@ -94,6 +235,38 @@ $A_5$ is simple.
 Any simple group of order $60$ is isomorphic with $A_5$.
 \end{theorem}
 \begin{proof}
+Let $G$ be a simple group of order $60$. We first observe that $G$ has no proper subgroup of index less than $5$. Indeed, if $H<G$ has index $r$, then the action of $G$ on $G/H$ by left multiplication gives a homomorphism
+\[
+    G\to S_r
+\]
+by Proposition~\ref{prop:3.1}. Since this action is transitive and $r>1$, it is non-trivial. The kernel is therefore a proper normal subgroup of the simple group $G$, and hence the kernel is trivial. Thus $G$ embeds in $S_r$. But if $r<5$, then
+\[
+    |S_r|=r!<60=|G|,
+\]
+which is impossible.\\
+We next show that $G$ has a subgroup of index $5$. Suppose, for a contradiction, that it does not. Let $S$ be a Sylow $2$-subgroup of $G$. Then $|S|=4$. By Corollary~\ref{cor:7.1}, the number of Sylow $2$-subgroups divides $60/4=15$, and by Proposition~\ref{prop:3.14} this number is the index $|G:N_G(S)|$. This number is not $1$, since otherwise $S$ would be normal in $G$, contradicting simplicity. Since $G$ has no proper subgroup of index less than $5$ and, by assumption, none of index $5$, this number must be $15$.\\
+Let $S_1$ and $S_2$ be distinct Sylow $2$-subgroups. Suppose that there is some $1\neq t\in S_1\cap S_2$. Since every group of order $4$ is abelian, both $S_1$ and $S_2$ lie in $C_G(t)$. Thus $|C_G(t)|>4$, and since $S_1\leq C_G(t)$, the order $|C_G(t)|$ is divisible by $4$. Hence
+\[
+    |G:C_G(t)|\leq 5.
+\]
+The first paragraph and our assumption that $G$ has no subgroup of index $5$ force $C_G(t)=G$. Thus $t\in Z(G)$, so $\langle t\rangle$ is a non-trivial proper normal subgroup of $G$, contradicting simplicity. Therefore distinct Sylow $2$-subgroups intersect trivially. Since there are $15$ Sylow $2$-subgroups, $G$ has
+\[
+    15(4-1)=45
+\]
+non-identity elements lying in Sylow $2$-subgroups.\\
+Since $G$ is simple, its Sylow $5$-subgroup is not normal. By \nameref{thm:sylow} and Corollary~\ref{cor:7.1}, the number of Sylow $5$-subgroups divides $60/5=12$ and is congruent to $1$ modulo $5$, so this number must be $6$. These subgroups intersect trivially away from the identity, and hence contribute
+\[
+    6(5-1)=24
+\]
+elements of order $5$. This is impossible, since $45+24>60$. Therefore $G$ has a subgroup of index $5$.\\
+Let $H$ be a subgroup of index $5$. The action of $G$ on $G/H$ gives a homomorphism $G\to S_5$. As above, simplicity forces this homomorphism to be injective, so we identify $G$ with its image in $S_5$. Then $|G|=60$, and hence $|S_5:G|=2$. By Proposition~\ref{prop:1.8}, $G\trianglelefteq S_5$.\\
+We claim that $G=A_5$. Suppose not. Since $A_5\trianglelefteq S_5$, Proposition~\ref{prop:1.7} gives $GA_5\leq S_5$. The subgroup $GA_5$ contains $A_5$ properly, because $G\neq A_5$ and both groups have order $60$. Hence $|GA_5|>60$, so $GA_5=S_5$. By Proposition~\ref{prop:3.12},
+\[
+    |G\cap A_5|=\frac{|G||A_5|}{|GA_5|}
+    =\frac{60\cdot 60}{120}
+    =30.
+\]
+Therefore $G\cap A_5$ has index $2$ in $G$, so Proposition~\ref{prop:1.8} gives $G\cap A_5\trianglelefteq G$. This is a non-trivial proper normal subgroup of $G$, contradicting simplicity. Thus $G=A_5$, and the original group is isomorphic with $A_5$.
 \end{proof}
 
 \begin{corollary}
@@ -101,6 +274,21 @@ Any simple group of order $60$ is isomorphic with $A_5$.
 $\mathrm{PSL}(2, 4) \cong \mathrm{PSL}(2, 5) \cong A_5$.
 \end{corollary}
 \begin{proof}
+By Proposition~\ref{prop:6.5}, we have
+\[
+    |\mathrm{PSL}(2,4)|=4^3-4=60
+\]
+and
+\[
+    |\mathrm{PSL}(2,5)|=\frac{1}{2}(5^3-5)=60.
+\]
+By Theorem~\ref{thm:6.8}, both groups are simple, since the exceptional groups in degree $2$ occur only over fields of order $2$ and $3$. Therefore Theorem~\ref{thm:7.5} gives
+\[
+    \mathrm{PSL}(2,4)\cong A_5
+    \qquad\text{and}\qquad
+    \mathrm{PSL}(2,5)\cong A_5.
+\]
+Hence $\mathrm{PSL}(2,4)\cong \mathrm{PSL}(2,5)\cong A_5$.
 \end{proof}
 
 \noindent It is a relatively easy exercise to show that the only simple groups of order less than $60$ are the cyclic groups of prime order, and hence that $A_5$ is the non-abelian finite simple group having smallest order. The non-abelian finite simple group of next smallest order is $\mathrm{PSL}(2, 7)$, which has order $168$.
