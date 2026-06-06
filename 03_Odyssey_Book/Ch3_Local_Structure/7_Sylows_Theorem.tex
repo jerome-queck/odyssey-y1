@@ -302,6 +302,28 @@ Hence $\mathrm{PSL}(2,4)\cong \mathrm{PSL}(2,5)\cong A_5$.
 Let $H \leq G$ and let $P$ be a Sylow $p$-subgroup of $G$. Prove, without reference to \nameref{thm:sylow}, that there is some conjugate of $P$ whose intersection with $H$ is a Sylow $p$-subgroup of $H$.
 \end{exercise}
 \begin{solution}
+Let $H$ act on the left cosets $G/P$ by left multiplication. Since $P$ is a Sylow $p$-subgroup of $G$, the index $|G:P|$ is not divisible by $p$. The $H$-orbits on $G/P$ partition $G/P$, so at least one such orbit has size not divisible by $p$. Choose a coset $gP$ in such an orbit.\\
+The stabilizer of $gP$ in $H$ is
+\[
+    \operatorname{Stab}_H(gP)=\{h\in H: hgP=gP\}.
+\]
+Now
+\[
+    hgP=gP
+    \quad\Longleftrightarrow\quad
+    g^{-1}hg\in P
+    \quad\Longleftrightarrow\quad
+    h\in gPg^{-1},
+\]
+and hence
+\[
+    \operatorname{Stab}_H(gP)=H\cap gPg^{-1}.
+\]
+By Corollary~\ref{cor:3.5}, the size of the orbit of $gP$ is
+\[
+    |H:\operatorname{Stab}_H(gP)|=|H:H\cap gPg^{-1}|.
+\]
+This index is not divisible by $p$. Also, $H\cap gPg^{-1}$ is a $p$-subgroup of $H$, because it is contained in the $p$-group $gPg^{-1}$. Therefore $H\cap gPg^{-1}$ is a $p$-subgroup of $H$ whose index in $H$ is not divisible by $p$, so its order is the full $p$-part of $|H|$. Thus $H\cap gPg^{-1}$ is a Sylow $p$-subgroup of $H$.
 \end{solution}
 
 \begin{exercise}
@@ -309,6 +331,19 @@ Let $H \leq G$ and let $P$ be a Sylow $p$-subgroup of $G$. Prove, without refere
 (cont.) Use Exercise~\ref{ex:7.1} to give an alternate proof of part (i) of \nameref{thm:sylow}.
 \end{exercise}
 \begin{solution}
+Let $K$ be a finite group with $p\mid |K|$, and put $n=|K|$. By \nameref{thm:cayley}, we may regard $K$ as a subgroup of $S_n$. Embedding $S_n$ into $\GL(n,p)$ by permutation matrices, we may therefore regard
+\[
+    K\leq \GL(n,p).
+\]
+Let $U$ be the subgroup of upper uni-triangular matrices in $\GL(n,p)$. As computed at the beginning of this section,
+\[
+    |U|=p^{\frac{n(n-1)}{2}}=|\GL(n,p)|_p,
+\]
+so $U$ is a Sylow $p$-subgroup of $\GL(n,p)$ by definition. Applying Exercise~\ref{ex:7.1} to the subgroup $K\leq \GL(n,p)$ and the Sylow $p$-subgroup $U$, there is some $x\in \GL(n,p)$ such that
+\[
+    K\cap xUx^{-1}
+\]
+is a Sylow $p$-subgroup of $K$. Hence $K$ has a Sylow $p$-subgroup. Since $K$ was arbitrary, this proves part (i) of \nameref{thm:sylow}.
 \end{solution}
 
 \begin{exercise}
@@ -316,6 +351,29 @@ Let $H \leq G$ and let $P$ be a Sylow $p$-subgroup of $G$. Prove, without refere
 Give an alternate proof of parts (ii) and (iii) of \nameref{thm:sylow} by considering the action of an arbitrary $p$-subgroup $Q$ of $G$ on the coset space $G/P$, where $P$ is a Sylow $p$-subgroup of $G$.
 \end{exercise}
 \begin{solution}
+Let $Q$ be a $p$-subgroup of $G$, and let $Q$ act on $G/P$ by left multiplication:
+\[
+    q\cdot gP=qgP.
+\]
+Since $P$ is a Sylow $p$-subgroup of $G$, the index $|G:P|$ is not divisible by $p$. On the other hand, every orbit of the $p$-group $Q$ on $G/P$ has size a power of $p$, because its size is the index of a stabilizer in $Q$. Since the orbits partition $G/P$, at least one orbit must have size not divisible by $p$, and hence must have size $1$. Choose a fixed coset $gP$.\\
+For every $q\in Q$, we have
+\[
+    qgP=gP.
+\]
+Equivalently,
+\[
+    g^{-1}qgP=P,
+\]
+so $g^{-1}qg\in P$, and therefore $q\in gPg^{-1}$. Thus
+\[
+    Q\leq gPg^{-1}.
+\]
+Since $gPg^{-1}$ is a conjugate of $P$, it is a Sylow $p$-subgroup of $G$. This proves part (iii): every $p$-subgroup of $G$ is contained in a Sylow $p$-subgroup.\\
+Now let $Q$ itself be a Sylow $p$-subgroup of $G$. The containment just proved gives
+\[
+    Q\leq gPg^{-1}.
+\]
+But $Q$ and $gPg^{-1}$ have the same order, namely $|G|_p$. Hence $Q=gPg^{-1}$, so every Sylow $p$-subgroup of $G$ is conjugate to $P$. This proves part (ii).
 \end{solution}
 
 \begin{exercise}
@@ -323,6 +381,36 @@ Give an alternate proof of parts (ii) and (iii) of \nameref{thm:sylow} by consid
 Prove the following generalization of part (iv) of \nameref{thm:sylow}: If $|G|$ is divisible by $p^b$, and $H \leq G$ has order $p^a$ where $a \leq b$, then the number of subgroups of $G$ that both contain $H$ and have order $p^b$ is congruent to $1$ modulo $p$.
 \end{exercise}
 \begin{solution}
+We first record a one-step counting fact. Suppose that $K\leq G$ has order $p^c$ and that $p^{c+1}$ divides $|G|$. We claim that the number of subgroups $L\leq G$ such that
+\[
+    K\leq L,\qquad |L|=p^{c+1}
+\]
+is congruent to $1$ modulo $p$.\\
+To see this, first note that if $M$ is any finite group whose order is divisible by $p$, then the number of subgroups of $M$ of order $p$ is congruent to $1$ modulo $p$. Indeed, let
+\[
+    X=\{(x_1,\ldots,x_p)\in M^p:x_1x_2\cdots x_p=1\}.
+\]
+Then $|X|=|M|^{p-1}$, so $p\mid |X|$. The cyclic group of order $p$ acts on $X$ by cyclically permuting the entries. The fixed points are exactly the tuples $(x,\ldots,x)$ with $x^p=1$. Hence the number of elements $x\in M$ satisfying $x^p=1$ is congruent to $0$ modulo $p$. If $r$ is the number of subgroups of $M$ of order $p$, then these elements are the identity together with the $p-1$ non-identity elements in each such subgroup, so
+\[
+    1+(p-1)r\equiv 0 \pmod{p}.
+\]
+Thus $r\equiv 1\pmod{p}$.\\
+Now choose a Sylow $p$-subgroup $P$ of $G$ containing $K$, using part (iii) of \nameref{thm:sylow}. Since $p^{c+1}$ divides $|G|$, we have $K<P$. The $p$-group $K$ acts by left multiplication on the coset space $P/K$. The total number of cosets is divisible by $p$, and the coset $K$ is fixed. Since all non-trivial orbits have size divisible by $p$, there must be some other fixed coset $xK$. The condition that $xK$ is fixed says that $kxK=xK$ for every $k\in K$, or equivalently $x^{-1}kx\in K$ for every $k\in K$. Thus $x\in N_P(K)-K$, so $p$ divides $|N_G(K):K|$.\\
+Subgroups $L\leq G$ with $K\leq L$ and $|L|=p^{c+1}$ are now in bijection with subgroups of $N_G(K)/K$ of order $p$. Indeed, if $K\leq L$ and $|L:K|=p$, then $K\trianglelefteq L$: the action of $L$ on the left cosets of $K$ gives a transitive homomorphism $L\to S_p$, whose image is a $p$-subgroup of $S_p$ and hence has order $p$, so the kernel has the same order as $K$ and is contained in $K$. Hence $L\leq N_G(K)$ and $L/K$ has order $p$. Conversely, each subgroup of $N_G(K)/K$ of order $p$ lifts to such an $L$. Since $p$ divides $|N_G(K)/K|$, the preceding paragraph applied to $M=N_G(K)/K$ proves the one-step claim.\\
+We now prove the exercise by induction on $b-a$. If $b=a$, the only subgroup of order $p^b$ containing $H$ is $H$ itself, so the number is $1$. Assume $b>a$, and for $a\leq c\leq b$ put
+\[
+    \mathcal{A}_c=\{K\leq G:H\leq K,\ |K|=p^c\}.
+\]
+By induction, $|\mathcal{A}_{b-1}|\equiv 1\pmod{p}$. Count the pairs
+\[
+    (K,L)\quad\text{with}\quad K\in\mathcal{A}_{b-1},\ L\in\mathcal{A}_b,\ K\leq L.
+\]
+For each fixed $K\in\mathcal{A}_{b-1}$, the one-step claim shows that the number of possible $L$ is congruent to $1$ modulo $p$. Hence the total number of such pairs is congruent to $|\mathcal{A}_{b-1}|$, and therefore to $1$ modulo $p$.\\
+On the other hand, fix $L\in\mathcal{A}_b$. The number of possible $K\in\mathcal{A}_{b-1}$ with $K\leq L$ is the number of subgroups of the $p$-group $L$ that contain $H$ and have order $p^{b-1}$. By the induction hypothesis applied inside $L$, this number is congruent to $1$ modulo $p$. Therefore the same total number of pairs is congruent to $|\mathcal{A}_b|$ modulo $p$. Combining the two counts gives
+\[
+    |\mathcal{A}_b|\equiv 1\pmod{p}.
+\]
+This is exactly the desired congruence.
 \end{solution}
 
 \begin{exercise}
