@@ -418,6 +418,19 @@ This is exactly the desired congruence.
 Show that if $P$ is a Sylow $p$-subgroup of $G$, then $N_G(P)$ is a self-normalizing subgroup of $G$, meaning that $N_G(N_G(P)) = N_G(P)$. (Any subgroup of $G$ that can be written as $N_G(P)$ for some non-trivial $p$-subgroup $P$ of $G$ is said to be a \emph{$p$-local subgroup} of $G$.)
 \end{exercise}
 \begin{solution}
+Put $H=N_G(P)$. Since $P\leq H\leq G$ and $P$ has the full $p$-part of $|G|$, the subgroup $P$ also has the full $p$-part of $|H|$. Hence $P$ is a Sylow $p$-subgroup of $H$. Moreover, by the definition of normalizer, $P\trianglelefteq H$. Thus $P$ is the unique Sylow $p$-subgroup of $H$: if $Q$ is any Sylow $p$-subgroup of $H$, then part (ii) of \nameref{thm:sylow}, applied inside $H$, gives $Q=hPh^{-1}$ for some $h\in H$, and this equals $P$ because $P\trianglelefteq H$.\\
+Now let $g\in N_G(H)$. Then $gHg^{-1}=H$. Since $P\leq H$, we have
+\[
+    gPg^{-1}\leq H.
+\]
+Also $gPg^{-1}$ has the same order as $P$, so it is a Sylow $p$-subgroup of $H$. By the uniqueness just proved, $gPg^{-1}=P$. Therefore $g\in N_G(P)=H$, and so
+\[
+    N_G(H)\leq H.
+\]
+The reverse inclusion is automatic, since every subgroup normalizes itself. Hence $H=N_G(H)$, which is exactly
+\[
+    N_G(N_G(P))=N_G(P).
+\]
 \end{solution}
 
 \begin{exercise}
@@ -425,6 +438,61 @@ Show that if $P$ is a Sylow $p$-subgroup of $G$, then $N_G(P)$ is a self-normali
 Given a prime $p$, find an example of a finite group having exactly $1 + p$ Sylow $p$-subgroups. Can this be done for $1 + 2p$? $1 + 3p$?
 \end{exercise}
 \begin{solution}
+First take
+\[
+    G=\GL(2,p)
+\]
+and let
+\[
+    U=\left\{
+    \begin{pmatrix}
+        1 & a\\
+        0 & 1
+    \end{pmatrix}
+    :a\in\Z_p
+    \right\}.
+\]
+Then $|U|=p$, while
+\[
+    |\GL(2,p)|=(p^2-1)(p^2-p)=p(p-1)^2(p+1),
+\]
+so $U$ is a Sylow $p$-subgroup of $G$. The normalizer of $U$ is the upper triangular subgroup
+\[
+    B=\left\{
+    \begin{pmatrix}
+        a & b\\
+        0 & d
+    \end{pmatrix}
+    :a,d\in\Z_p^\times,\ b\in\Z_p
+    \right\}.
+\]
+Indeed, $U$ fixes the line $\langle e_1\rangle$, and this is its unique fixed line in $\Z_p^2$; hence any element normalizing $U$ must preserve $\langle e_1\rangle$. Thus $N_G(U)=B$, and
+\[
+    |B|=p(p-1)^2.
+\]
+Therefore the number of Sylow $p$-subgroups of $\GL(2,p)$ is
+\[
+    |G:N_G(U)|=\frac{p(p-1)^2(p+1)}{p(p-1)^2}=p+1.
+\]
+So $1+p$ can be done for every prime $p$.\\
+For the next two questions, there is a useful general construction. Suppose that $q$ is a prime power with $q\equiv 1\pmod p$. Let $F$ be the finite field of order $q$, and choose an element $\lambda\in F^\times$ of order $p$, which is possible because $F^\times$ is cyclic of order $q-1$. Let
+\[
+    G=F^+\rtimes \langle \lambda\rangle,
+\]
+where $\lambda$ acts on the additive group $F^+$ by multiplication. Then $|G|=qp$, and $A=\langle\lambda\rangle$ is a Sylow $p$-subgroup of $G$. We claim that $N_G(A)=A$. In the affine notation, $A$ consists of the maps $x\mapsto \lambda^i x$. If $t_b$ is the translation $x\mapsto x+b$, then
+\[
+    t_b(x\mapsto \lambda x)t_b^{-1}
+\]
+is the map
+\[
+    x\mapsto \lambda x+(1-\lambda)b.
+\]
+This lies again in $A$ only when $b=0$. Hence no non-trivial translation normalizes $A$, and so $N_G(A)=A$. Therefore
+\[
+    n_p(G)=|G:N_G(A)|=q.
+\]
+Thus $1+2p$ can be done whenever $1+2p$ is a prime power, and $1+3p$ can be done whenever $1+3p$ is a prime power. For example, $p=2$ gives $1+3p=7$, and $p=5$ gives $1+3p=16$. Also, for $p=3$, the group $A_5$ has exactly $10=1+3p$ Sylow $3$-subgroups, since $A_5$ has $20$ elements of order $3$ and each subgroup of order $3$ has two non-identity elements.\\
+These constructions do not work for every prime. In fact, a theorem of M.~Hall, Jr.\ on possible Sylow numbers (``On the Number of Sylow Subgroups in a Finite Group'', \emph{J. Algebra} 7 (1967), Theorems 3.1--3.2) shows that $1+2p$ occurs exactly when $1+2p$ is a prime power, and that $1+3p$ occurs only for $p=2,3,5$. In particular, there is no finite group with $15$ Sylow $7$-subgroups, and no finite group with $1+3p$ Sylow $p$-subgroups for $p\geq 7$.
 \end{solution}
 
 \begin{exercise}
@@ -432,6 +500,34 @@ Given a prime $p$, find an example of a finite group having exactly $1 + p$ Sylo
 Show that if $G$ has exactly $1 + kp$ Sylow $p$-subgroups for some $k \in \N$, then there is a subgroup of $S_{1+kp}$ having exactly $1 + kp$ Sylow $p$-subgroups.
 \end{exercise}
 \begin{solution}
+Let $\Omega$ be the set of Sylow $p$-subgroups of $G$. By assumption,
+\[
+    |\Omega|=1+kp.
+\]
+The group $G$ acts on $\Omega$ by conjugation:
+\[
+    g\cdot P=gPg^{-1}.
+\]
+This gives a homomorphism
+\[
+    \theta\colon G\to \mathrm{Sym}(\Omega)\cong S_{1+kp}.
+\]
+Put $\overline{G}=\theta(G)$. Then $\overline{G}$ is a subgroup of $S_{1+kp}$. We claim that $\overline{G}$ has exactly $1+kp$ Sylow $p$-subgroups.\\
+Let $K=\ker\theta$. Since $K\trianglelefteq G$, Proposition~\ref{prop:7.2} applied to the quotient $G/K$ shows that, if $P$ is a Sylow $p$-subgroup of $G$, then
+\[
+    \theta(P)\cong PK/K
+\]
+is a Sylow $p$-subgroup of $\overline{G}\cong G/K$. Moreover, every Sylow $p$-subgroup of $\overline{G}$ arises in this way from some Sylow $p$-subgroup of $G$.\\
+It remains only to check that distinct Sylow $p$-subgroups of $G$ have distinct images in $\overline{G}$. Suppose that $P$ and $Q$ are Sylow $p$-subgroups of $G$ and that
+\[
+    \theta(P)=\theta(Q).
+\]
+Equivalently, $PK=QK$. Every element of $K$ fixes every point of $\Omega$, so in particular $K\leq N_G(P)$. Hence $PK$ is a subgroup of $G$ in which $P$ is normal. Since $P$ is a Sylow $p$-subgroup of $G$, it is also a Sylow $p$-subgroup of $PK$, and normality makes it the unique Sylow $p$-subgroup of $PK$. But $Q\leq QK=PK$, so $Q$ is also a Sylow $p$-subgroup of $PK$. Therefore $Q=P$.\\
+Thus the map
+\[
+    P\mapsto \theta(P)
+\]
+gives a bijection from the Sylow $p$-subgroups of $G$ to the Sylow $p$-subgroups of $\overline{G}$. Hence $\overline{G}\leq S_{1+kp}$ has exactly $1+kp$ Sylow $p$-subgroups.
 \end{solution}
 
 \begin{exercise}
@@ -445,6 +541,65 @@ Let $n \geq 6$, and assume by induction that $A_{n-1}$ is simple. Let $N$ be a n
 \end{enumerate}
 \end{exercise}
 \begin{solution}
+    \phantom{}\par
+    \begin{enumerate}
+        \item[(a)] Let $H=A_{n-1}$ be the stabilizer of $n$ in the natural action of $A_n$ on $\{1,\ldots,n\}$. First observe that this action is doubly transitive. Indeed, given two ordered pairs of distinct points, choose a permutation in $S_n$ sending the first pair to the second. If this permutation is odd, compose it on the right with a transposition of two points outside the first pair; this is possible because $n\geq 6$. The resulting permutation is even and still sends the first pair to the second. Thus Proposition~\ref{prop:3.8} shows that $H$ is a maximal subgroup of $A_n$.\\
+        Now $N\cap H\trianglelefteq H$, because $N\trianglelefteq A_n$. By the induction hypothesis, $H\cong A_{n-1}$ is simple, so $N\cap H$ is either $1$ or $H$. If $N\cap H=H$, then $H\leq N$. Since $H$ is maximal and $N$ is proper, this would force $N=H$. But $H$ is not normal in $A_n$: its conjugates are the stabilizers of the other points. This contradicts $N\trianglelefteq A_n$. Hence
+        \[
+            N\cap H=1.
+        \]
+        Since $N$ is non-trivial, we have $N\nleq H$. Therefore $NH$ is a subgroup of $A_n$ properly containing $H$. By maximality of $H$, we get
+        \[
+            NH=A_n.
+        \]
+        Since $N\trianglelefteq A_n$ and $N\cap H=1$, this gives
+        \[
+            A_n=N\rtimes H=N\rtimes A_{n-1}.
+        \]
+        \item[(b)] From part (a), we have
+        \[
+            |N|=|A_n:H|=n.
+        \]
+        The subgroup $N$ acts on $\{1,\ldots,n\}$ by restriction of the natural action of $A_n$. The stabilizer in $N$ of the point $n$ is
+        \[
+            N\cap H=1,
+        \]
+        so the orbit of $n$ under $N$ has size $|N|=n$. Hence the map
+        \[
+            N\to \{1,\ldots,n\},\qquad x\mapsto x(n),
+        \]
+        is a bijection. It sends $1\in N$ to $n$, and therefore restricts to a bijection
+        \[
+            N^{\#}\to \{1,\ldots,n-1\}.
+        \]
+        This bijection is $H$-equivariant. Indeed, if $h\in H$ and $x\in N$, then $h$ fixes $n$, so
+        \[
+            (hxh^{-1})(n)=h x(h^{-1}(n))=h x(n).
+        \]
+        Thus conjugating $x$ by $h$ corresponds exactly to applying $h$ to the point $x(n)$. Therefore $N^{\#}$ is isomorphic as an $A_{n-1}$-set to $\{1,\ldots,n-1\}$.
+        \item[(c)] By part (b), it is enough to prove that the natural action of $A_{n-1}$ on $\{1,\ldots,n-1\}$ is triply transitive. Let
+        \[
+            (a_1,a_2,a_3),\qquad (b_1,b_2,b_3)
+        \]
+        be ordered triples of distinct elements of $\{1,\ldots,n-1\}$. Choose a permutation $\sigma\in S_{n-1}$ such that $\sigma(a_i)=b_i$ for $i=1,2,3$. If $\sigma$ is even, then $\sigma\in A_{n-1}$ and we are done. If $\sigma$ is odd, then because $n-1\geq 5$, there are at least two points of $\{1,\ldots,n-1\}$ outside $\{a_1,a_2,a_3\}$. Let $\tau$ be the transposition of two such points. Then $\sigma\tau$ is even and still sends each $a_i$ to $b_i$. Hence $\sigma\tau\in A_{n-1}$ gives the required element. Therefore $A_{n-1}$ acts triply transitively on $N^{\#}$.
+        \item[(d)] We now derive a contradiction from the triple transitivity of the conjugation action of $H=A_{n-1}$ on $N^{\#}$. Since $|N|=n\geq 6$, the set $N^{\#}$ has at least five elements. Choose $x\in N^{\#}$, and choose
+        \[
+            y\in N^{\#}-\{x,x^{-1}\}.
+        \]
+        Then $xy$ is non-identity and is distinct from both $x$ and $y$. Choose
+        \[
+            z\in N^{\#}-\{x,y,xy\}.
+        \]
+        By triple transitivity, there is some $h\in H$ such that
+        \[
+            hxh^{-1}=x,\qquad hyh^{-1}=y,\qquad h(xy)h^{-1}=z.
+        \]
+        But conjugation by $h$ is an automorphism of $N$, so
+        \[
+            h(xy)h^{-1}=(hxh^{-1})(hyh^{-1})=xy.
+        \]
+        This contradicts $z\neq xy$. Therefore no non-trivial proper normal subgroup $N$ of $A_n$ exists. Hence $A_n$ is simple.
+    \end{enumerate}
 \end{solution}
 
 \noindent The remaining exercises develop a proof that if $G$ is a finite simple group with $|G| \leq 200$, then either $G \cong \Z_p$ for some prime $p$, or $G \cong A_5$, or $G \cong \mathrm{PSL}(2, 7)$. This was established by H\"older in 1892. We will need to assume two facts, which will be proved in later sections:
@@ -463,6 +618,43 @@ Show that $G$ is not simple whenever one of the following statements is true, wh
 \end{enumerate}
 \end{exercise}
 \begin{solution}
+    We use the same Sylow-counting argument in each case. Let $n_p$ denote the number of Sylow $p$-subgroups of $G$. By \nameref{thm:sylow} and Corollary~\ref{cor:7.1},
+    \[
+        n_p\equiv 1\pmod p
+        \quad\text{and}\quad
+        n_p \mid |G:P|,
+    \]
+    where $P$ is a Sylow $p$-subgroup of $G$. If $n_p=1$, then $P$ is the unique Sylow $p$-subgroup of $G$, and hence $P\trianglelefteq G$. This gives a non-trivial proper normal subgroup of $G$, so $G$ is not simple.
+    \phantom{}\par
+    \begin{enumerate}
+        \item[(a)] Suppose $|G|=2^m p^n$. Then a Sylow $p$-subgroup has order $p^n$, so
+        \[
+            n_p \mid 2^m.
+        \]
+        Hence $n_p=2^k$ for some $0\leq k\leq m$. If $k\geq 1$, then the Sylow congruence gives
+        \[
+            2^k=n_p\equiv 1\pmod p,
+        \]
+        contradicting the hypothesis. Therefore $k=0$, and so $n_p=1$. Hence the Sylow $p$-subgroup is normal, and $G$ is not simple.
+        \item[(b)] Suppose $|G|=p^nq$, where $q\neq p$ is prime. Then
+        \[
+            n_p\mid q
+            \quad\text{and}\quad
+            n_p\equiv 1\pmod p.
+        \]
+        Since $q$ is prime, we have $n_p=1$ or $n_p=q$. The second possibility would force
+        \[
+            q\equiv 1\pmod p,
+        \]
+        contrary to the hypothesis. Thus $n_p=1$, so the Sylow $p$-subgroup is normal and $G$ is not simple.
+        \item[(c)] Suppose $|G|=ap$, where $p\nmid a$. Then a Sylow $p$-subgroup has order $p$, so
+        \[
+            n_p\mid a
+            \quad\text{and}\quad
+            n_p\equiv 1\pmod p.
+        \]
+        If $n_p>1$, then $n_p=kp+1$ for some $k\in\N$. But this is impossible, because the hypothesis says that no such number $kp+1$ divides $a$. Hence $n_p=1$. Therefore the Sylow $p$-subgroup is normal, and $G$ is not simple.
+    \end{enumerate}
 \end{solution}
 
 \begin{exercise}
@@ -475,6 +667,64 @@ Show that $G$ is not simple whenever one of the following statments is true:
 \end{enumerate}
 \end{exercise}
 \begin{solution}
+    We again write $n_p$ for the number of Sylow $p$-subgroups of $G$. If $n_p=1$, then the Sylow $p$-subgroup is normal, so $G$ is not simple. We may therefore assume, in each case, that $n_p>1$ and derive a contradiction.
+    \phantom{}\par
+    \begin{enumerate}
+        \item[(a)] Let $|G|=p^a(p+1)$ with $a>1$, and let $P$ be a Sylow $p$-subgroup of $G$. By \nameref{thm:sylow} and Corollary~\ref{cor:7.1},
+        \[
+            n_p\equiv 1\pmod p
+            \quad\text{and}\quad
+            n_p\mid p+1.
+        \]
+        Thus $n_p=1$ or $n_p=p+1$. If $G$ were simple, then $n_p\neq 1$, so $n_p=p+1$. The conjugation action of $G$ on its Sylow $p$-subgroups gives a homomorphism
+        \[
+            G\to S_{p+1}.
+        \]
+        Its kernel is normal in $G$, and the action is non-trivial because there is more than one Sylow $p$-subgroup. Hence, if $G$ is simple, the kernel is trivial and $G$ embeds in $S_{p+1}$. Therefore
+        \[
+            |G|\mid (p+1)!.
+        \]
+        But $p^2\mid |G|$ because $a>1$, whereas $p^2\nmid (p+1)!$, since among the integers $1,\ldots,p+1$ there is only one multiple of $p$. This contradiction shows that $G$ is not simple.
+        \item[(b)] First suppose $p=2$. Then $|G|=2^a\cdot 5$ with $a>3$. The number $n_2$ of Sylow $2$-subgroups satisfies
+        \[
+            n_2\mid 5
+            \quad\text{and}\quad
+            n_2\equiv 1\pmod 2.
+        \]
+        Thus $n_2=1$ or $n_2=5$. If $G$ were simple, then $n_2=5$, and the conjugation action on the five Sylow $2$-subgroups would embed $G$ in $S_5$. Hence $2^a\cdot 5$ would divide $5!=120=2^3\cdot 3\cdot 5$, contradicting $a>3$. Therefore $G$ is not simple in this case.\\
+        Now suppose $p>3$. Then $p\nmid p+3$, so a Sylow $p$-subgroup has order $p^a$, and
+        \[
+            n_p\mid p+3
+            \quad\text{and}\quad
+            n_p\equiv 1\pmod p.
+        \]
+        Since $n_p\leq p+3$, the only values congruent to $1$ modulo $p$ are $1$ and $p+1$. But $p+1\nmid p+3$. Hence $n_p=1$, so the Sylow $p$-subgroup is normal and $G$ is not simple.
+        \item[(c)] Let $|G|=p^a(p^2-1)$, where $p$ is odd and $a>1$. Then
+        \[
+            n_p\mid p^2-1
+            \quad\text{and}\quad
+            n_p\equiv 1\pmod p.
+        \]
+        Write $n_p=kp+1$. Since $n_p\mid p^2-1$, we have $0\leq k\leq p-1$. Also $kp\equiv -1\pmod{n_p}$, so
+        \[
+            k^2p^2\equiv 1\pmod{n_p}.
+        \]
+        As $n_p\mid p^2-1$, it follows that
+        \[
+            n_p\mid k^2(p^2-1).
+        \]
+        Combining this with the congruence above gives
+        \[
+            n_p\mid k^2-1.
+        \]
+        If $k\geq 2$, then $n_p=kp+1>k^2-1$, because $k\leq p-1$. This is impossible. Hence $k=0$ or $k=1$, and therefore
+        \[
+            n_p=1
+            \quad\text{or}\quad
+            n_p=p+1.
+        \]
+        If $G$ were simple, then $n_p\neq 1$, so $n_p=p+1$. As in part (a), the conjugation action on the Sylow $p$-subgroups would embed $G$ in $S_{p+1}$. Thus $|G|\mid (p+1)!$. But $p^2\mid |G|$ and $p^2\nmid (p+1)!$, contradicting $a>1$. Therefore $G$ is not simple.
+    \end{enumerate}
 \end{solution}
 
 \begin{exercise}
@@ -482,6 +732,50 @@ Show that $G$ is not simple whenever one of the following statments is true:
 Show that if $|G| \in \{30, 56, 105, 132\}$, then $G$ is not simple.
 \end{exercise}
 \begin{solution}
+    We argue by contradiction in each case, assuming that $G$ is simple.
+    \phantom{}\par
+    \begin{enumerate}
+        \item If $|G|=30=2\cdot 3\cdot 5$, then
+        \[
+            n_5\mid 6,\qquad n_5\equiv 1\pmod 5,
+        \]
+        so $n_5=1$ or $6$. Simplicity forces $n_5=6$. These six Sylow $5$-subgroups are distinct subgroups of order $5$, and hence intersect pairwise only in the identity. They therefore contribute $6(5-1)=24$ non-identity elements. Similarly,
+        \[
+            n_3\mid 10,\qquad n_3\equiv 1\pmod 3,
+        \]
+        so $n_3=1$ or $10$. Simplicity forces $n_3=10$, and these Sylow $3$-subgroups contribute $10(3-1)=20$ non-identity elements. Elements of order $3$ and elements of order $5$ are disjoint, so this gives at least $24+20=44$ non-identity elements, impossible in a group of order $30$.
+        \item If $|G|=56=2^3\cdot 7$, then
+        \[
+            n_7\mid 8,\qquad n_7\equiv 1\pmod 7,
+        \]
+        so $n_7=1$ or $8$. Simplicity forces $n_7=8$. These eight Sylow $7$-subgroups contribute $8(7-1)=48$ non-identity elements. Hence only $56-1-48=7$ non-identity elements remain outside the Sylow $7$-subgroups. On the other hand,
+        \[
+            n_2\mid 7,\qquad n_2\equiv 1\pmod 2,
+        \]
+        so $n_2=1$ or $7$. Simplicity forces $n_2=7$. Each Sylow $2$-subgroup has order $8$, so its seven non-identity elements must be exactly the seven remaining non-identity elements. Thus all Sylow $2$-subgroups are equal, contradicting $n_2=7$.
+        \item If $|G|=105=3\cdot 5\cdot 7$, then
+        \[
+            n_7\mid 15,\qquad n_7\equiv 1\pmod 7,
+        \]
+        so $n_7=1$ or $15$. Simplicity forces $n_7=15$, giving $15(7-1)=90$ non-identity elements of order $7$. Also
+        \[
+            n_5\mid 21,\qquad n_5\equiv 1\pmod 5,
+        \]
+        so $n_5=1$ or $21$. Simplicity forces $n_5=21$, giving $21(5-1)=84$ non-identity elements of order $5$. These are disjoint from the elements of order $7$, giving more elements than $G$ has. This is impossible.
+        \item If $|G|=132=2^2\cdot 3\cdot 11$, then
+        \[
+            n_{11}\mid 12,\qquad n_{11}\equiv 1\pmod {11},
+        \]
+        so $n_{11}=1$ or $12$. Simplicity forces $n_{11}=12$, and these Sylow $11$-subgroups contribute $12(11-1)=120$ non-identity elements. Now
+        \[
+            n_3\mid 44,\qquad n_3\equiv 1\pmod 3,
+        \]
+        so $n_3\in\{1,4,22\}$. Simplicity gives $n_3\neq 1$. If $n_3=22$, then the Sylow $3$-subgroups contribute $22(3-1)=44$ non-identity elements, disjoint from the elements of order $11$, which is impossible. Hence $n_3=4$. The conjugation action of $G$ on its four Sylow $3$-subgroups gives a non-trivial homomorphism
+        \[
+            G\to S_4.
+        \]
+        Since $G$ is simple, the kernel must be trivial, so $G$ embeds in $S_4$. This is impossible because $132\nmid 24=|S_4|$.
+    \end{enumerate}
 \end{solution}
 
 \begin{exercise}
@@ -496,6 +790,83 @@ Show that $G$ is not simple in the following cases:
 \end{enumerate}
 \end{exercise}
 \begin{solution}
+    We argue by contradiction in each case, assuming that $G$ is simple.
+    \phantom{}\par
+    \begin{enumerate}
+        \item[(a)] Let $|G|=90=2\cdot 3^2\cdot 5$. Then
+        \[
+            n_3\mid 10,\qquad n_3\equiv 1\pmod 3,
+        \]
+        so simplicity forces $n_3=10$. Also
+        \[
+            n_5\mid 18,\qquad n_5\equiv 1\pmod 5,
+        \]
+        so simplicity forces $n_5=6$. Let $Q$ be a Sylow $3$-subgroup and let $1\neq x\in Q$. Since $|Q|=9$, the group $Q$ is abelian, so $Q\leq C_G(x)$. Hence $|C_G(x)|$ is divisible by $9$. If $|C_G(x)|=90$, then $\langle x\rangle$ is a non-trivial proper normal subgroup of $G$. If $|C_G(x)|=45$, then $C_G(x)$ has index $2$ and is normal in $G$. If $|C_G(x)|=18$, then the action of $G$ on the five cosets of $C_G(x)$ gives a non-trivial homomorphism $G\to S_5$, which must be injective by simplicity; this is impossible because $90\nmid 5!$. Therefore $|C_G(x)|=9$, and so
+        \[
+            C_G(x)=Q.
+        \]
+        It follows that distinct Sylow $3$-subgroups intersect trivially: if two of them contain the same non-identity element $x$, then both are contained in $C_G(x)$ and hence are equal. Thus the Sylow $3$-subgroups contribute $10(9-1)=80$ non-identity elements. The Sylow $5$-subgroups contribute $6(5-1)=24$ further non-identity elements, disjoint from these. This is impossible in a group of order $90$.
+        \item[(b)] Let $|G|=112=2^4\cdot 7$. Then
+        \[
+            n_2\mid 7,\qquad n_2\equiv 1\pmod 2,
+        \]
+        and
+        \[
+            n_7\mid 16,\qquad n_7\equiv 1\pmod 7.
+        \]
+        Simplicity forces $n_2=7$ and $n_7=8$. We first show that distinct Sylow $2$-subgroups intersect trivially. Suppose otherwise, and choose distinct Sylow $2$-subgroups $S$ and $T$ such that
+        \[
+            D=S\cap T\neq 1
+        \]
+        has maximal possible order among intersections of distinct Sylow $2$-subgroups. By fact B, applied inside the $2$-groups $S$ and $T$, we have
+        \[
+            D<N_S(D)
+            \quad\text{and}\quad
+            D<N_T(D).
+        \]
+        Put $N=N_G(D)$. We claim that $N$ has more than one Sylow $2$-subgroup. If $U$ were the unique Sylow $2$-subgroup of $N$, then $U$ would contain both $N_S(D)$ and $N_T(D)$. Let $R$ be a Sylow $2$-subgroup of $G$ containing $U$. Since
+        \[
+            N_S(D)\leq S\cap R
+            \quad\text{and}\quad
+            N_S(D)>D,
+        \]
+        the maximality of $D$ forces $R=S$. The same argument with $T$ forces $R=T$, a contradiction. Hence $N$ has more than one Sylow $2$-subgroup. The number of Sylow $2$-subgroups of $N$ is odd and greater than $1$, so $7$ divides $|N|$. Also $N$ contains the $2$-subgroup $N_S(D)$, which has order at least $4$. Hence $28$ divides $|N|$. Thus $|G:N|$ is $1$, $2$, or $4$. If $|G:N|=1$, then $D\trianglelefteq G$; if $|G:N|=2$, then $N\trianglelefteq G$; and if $|G:N|=4$, then the coset action gives an embedding $G\hookrightarrow S_4$, impossible because $112\nmid 24$. This proves that distinct Sylow $2$-subgroups intersect trivially.\\
+        Therefore the seven Sylow $2$-subgroups contribute $7(16-1)=105$ non-identity elements. The eight Sylow $7$-subgroups contribute $8(7-1)=48$ non-identity elements, disjoint from the elements in the Sylow $2$-subgroups. This is impossible in a group of order $112$.
+        \item[(c)] Let $|G|=120=2^3\cdot 3\cdot 5$. Then
+        \[
+            n_5\mid 24,\qquad n_5\equiv 1\pmod 5,
+        \]
+        so simplicity forces $n_5=6$. The conjugation action of $G$ on its six Sylow $5$-subgroups gives a non-trivial homomorphism
+        \[
+            G\to S_6.
+        \]
+        Since $G$ is simple, this homomorphism is injective. Let $H$ be its image. The sign map on $H$ must be trivial, since otherwise $H\cap A_6$ would be a proper normal subgroup of the simple group $H$. Hence $H\leq A_6$. But then
+        \[
+            |A_6:H|=\frac{360}{120}=3.
+        \]
+        By Exercise~\ref{ex:7.8}, the group $A_6$ is simple. Its action on the three cosets of $H$ would therefore give an embedding $A_6\hookrightarrow S_3$, impossible because $360\nmid 6$. Thus $G$ is not simple.
+        \item[(d)] Let $|G|=144=2^4\cdot 3^2$. Then
+        \[
+            n_3\mid 16,\qquad n_3\equiv 1\pmod 3,
+        \]
+        so $n_3\in\{1,4,16\}$. Simplicity gives $n_3\neq 1$. If $n_3=4$, then the conjugation action on the four Sylow $3$-subgroups embeds $G$ in $S_4$, impossible because $144\nmid 24$. Hence $n_3=16$.\\
+        We claim that distinct Sylow $3$-subgroups intersect trivially. Suppose $Q$ and $R$ are distinct Sylow $3$-subgroups with $D=Q\cap R\neq 1$. Since $|Q|=|R|=9$, both $Q$ and $R$ are abelian, and hence both lie in $N_G(D)$. Thus $N_G(D)$ has more than one Sylow $3$-subgroup. The number of its Sylow $3$-subgroups divides $16$ and is congruent to $1$ modulo $3$, so it is at least $4$. Hence $36$ divides $|N_G(D)|$. Therefore $|G:N_G(D)|$ is $1$, $2$, or $4$. These cases are impossible respectively because they would make $D$ normal in $G$, make $N_G(D)$ normal in $G$, or embed $G$ in $S_4$. Thus distinct Sylow $3$-subgroups intersect trivially.\\
+        The sixteen Sylow $3$-subgroups therefore contribute $16(9-1)=128$ non-identity elements. Only $144-1-128=15$ non-identity elements remain. But a Sylow $2$-subgroup has order $16$, and hence has exactly $15$ non-identity elements, all outside the Sylow $3$-subgroups. Therefore every Sylow $2$-subgroup is the same subgroup, making it normal. This contradicts simplicity.
+        \item[(e)] Let $|G|=180=2^2\cdot 3^2\cdot 5$. Let $Q$ be a Sylow $3$-subgroup and let $1\neq x\in Q$. Since $|Q|=9$, the group $Q$ is abelian, so $Q\leq C_G(x)$. Thus $|C_G(x)|$ is divisible by $9$. The possibilities are $9$, $18$, $36$, $90$, and $180$. If $|C_G(x)|=180$, then $\langle x\rangle\trianglelefteq G$. If $|C_G(x)|=90$, then $C_G(x)$ has index $2$ and is normal in $G$. If $|C_G(x)|=36$, then the coset action gives an embedding $G\hookrightarrow S_5$, impossible because $180\nmid 120$. Hence
+        \[
+            |C_G(x):Q|\leq 2.
+        \]
+        In particular, $Q$ is the unique Sylow $3$-subgroup of $C_G(x)$. Therefore distinct Sylow $3$-subgroups intersect trivially. Now
+        \[
+            n_3\mid 20,\qquad n_3\equiv 1\pmod 3,
+        \]
+        so $n_3\in\{1,4,10\}$, and simplicity gives $n_3\neq 1$. If $n_3=4$, then the non-identity elements in the Sylow $3$-subgroups number $4(9-1)=32$. But each conjugacy class of such an element has size $|G:C_G(x)|$, which is either $20$ or $10$, contradicting that $32$ is not a sum of numbers of this form. Hence $n_3=10$, and there are $10(9-1)=80$ non-identity elements lying in Sylow $3$-subgroups.\\
+        Finally,
+        \[
+            n_5\mid 36,\qquad n_5\equiv 1\pmod 5,
+        \]
+        so $n_5\in\{1,6,36\}$. Simplicity gives $n_5\neq 1$. If $n_5=36$, then the Sylow $5$-subgroups contribute $36(5-1)=144$ non-identity elements, disjoint from the $80$ elements already counted in Sylow $3$-subgroups, impossible. Hence $n_5=6$. The conjugation action on the six Sylow $5$-subgroups embeds $G$ in $S_6$. Its image lies in $A_6$ by the sign-map argument used in part (c), and has order $180$, hence index $2$ in $A_6$. This contradicts the simplicity of $A_6$.
+    \end{enumerate}
 \end{solution}
 
 \noindent From fact A above and Exercises 9--12, we can conclude that if $G$ is a simple group with $|G| \leq 200$, then $|G|$ either is prime or is equal to either $60$ or $168$. (Verify this.) In light of Theorem~\ref{thm:7.5} and Theorem~\ref{thm:6.8}, all we need now show is that any two simple groups of order $168 = 2^3 \cdot 3 \cdot 7$ are isomorphic. We accomplish this in Exercises 13--17 below by showing that any simple group of order $168$ is isomorphic with a specific subgroup of $A_8$. (Compare with Exercise~\ref{ex:6.9}.) Let $G$ be a simple group of order $168$, let $P = \langle x \rangle$ be a Sylow $7$-subgroup of $G$, and let $H = N_G(P)$.
