@@ -4,63 +4,52 @@
 \setcounter{section}{7}
 \section{Finite \texorpdfstring{$p$}{p}-groups}
 
-\subsubsection*{Why study finite \texorpdfstring{$p$}{p}-groups?}
-\begin{itemize}
-    \item \nameref{thm:sylow} reduces many questions about a finite group to questions about its subgroups of prime-power order.
-    \item Finite $p$-groups form a rich subject in their own right; this section only scratches the surface.
-\end{itemize}
-
-\subsubsection*{The center and maximal subgroups}
-\begin{itemize}
-    \item The center of a non-trivial finite $p$-group is non-trivial (Theorem~\ref{thm:8.1}); more generally, every non-trivial normal subgroup meets $Z(P)$ non-trivially.
-    \item Consequently, the only finite simple $p$-groups are the groups $\Z_p$ of prime order.
-    \item For non-abelian $G$, the quotient $G/Z(G)$ is never cyclic (Lemma~\ref{lem:8.2}); in particular $|P:Z(P)| \neq p$.
-    \item Every maximal subgroup of a finite $p$-group is normal of index $p$ (Proposition~\ref{prop:8.3}, Corollary~\ref{cor:8.4}).
-\end{itemize}
-
-\subsubsection*{Abelian \texorpdfstring{$p$}{p}-groups and the basis theorem}
-\begin{itemize}
-    \item Every finite abelian $p$-group is a direct product of cyclic $p$-groups (Theorem~\ref{thm:8.6}).
-    \item The non-generators of a cyclic $p$-group are exactly its $p$th powers (Lemma~\ref{lem:8.5}).
-    \item Combining Theorems~\ref{thm:8.6} and~\ref{thm:8.7} yields the \emph{basis theorem}: every finite abelian group is a direct product of cyclic $p$-groups (Corollary~\ref{cor:8.8}).
-\end{itemize}
-
-\subsubsection*{Nilpotent groups and the Frattini argument}
-\begin{itemize}
-    \item The \nameref{thm:frattini-arg} states that $G = N_G(P)N$ whenever $P$ is a Sylow subgroup of a normal subgroup $N \trianglelefteq G$.
-    \item A finite group $G$ is \emph{nilpotent} if every Sylow subgroup of $G$ is normal; equivalently, $G$ is the direct product of its Sylow subgroups, equivalently every maximal subgroup is normal (Theorem~\ref{thm:8.7}).
-    \item Finite abelian groups and finite $p$-groups are nilpotent; an alternative definition of nilpotence which extends to infinite groups is taken up in Section~11.
-\end{itemize}
-
-\subsubsection*{Groups of small order}
-\begin{itemize}
-    \item Any group of order $p$ is isomorphic with $\Z_p$.
-    \item Any group of order $p^2$ is abelian (by Theorem~\ref{thm:8.1} and Lemma~\ref{lem:8.2}) and is isomorphic with either $\Z_{p^2}$ or $\Z_p \times \Z_p$.
-    \item Any abelian group of order $p^3$ is isomorphic with one of $\Z_{p^3}$, $\Z_{p^2} \times \Z_p$, or $\Z_p \times \Z_p \times \Z_p$ (by Theorem~\ref{thm:8.6}).
-    \item For odd primes $p$, there are exactly two isomorphism classes of non-abelian groups of order $p^3$: one having an element of order $p^2$ (Proposition~\ref{prop:8.10}) and one with no such element (Proposition~\ref{prop:8.11}).
-    \item Lemma~\ref{lem:8.9} provides the technical commutator identities supporting the classification.
-    \item For $p = 2$, the non-abelian groups of order $8$ are the dihedral group $D_8$ and the \emph{quaternion group}; the latter is the unique group of order $p^3$ that cannot be written non-trivially as a semidirect product.
-\end{itemize}
+We have seen that \nameref{thm:sylow} allows us to study finite groups by concentrating on their subgroups of prime-power order. This motivates the study of finite $p$-groups, a rich subject whose surface we shall only scratch in this section. Our first result is the most basic structural fact about finite $p$-groups.
 
 \begin{theorem}
 \label{thm:8.1}
 If $P$ is a non-trivial finite $p$-group, then $Z(P)$ is also non-trivial. Moreover, if $1 \neq N \trianglelefteq P$, then $N \cap Z(P) \neq 1$.
 \end{theorem}
 \begin{proof}
+Let $K_1=\{1\},K_2,\ldots,K_r$ be the conjugacy classes of $P$. Suppose first that $Z(P)=1$. If some $K_i$ with $i>1$ were a singleton, say $K_i=\{x\}$, then $gxg^{-1}=x$ for every $g\in P$, so $x\in Z(P)=1$, contradicting $i>1$. Hence $\lvert K_i\rvert>1$ for every $i>1$. Each $K_i$ is an orbit for the conjugation action of $P$ on itself, as in Proposition~\ref{prop:3.13}, and so $\lvert K_i\rvert$ divides $\lvert P\rvert$ by Corollary~\ref{cor:3.5}. Since $P$ is a $p$-group, it follows that $p$ divides $\lvert K_i\rvert$ for every $i>1$. Therefore
+\[
+    \lvert P\rvert
+    =1+\lvert K_2\rvert+\cdots+\lvert K_r\rvert
+    \equiv 1 \pmod p,
+\]
+which is impossible because $P$ is a non-trivial $p$-group. Thus $Z(P)\neq 1$.\\
+Now let $1\neq N\trianglelefteq P$. Since $N$ is normal in $P$, it is a union of conjugacy classes of $P$, and since $1\in N$, this union contains $K_1=\{1\}$. If $N\cap Z(P)=1$, then every conjugacy class of $P$ contained in $N$ other than $K_1$ has size greater than $1$, and hence has size divisible by $p$ by the same orbit-size argument. Therefore $\lvert N\rvert\equiv 1\pmod p$, contradicting the fact that $N$ is a non-trivial subgroup of the $p$-group $P$. Hence $N\cap Z(P)\neq 1$.
 \end{proof}
+
+In particular, the only finite simple $p$-groups are the groups of prime order. Indeed, if $P$ is a non-trivial simple $p$-group, then Theorem~\ref{thm:8.1} gives $Z(P) \neq 1$. Since $Z(P) \trianglelefteq P$, simplicity forces $Z(P)=P$, so $P$ is abelian; hence $P$ has prime order.
 
 \begin{lemma}
 \label{lem:8.2}
 If $G$ is a non-abelian group, then $G/Z(G)$ cannot be cyclic. In particular, if $P$ is a finite $p$-group, then $|P:Z(P)| \neq p$.
 \end{lemma}
 \begin{proof}
+Suppose, for a contradiction, that $G/Z(G)$ is cyclic, say $G/Z(G)=\langle xZ(G)\rangle$ for some $x\in G$. Then every element of $G$ has the form $x^m z$ for some $m\in \Z$ and some $z\in Z(G)$. If $g=x^m z$ and $h=x^n w$, where $z,w\in Z(G)$, then
+\[
+    gh=x^m z x^n w=x^{m+n}zw=x^{n+m}wz=x^n w x^m z=hg.
+\]
+Thus any two elements of $G$ commute, so $G$ is abelian, contradicting the hypothesis. Therefore $G/Z(G)$ cannot be cyclic.\\
+Now let $P$ be a finite $p$-group. If $P$ is abelian, then $Z(P)=P$, so $\lvert P:Z(P)\rvert=1$. If $P$ is non-abelian and $\lvert P:Z(P)\rvert=p$, then $P/Z(P)$ has prime order and is therefore cyclic, contradicting the first part. Hence $\lvert P:Z(P)\rvert\neq p$.
 \end{proof}
+
+Recall that a proper subgroup $H$ of a group $G$ is said to be \emph{maximal} if there is no proper subgroup of $G$ properly containing $H$. If $G$ is non-trivial and finite, then $G$ has maximal subgroups, and every proper subgroup of $G$ is contained in one. We now show that maximal subgroups of finite $p$-groups are especially well-behaved.
 
 \begin{proposition}
 \label{prop:8.3}
 If $P$ is a finite $p$-group, then every maximal subgroup of $P$ is normal in $P$.
 \end{proposition}
 \begin{proof}
+We argue by induction on $\lvert P\rvert$. If $\lvert P\rvert=1$, then $P$ has no maximal subgroups, and if $\lvert P\rvert=p$, then the only maximal subgroup is $1$, which is normal in $P$. Thus we may assume that $\lvert P\rvert>p$ and that the result holds for all finite $p$-groups of smaller order. Let $M$ be a maximal subgroup of $P$, and put $Z=Z(P)$. Since $Z$ is central, $MZ$ is a subgroup of $P$ containing $M$. By maximality, either $MZ=P$ or $MZ=M$.\\
+If $MZ=P$, then every element of $P$ has the form $mz$ with $m\in M$ and $z\in Z$. For any $a\in M$, we have
+\[
+    (mz)a(mz)^{-1}=mza z^{-1}m^{-1}=mam^{-1}\in M,
+\]
+so $M\trianglelefteq P$.\\
+It remains to consider the case $MZ=M$. Then $Z\leq M$. By Theorem~\ref{thm:8.1}, $Z\neq 1$, so $\lvert P/Z\rvert<\lvert P\rvert$. Moreover, by the \nameref{thm:correspondence}, $M/Z$ is a maximal subgroup of the finite $p$-group $P/Z$. The induction hypothesis gives $M/Z\trianglelefteq P/Z$, and applying the \nameref{thm:correspondence} once more gives $M\trianglelefteq P$.
 \end{proof}
 
 \begin{corollary}
@@ -68,13 +57,29 @@ If $P$ is a finite $p$-group, then every maximal subgroup of $P$ is normal in $P
 Any maximal subgroup of a finite $p$-group is of index $p$.
 \end{corollary}
 \begin{proof}
+Let $M$ be a maximal subgroup of the finite $p$-group $P$. By Proposition~\ref{prop:8.3}, we have $M\trianglelefteq P$, so $P/M$ is a non-trivial finite $p$-group. By \nameref{thm:cauchy}, $P/M$ has a subgroup of order $p$. By the \nameref{thm:correspondence}, this subgroup has the form $L/M$ for some subgroup $L$ satisfying $M<L\leq P$. Since $M$ is maximal in $P$, we must have $L=P$. Therefore
+\[
+    \lvert P:M\rvert=\lvert P/M\rvert=\lvert L/M\rvert=p.
+\]
 \end{proof}
+
+Our next task is to classify the finite abelian $p$-groups. The following lemma isolates the elementary fact about cyclic $p$-groups that will be used in the induction.
 
 \begin{lemma}
 \label{lem:8.5}
 Every non-generator of a cyclic $p$-group $P$ is a $p$th power in $P$.
 \end{lemma}
 \begin{proof}
+If $P=1$, then there is nothing to prove. Otherwise, write $P=\langle x\rangle$ with $\lvert P\rvert=p^a$ for some $a\geq 1$. By Theorem~\ref{thm:1.4}, the subgroup
+\[
+    Q=\langle x^p\rangle
+\]
+is the unique subgroup of $P$ of index $p$. Every element of $Q$ is a $p$th power in $P$, since
+\[
+    (x^p)^n=(x^n)^p
+\]
+for every $n\in \Z$.\\
+We claim that $Q$ is precisely the set of non-generators of $P$. Since $Q<P$, no element of $Q$ can generate $P$. Conversely, if $y\in P$ does not generate $P$, then $\langle y\rangle$ is a proper subgroup of $P$, and hence is contained in some maximal subgroup $M$ of $P$. By Corollary~\ref{cor:8.4}, $M$ has index $p$, so by the uniqueness of $Q$ we have $M=Q$. Thus $y\in Q$, and therefore $y$ is a $p$th power in $P$.
 \end{proof}
 
 \begin{theorem}
@@ -82,13 +87,43 @@ Every non-generator of a cyclic $p$-group $P$ is a $p$th power in $P$.
 A finite abelian $p$-group is a direct product of cyclic $p$-groups.
 \end{theorem}
 \begin{proof}
+We argue by induction on $\lvert P\rvert$. If $P=1$, there is nothing to prove, and if $\lvert P\rvert=p$, then $P$ is cyclic. Thus assume that $\lvert P\rvert>p$ and that the result holds for abelian $p$-groups of smaller order. Let $Q$ be a maximal subgroup of $P$. By Corollary~\ref{cor:8.4}, we have $\lvert P:Q\rvert=p$, and by induction we may write
+\[
+    Q=Q_1\times\cdots\times Q_s,
+\]
+where each $Q_i$ is cyclic of order $p^{a_i}$. Reordering if necessary, assume that $a_1\geq\cdots\geq a_s\geq 1$.\\
+Choose $x\in P-Q$. Since $P/Q$ has order $p$, we have $x^p\in Q$. Write
+\[
+    x^p=y_1\cdots y_s,
+\]
+where $y_i\in Q_i$ for each $i$. If some $y_i$ is a non-generator of $Q_i$, then Lemma~\ref{lem:8.5} gives $y_i=z_i^p$ for some $z_i\in Q_i$. Replacing $x$ by $xz_i^{-1}$ keeps $x$ outside $Q$, and changes the $i$th coordinate of $x^p$ to $1$. Repeating this process, we may assume that each $y_i$ is either $1$ or a generator of $Q_i$.\\
+If $x^p=1$, then $\langle x\rangle\cap Q=1$, because $xQ$ has order $p$ in $P/Q$. Hence $\langle x\rangle Q$ is a direct product of order $p\lvert Q\rvert=\lvert P\rvert$, so $P=\langle x\rangle\times Q$, and the result follows. We may therefore assume that $x^p\neq 1$. Let $j$ be minimal such that $y_j\neq 1$. Then $y_j$ is a generator of $Q_j$, so it has order $p^{a_j}$; since $a_j\geq a_i$ for all $i\geq j$, the element $x^p=y_j\cdots y_s$ has order $p^{a_j}$. Therefore $\langle x\rangle$ has order $p^{a_j+1}$.\\
+Let $R$ be the direct product of all the $Q_i$ except $Q_j$. We claim that $\langle x\rangle\cap R=1$. Suppose $x^t\in R$, with $0\leq t<\lvert\langle x\rangle\rvert$. Since $xQ$ has order $p$ in $P/Q$, we must have $p\mid t$, say $t=mp$ with $0\leq m<p^{a_j}$. Then
+\[
+    x^t=(x^p)^m=y_j^m\cdots y_s^m.
+\]
+The $Q_j$-coordinate of this element is $y_j^m$. Since $y_j$ has order $p^{a_j}$ and $0\leq m<p^{a_j}$, this coordinate is the identity only when $m=0$. Thus $x^t\in R$ forces $t=0$, and so $\langle x\rangle\cap R=1$. It follows that $\langle x\rangle R$ is a direct product of order
+\[
+    \lvert\langle x\rangle\rvert\lvert R\rvert
+    =p^{a_j+1}\frac{\lvert Q\rvert}{p^{a_j}}
+    =p\lvert Q\rvert
+    =\lvert P\rvert.
+\]
+Therefore $P=\langle x\rangle\times R$, which is a direct product of cyclic $p$-groups.
 \end{proof}
+
+We now consider how finite $p$-groups can be used to study arbitrary finite groups. The next result is a standard tool in finite group theory: it turns conjugacy of Sylow subgroups inside a normal subgroup into a factorization of the whole group.
 
 \begin{namedtheorem}[Frattini Argument]
 \label{thm:frattini-arg}
 Let $G$ be a finite group, let $N \trianglelefteq G$, and let $P$ be a Sylow subgroup of $N$. Then $G = N_G(P)N$.
 \end{namedtheorem}
 \begin{proof}
+Let $g\in G$. Since $N\trianglelefteq G$, we have $gNg^{-1}=N$, and hence $gPg^{-1}\leq N$. Moreover, $gPg^{-1}$ has the same order as $P$, so $gPg^{-1}$ is also a Sylow subgroup of $N$. By \nameref{thm:sylow}, applied inside $N$, there exists $n\in N$ such that
+\[
+    n(gPg^{-1})n^{-1}=P.
+\]
+Equivalently, $(ng)P(ng)^{-1}=P$, so $ng\in N_G(P)$. Thus $g=n^{-1}(ng)\in NN_G(P)$. Since $N\trianglelefteq G$, we have $NN_G(P)=N_G(P)N$, and hence $g\in N_G(P)N$. As $g$ was arbitrary, $G\leq N_G(P)N$. The reverse inclusion is immediate, since both $N_G(P)$ and $N$ are subgroups of $G$. Therefore $G=N_G(P)N$.
 \end{proof}
 
 \begin{theorem}
@@ -100,8 +135,11 @@ The following statements about a finite group $G$ are equivalent:
     \item[(3)] Every maximal subgroup of $G$ is normal in $G$.
 \end{enumerate}
 \end{theorem}
+A finite group satisfying these equivalent conditions is said to be \emph{nilpotent}. Thus finite abelian groups and finite $p$-groups are nilpotent. A different but equivalent definition, one that extends beyond finite groups, will be discussed in Section~11.
 \begin{proof}
 \end{proof}
+
+As a consequence of this result and our previous classification of finite abelian $p$-groups, we obtain the usual basis theorem for finite abelian groups.
 
 \begin{corollary}
 \label{cor:8.8}
@@ -109,6 +147,8 @@ A finite abelian group is a direct product of cyclic $p$-groups.
 \end{corollary}
 \begin{proof}
 \end{proof}
+
+We close this section with a discussion of $p$-groups of small order. Any group of order $p$ is isomorphic with $\Z_p$. By Theorem~\ref{thm:8.1} and Lemma~\ref{lem:8.2}, any group of order $p^2$ is abelian, and hence is isomorphic with either $\Z_{p^2}$ or $\Z_p \times \Z_p$ by Theorem~\ref{thm:8.6}. The same theorem shows that the abelian groups of order $p^3$ are precisely $\Z_{p^3}$, $\Z_{p^2} \times \Z_p$, and $\Z_p \times \Z_p \times \Z_p$. We therefore turn to the non-abelian groups of order $p^3$. For odd primes $p$, the following commutator identities provide the technical input for the classification.
 
 \begin{lemma}
 \label{lem:8.9}
@@ -130,6 +170,8 @@ If $p$ is an odd prime, then there is exactly one isomorphism class of non-abeli
 \end{proposition}
 \begin{proof}
 \end{proof}
+
+It remains to mention the case $p=2$. A non-abelian group of order $8$ has an element of order $4$ by Exercise~\ref{ex:1.2}. If it also has an element of order $2$ outside the cyclic subgroup of order $4$, then it is the non-trivial semidirect product $\Z_4 \rtimes \Z_2$, namely the dihedral group $D_8$. The remaining possibility is that there is a unique element of order $2$; this case gives the quaternion group, which appeared in Exercise~\ref{ex:2.11} and cannot be written non-trivially as a semidirect product.
 
 \subsection*{Exercises}
 
