@@ -137,6 +137,35 @@ The following statements about a finite group $G$ are equivalent:
 \end{theorem}
 A finite group satisfying these equivalent conditions is said to be \emph{nilpotent}. Thus finite abelian groups and finite $p$-groups are nilpotent. A different but equivalent definition, one that extends beyond finite groups, will be discussed in Section~11.
 \begin{proof}
+We prove the implications in a cycle. First assume that every Sylow subgroup of $G$ is normal in $G$. Let $p_1,\ldots,p_n$ be the distinct prime divisors of $\lvert G\rvert$, and let $P_i$ be the Sylow $p_i$-subgroup of $G$. By hypothesis, each $P_i$ is normal in $G$. We claim by induction that
+\[
+    P_1\cdots P_i
+\]
+is a normal subgroup of $G$ of order $\lvert P_1\rvert\cdots\lvert P_i\rvert$ for every $i$. This is clear for $i=1$. If it holds for $i$, then Proposition~\ref{prop:1.7} gives $P_1\cdots P_iP_{i+1}\trianglelefteq G$, and
+\[
+    (P_1\cdots P_i)\cap P_{i+1}=1
+\]
+because its order divides both $\lvert P_1\rvert\cdots\lvert P_i\rvert$ and $\lvert P_{i+1}\rvert$, which are relatively prime. Hence Proposition~\ref{prop:3.12} gives
+\[
+    \lvert P_1\cdots P_iP_{i+1}\rvert
+    =\lvert P_1\cdots P_i\rvert\lvert P_{i+1}\rvert
+    =\lvert P_1\rvert\cdots\lvert P_{i+1}\rvert.
+\]
+The claim follows. Taking $i=n$, we get $\lvert P_1\cdots P_n\rvert=\lvert G\rvert$, so $G=P_1\cdots P_n$. Moreover, for each $i$, the subgroup $P_i\cap P_1\cdots P_{i-1}P_{i+1}\cdots P_n$ has order dividing $\lvert P_i\rvert$ and also dividing the product of the other Sylow orders, so it is trivial. Therefore $G$ is the internal direct product of its Sylow subgroups. This proves (1) $\Rightarrow$ (2).\\
+Now assume that $G=P_1\times\cdots\times P_n$, where the $P_i$ are the Sylow subgroups of $G$. Let $M$ be a maximal subgroup of $G$. Since the orders $\lvert P_i\rvert$ are pairwise relatively prime, Proposition~\ref{prop:2.10} gives
+\[
+    M=(M\cap P_1)\times\cdots\times(M\cap P_n).
+\]
+At least one factor $M\cap P_j$ is proper in $P_j$, since otherwise $M=G$. Let $j$ be any index for which $M\cap P_j<P_j$. If $M\cap P_j$ were not maximal in $P_j$, then replacing it by an intermediate subgroup of $P_j$ would give a subgroup strictly between $M$ and $G$, contradicting the maximality of $M$. Hence each proper factor $M\cap P_j$ is maximal in $P_j$. There cannot be two such proper factors: if $M\cap P_j<P_j$ and $M\cap P_k<P_k$ with $j\neq k$, then replacing $M\cap P_j$ by $P_j$ while leaving the $k$th factor proper again gives a subgroup strictly between $M$ and $G$. Thus there is exactly one index $j$ for which $M\cap P_j<P_j$, and this subgroup is maximal in the finite $p_j$-group $P_j$. By Proposition~\ref{prop:8.3}, $M\cap P_j\trianglelefteq P_j$. The other factors are the whole $P_i$, so they are normal in $P_i$. It follows directly from the direct product multiplication that $M\trianglelefteq G$. This proves (2) $\Rightarrow$ (3).\\
+Finally assume that every maximal subgroup of $G$ is normal in $G$. Let $P$ be a Sylow subgroup of $G$. Suppose, for a contradiction, that $P$ is not normal in $G$. Then $N_G(P)<G$, so choose a maximal subgroup $M$ of $G$ with
+\[
+    P\leq N_G(P)\leq M<G.
+\]
+By hypothesis, $M\trianglelefteq G$. Also $P$ is a Sylow subgroup of $M$, since $P\leq M$ and $P$ already has the full $p$-part possible in $G$. Applying the \nameref{thm:frattini-arg} to the normal subgroup $M\trianglelefteq G$ and its Sylow subgroup $P$, we obtain
+\[
+    G=N_G(P)M.
+\]
+But $N_G(P)\leq M$, so the right hand side is just $M$, contradicting $M<G$. Therefore every Sylow subgroup of $G$ is normal in $G$, proving (3) $\Rightarrow$ (1).
 \end{proof}
 
 As a consequence of this result and our previous classification of finite abelian $p$-groups, we obtain the usual basis theorem for finite abelian groups.
@@ -146,6 +175,7 @@ As a consequence of this result and our previous classification of finite abelia
 A finite abelian group is a direct product of cyclic $p$-groups.
 \end{corollary}
 \begin{proof}
+Let $G$ be a finite abelian group. Since every subgroup of an abelian group is normal, every Sylow subgroup of $G$ is normal in $G$. By Theorem~\ref{thm:8.7}, $G$ is the direct product of its Sylow subgroups. Each Sylow subgroup is a finite abelian $p$-group, and hence is a direct product of cyclic $p$-groups by Theorem~\ref{thm:8.6}. Combining these direct-product decompositions gives the result.
 \end{proof}
 
 We close this section with a discussion of $p$-groups of small order. Any group of order $p$ is isomorphic with $\Z_p$. By Theorem~\ref{thm:8.1} and Lemma~\ref{lem:8.2}, any group of order $p^2$ is abelian, and hence is isomorphic with either $\Z_{p^2}$ or $\Z_p \times \Z_p$ by Theorem~\ref{thm:8.6}. The same theorem shows that the abelian groups of order $p^3$ are precisely $\Z_{p^3}$, $\Z_{p^2} \times \Z_p$, and $\Z_p \times \Z_p \times \Z_p$. We therefore turn to the non-abelian groups of order $p^3$. For odd primes $p$, the following commutator identities provide the technical input for the classification.
@@ -155,6 +185,37 @@ We close this section with a discussion of $p$-groups of small order. Any group 
 Let $G$ be a group and let $x, y \in G$. If $[x,y] \in Z(G)$, then $[x^n, y] = [x,y]^n$ and $x^n y^n = (xy)^n [x,y]^{\frac{n(n-1)}{2}}$ for any $n \in \N$.
 \end{lemma}
 \begin{proof}
+Put $c=[x,y]$. Since $c\in Z(G)$, the relation $xy=cyx$ allows us to move $y$ past powers of $x$. We first prove by induction on $n$ that
+\[
+    x^n y=c^n yx^n.
+\]
+The case $n=1$ is exactly $xy=cyx$. If $x^n y=c^n yx^n$, then
+\[
+    x^{n+1}y=x(c^n yx^n)=c^n xyx^n=c^{n+1}yx^{n+1},
+\]
+because $c$ is central and $xy=cyx$. Therefore $x^n y=c^n yx^n$ for all $n\in \N$, and hence
+\[
+    [x^n,y]=x^n yx^{-n}y^{-1}=c^n=[x,y]^n.
+\]
+It remains to prove the second identity. We again argue by induction on $n$. The case $n=1$ is immediate. Suppose that
+\[
+    x^n y^n=(xy)^n c^{\frac{n(n-1)}{2}}.
+\]
+Using the identity already proved, we have $x^n y=[x^n,y]yx^n=c^n yx^n$. Thus
+\[
+    x^{n+1}y^{n+1}
+    =x(x^n y)y^n
+    =xc^n yx^n y^n
+    =c^n xyx^n y^n.
+\]
+By the induction hypothesis, this becomes
+\[
+    x^{n+1}y^{n+1}
+    =c^n(xy)(xy)^n c^{\frac{n(n-1)}{2}}
+    =(xy)^{n+1}c^{\frac{n(n-1)}{2}+n}
+    =(xy)^{n+1}c^{\frac{(n+1)n}{2}}.
+\]
+Substituting back $c=[x,y]$ gives the desired formula.
 \end{proof}
 
 \begin{proposition}
@@ -162,6 +223,28 @@ Let $G$ be a group and let $x, y \in G$. If $[x,y] \in Z(G)$, then $[x^n, y] = [
 If $p$ is an odd prime, then there is exactly one isomorphism class of non-abelian groups of order $p^3$ having elements of order $p^2$.
 \end{proposition}
 \begin{proof}
+Let $P$ be a non-abelian group of order $p^3$ having an element of order $p^2$. We first show that $P$ can be written as a semidirect product of $\Z_{p^2}$ by $\Z_p$. Choose $y\in P$ with $o(y)=p^2$, and choose $x\in P-\langle y\rangle$. Since $\langle y\rangle$ has index $p$, it is maximal in $P$, and hence $\langle y\rangle\trianglelefteq P$ by Proposition~\ref{prop:8.3}.\\
+We may arrange that $x$ has order $p$. If $x^p=1$, there is nothing to change, so suppose that $x^p\neq 1$. Since $P$ is non-abelian of order $p^3$, Theorem~\ref{thm:8.1} and Lemma~\ref{lem:8.2} force $\lvert Z(P)\rvert=p$. Also $\langle y\rangle\cap Z(P)\neq 1$ by Theorem~\ref{thm:8.1}, so the unique subgroup of order $p$ in the cyclic group $\langle y\rangle$ gives
+\[
+    Z(P)=\langle y^p\rangle.
+\]
+The quotient $P/Z(P)$ has order $p^2$, and it is not cyclic by Lemma~\ref{lem:8.2}; hence every element of $P/Z(P)$ has order dividing $p$. Thus $x^p\in Z(P)$. Since $x^p\neq 1$, we have $x^p=y^{kp}$ for some $1\leq k<p$. Replacing $y$ by $y^{-k}$, which is still a generator of $\langle y\rangle$, we may assume that
+\[
+    x^p=y^{-p}.
+\]
+Now $P/Z(P)$ is abelian, so Proposition~\ref{prop:2.6} gives $P'\leq Z(P)$. In particular, $[x,y]\in Z(P)$. By Lemma~\ref{lem:8.9},
+\[
+    x^p y^p=(xy)^p[x,y]^{\frac{p(p-1)}{2}}.
+\]
+The left hand side is $1$, and $[x,y]^{\frac{p(p-1)}{2}}=1$, since $[x,y]\in Z(P)$ has order dividing $p$ and $p$ divides $\frac{p(p-1)}{2}$ for odd $p$. Therefore $(xy)^p=1$. Also $xy\notin\langle y\rangle$, because $x\notin\langle y\rangle$. Replacing $x$ by $xy$, we have $o(x)=p$, $o(y)=p^2$, and $x\notin\langle y\rangle$.\\
+It follows that $\langle x\rangle\cap\langle y\rangle=1$, and hence
+\[
+    \lvert \langle y\rangle\langle x\rangle\rvert
+    =p^2p
+    =p^3.
+\]
+Thus $P=\langle y\rangle\langle x\rangle$, with $\langle y\rangle\trianglelefteq P$, so $P$ is a semidirect product of $\langle y\rangle\cong \Z_{p^2}$ by $\langle x\rangle\cong \Z_p$. Since $P$ is non-abelian, the corresponding homomorphism $\varphi\colon \Z_p\to \Aut(\Z_{p^2})$ is non-trivial, and hence is a monomorphism.\\
+It remains to see that this semidirect product is unique up to isomorphism. By Proposition~\ref{prop:2.1}, $\Aut(\Z_{p^2})\cong(\Z/p^2\Z)^{\times}$, an abelian group of order $p(p-1)$. By \nameref{thm:sylow}, $\Aut(\Z_{p^2})$ has a subgroup of order $p$, and because $\Aut(\Z_{p^2})$ is abelian, this Sylow $p$-subgroup is unique. Therefore every monomorphism $\Z_p\to \Aut(\Z_{p^2})$ has the same image. Proposition~\ref{prop:2.11} then implies that all non-trivial semidirect products of $\Z_{p^2}$ by $\Z_p$ are isomorphic. Such a semidirect product exists by choosing an isomorphism from $\Z_p$ onto the unique subgroup of order $p$ in $\Aut(\Z_{p^2})$, and it is non-abelian because the action is non-trivial. Hence there is exactly one isomorphism class of non-abelian groups of order $p^3$ having an element of order $p^2$.
 \end{proof}
 
 \begin{proposition}
@@ -169,9 +252,78 @@ If $p$ is an odd prime, then there is exactly one isomorphism class of non-abeli
 If $p$ is an odd prime, then there is exactly one isomorphism class of non-abelian groups of order $p^3$ having no elements of order $p^2$.
 \end{proposition}
 \begin{proof}
+Let $P$ be a non-abelian group of order $p^3$ having no elements of order $p^2$. Choose a maximal subgroup $M$ of $P$. By Corollary~\ref{cor:8.4}, we have $\lvert P:M\rvert=p$, and by Proposition~\ref{prop:8.3}, we have $M\trianglelefteq P$. Thus $\lvert M\rvert=p^2$. By Lemma~\ref{lem:8.2}, every group of order $p^2$ is abelian; since $P$ has no elements of order $p^2$, the subgroup $M$ is not cyclic, and hence Theorem~\ref{thm:8.6} gives $M\cong \Z_p\times \Z_p$. Choose $x\in P-M$. Again using the hypothesis, $x$ has order $p$. Also $\langle x\rangle\cap M=1$, and so
+\[
+    \lvert M\langle x\rangle\rvert
+    =\lvert M\rvert\lvert\langle x\rangle\rvert
+    =p^3.
+\]
+Therefore $P=M\langle x\rangle$, and $P$ is a semidirect product of $M\cong \Z_p\times\Z_p$ by $\langle x\rangle\cong \Z_p$. Since $P$ is non-abelian, the corresponding homomorphism $\varphi\colon \Z_p\to\Aut(\Z_p\times\Z_p)$ is non-trivial, and hence is a monomorphism.\\
+We now show that all such semidirect products are isomorphic. Put $E=\Z_p\times\Z_p$. By Proposition~\ref{prop:4.1}, $\Aut(E)\cong \GL(2,p)$, and by Proposition~\ref{prop:4.2},
+\[
+    \lvert \Aut(E)\rvert
+    =\lvert \GL(2,p)\rvert
+    =(p^2-1)(p^2-p)
+    =p(p-1)^2(p+1).
+\]
+Thus a Sylow $p$-subgroup of $\Aut(E)$ has order $p$, so all subgroups of order $p$ in $\Aut(E)$ are conjugate by \nameref{thm:sylow}. If $\varphi,\psi\colon \Z_p\to\Aut(E)$ are monomorphisms, then there is some $f\in\Aut(E)$ such that
+\[
+    \psi(\Z_p)=f\varphi(\Z_p)f^{-1}.
+\]
+Equivalently, if $\widehat f$ denotes conjugation by $f$ on $\Aut(E)$, then $\psi(\Z_p)=(\widehat f\circ\varphi)(\Z_p)$. By Proposition~\ref{prop:2.12},
+\[
+    E\rtimes_{\widehat f\circ\varphi}\Z_p\cong E\rtimes_{\varphi}\Z_p,
+\]
+while Proposition~\ref{prop:2.11} gives
+\[
+    E\rtimes_{\widehat f\circ\varphi}\Z_p\cong E\rtimes_{\psi}\Z_p,
+\]
+because $\Z_p$ is cyclic and the two actions have the same image. Hence all non-trivial semidirect products of $\Z_p\times\Z_p$ by $\Z_p$ are isomorphic.\\
+It remains only to check that this isomorphism class actually occurs among groups with no elements of order $p^2$. Let $E$ be written additively as a two-dimensional vector space over $\mathbb{F}_p$, and let a generator $t$ of $\Z_p$ act on $E$ by
+\[
+    A=
+    \begin{pmatrix}
+        1 & 1\\
+        0 & 1
+    \end{pmatrix}.
+\]
+Writing $A=I+N$, we have $N^2=0$, so $A^p=I+pN=I$ and $A\neq I$. Thus this defines a non-trivial semidirect product $E\rtimes\langle t\rangle$. We claim that every element has order dividing $p$. An element has the form $(v,t^i)$. If $i=0$, then $(v,1)^p=(0,1)$ because $E$ has exponent $p$. If $i\neq 0$, then
+\[
+    (v,t^i)^p
+    =
+    \left(\sum_{j=0}^{p-1}A^{ij}v,1\right)
+    =
+    \left(\sum_{j=0}^{p-1}(I+ijN)v,1\right)
+    =
+    \left(\left(pI+i\frac{p(p-1)}{2}N\right)v,1\right)
+    =(0,1),
+\]
+since we are working over $\mathbb{F}_p$ and $p$ is odd. Therefore this semidirect product is non-abelian of order $p^3$ and has no elements of order $p^2$. Combined with the uniqueness just proved, this gives exactly one isomorphism class.
 \end{proof}
 
-It remains to mention the case $p=2$. A non-abelian group of order $8$ has an element of order $4$ by Exercise~\ref{ex:1.2}. If it also has an element of order $2$ outside the cyclic subgroup of order $4$, then it is the non-trivial semidirect product $\Z_4 \rtimes \Z_2$, namely the dihedral group $D_8$. The remaining possibility is that there is a unique element of order $2$; this case gives the quaternion group, which appeared in Exercise~\ref{ex:2.11} and cannot be written non-trivially as a semidirect product.
+It remains to mention the case $p=2$. A non-abelian group of order $8$ has an element of order $4$ by Exercise~\ref{ex:1.2}. If it also has an element of order $2$ outside the cyclic subgroup of order $4$, then it is the non-trivial semidirect product $\Z_4 \rtimes \Z_2$, namely the dihedral group $D_8$. This will happen unless the group has a unique element $t$ of order $2$. In that remaining case, choose an element $y$ of order $4$, put $Q=\langle y\rangle$, and choose $x$ so that $P/Q=\langle xQ\rangle$. Since $x$ cannot have order $2$, we must have $x^2=t=y^2$. Every element can then be written uniquely as $x^a y^b$, where $0\leq a\leq 3$ and $0\leq b\leq 1$, and the multiplication is forced by the relation $yx=x^3y$. Thus, if this case exists, it is unique up to isomorphism.\\
+To see that it exists, work in $\SL(2,3)$ over the field $\mathbb{F}_3$ and take
+\[
+    x=
+    \begin{pmatrix}
+        1 & 1\\
+        1 & 2
+    \end{pmatrix},
+    \qquad
+    y=
+    \begin{pmatrix}
+        0 & 2\\
+        1 & 0
+    \end{pmatrix}.
+\]
+The subgroup generated by these two matrices is non-abelian of order $8$, and it has the unique element
+\[
+    \begin{pmatrix}
+        2 & 0\\
+        0 & 2
+    \end{pmatrix}
+\]
+of order $2$. This group is the quaternion group $Q_8$, which appeared in Exercise~\ref{ex:2.11} and cannot be written non-trivially as a semidirect product.
 
 \subsection*{Exercises}
 
