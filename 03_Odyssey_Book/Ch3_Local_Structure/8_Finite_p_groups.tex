@@ -332,6 +332,18 @@ of order $2$. This group is the quaternion group $Q_8$, which appeared in Exerci
 Show that if $P$ is a non-cyclic finite $p$-group, then $P$ has a normal subgroup $N$ such that $P/N \cong \Z_p \times \Z_p$.
 \end{exercise}
 \begin{solution}
+Suppose first that $P$ has only one maximal subgroup, say $M$. If $x\in P-M$, then $\langle x\rangle$ is not contained in $M$. Since every proper subgroup of the finite group $P$ is contained in a maximal subgroup, $\langle x\rangle$ cannot be proper. Hence $\langle x\rangle=P$, so $P$ is cyclic. Therefore, since $P$ is non-cyclic, it has at least two distinct maximal subgroups. Choose two of them, say $M$ and $K$.\\
+By Proposition~\ref{prop:8.3}, both $M$ and $K$ are normal in $P$, and by Corollary~\ref{cor:8.4} both have index $p$. Put
+\[
+    N=M\cap K.
+\]
+Then $N\trianglelefteq P$. Since $M\neq K$, we have $K<MK\leq P$, and the maximality of $K$ gives $MK=P$. Hence
+\[
+    \lvert P\rvert=\lvert MK\rvert
+    =\frac{\lvert M\rvert\lvert K\rvert}{\lvert M\cap K\rvert}
+    =\frac{(\lvert P\rvert/p)(\lvert P\rvert/p)}{\lvert N\rvert},
+\]
+so $\lvert P:N\rvert=p^2$. Thus $P/N$ has order $p^2$. Moreover, $M/N$ and $K/N$ are distinct subgroups of $P/N$ of order $p$. A cyclic group of order $p^2$ has a unique subgroup of order $p$, so $P/N$ is not cyclic. By Lemma~\ref{lem:8.2}, every group of order $p^2$ is abelian, and then Theorem~\ref{thm:8.6} gives $P/N\cong \Z_p\times \Z_p$.
 \end{solution}
 
 \begin{exercise}
@@ -339,6 +351,38 @@ Show that if $P$ is a non-cyclic finite $p$-group, then $P$ has a normal subgrou
 Let $P$ be a group of order $p^n$. Show that $P$ has a normal subgroup $N_a$ of order $p^a$ for every $0 \leq a \leq n$, and that these subgroups can be chosen so that $N_a$ is contained in $N_b$ whenever $a \leq b$.
 \end{exercise}
 \begin{solution}
+We argue by induction on $n$. If $n=0$, then $P=1$, and we take $N_0=1$. Now assume that $n\geq 1$ and that the result is known for groups of order $p^{n-1}$. By Theorem~\ref{thm:8.1}, the center $Z(P)$ is non-trivial. Hence, by \nameref{thm:cauchy}, there is a subgroup
+\[
+    C\leq Z(P)
+\]
+of order $p$. Since $C$ is central, it is normal in $P$.\\
+Let $\pi\colon P\to P/C$ be the quotient map. The group $P/C$ has order $p^{n-1}$, so by the induction hypothesis there are normal subgroups
+\[
+    \overline{N}_0\leq \overline{N}_1\leq \cdots \leq \overline{N}_{n-1}
+\]
+of $P/C$, with $\lvert \overline{N}_a\rvert=p^a$ for each $0\leq a\leq n-1$. Define
+\[
+    N_0=1,
+    \qquad
+    N_a=\pi^{-1}(\overline{N}_{a-1})
+    \quad\text{for }1\leq a\leq n.
+\]
+Each $N_a$ is normal in $P$, because it is the preimage of a normal subgroup under the homomorphism $\pi$. Also $C\leq N_a$ for $a\geq 1$, and
+\[
+    N_a/C\cong \overline{N}_{a-1}.
+\]
+Therefore
+\[
+    \lvert N_a\rvert
+    =\lvert C\rvert\,\lvert \overline{N}_{a-1}\rvert
+    =p\cdot p^{a-1}
+    =p^a
+\]
+for every $1\leq a\leq n$, while $\lvert N_0\rvert=1=p^0$. Finally, the inclusions among the $\overline{N}_a$ give
+\[
+    N_0\leq N_1\leq \cdots \leq N_n,
+\]
+so the subgroups may be chosen with $N_a\leq N_b$ whenever $a\leq b$.
 \end{solution}
 
 \begin{exercise}
@@ -346,6 +390,40 @@ Let $P$ be a group of order $p^n$. Show that $P$ has a normal subgroup $N_a$ of 
 Let $G = \mathrm{GL}(n,p)$, and let $P$ be a Sylow $p$-subgroup of $G$. What is the order of $Z(P)$? What is the order of $Z(P/Z(P))$? If we let $Z_2(P) \leq P$ be such that $Z_2(P)/Z(P) = Z(P/Z(P))$ and continue in this way, what happens?
 \end{exercise}
 \begin{solution}
+Let $U$ be the subgroup of upper unitriangular matrices in $\mathrm{GL}(n,p)$. Then $\lvert U\rvert=p^{n(n-1)/2}$, which is the $p$-part of $\lvert \mathrm{GL}(n,p)\rvert$, so we may take $P=U$. If $n=1$, then $P=1$ and there is nothing to prove, so assume $n\geq 2$. For $i<j$, put
+\[
+    X_{ij}=\{I+aE_{ij}:a\in\mathbb{F}_p\},
+\]
+where $E_{ij}$ is the matrix with $1$ in the $(i,j)$-position and $0$ elsewhere. These are the root subgroups of $U$. The basic matrix-unit calculation shows that a commutator between $X_{ij}$ and $X_{kl}$ can be non-trivial only when $j=k$ or $l=i$.\\
+The subgroup $X_{1n}$ commutes with every root subgroup: the conditions $n=k$ and $l=1$ are impossible for $k<l$ inside $U$. Conversely, in an arbitrary element of $U$, any non-zero $X_{ij}$-coordinate with $(i,j)\neq(1,n)$ is detected by an adjacent root subgroup: either $i>1$ and $X_{i-1,i}$ detects it, or $j<n$ and $X_{j,j+1}$ detects it. Thus centrality forces all root coordinates except possibly the $X_{1n}$-coordinate to vanish, and so
+\[
+    Z(P)=X_{1n}
+\]
+and $\lvert Z(P)\rvert=p$.\\
+If $n=2$, then $P$ is already abelian, so the quotient case is trivial. Assume now that $n\geq 3$. Let $Z_2(P)\leq P$ be defined by $Z_2(P)/Z(P)=Z(P/Z(P))$. Modulo $Z(P)=X_{1n}$, a root subgroup becomes central exactly when all of its possible non-trivial commutators land in $X_{1n}$. This happens precisely for
+\[
+    X_{1,n-1},\qquad X_{1n},\qquad X_{2n}.
+\]
+Hence
+\[
+    Z_2(P)=X_{1,n-1}X_{1n}X_{2n},
+\]
+so $\lvert Z_2(P)\rvert=p^3$, and therefore
+\[
+    \lvert Z(P/Z(P))\rvert
+    =\lvert Z_2(P)/Z(P)\rvert
+    =\frac{p^3}{p}
+    =p^2.
+\]
+Continuing in this way gives the upper central series of $P$. If $Z_1(P)=Z(P)$, then for $1\leq r\leq n-1$,
+\[
+    Z_r(P)=\langle X_{ij}:j-i\geq n-r\rangle.
+\]
+Equivalently, $Z_r(P)$ consists of the upper unitriangular matrices whose non-zero off-diagonal entries can occur only on the $r$ outer superdiagonals nearest the top-right corner. Thus each step adds the next outer superdiagonal, and
+\[
+    \lvert Z_r(P)\rvert=p^{1+2+\cdots+r}=p^{r(r+1)/2}
+\]
+for $1\leq r\leq n-1$. After $n-1$ steps, we reach $Z_{n-1}(P)=P$.
 \end{solution}
 
 \begin{exercise}
@@ -353,6 +431,25 @@ Let $G = \mathrm{GL}(n,p)$, and let $P$ be a Sylow $p$-subgroup of $G$. What is 
 Let $U$ be the subgroup of $\mathrm{GL}(n,p)$ consisting of the upper unitriangular matrices, and let $Q$ be the subgroup of $U$ consisting of matrices whose $(i,j)$-entry is zero whenever $1 < i < j < n$. Determine $Z(Q)$, and show that $Q/Z(Q)$ is abelian.
 \end{exercise}
 \begin{solution}
+For $i<j$, write
+\[
+    X_{ij}=\{I+aE_{ij}:a\in\mathbb{F}_p\}.
+\]
+The subgroup $Q$ consists of the upper unitriangular matrices whose possible non-zero off-diagonal entries lie either in the first row or in the last column. Equivalently,
+\[
+    Q=\langle X_{1j},X_{in}:2\leq j\leq n,\ 1\leq i<n\rangle.
+\]
+The only possible non-trivial commutators among these root subgroups occur when a first-row root meets the corresponding last-column root:
+\[
+    [X_{1j},X_{jn}]\leq X_{1n}
+    \qquad (2\leq j\leq n-1).
+\]
+All other commutators between the displayed root subgroups are trivial. In particular, $X_{1n}\leq Z(Q)$.\\
+We now show that there are no other central root directions. Let $g\in Q$. If the $X_{1j}$-coordinate of $g$ is non-zero for some $2\leq j\leq n-1$, then commuting $g$ with an element of $X_{jn}$ gives a non-trivial element of $X_{1n}$, so $g$ is not central. Similarly, if the $X_{jn}$-coordinate of $g$ is non-zero for some $2\leq j\leq n-1$, then commuting $g$ with an element of $X_{1j}$ gives a non-trivial element of $X_{1n}$. Thus a central element of $Q$ can have only its $X_{1n}$-coordinate non-zero, and hence
+\[
+    Z(Q)=X_{1n}.
+\]
+Finally, since every commutator in $Q$ lies in $X_{1n}=Z(Q)$, all commutators become trivial in the quotient $Q/Z(Q)$. Therefore $Q/Z(Q)$ is abelian.
 \end{solution}
 
 \begin{exercise}
@@ -360,6 +457,30 @@ Let $U$ be the subgroup of $\mathrm{GL}(n,p)$ consisting of the upper unitriangu
 Show that subgroups and quotient groups of finite nilpotent groups are nilpotent, and that direct products of finite nilpotent groups are nilpotent.
 \end{exercise}
 \begin{solution}
+Let $G$ be a finite nilpotent group. By Theorem~\ref{thm:8.7}, we may write
+\[
+    G=P_1\times\cdots\times P_r,
+\]
+where $P_i$ is the Sylow $p_i$-subgroup of $G$.\\
+First let $H\leq G$. We claim that
+\[
+    H=(H\cap P_1)\times\cdots\times(H\cap P_r).
+\]
+Indeed, if $h\in H$, write $h=x_1\cdots x_r$ with $x_i\in P_i$. Since the factors have pairwise relatively prime orders, each $x_i$ is a power of $h$, and hence $x_i\in H$. Thus $x_i\in H\cap P_i$, proving the claim. Each $H\cap P_i$ is a normal subgroup of $H$, because $P_i\trianglelefteq G$. These intersections are precisely the Sylow subgroups of $H$ which are non-trivial. Hence every Sylow subgroup of $H$ is normal in $H$, so $H$ is nilpotent by Theorem~\ref{thm:8.7}.\\
+Now let $N\trianglelefteq G$. For each $i$, the subgroup
+\[
+    P_iN/N
+\]
+is a normal $p_i$-subgroup of $G/N$, and
+\[
+    G/N=(P_1N/N)\cdots(P_rN/N).
+\]
+These factors have pairwise relatively prime orders and commute with one another, since the $P_i$ commute in $G$. Therefore the Sylow subgroups of $G/N$ are normal, and $G/N$ is nilpotent.\\
+Finally, let $G_1,\ldots,G_m$ be finite nilpotent groups. If $S_{i,p}$ denotes the Sylow $p$-subgroup of $G_i$, with $S_{i,p}=1$ when $p\nmid \lvert G_i\rvert$, then
+\[
+    S_{1,p}\times\cdots\times S_{m,p}
+\]
+is the Sylow $p$-subgroup of $G_1\times\cdots\times G_m$. Each $S_{i,p}$ is normal in $G_i$, so this product is normal in $G_1\times\cdots\times G_m$. Thus every Sylow subgroup of the direct product is normal, and the direct product is nilpotent.
 \end{solution}
 
 \begin{exercise}
@@ -367,6 +488,60 @@ Show that subgroups and quotient groups of finite nilpotent groups are nilpotent
 Let $U$ be the subgroup of $\mathrm{GL}(3,p)$ consisting of the upper unitriangular matrices. Show that if $p$ is an odd prime, then $U$ is a non-abelian group of order $p^3$ having no elements of order $p^2$. If $p = 2$, with which group of order $8$ is $U$ isomorphic?
 \end{exercise}
 \begin{solution}
+Write an element of $U$ as
+\[
+    u(a,b,c)=
+    \begin{pmatrix}
+        1 & a & c\\
+        0 & 1 & b\\
+        0 & 0 & 1
+    \end{pmatrix},
+    \qquad a,b,c\in\mathbb{F}_p.
+\]
+There are $p$ choices for each of $a,b,c$, so $\lvert U\rvert=p^3$. A direct multiplication gives
+\[
+    u(a,b,c)u(a',b',c')
+    =
+    u(a+a',b+b',c+c'+ab').
+\]
+Thus $U$ is not abelian, since
+\[
+    u(1,0,0)u(0,1,0)=u(1,1,1),
+    \qquad
+    u(0,1,0)u(1,0,0)=u(1,1,0).
+\]
+Now let
+\[
+    N=aE_{12}+bE_{23}+cE_{13}.
+\]
+Then $u(a,b,c)=I+N$, while $N^2=abE_{13}$ and $N^3=0$. Hence, for $m\geq 1$,
+\[
+    u(a,b,c)^m
+    =(I+N)^m
+    =I+mN+\binom{m}{2}N^2
+    =
+    u\left(ma,mb,mc+\binom{m}{2}ab\right).
+\]
+If $p$ is odd, then in $\mathbb{F}_p$ we have $pa=pb=pc=0$ and
+\[
+    \binom{p}{2}=\frac{p(p-1)}{2}\equiv 0 \pmod p.
+\]
+Therefore $u(a,b,c)^p=I$ for every element of $U$. Thus every element has order dividing $p$, so no element can have order $p^2$.
+
+It remains to consider $p=2$. Put
+\[
+    r=u(1,1,0),
+    \qquad
+    s=u(1,0,0).
+\]
+Then $r^2=u(0,0,1)$, so $r$ has order $4$, while $s$ has order $2$. Also
+\[
+    srs^{-1}=srs=u(1,1,1)=r^{-1}.
+\]
+Since $s\notin\langle r\rangle$, the elements $r$ and $s$ generate all of $U$. Thus $U$ has the usual presentation of the dihedral group of order $8$, and so
+\[
+    U\cong D_8.
+\]
 \end{solution}
 
 \subsection*{Further Exercises}
@@ -376,6 +551,33 @@ Let $U$ be the subgroup of $\mathrm{GL}(3,p)$ consisting of the upper unitriangu
 Show that a finite group $G$ has a largest nilpotent normal subgroup, in the sense that it contains all nilpotent normal subgroups of $G$. (This subgroup is called the \emph{Fitting subgroup} of $G$.)
 \end{exercise}
 \begin{solution}
+We first prove that the product of two nilpotent normal subgroups of $G$ is again nilpotent. Let $A,B\trianglelefteq G$ be nilpotent. By Theorem~\ref{thm:8.7}, write
+\[
+    A=\prod_p A_p,
+    \qquad
+    B=\prod_p B_p,
+\]
+where $A_p$ and $B_p$ are the Sylow $p$-subgroups of $A$ and $B$, with the trivial subgroup inserted when $p$ does not divide the relevant order. Since $A$ and $B$ are nilpotent, these Sylow subgroups are unique in $A$ and $B$, respectively. Hence each $A_p$ is characteristic in $A$ and each $B_p$ is characteristic in $B$. Since $A,B\trianglelefteq G$, it follows that $A_p,B_p\trianglelefteq G$.
+
+If $p\neq q$, then
+\[
+    [A_p,B_q]\leq A_p\cap B_q=1,
+\]
+because the commutator subgroup lies in both normal subgroups $A_p$ and $B_q$, while $A_p\cap B_q$ is both a $p$-group and a $q$-group. Thus different-prime factors commute. For each prime $p$, the product
+\[
+    A_pB_p
+\]
+is a normal $p$-subgroup of $AB$. Moreover,
+\[
+    AB=\prod_p A_pB_p,
+\]
+and the factors for distinct primes commute and intersect trivially. Therefore the Sylow subgroups of $AB$ are precisely the subgroups $A_pB_p$, and they are normal in $AB$. By Theorem~\ref{thm:8.7}, $AB$ is nilpotent.
+
+Now let $\mathcal{N}$ be the set of nilpotent normal subgroups of $G$, and define
+\[
+    F=\prod_{N\in\mathcal{N}}N.
+\]
+Since $G$ is finite, it has only finitely many subgroups, so this is a finite product. Repeatedly applying the previous paragraph shows that $F$ is nilpotent. Also, a product of normal subgroups is normal, so $F\trianglelefteq G$. Finally, by construction, every nilpotent normal subgroup $N$ of $G$ is one of the factors in this product, and hence $N\leq F$. Thus $F$ is the largest nilpotent normal subgroup of $G$.
 \end{solution}
 
 \noindent The intersection of all maximal subgroups of a finite group $G$ is called the \emph{Frattini subgroup} of $G$ and is denoted by $\Phi(G)$.
@@ -385,6 +587,23 @@ Show that a finite group $G$ has a largest nilpotent normal subgroup, in the sen
 Show that $\Phi(G)$ is a nilpotent normal subgroup of $G$.
 \end{exercise}
 \begin{solution}
+If $G=1$, then the result is clear, so assume $G\neq 1$. First we show that $\Phi(G)\trianglelefteq G$. Every automorphism of $G$ sends maximal subgroups to maximal subgroups. Indeed, if $\alpha\in\Aut(G)$ and $M$ is maximal in $G$, then any subgroup strictly between $\alpha(M)$ and $G$ would pull back under $\alpha^{-1}$ to a subgroup strictly between $M$ and $G$. Thus automorphisms permute the maximal subgroups of $G$, and so preserve their intersection. Hence $\Phi(G)$ is characteristic in $G$, and therefore $\Phi(G)\trianglelefteq G$.
+
+Now let $P$ be a Sylow $p$-subgroup of $\Phi(G)$. Since $\Phi(G)\trianglelefteq G$, the \nameref{thm:frattini-arg} gives
+\[
+    G=N_G(P)\Phi(G).
+\]
+If $N_G(P)<G$, then, since $G$ is finite, there is a maximal subgroup $M$ of $G$ with
+\[
+    N_G(P)\leq M<G.
+\]
+But $\Phi(G)$ is contained in every maximal subgroup of $G$, so $\Phi(G)\leq M$. Hence
+\[
+    G=N_G(P)\Phi(G)\leq M,
+\]
+a contradiction. Therefore $N_G(P)=G$, so $P\trianglelefteq G$, and in particular $P\trianglelefteq \Phi(G)$.
+
+Thus every Sylow subgroup of $\Phi(G)$ is normal in $\Phi(G)$. By Theorem~\ref{thm:8.7}, $\Phi(G)$ is nilpotent.
 \end{solution}
 
 \begin{exercise}
@@ -392,6 +611,29 @@ Show that $\Phi(G)$ is a nilpotent normal subgroup of $G$.
 Show that $g \in \Phi(G)$ iff whenever $G = \langle S \rangle$ and $g \in S$, then $G = \langle S - \{g\} \rangle$.
 \end{exercise}
 \begin{solution}
+First suppose that $g\in\Phi(G)$. Let $S$ be a subset of $G$ such that $G=\langle S\rangle$ and $g\in S$. Put
+\[
+    H=\langle S-\{g\}\rangle.
+\]
+We claim that $H=G$. If not, then $H$ is contained in some maximal subgroup $M$ of $G$. Since $g\in\Phi(G)$, and $\Phi(G)$ is contained in every maximal subgroup of $G$, we have $g\in M$. Also $S-\{g\}\subseteq H\leq M$. Hence every element of $S$ lies in $M$, so
+\[
+    G=\langle S\rangle\leq M<G,
+\]
+a contradiction. Therefore $G=\langle S-\{g\}\rangle$.
+
+Conversely, suppose that $g\notin\Phi(G)$. Since $\Phi(G)$ is the intersection of all maximal subgroups of $G$, there is a maximal subgroup $M$ of $G$ such that $g\notin M$. Let
+\[
+    S=M\cup\{g\}.
+\]
+Then $\langle S\rangle=\langle M,g\rangle$. This subgroup contains $M$ properly, because $g\notin M$, and so maximality of $M$ forces
+\[
+    \langle S\rangle=G.
+\]
+However,
+\[
+    \langle S-\{g\}\rangle=\langle M\rangle=M\neq G.
+\]
+Thus $g$ does not have the stated removable-generator property. This proves the equivalence.
 \end{solution}
 
 \begin{exercise}
@@ -399,6 +641,33 @@ Show that $g \in \Phi(G)$ iff whenever $G = \langle S \rangle$ and $g \in S$, th
 Show that if $P$ is a finite $p$-group, then $P/\Phi(P)$ is an elementary abelian $p$-group.
 \end{exercise}
 \begin{solution}
+If $P=1$, then the result is clear. Assume therefore that $P\neq 1$. Let $M$ be a maximal subgroup of $P$. By Proposition~\ref{prop:8.3} and Corollary~\ref{cor:8.4}, we have $M\trianglelefteq P$ and $\lvert P:M\rvert=p$. Hence $P/M$ is cyclic of order $p$.
+
+Now let $x,y\in P$. Since $P/M$ has order $p$, the coset $xM$ has order dividing $p$, so
+\[
+    x^p\in M.
+\]
+Also $P/M$ is abelian, so
+\[
+    [x,y]\in M.
+\]
+These conclusions hold for every maximal subgroup $M$ of $P$. Therefore
+\[
+    x^p\in\Phi(P)
+    \qquad\text{and}\qquad
+    [x,y]\in\Phi(P)
+\]
+for all $x,y\in P$.
+
+It follows that every element of $P/\Phi(P)$ has order dividing $p$, since
+\[
+    (x\Phi(P))^p=x^p\Phi(P)=\Phi(P),
+\]
+and all commutators are trivial in $P/\Phi(P)$, since
+\[
+    [x\Phi(P),y\Phi(P)]=[x,y]\Phi(P)=\Phi(P).
+\]
+Thus $P/\Phi(P)$ is an abelian $p$-group of exponent $p$. By Theorem~\ref{thm:8.6}, it is a direct product of cyclic $p$-groups; since every element has order dividing $p$, each non-trivial cyclic factor has order $p$. Therefore $P/\Phi(P)$ is elementary abelian.
 \end{solution}
 
 \end{document}
