@@ -16,6 +16,98 @@
 Any normal Hall subgroup of a finite group has a complement.
 \end{namedtheorem}
 \begin{proof}
+Let $N$ be a normal Hall subgroup of a finite group $G$, and put $n=\lvert G:N\rvert$. We first observe that it suffices to find a subgroup of $G$ of order $n$. Indeed, if $K\leq G$ and $\lvert K\rvert=n$, then $\lvert N\cap K\rvert$ divides both $\lvert N\rvert$ and $n$, so $N\cap K=1$ by \nameref{thm:lagrange}. Hence Proposition~\ref{prop:3.12} gives
+\[
+    \lvert NK\rvert
+    =\frac{\lvert N\rvert\lvert K\rvert}{\lvert N\cap K\rvert}
+    =\lvert N\rvert n
+    =\lvert G\rvert,
+\]
+and therefore $NK=G$. Thus $K$ is a complement to $N$.\\
+We argue by induction on $\lvert G\rvert$. If $N=1$, then $G$ itself is a complement to $N$, so assume $N\neq 1$. Let $P$ be a Sylow $p$-subgroup of $N$ for some prime $p$ dividing $\lvert N\rvert$. By \nameref{thm:frattini-arg}, we have
+\[
+    G=N_G(P)N.
+\]
+Applying \nameref{thm:first-iso} to the map $N_G(P)\to G/N$ given by $x\mapsto xN$, we obtain
+\[
+    G/N\cong N_G(P)/(N_G(P)\cap N)
+    =N_G(P)/N_N(P).
+\]
+Thus $\lvert N_G(P):N_N(P)\rvert=n$. Moreover, $N_N(P)=N_G(P)\cap N$ is normal in $N_G(P)$, and $\lvert N_N(P)\rvert$ divides $\lvert N\rvert$. Hence $N_N(P)$ is a normal Hall subgroup of $N_G(P)$. If $N_G(P)<G$, then the induction hypothesis gives a subgroup of $N_G(P)$ of order $n$, and hence a subgroup of $G$ of order $n$. We may therefore assume that $N_G(P)=G$, or equivalently that $P\trianglelefteq G$.\\
+Suppose first that $P<N$. Then $N/P$ is a normal Hall subgroup of $G/P$, and
+\[
+    \lvert G/P:N/P\rvert=\lvert G:N\rvert=n.
+\]
+Since $\lvert G/P\rvert<\lvert G\rvert$, the induction hypothesis gives a subgroup of $G/P$ of order $n$. By the \nameref{thm:correspondence}, this subgroup has the form $L/P$ for some subgroup $L$ of $G$ containing $P$, and $\lvert L/P\rvert=n$. Hence $\lvert L\rvert=n\lvert P\rvert$. Now $\lvert L\cap N\rvert$ divides both $\lvert L\rvert=n\lvert P\rvert$ and $\lvert N\rvert$, and $n$ is coprime to $\lvert N\rvert$, so $\lvert L\cap N\rvert$ divides $\lvert P\rvert$. Since $P\leq L\cap N$, it follows that $L\cap N=P$. In particular $L<G$, because $P<N$. Inside $L$, the subgroup $P$ is a normal Hall subgroup with $\lvert L:P\rvert=n$, so the induction hypothesis gives a subgroup of $L$, and hence of $G$, of order $n$. We may therefore assume that $N=P$, so $N$ is a $p$-group.\\
+Suppose next that $N$ is non-abelian. Put $Z=Z(N)$. By Theorem~\ref{thm:8.1}, we have $Z\neq 1$, and since $N$ is non-abelian, we also have $Z<N$. The center $Z(N)$ is characteristic in $N$, and $N\trianglelefteq G$, so $Z\trianglelefteq G$. Thus $N/Z$ is a normal Hall subgroup of $G/Z$, and
+\[
+    \lvert G/Z:N/Z\rvert=\lvert G:N\rvert=n.
+\]
+Since $\lvert G/Z\rvert<\lvert G\rvert$, the induction hypothesis gives a subgroup $L/Z$ of $G/Z$ of order $n$. Then $\lvert L\rvert=n\lvert Z\rvert$, and the same divisibility argument as above gives $L\cap N=Z$. Hence $L<G$, because $Z<N$. Inside $L$, the subgroup $Z$ is a normal Hall subgroup with $\lvert L:Z\rvert=n$, so induction gives a subgroup of $L$, and hence of $G$, of order $n$. We may therefore assume that the normal Hall subgroup is abelian; write it as $A$.\\
+It remains to prove the theorem when $A$ is an abelian normal Hall subgroup of $G$. We use additive notation inside $A$, while retaining multiplicative notation in $G$, and put $H=G/A$. If $h\in H$ and $x\in A$, define
+\[
+    {}^h x=t x t^{-1},
+\]
+where $t$ is any element of the coset $h$. This is well-defined: if $u$ is another element of $h$, then $u=ta$ for some $a\in A$, and since $A$ is abelian,
+\[
+    uxu^{-1}=t a x a^{-1}t^{-1}=t x t^{-1}.
+\]
+Conjugation by $t$ is an automorphism of $A$, and the definition is compatible with multiplication in $H$, so $H$ acts on $A$ by automorphisms. Choose, for each $h\in H$, an element $t_h\in h$. Since $t_{h_1}t_{h_2}$ and $t_{h_1h_2}$ lie in the same coset of $A$, there is a unique element $f(h_1,h_2)\in A$ such that
+\[
+    t_{h_1}t_{h_2}=f(h_1,h_2)t_{h_1h_2}.
+\]
+Associativity in $G$ gives $t_{h_1}(t_{h_2}t_{h_3})=(t_{h_1}t_{h_2})t_{h_3}$, and substituting the definition of $f$ gives
+\[
+    {}^{h_1}f(h_2,h_3)+f(h_1,h_2h_3)
+    =f(h_1,h_2)+f(h_1h_2,h_3)
+\]
+for all $h_1,h_2,h_3\in H$.\\
+We now seek to modify the representatives $t_h$ by elements of $A$. Suppose there is a function $c\colon H\to A$ satisfying
+\[
+    c(h_1h_2)
+    =c(h_1)+{}^{h_1}c(h_2)+f(h_1,h_2)
+\]
+for all $h_1,h_2\in H$. Then the map $\varphi\colon H\to G$ defined by
+\[
+    \varphi(h)=c(h)t_h
+\]
+is a homomorphism, since
+\[
+    \varphi(h_1)\varphi(h_2)
+    =c(h_1)t_{h_1}c(h_2)t_{h_2}
+    =\bigl(c(h_1)+{}^{h_1}c(h_2)+f(h_1,h_2)\bigr)t_{h_1h_2}
+    =\varphi(h_1h_2).
+\]
+Moreover, if $h\neq 1$, then $\varphi(h)$ lies in the non-identity coset $h$, and so $\varphi(h)\neq 1$. Hence $\varphi$ is injective, and its image is a subgroup of $G$ of order $\lvert H\rvert=n$. It remains only to construct such a function $c$.\\
+For $h\in H$, define
+\[
+    e(h)=\sum_{k\in H} f(h,k).
+\]
+Using the cocycle identity and summing over $k\in H$, we obtain
+\[
+    {}^{h_1}e(h_2)+e(h_1)
+    =n f(h_1,h_2)+e(h_1h_2),
+\]
+and hence
+\[
+    n f(h_1,h_2)
+    =-e(h_1h_2)+e(h_1)+{}^{h_1}e(h_2).
+\]
+Since $A$ is finite abelian and $\gcd(n,\lvert A\rvert)=1$, multiplication by $n$ is an automorphism of $A$. Let $\eta\colon A\to A$ denote its inverse, so that $n\eta(x)=x$ for every $x\in A$. The action of $H$ on $A$ commutes with multiplication by $n$, and hence also with $\eta$. Define
+\[
+    c(h)=-\eta(e(h)).
+\]
+Applying $\eta$ to the preceding identity gives
+\[
+    f(h_1,h_2)
+    =-\eta(e(h_1h_2))+\eta(e(h_1))+{}^{h_1}\eta(e(h_2)),
+\]
+and therefore
+\[
+    c(h_1h_2)
+    =c(h_1)+{}^{h_1}c(h_2)+f(h_1,h_2).
+\]
+As shown above, this gives a subgroup of $G$ of order $n$, and hence a complement to $A$. This completes the induction and the proof.
 \end{proof}
 
 \subsubsection*{Cohomological framework}
