@@ -130,6 +130,24 @@ As shown above, this gives a subgroup of $G$ of order $n$, and hence a complemen
 Suppose that $G$ is a finite group such that $G = N \rtimes H$, where $H$ is abelian. Show that if $|N|$ and $|H|$ are relatively coprime, then all complements to $N$ in $G$ are conjugate.
 \end{exercise}
 \begin{solution}
+Let $K$ be another complement to $N$ in $G$. We show that $K$ is conjugate to $H$. Let $\pi\colon G\to G/N$ be the natural map, and identify $G/N$ with $H$. Since $K\cap N=1$ and $\lvert K\rvert=\lvert G:N\rvert=\lvert H\rvert$, the restriction $\pi|_K\colon K\to G/N$ is an isomorphism. Hence $K\cong H$, and in particular $K$ is abelian.\\
+We argue by induction on $\lvert G\rvert$. If $\lvert H\rvert=1$, there is nothing to prove. If $\lvert H\rvert=p$ is prime, then $H$ and $K$ are Sylow $p$-subgroups of $G$, because $p\nmid \lvert N\rvert$. Hence they are conjugate by part (ii) of \nameref{thm:sylow}.\\
+Assume now that $\lvert H\rvert$ is composite. Choose a subgroup $L\leq H$ of prime order. Put $K_L=K\cap NL$. By \nameref{thm:second-iso}, we have $NL/N\cong L/(L\cap N)\cong L$. Under the isomorphism $\pi|_K$, the subgroup $K_L$ is the inverse image of $NL/N$, so $\lvert K_L\rvert=\lvert L\rvert$. Also $K_L\cap N=1$ and $NK_L=NL$, so $K_L$ is a complement to $N$ in $NL=N\rtimes L$. Since $L<H$, we have $\lvert NL\rvert<\lvert G\rvert$. By induction inside $NL$, the complements $K_L$ and $L$ to $N$ are conjugate in $NL$. Replacing $K$ by a conjugate in $G$, we may therefore assume that $L\leq K$.\\
+Since both $H$ and $K$ are abelian and contain $L$, we have $H,K\leq C_G(L)$. We claim that
+\[
+    C_G(L)=C_N(L)\rtimes H.
+\]
+Indeed, let $g\in C_G(L)$ and write $g=nh$ with $n\in N$ and $h\in H$. Since $H$ is abelian, $h$ centralizes $L$. Hence $n=gh^{-1}$ also centralizes $L$, and so $n\in C_N(L)$. This gives $C_G(L)\leq C_N(L)H$, and the reverse containment is clear. Moreover, $C_N(L)\trianglelefteq C_G(L)$ and $C_N(L)\cap H=1$, so the displayed product is a semidirect product. Since $K\leq C_G(L)$, $K\cap C_N(L)=1$, and $\lvert K\rvert=\lvert H\rvert=\lvert C_G(L):C_N(L)\rvert$, the subgroup $K$ is also a complement to $C_N(L)$ in $C_G(L)$.\\
+If $C_N(L)<N$, then $\lvert C_G(L)\rvert<\lvert G\rvert$. Applying the induction hypothesis inside $C_G(L)$ to the normal Hall subgroup $C_N(L)$ and its abelian complement $H$, we conclude that the two complements $K$ and $H$ are conjugate in $C_G(L)$, and hence in $G$.\\
+It remains to consider the case $C_N(L)=N$. Then $L$ centralizes $N$, and since $H$ is abelian, $L$ also centralizes $H$. Thus $L\leq Z(G)$. In the quotient $G/L$, the subgroup $NL/L$ is a normal Hall subgroup and
+\[
+    G/L=(NL/L)\rtimes(H/L),
+\]
+where $H/L$ is abelian. Also $K/L$ is a complement to $NL/L$, because $K\cap NL=L$ and $NK=G$. Since $\lvert G/L\rvert<\lvert G\rvert$, induction gives some $g\in G$ such that
+\[
+    gKg^{-1}L/L=H/L.
+\]
+Both $gKg^{-1}$ and $H$ contain $L$, so this equality in the quotient implies $gKg^{-1}=H$. Therefore every complement to $N$ in $G$ is conjugate to $H$.
 \end{solution}
 
 \begin{exercise}
@@ -137,6 +155,13 @@ Suppose that $G$ is a finite group such that $G = N \rtimes H$, where $H$ is abe
 Repeat Exercise~\ref{ex:9.1} under the assumption that $H$ is nilpotent rather than abelian.
 \end{exercise}
 \begin{solution}
+Let $K$ be another complement to $N$ in $G$. As in Exercise~\ref{ex:9.1}, the quotient map restricts to an isomorphism $K\cong G/N\cong H$, so $K$ is nilpotent. We argue by induction on $\lvert G\rvert$. The cases $\lvert H\rvert=1$ and $\lvert H\rvert$ prime are handled exactly as in Exercise~\ref{ex:9.1}.\\
+Assume that $\lvert H\rvert$ is composite. Since $H$ is finite nilpotent, $Z(H)\neq 1$, so choose a subgroup $L\leq Z(H)$ of prime order. Put $K_L=K\cap NL$. By the same quotient-map argument as in Exercise~\ref{ex:9.1}, using \nameref{thm:second-iso} to identify $NL/N$ with $L$, the subgroup $K_L$ is the subgroup of $K$ corresponding to $L$. Since $L\leq Z(H)$ and $K\cong H$, this gives $K_L\leq Z(K)$. As before, $K_L$ is a complement to $N$ in $NL=N\rtimes L$. Since $\lvert NL\rvert<\lvert G\rvert$, induction inside $NL$ conjugates $K_L$ to $L$. Replacing $K$ by this conjugate, we may assume that $L\leq Z(K)$.\\
+Now $H$ and $K$ both centralize $L$, so $H,K\leq C_G(L)$. Since $L\leq Z(H)$, the same calculation as in Exercise~\ref{ex:9.1} gives
+\[
+    C_G(L)=C_N(L)\rtimes H,
+\]
+and $K$ is also a complement to $C_N(L)$ in $C_G(L)$. If $C_N(L)<N$, induction inside $C_G(L)$ gives that $K$ and $H$ are conjugate. If $C_N(L)=N$, then $L$ centralizes both $N$ and $H$, hence $L\leq Z(G)$. Passing to $G/L$, induction gives that $K/L$ and $H/L$ are conjugate complements to $NL/L$. Lifting this conjugacy back to $G$ gives that $K$ and $H$ are conjugate.
 \end{solution}
 
 \subsection*{Further Exercises}
@@ -152,6 +177,64 @@ Let $(f, \varphi)$ be a factor pair, and define
 for $(x, \alpha), (y, \beta) \in N \times H$. Show that this gives a group structure on $N \times H$; call this group $E_{f, \varphi}$. Show further that $(E_{f, \varphi}, i, \pi)$ is an extension, where $i(x) = (x, 1)$ and $\pi(x, \alpha) = \alpha$, and that $(f, \varphi)$ is the factor pair arising from some normalized section of $E_{f, \varphi}$. (Observe that this construction generalizes the notion of external semidirect product.)
 \end{exercise}
 \begin{solution}
+We first prove associativity. Let $(x,\alpha),(y,\beta),(z,\gamma)\in N\times H$. Then
+\[
+    ((x,\alpha)(y,\beta))(z,\gamma)
+    =
+    (x\varphi(\alpha)(y)f(\alpha,\beta)\varphi(\alpha\beta)(z)f(\alpha\beta,\gamma),\alpha\beta\gamma).
+\]
+On the other hand,
+\[
+    (x,\alpha)((y,\beta)(z,\gamma))
+    =
+    (x\varphi(\alpha)(y)\varphi(\alpha)\varphi(\beta)(z)\varphi(\alpha)(f(\beta,\gamma))f(\alpha,\beta\gamma),\alpha\beta\gamma).
+\]
+Using property \textbf{2} of factor pairs, we have
+\[
+    \varphi(\alpha)\varphi(\beta)(z)
+    =
+    f(\alpha,\beta)\varphi(\alpha\beta)(z)f(\alpha,\beta)^{-1}.
+\]
+Using property \textbf{3}, we have
+\[
+    f(\alpha,\beta)^{-1}\varphi(\alpha)(f(\beta,\gamma))f(\alpha,\beta\gamma)
+    =
+    f(\alpha\beta,\gamma).
+\]
+Substituting these two identities into the second product gives the first product. Hence the operation is associative.\\
+By property \textbf{1}, the element $(1,1)$ is an identity:
+\[
+    (1,1)(x,\alpha)=(x,\alpha)=(x,\alpha)(1,1).
+\]
+For $(x,\alpha)\in N\times H$, put
+\[
+    u=\varphi(\alpha)^{-1}\bigl(x^{-1}f(\alpha,\alpha^{-1})^{-1}\bigr),
+    \qquad
+    v=f(\alpha^{-1},\alpha)^{-1}\varphi(\alpha^{-1})(x^{-1}).
+\]
+Then $(x,\alpha)(u,\alpha^{-1})=(1,1)$ and $(v,\alpha^{-1})(x,\alpha)=(1,1)$. Since the operation is associative, the left and right inverses agree, so every element has an inverse. Thus $E_{f,\varphi}$ is a group.\\
+Define $i\colon N\to E_{f,\varphi}$ by $i(x)=(x,1)$ and $\pi\colon E_{f,\varphi}\to H$ by $\pi(x,\alpha)=\alpha$. Property \textbf{1} gives
+\[
+    i(x)i(y)=(xy,1)=i(xy),
+\]
+and $i$ is visibly injective, so $i$ is a monomorphism. Also
+\[
+    \pi((x,\alpha)(y,\beta))=\alpha\beta=\pi(x,\alpha)\pi(y,\beta),
+\]
+and $\pi$ is surjective since $\pi(1,\alpha)=\alpha$, so $\pi$ is an epimorphism. Its kernel is
+\[
+    \ker\pi=\{(x,1)\mid x\in N\}=i(N).
+\]
+Therefore $(E_{f,\varphi},i,\pi)$ is an extension of $N$ by $H$.\\
+Finally define a normalized section $t\colon H\to E_{f,\varphi}$ by $t(\alpha)=(1,\alpha)$. Then $t(1)=(1,1)$ and $\pi(t(\alpha))=\alpha$. Moreover,
+\[
+    t(\alpha)t(\beta)=(f(\alpha,\beta),\alpha\beta)=i(f(\alpha,\beta))t(\alpha\beta),
+\]
+so the factor-set component arising from $t$ is $f$. Also
+\[
+    t(\alpha)i(x)=(\varphi(\alpha)(x),\alpha)=i(\varphi(\alpha)(x))t(\alpha),
+\]
+so conjugation by $t(\alpha)$ restricts to $\varphi(\alpha)$ on $i(N)$. Hence the factor pair arising from the normalized section $t$ is precisely $(f,\varphi)$.
 \end{solution}
 
 We have seen in Exercise~\ref{ex:2.13} that an extension gives rise to a factor pair via a choice of normalized section, and we have just given an explicit construction of an extension from a given factor pair. We view these processes as giving maps between $\mathcal{E}$ and $\mathcal{F}$, and we now investigate the relationship between these maps. We must first consider the relation between factor pairs arising from different normalized sections of the same extension.
@@ -165,15 +248,98 @@ We have seen in Exercise~\ref{ex:2.13} that an extension gives rise to a factor 
 \end{itemize}
 \end{exercise}
 \begin{solution}
+By definition of the factor pairs arising from $t$ and $u$, we have
+\[
+    \varphi(\alpha)=\Psi(t(\alpha)),
+    \qquad
+    \rho(\alpha)=\Psi(u(\alpha)).
+\]
+Since $u(\alpha)=c(\alpha)t(\alpha)$ and $\Psi$ is a homomorphism into the automorphism group, it follows that
+\[
+    \rho(\alpha)
+    =
+    \Psi(c(\alpha)t(\alpha))
+    =
+    \Psi(c(\alpha))\Psi(t(\alpha))
+    =
+    \Psi(c(\alpha))\varphi(\alpha).
+\]
+This proves property \textbf{4}.\\
+For property \textbf{5}, use the definition of the factor-set component:
+\[
+    g(\alpha,\beta)=u(\alpha)u(\beta)u(\alpha\beta)^{-1}.
+\]
+Substituting $u(\delta)=c(\delta)t(\delta)$ gives
+\[
+    g(\alpha,\beta)
+    =
+    c(\alpha)t(\alpha)c(\beta)t(\beta)t(\alpha\beta)^{-1}c(\alpha\beta)^{-1}.
+\]
+Now $t(\alpha)c(\beta)t(\alpha)^{-1}=\varphi(\alpha)(c(\beta))$, and
+\[
+    t(\alpha)t(\beta)t(\alpha\beta)^{-1}=f(\alpha,\beta).
+\]
+Therefore
+\[
+    g(\alpha,\beta)
+    =
+    c(\alpha)\varphi(\alpha)(c(\beta))f(\alpha,\beta)c(\alpha\beta)^{-1},
+\]
+as required.
 \end{solution}
 
-The above exercise motivates the following definition: We say that two factor pairs $(f, \varphi)$ and $(g, \rho)$ are \emph{equivalent} if there is a map $c: N \to H$ such that properties \textbf{4} and \textbf{5} hold. (Verify that this is an equivalence relation on $\mathcal{F}$.) Let $\overline{\mathcal{F}}$ denote the set of equivalence classes of factor pairs; we will use $[f, \varphi]$ to denote the class of the factor pair $(f, \varphi)$. We have a well-defined map from $\mathcal{E}$ to $\overline{\mathcal{F}}$ which sends an extension to the class of a factor pair arising from any normalized section. We must now consider what happens when we pass from $\overline{\mathcal{F}}$ back to $\mathcal{E}$ via the construction in Exercise~\ref{ex:9.3}. Here we will need to recall the exact definition of an extension.
+The above exercise motivates the following definition: We say that two factor pairs $(f, \varphi)$ and $(g, \rho)$ are \emph{equivalent} if there is a map $c: H \to N$ such that properties \textbf{4} and \textbf{5} hold. (Verify that this is an equivalence relation on $\mathcal{F}$.) Let $\overline{\mathcal{F}}$ denote the set of equivalence classes of factor pairs; we will use $[f, \varphi]$ to denote the class of the factor pair $(f, \varphi)$. We have a well-defined map from $\mathcal{E}$ to $\overline{\mathcal{F}}$ which sends an extension to the class of a factor pair arising from any normalized section. We must now consider what happens when we pass from $\overline{\mathcal{F}}$ back to $\mathcal{E}$ via the construction in Exercise~\ref{ex:9.3}. Here we will need to recall the exact definition of an extension.
 
 \begin{exercise}
 \label{ex:9.5}
 (cont.) Let $(f, \varphi)$ and $(g, \rho)$ be factor pairs, with $[f, \varphi] = [g, \rho]$. Let $i: N \to E_{f, \varphi}$ and $j: N \to E_{g, \rho}$ be the natural inclusions (of $N$ into the underlying set $N \times H$), and let $\pi: E_{f, \varphi} \to H$ and $\tau: E_{g, \rho} \to H$ be the natural projections (of the underlying set $N \times H$ onto $H$). Show that there is an isomorphism $\xi: E_{f, \varphi} \to E_{g, \rho}$ such that $\xi \circ i = j$ and $\tau \circ \xi = \pi$.
 \end{exercise}
 \begin{solution}
+Let $c\colon H\to N$ be a map witnessing the equivalence of $(f,\varphi)$ and $(g,\rho)$, so properties \textbf{4} and \textbf{5} hold. Taking $\alpha=\beta=1$ in property \textbf{5}, and using property \textbf{1} for factor pairs, gives $c(1)=1$. Define
+\[
+    \xi\colon E_{f,\varphi}\to E_{g,\rho},
+    \qquad
+    \xi(x,\alpha)=(xc(\alpha)^{-1},\alpha).
+\]
+This map is bijective, with inverse $(x,\alpha)\mapsto (xc(\alpha),\alpha)$. We check that it is a homomorphism. In $E_{g,\rho}$, we have
+\[
+    \xi(x,\alpha)\xi(y,\beta)
+    =
+    (xc(\alpha)^{-1}\rho(\alpha)(yc(\beta)^{-1})g(\alpha,\beta),\alpha\beta).
+\]
+By property \textbf{4}, $\rho(\alpha)=\Psi(c(\alpha))\varphi(\alpha)$, and hence
+\[
+    \rho(\alpha)(yc(\beta)^{-1})
+    =
+    c(\alpha)\varphi(\alpha)(y)\varphi(\alpha)(c(\beta)^{-1})c(\alpha)^{-1}.
+\]
+Substituting this and then using property \textbf{5}, the first coordinate becomes
+\[
+\begin{aligned}
+    &xc(\alpha)^{-1}c(\alpha)\varphi(\alpha)(y)\varphi(\alpha)(c(\beta)^{-1})c(\alpha)^{-1}
+    c(\alpha)\varphi(\alpha)(c(\beta))f(\alpha,\beta)c(\alpha\beta)^{-1} \\
+    &\qquad
+    =
+    x\varphi(\alpha)(y)f(\alpha,\beta)c(\alpha\beta)^{-1}.
+\end{aligned}
+\]
+Therefore
+\[
+    \xi(x,\alpha)\xi(y,\beta)
+    =
+    (x\varphi(\alpha)(y)f(\alpha,\beta)c(\alpha\beta)^{-1},\alpha\beta)
+    =
+    \xi\bigl((x,\alpha)(y,\beta)\bigr),
+\]
+so $\xi$ is a group isomorphism. Finally, for $x\in N$ we have
+\[
+    \xi(i(x))=\xi(x,1)=(xc(1)^{-1},1)=(x,1)=j(x),
+\]
+so $\xi\circ i=j$. Also
+\[
+    (\tau\circ\xi)(x,\alpha)=\tau(xc(\alpha)^{-1},\alpha)=\alpha=\pi(x,\alpha),
+\]
+so $\tau\circ\xi=\pi$.
 \end{solution}
 
 Motivated by the above exercise, we say that two extensions $(E, i, \pi)$ and $(F, j, \tau)$ are \emph{equivalent} if there is an isomorphism $\xi: E \to F$ such that $\xi \circ i = j$ and $\tau \circ \xi = \pi$. (Verify that this gives an equivalence relation on $\mathcal{E}$.) We let $\overline{\mathcal{E}}$ denote the set of equivalence classes of extensions, and we let $[E]$ denote the class of an extension $E$. In this context, Exercise~\ref{ex:9.5} asserts that there is a well-defined map from $\overline{\mathcal{F}}$ to $\overline{\mathcal{E}}$, sending $[f, \varphi]$ to $[E_{f, \varphi}]$.
@@ -183,6 +349,40 @@ Motivated by the above exercise, we say that two extensions $(E, i, \pi)$ and $(
 (cont.) If $p$ is an odd prime, show that $\Z_{p^2}$ can be realized in $p - 1$ nonequivalent ways as an extension of $\Z_p$ by $\Z_p$.
 \end{exercise}
 \begin{solution}
+Write all cyclic groups additively, and put $E=\Z_{p^2}$. Define
+\[
+    i\colon \Z_p\to E,
+    \qquad
+    i(\overline{x})=\overline{px}.
+\]
+For each $a\in\{1,\ldots,p-1\}$, define
+\[
+    \pi_a\colon E\to \Z_p,
+    \qquad
+    \pi_a(\overline{x})=\overline{ax}.
+\]
+Then $\pi_a$ is an epimorphism, and
+\[
+    \ker \pi_a
+    =
+    \{\overline{x}\in \Z_{p^2}\mid p\mid x\}
+    =
+    i(\Z_p).
+\]
+Thus $(E,i,\pi_a)$ is an extension of $\Z_p$ by $\Z_p$ for each $a=1,\ldots,p-1$.\\
+We show that these $p-1$ extensions are pairwise nonequivalent. Suppose that $(E,i,\pi_a)$ and $(E,i,\pi_b)$ are equivalent. Then there is an isomorphism $\xi\colon E\to E$ such that $\xi\circ i=i$ and $\pi_b\circ\xi=\pi_a$. Since $E$ is cyclic, $\xi$ is multiplication by some unit $u$ modulo $p^2$. The condition $\xi\circ i=i$ gives
+\[
+    \overline{up}=\overline{p}
+    \quad\text{in }\Z_{p^2},
+\]
+so $u\equiv 1\pmod p$. Applying $\pi_b\circ\xi=\pi_a$ to $\overline{1}\in E$, we get
+\[
+    \overline{bu}
+    =
+    \overline{a}
+    \quad\text{in }\Z_p.
+\]
+Since $u\equiv 1\pmod p$, this gives $b=a$. Hence distinct choices of $a$ give nonequivalent extensions, so $\Z_{p^2}$ can be realized in $p-1$ nonequivalent ways as an extension of $\Z_p$ by $\Z_p$.
 \end{solution}
 
 \begin{exercise}
@@ -190,6 +390,31 @@ Motivated by the above exercise, we say that two extensions $(E, i, \pi)$ and $(
 (cont.) We have already obtained a map from $\mathcal{E}$ to $\overline{\mathcal{F}}$, sending an extension $E$ to the class of the factor pair arising from any normalized section of $E$. Show that this map induces a map from $\overline{\mathcal{E}}$ to $\overline{\mathcal{F}}$.
 \end{exercise}
 \begin{solution}
+Let $(E,i,\pi)$ and $(F,j,\tau)$ be equivalent extensions, and let $\xi\colon E\to F$ be an isomorphism such that $\xi\circ i=j$ and $\tau\circ\xi=\pi$. Choose a normalized section $t\colon H\to E$, and let $(f,\varphi)$ be the factor pair arising from $t$. Define
+\[
+    u\colon H\to F,
+    \qquad
+    u(\alpha)=\xi(t(\alpha)).
+\]
+Then $u(1)=1$ and
+\[
+    \tau(u(\alpha))=\tau(\xi(t(\alpha)))=\pi(t(\alpha))=\alpha,
+\]
+so $u$ is a normalized section of $F$. Let $(g,\rho)$ be the factor pair arising from $u$. Since $t(\alpha)t(\beta)=i(f(\alpha,\beta))t(\alpha\beta)$, applying $\xi$ gives
+\[
+    u(\alpha)u(\beta)
+    =
+    j(f(\alpha,\beta))u(\alpha\beta).
+\]
+Hence $g(\alpha,\beta)=f(\alpha,\beta)$. Similarly, for $x\in N$ we have
+\[
+    u(\alpha)j(x)u(\alpha)^{-1}
+    =
+    \xi\bigl(t(\alpha)i(x)t(\alpha)^{-1}\bigr)
+    =
+    j(\varphi(\alpha)(x)),
+\]
+so $\rho(\alpha)=\varphi(\alpha)$. Thus the factor pair obtained from $F$ using the section $u$ is the same as the factor pair obtained from $E$ using $t$. Therefore equivalent extensions determine the same class in $\overline{\mathcal{F}}$, and the map $\mathcal{E}\to\overline{\mathcal{F}}$ induces a well-defined map $\overline{\mathcal{E}}\to\overline{\mathcal{F}}$.
 \end{solution}
 
 \begin{exercise}
@@ -197,6 +422,47 @@ Motivated by the above exercise, we say that two extensions $(E, i, \pi)$ and $(
 (cont.) Show that the map from $\overline{\mathcal{E}}$ to $\overline{\mathcal{F}}$ obtained in Exercise~\ref{ex:9.7} is inverse to the map from $\overline{\mathcal{F}}$ to $\overline{\mathcal{E}}$ sending $[f, \varphi]$ to $[E_{f, \varphi}]$. Conclude that there is a bijective correspondence between the set of equivalence classes of extensions and the set of equivalence classes of factor pairs.
 \end{exercise}
 \begin{solution}
+First start with a class $[f,\varphi]\in\overline{\mathcal{F}}$. By Exercise~\ref{ex:9.3}, the extension $E_{f,\varphi}$ has a normalized section $t(\alpha)=(1,\alpha)$ whose factor pair is precisely $(f,\varphi)$. Hence the composite
+\[
+    \overline{\mathcal{F}}\to\overline{\mathcal{E}}\to\overline{\mathcal{F}}
+\]
+sends $[f,\varphi]$ back to $[f,\varphi]$.\\
+Conversely, start with an extension $(E,i,\pi)$, choose a normalized section $t\colon H\to E$, and let $(f,\varphi)$ be the factor pair arising from $t$. We show that $E$ is equivalent to $E_{f,\varphi}$. Let $i_{f,\varphi}\colon N\to E_{f,\varphi}$ and $\pi_{f,\varphi}\colon E_{f,\varphi}\to H$ denote the natural inclusion and projection. Define
+\[
+    \theta\colon E_{f,\varphi}\to E,
+    \qquad
+    \theta(x,\alpha)=i(x)t(\alpha).
+\]
+This map is bijective. Indeed, if $e\in E$ and $\alpha=\pi(e)$, then $et(\alpha)^{-1}\in\ker\pi=i(N)$, so $e=i(x)t(\alpha)$ for some $x\in N$. Also, if $i(x)t(\alpha)=i(y)t(\beta)$, then applying $\pi$ gives $\alpha=\beta$, and hence $i(x)=i(y)$, so $x=y$.\\
+We check that $\theta$ is a homomorphism. Using the defining equations for the factor pair arising from $t$, we have
+\[
+\begin{aligned}
+    \theta(x,\alpha)\theta(y,\beta)
+    &=
+    i(x)t(\alpha)i(y)t(\beta)\\
+    &=
+    i(x)i(\varphi(\alpha)(y))t(\alpha)t(\beta)\\
+    &=
+    i(x\varphi(\alpha)(y)f(\alpha,\beta))t(\alpha\beta)\\
+    &=
+    \theta\bigl(x\varphi(\alpha)(y)f(\alpha,\beta),\alpha\beta\bigr)\\
+    &=
+    \theta\bigl((x,\alpha)(y,\beta)\bigr).
+\end{aligned}
+\]
+Thus $\theta$ is an isomorphism. Finally,
+\[
+    \theta(i_{f,\varphi}(x))=\theta(x,1)=i(x)t(1)=i(x),
+\]
+so $\theta\circ i_{f,\varphi}=i$, and
+\[
+    (\pi\circ\theta)(x,\alpha)=\pi(i(x)t(\alpha))=\alpha=\pi_{f,\varphi}(x,\alpha).
+\]
+Therefore $E_{f,\varphi}$ is equivalent to $E$, so the composite
+\[
+    \overline{\mathcal{E}}\to\overline{\mathcal{F}}\to\overline{\mathcal{E}}
+\]
+sends $[E]$ back to $[E]$. The two maps are inverse to each other, and hence they give a bijective correspondence between equivalence classes of extensions and equivalence classes of factor pairs.
 \end{solution}
 
 Exercise~\ref{ex:9.8} implies that in order to study extensions up to equivalence, it suffices to study equivalence classes of factor pairs. The next two exercises give a slight refinement of the correspondence just obtained.
@@ -206,6 +472,36 @@ Exercise~\ref{ex:9.8} implies that in order to study extensions up to equivalenc
 (cont.) Let $\eta: \operatorname{Aut}(N) \to \operatorname{Out}(N)$ be the natural map. Show that if $(f, \varphi)$ and $(g, \rho)$ are any two factor pairs arising from an extension $E$, then $\eta \circ \varphi = \eta \circ \rho$, and this map from $H$ to $\operatorname{Out}(N)$ (which we denote by $\psi_E$) is a homomorphism. Conclude that there is a well-defined map from $\mathcal{E}$ to the set of homomorphisms from $H$ to $\operatorname{Out}(N)$, sending $E$ to $\psi_E$.
 \end{exercise}
 \begin{solution}
+Let $(f,\varphi)$ and $(g,\rho)$ be factor pairs arising from two normalized sections of the same extension $E$. By Exercise~\ref{ex:9.4}, there is a map $c\colon H\to N$ such that
+\[
+    \rho(\alpha)=\Psi(c(\alpha))\varphi(\alpha)
+\]
+for every $\alpha\in H$. Since $\Psi(c(\alpha))$ is an inner automorphism of $N$, it lies in $\ker\eta$. Hence
+\[
+    \eta(\rho(\alpha))
+    =
+    \eta(\Psi(c(\alpha)))\eta(\varphi(\alpha))
+    =
+    \eta(\varphi(\alpha)).
+\]
+Thus $\eta\circ\rho=\eta\circ\varphi$, so the map $\eta\circ\varphi$ depends only on the extension $E$, not on the chosen normalized section. We denote it by $\psi_E$.\\
+It remains to check that $\psi_E$ is a homomorphism. Let $(f,\varphi)$ be any factor pair arising from $E$. Property \textbf{2} of factor pairs says that
+\[
+    \varphi(\alpha)\varphi(\beta)
+    =
+    \Psi(f(\alpha,\beta))\varphi(\alpha\beta),
+\]
+where $\Psi(f(\alpha,\beta))$ is inner. Applying $\eta$ gives
+\[
+    \psi_E(\alpha)\psi_E(\beta)
+    =
+    \eta(\varphi(\alpha))\eta(\varphi(\beta))
+    =
+    \eta(\varphi(\alpha\beta))
+    =
+    \psi_E(\alpha\beta).
+\]
+Therefore $\psi_E\colon H\to\operatorname{Out}(N)$ is a homomorphism. Since the construction is independent of the normalized section, we obtain a well-defined map from $\mathcal{E}$ to the set of homomorphisms $H\to\operatorname{Out}(N)$, sending $E$ to $\psi_E$.
 \end{solution}
 
 \begin{exercise}
@@ -213,6 +509,25 @@ Exercise~\ref{ex:9.8} implies that in order to study extensions up to equivalenc
 (cont.) Let $\psi: H \to \operatorname{Out}(N)$ be a given homomorphism. Show that there is a bijective correspondence between the set of classes $[E]$ of $\overline{\mathcal{E}}$ for which $\psi_E = \psi$ and the set of classes $[f, \varphi]$ of $\overline{\mathcal{F}}$ for which $\eta \circ \varphi = \psi$, where $\eta: \operatorname{Aut}(N) \to \operatorname{Out}(N)$ is the natural map.
 \end{exercise}
 \begin{solution}
+First note that the condition $\eta\circ\varphi=\psi$ is independent of the representative of the factor-pair class. Indeed, if $(f,\varphi)$ and $(g,\rho)$ are equivalent factor pairs, then property \textbf{4} gives
+\[
+    \rho(\alpha)=\Psi(c(\alpha))\varphi(\alpha)
+\]
+for some map $c\colon H\to N$, and hence $\eta(\rho(\alpha))=\eta(\varphi(\alpha))$ for every $\alpha\in H$. Similarly, by Exercise~\ref{ex:9.7}, equivalent extensions determine the same class of factor pairs, so the condition $\psi_E=\psi$ is well-defined on $\overline{\mathcal{E}}$.\\
+Now let
+\[
+    \Phi\colon \overline{\mathcal{E}}\to\overline{\mathcal{F}}
+\]
+be the bijection from Exercise~\ref{ex:9.8}, sending an extension class to the class of a factor pair arising from any normalized section. If $\Phi([E])=[f,\varphi]$, then by Exercise~\ref{ex:9.9} we have
+\[
+    \psi_E=\eta\circ\varphi.
+\]
+Therefore $\Phi$ sends the classes $[E]$ satisfying $\psi_E=\psi$ into the classes $[f,\varphi]$ satisfying $\eta\circ\varphi=\psi$.\\
+Conversely, suppose that $[f,\varphi]\in\overline{\mathcal{F}}$ satisfies $\eta\circ\varphi=\psi$. Under the inverse bijection from Exercise~\ref{ex:9.8}, this class maps to $[E_{f,\varphi}]$. By Exercise~\ref{ex:9.3}, the natural normalized section $t(\alpha)=(1,\alpha)$ of $E_{f,\varphi}$ gives back the factor pair $(f,\varphi)$, so
+\[
+    \psi_{E_{f,\varphi}}=\eta\circ\varphi=\psi.
+\]
+Thus the inverse bijection sends the classes $[f,\varphi]$ satisfying $\eta\circ\varphi=\psi$ into the classes $[E]$ satisfying $\psi_E=\psi$. Hence the bijection of Exercise~\ref{ex:9.8} restricts to the required bijective correspondence.
 \end{solution}
 
 We now consider the case where the group $N$ is abelian; we write $A$ instead of $N$, and we will use additive notation for $A$. Observe that $\operatorname{Out}(A) = \operatorname{Aut}(A)$. We fix a homomorphism $\varphi: H \to \operatorname{Aut}(A)$, and we write ${}^x a$ in lieu of $\varphi(x)(a)$ for $x \in H$ and $a \in A$. We would like to study those equivalence classes $[E]$ of extensions of $N$ by $H$ for which $\psi_E = \varphi$; we say that such extensions \emph{respect} the action of $H$ on $A$. By Exercise~\ref{ex:9.10}, it suffices to study equivalence classes $[f, \varphi]$ of factor pairs of $A$ by $H$. We suppress $\varphi$ in our notation, so that we are studying functions $f: H \times H \to A$ such that $f(x, 1) = f(1, x) = 0$ for all $x \in H$ and which in addition satisfy
@@ -230,6 +545,31 @@ for all $x, y \in H$. As discussed in the section, the set $H^2(H, A)$ of equiva
 (cont.) Suppose that $H$ and $A$ are both finite. Show that the order of each element of $H^2(H, A)$ divides both $|H|$ and the exponent of $A$. (This implies that $H^2(G/A, A) = 0$ when $A$ is an abelian normal Hall subgroup of a finite group $G$, which we established in proving \nameref{thm:schur-zassenhaus}.)
 \end{exercise}
 \begin{solution}
+Let $[f]\in H^2(H,A)$, where $f\colon H\times H\to A$ is a normalized $2$-cocycle. First let $m$ be the exponent of $A$. Since $mf(x,y)=0$ for all $x,y\in H$, we have $m[f]=[0]$. Hence the order of $[f]$ divides $m$.\\
+It remains to show that $\lvert H\rvert[f]=[0]$. Define a map $c\colon H\to A$ by
+\[
+    c(x)=\sum_{z\in H} f(x,z).
+\]
+Since $f(1,z)=0$ for all $z\in H$, we have $c(1)=0$. We claim that the coboundary determined by $c$ is $\lvert H\rvert f$. Indeed, for $x,y\in H$, the cocycle identity gives
+\[
+    {}^x f(y,z)-f(xy,z)
+    =
+    f(x,y)-f(x,yz).
+\]
+Therefore
+\[
+\begin{aligned}
+    c(x)+{}^x c(y)-c(xy)
+    &=
+    \sum_{z\in H}\bigl(f(x,z)+{}^x f(y,z)-f(xy,z)\bigr)\\
+    &=
+    \sum_{z\in H}\bigl(f(x,z)+f(x,y)-f(x,yz)\bigr)\\
+    &=
+    \lvert H\rvert f(x,y).
+\end{aligned}
+\]
+The last equality holds because $z\mapsto yz$ permutes the elements of $H$. Hence $\lvert H\rvert f$ is a $2$-coboundary, so $\lvert H\rvert[f]=[0]$. Thus the order of $[f]$ divides both $\lvert H\rvert$ and the exponent of $A$.\\
+Finally suppose that $A$ is an abelian normal Hall subgroup of a finite group $G$, and put $H=G/A$. Then $\gcd(\lvert H\rvert,\lvert A\rvert)=1$, while $m$ divides $\lvert A\rvert$. Hence $\gcd(\lvert H\rvert,m)=1$. Since every element of $H^2(H,A)$ has order dividing both of these relatively prime numbers, every element is trivial. Therefore $H^2(G/A,A)=0$.
 \end{solution}
 
 \end{document}
