@@ -26,6 +26,15 @@
 Finite groups have composition series.
 \end{proposition}
 \begin{proof}
+We use induction on $\lvert G\rvert$. If $G=1$, then the series $G=1$ is a composition series of length $0$. If $G$ is non-trivial and simple, then $G>1$ is a composition series of $G$. Suppose now that $G$ is not simple. Since $G$ is finite, the set of proper normal subgroups of $G$ has a maximal element; call it $G_1$. Then $G_1$ is a maximal normal subgroup of $G$, so $G/G_1$ is simple by the \nameref{thm:correspondence}. Also $\lvert G_1\rvert<\lvert G\rvert$, so the induction hypothesis gives a composition series
+\[
+  G_1>G_2>\cdots>G_r=1
+\]
+of $G_1$. Therefore
+\[
+  G=G_0>G_1>G_2>\cdots>G_r=1
+\]
+is a composition series of $G$: the first quotient $G/G_1$ is simple, and the remaining successive quotients are simple by the composition series of $G_1$.
 \end{proof}
 
 \begin{itemize}
@@ -37,6 +46,28 @@ Finite groups have composition series.
 Let $G$ be a group that has a composition series, and let $N \trianglelefteq G$. Then $N$ has a composition series.
 \end{lemma}
 \begin{proof}
+Let
+\[
+  G=G_0>G_1>\cdots>G_r=1
+\]
+be a composition series of $G$, and put $N_i=N\cap G_i$ for each $i$. Then
+\[
+  N=N_0\geq N_1\geq\cdots\geq N_r=1
+\]
+is a series of subgroups of $N$. For each $i$, we have $N_{i+1}\trianglelefteq N_i$, because $G_{i+1}\trianglelefteq G_i$ and $N_i\leq G_i$. Moreover,
+let $\psi_i\colon G_i\to G_i/G_{i+1}$ be the natural map. Then the restriction of $\psi_i$ to $N_i$ has kernel $N_i\cap G_{i+1}=N_{i+1}$, so by \nameref{thm:first-iso} we have
+\[
+  N_i/N_{i+1}
+  \cong
+  \psi_i(N_i)
+  =
+  (N\cap G_i)G_{i+1}/G_{i+1}.
+\]
+The subgroup $(N\cap G_i)G_{i+1}/G_{i+1}$ is normal in $G_i/G_{i+1}$, since $N\trianglelefteq G$ gives $N\cap G_i\trianglelefteq G_i$. Since $G_i/G_{i+1}$ is simple, it follows that either $N_i/N_{i+1}$ is trivial or $N_i/N_{i+1}\cong G_i/G_{i+1}$ is simple. Deleting any repeated terms from
+\[
+  N=N_0\geq N_1\geq\cdots\geq N_r=1
+\]
+therefore gives a composition series of $N$.
 \end{proof}
 
 \subsubsection*{Equivalence of Composition Series}
@@ -52,6 +83,60 @@ Let $G$ be a group that has a composition series, and let $N \trianglelefteq G$.
 Suppose that $G$ is a group that has a composition series. Then any two composition series of $G$ have the same length and are equivalent.
 \end{namedtheorem}
 \begin{proof}
+Let
+\[
+  G=G_0>G_1>\cdots>G_r=1
+\]
+and
+\[
+  G=H_0>H_1>\cdots>H_s=1
+\]
+be two composition series of $G$. We use induction on $r$. If $r=0$, then $G=1$, and there is nothing to prove. If $r=1$, then $G$ is simple, so $G>1$ is the only composition series of $G$. Thus assume $r>1$, and assume the result is known for every group having a composition series of length less than $r$.\\
+If $G_1=H_1$, then the two tails
+\[
+  G_1>G_2>\cdots>G_r=1
+\]
+and
+\[
+  H_1>H_2>\cdots>H_s=1
+\]
+are composition series of $G_1$. By induction they have the same length and are equivalent, so the original two composition series of $G$ also have the same length and are equivalent.\\
+We may therefore assume that $G_1\neq H_1$. Since $G_1\trianglelefteq G$ and $H_1\trianglelefteq G$, Proposition~\ref{prop:1.7} gives $G_1H_1\trianglelefteq G$. Also $G_1H_1\neq G_1$, for otherwise $H_1\leq G_1$, contradicting the maximal normality of $H_1$ in $G$. Since $G/G_1$ is simple and $G_1<G_1H_1\trianglelefteq G$, it follows that $G_1H_1=G$. Put $K=G_1\cap H_1$. By \nameref{thm:first-iso}, applied to the natural maps into $G/G_1$ and $G/H_1$, we have
+\[
+  H_1/K\cong G/G_1
+  \qquad\text{and}\qquad
+  G_1/K\cong G/H_1.
+\]
+In particular, $H_1/K$ and $G_1/K$ are simple. Since $K\trianglelefteq G$, Lemma~\ref{lem:10.2} gives a composition series
+\[
+  K=K_0>K_1>\cdots>K_t=1
+\]
+of $K$, with $t=0$ if $K=1$.\\
+Now compare two composition series of $G_1$:
+\[
+  G_1>G_2>\cdots>G_r=1
+\]
+and
+\[
+  G_1>K>K_1>\cdots>K_t=1.
+\]
+By induction these have the same length and are equivalent. Hence $t+1=r-1$, so $t=r-2$. Similarly, compare the two composition series of $H_1$:
+\[
+  H_1>H_2>\cdots>H_s=1
+\]
+and
+\[
+  H_1>K>K_1>\cdots>K_{r-2}=1.
+\]
+Induction gives $s-1=r-1$, so $s=r$, and these two series are equivalent. Finally, the two intermediate composition series
+\[
+  G>G_1>K>K_1>\cdots>K_{r-2}=1
+\]
+and
+\[
+  G>H_1>K>K_1>\cdots>K_{r-2}=1
+\]
+are equivalent, because $G/G_1\cong H_1/K$, $G/H_1\cong G_1/K$, and all remaining factors are the same. Combining these equivalences shows that the original two composition series of $G$ are equivalent and have the same length.
 \end{proof}
 
 \subsubsection*{Subnormal, Normal, and Chief Series}
@@ -81,6 +166,15 @@ Suppose that $G$ is a group that has a composition series. Then any two composit
 Finite groups have chief series.
 \end{proposition}
 \begin{proof}
+We use induction on $\lvert G\rvert$. If $G=1$, then the series $G=1$ is a chief series of length $0$. If $G$ is non-trivial and simple, then $G>1$ is a chief series of $G$. Suppose now that $G$ is not simple. Since $G$ is finite, it has a proper minimal normal subgroup $N$. By induction, the finite group $G/N$ has a chief series. By the \nameref{thm:correspondence}, this chief series has the form
+\[
+  G/N=G_0/N>G_1/N>\cdots>G_r/N=1,
+\]
+where $G_i\trianglelefteq G$ for every $i$, $G_0=G$, and $G_r=N$. Moreover, no normal subgroup of $G$ lies properly between $G_{i-1}$ and $G_i$, for such a subgroup would correspond to a normal subgroup of $G/N$ lying properly between $G_{i-1}/N$ and $G_i/N$. Since $N$ is minimal normal in $G$, no non-trivial normal subgroup of $G$ lies properly between $N$ and $1$. Therefore
+\[
+  G=G_0>G_1>\cdots>G_r=N>1
+\]
+is a chief series of $G$.
 \end{proof}
 
 \begin{itemize}
@@ -92,6 +186,15 @@ Finite groups have chief series.
 Let $G$ be a group having a chief series. Then every chief factor of $G$ is a minimal normal subgroup of a quotient group of $G$.
 \end{lemma}
 \begin{proof}
+Let
+\[
+  G=G_0>G_1>\cdots>G_r=1
+\]
+be a chief series of $G$. A chief factor of this series has the form $G_i/G_{i+1}$ for some $i$. Since $G_i\trianglelefteq G$ and $G_{i+1}\trianglelefteq G$, the quotient $G_i/G_{i+1}$ is a normal subgroup of $G/G_{i+1}$. If there were a non-trivial normal subgroup of $G/G_{i+1}$ properly contained in $G_i/G_{i+1}$, then by the \nameref{thm:correspondence} it would have the form $M/G_{i+1}$ for some normal subgroup $M\trianglelefteq G$ satisfying
+\[
+  G_{i+1}<M<G_i.
+\]
+This contradicts the definition of a chief series. Hence $G_i/G_{i+1}$ is a minimal normal subgroup of the quotient group $G/G_{i+1}$. Therefore every chief factor of $G$ is a minimal normal subgroup of a quotient group of $G$.
 \end{proof}
 
 \begin{theorem}
@@ -99,6 +202,31 @@ Let $G$ be a group having a chief series. Then every chief factor of $G$ is a mi
 A minimal normal subgroup of a finite group is a direct product of mutually isomorphic simple groups.
 \end{theorem}
 \begin{proof}
+Let $G$ be a finite group, and let $N$ be a minimal normal subgroup of $G$. Choose a maximal normal subgroup $N_1$ of $N$, so $N/N_1$ is simple. Let $N_1,N_2,\dots,N_r$ be the distinct conjugates of $N_1$ in $G$. Since $N\trianglelefteq G$, each $N_i$ is a maximal normal subgroup of $N$, and conjugation by an element of $G$ gives an isomorphism $N/N_1\cong N/N_i$. Hence all quotients $N/N_i$ are mutually isomorphic simple groups.\\
+Conjugation by elements of $G$ permutes the set $\{N_1,\dots,N_r\}$, so
+\[
+  I=N_1\cap N_2\cap\cdots\cap N_r
+\]
+is normal in $G$. Since $I\leq N_1<N$, the minimality of $N$ gives $I=1$.\\
+For $1\leq i\leq r$, put
+\[
+  A_i=N_1\cap\cdots\cap N_i.
+\]
+We prove by induction on $i$ that $N/A_i$ is a direct product of groups isomorphic with $N/N_1$. For $i=1$, this is immediate. Suppose $i>1$ and the claim holds for $i-1$. If $A_{i-1}\leq N_i$, then $A_i=A_{i-1}$, and there is nothing new to prove. Otherwise $N_i<A_{i-1}N_i\trianglelefteq N$. Since $N_i$ is maximal normal in $N$, we have $A_{i-1}N_i=N$. By Lemma~\ref{lem:2.7},
+\[
+  N/A_i
+  \cong
+  A_{i-1}/A_i \times N_i/A_i.
+\]
+Now the natural map $A_{i-1}\to N/N_i$ has kernel $A_{i-1}\cap N_i=A_i$ and image $A_{i-1}N_i/N_i=N/N_i$, so by \nameref{thm:first-iso},
+\[
+  A_{i-1}/A_i\cong N/N_i\cong N/N_1.
+\]
+Similarly, the natural map $N_i\to N/A_{i-1}$ has kernel $N_i\cap A_{i-1}=A_i$ and image $A_{i-1}N_i/A_{i-1}=N/A_{i-1}$, so by \nameref{thm:first-iso},
+\[
+  N_i/A_i\cong N/A_{i-1}.
+\]
+By the induction hypothesis, $N/A_{i-1}$ is a direct product of groups isomorphic with $N/N_1$. Therefore $N/A_i$ is also a direct product of groups isomorphic with $N/N_1$. Taking $i=r$ gives $A_r=I=1$, and hence $N$ itself is a direct product of mutually isomorphic simple groups.
 \end{proof}
 
 \begin{corollary}
@@ -106,6 +234,7 @@ A minimal normal subgroup of a finite group is a direct product of mutually isom
 A chief factor of a finite group is a direct product of mutually isomorphic simple groups.
 \end{corollary}
 \begin{proof}
+Let $G_i/G_{i+1}$ be a chief factor of a finite group $G$. By Lemma~\ref{lem:10.4}, this chief factor is a minimal normal subgroup of the quotient group $G/G_{i+1}$. Since $G/G_{i+1}$ is finite, Theorem~\ref{thm:10.5} applies to this quotient group. Therefore $G_i/G_{i+1}$ is a direct product of mutually isomorphic simple groups.
 \end{proof}
 
 \subsection*{Exercises}
