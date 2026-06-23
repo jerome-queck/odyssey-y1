@@ -19,6 +19,8 @@
 A simple solvable group has prime order.
 \end{proposition}
 \begin{proof}
+    Let $G$ be a simple solvable group. Since $G$ is solvable, the derived series of $G$ eventually reaches $1$, so we cannot have $G' = G$. But $G'$ is characteristic in $G$ by Lemma~\ref{lem:2.5}, and hence $G' \trianglelefteq G$. Since $G$ is simple, it follows that $G' = 1$. Thus $G$ is abelian. \\
+    Let $g \in G$ be non-trivial. Since $G$ is abelian, every subgroup of $G$ is normal in $G$, so $\langle g \rangle \trianglelefteq G$. By simplicity, $\langle g \rangle = G$. Hence $G$ is cyclic. If $G$ were infinite cyclic, then $\langle g^2 \rangle$ would be a proper non-trivial normal subgroup of $G$. If $G$ had finite composite order, then again $G$ would have a proper non-trivial subgroup, contradicting simplicity. Therefore $G$ has prime order.
 \end{proof}
 
 \begin{proposition}
@@ -31,6 +33,16 @@ The following statements about a group $G$ are equivalent:
 \end{enumerate}
 \end{proposition}
 \begin{proof}
+    We first show that $(1) \Rightarrow (2)$. If $G$ is solvable, then its derived series terminates in the identity. As observed above, the derived series is a normal series of $G$, and each successive quotient is abelian. Thus $G$ has a normal series with abelian successive quotients. Since every normal series is in particular a subnormal series, $(2) \Rightarrow (3)$. \\
+    It remains to show that $(3) \Rightarrow (1)$. Suppose that
+    \[
+        G = G_0 \geq G_1 \geq \cdots \geq G_r = 1
+    \]
+    is a subnormal series in which each quotient $G_i/G_{i+1}$ is abelian. We claim that $G^{(i)} \leq G_i$ for every $i$. For $i = 0$ this is immediate. Now suppose that $i \geq 1$ and that $G^{(i-1)} \leq G_{i-1}$. Then
+    \[
+        G^{(i)} = (G^{(i-1)})' \leq G_{i-1}'.
+    \]
+    Since $G_{i-1}/G_i$ is abelian, Proposition~\ref{prop:2.6} gives $G_{i-1}' \leq G_i$. Hence $G^{(i)} \leq G_i$, proving the claim by induction. Taking $i = r$, we obtain $G^{(r)} \leq G_r = 1$, so the derived series terminates in the identity. Therefore $G$ is solvable.
 \end{proof}
 
 \begin{proposition}
@@ -43,6 +55,46 @@ The following statements about a group $G$ are equivalent:
 \end{enumerate}
 \end{proposition}
 \begin{proof}
+    For (i), suppose that $G$ is solvable and let $H \leq G$. We claim that $H^{(k)} \leq G^{(k)}$ for every $k$. This is immediate when $k=0$. If $H^{(k-1)} \leq G^{(k-1)}$, then
+    \[
+        H^{(k)} = (H^{(k-1)})' \leq (G^{(k-1)})' = G^{(k)}.
+    \]
+    Since the derived series of $G$ terminates in the identity, the derived series of $H$ also terminates in the identity. Thus $H$ is solvable. \\
+    For (ii), suppose that $G$ is solvable and that $N \trianglelefteq G$. By Proposition~\ref{prop:11.2}, there is a normal series
+    \[
+        G = G_0 \geq G_1 \geq \cdots \geq G_r = 1
+    \]
+    whose successive quotients are abelian. Then
+    \[
+        G/N = G_0N/N \geq G_1N/N \geq \cdots \geq G_rN/N = 1
+    \]
+    is a normal series of $G/N$. Moreover, each quotient
+    \[
+        (G_iN/N)/(G_{i+1}N/N)
+    \]
+    is isomorphic with $G_iN/G_{i+1}N$ by the \nameref{thm:third-iso}, and by \nameref{thm:first-iso} this is a quotient of $G_i/G_{i+1}$. Hence each successive quotient is abelian. Therefore $G/N$ is solvable by Proposition~\ref{prop:11.2}. \\
+    For (iii), suppose that $N \trianglelefteq G$ and that both $N$ and $G/N$ are solvable. By Proposition~\ref{prop:11.2}, there are subnormal series
+    \[
+        G/N = G_0/N \geq G_1/N \geq \cdots \geq G_s/N = 1
+    \]
+    and
+    \[
+        N = N_0 \geq N_1 \geq \cdots \geq N_r = 1
+    \]
+    whose successive quotients are abelian. By the \nameref{thm:third-iso}, the quotients
+    \[
+        (G_i/N)/(G_{i+1}/N)
+    \]
+    are isomorphic with $G_i/G_{i+1}$. Hence
+    \[
+        G = G_0 \geq G_1 \geq \cdots \geq G_s = N = N_0 \geq N_1 \geq \cdots \geq N_r = 1
+    \]
+    is a subnormal series of $G$ whose successive quotients are abelian. Therefore $G$ is solvable by Proposition~\ref{prop:11.2}. \\
+    For (iv), suppose that $G$ and $H$ are solvable. The subgroup $1\times H$ is normal in $G\times H$ and is isomorphic with $H$, so it is solvable. Also, by \nameref{thm:first-iso},
+    \[
+        (G\times H)/(1\times H) \cong G,
+    \]
+    so the quotient is solvable. It follows from part (iii) that $G\times H$ is solvable.
 \end{proof}
 
 \begin{proposition}
@@ -50,6 +102,9 @@ The following statements about a group $G$ are equivalent:
 A group having a composition series is solvable iff all of its composition factors have prime order. (In particular, such groups are finite.)
 \end{proposition}
 \begin{proof}
+    Suppose first that all composition factors of $G$ have prime order. Then every composition factor is abelian, so any composition series of $G$ is a subnormal series whose successive quotients are abelian. Hence $G$ is solvable by Proposition~\ref{prop:11.2}. \\
+    Conversely, suppose that $G$ is solvable, and let $H/K$ be a composition factor of $G$, where $K \trianglelefteq H \leq G$ and $H/K$ is simple. By Proposition~\ref{prop:11.3}, the subgroup $H$ is solvable, and then the quotient $H/K$ is solvable. Thus $H/K$ is a simple solvable group, so Proposition~\ref{prop:11.1} shows that $H/K$ has prime order. \\
+    Under either equivalent condition, each factor in a composition series of $G$ has prime order. Starting from the final term $1$ and moving upward through the series, each term is a finite extension of a finite group, and hence is finite. Therefore $G$ is finite.
 \end{proof}
 
 \subsubsection*{Examples and consequences}
@@ -63,6 +118,7 @@ A group having a composition series is solvable iff all of its composition facto
 Finite $p$-groups are solvable.
 \end{corollary}
 \begin{proof}
+    Let $P$ be a finite $p$-group. By Proposition~\ref{prop:10.1}, $P$ has a composition series. Each composition factor of $P$ is a finite simple $p$-group. If $S$ is such a factor, then Theorem~\ref{thm:8.1} gives $Z(S)\neq 1$, and simplicity forces $Z(S)=S$. Thus $S$ is abelian, and a simple abelian group has prime order. Therefore all composition factors of $P$ have prime order, so $P$ is solvable by Proposition~\ref{prop:11.4}.
 \end{proof}
 
 \begin{proposition}
@@ -72,6 +128,16 @@ A group having a composition series is solvable iff all of its chief factors are
 (Any group having a composition series also has a chief series by Exercise~\ref{ex:10.6}. Alternately, a solvable group having a composition series is finite by Proposition~\ref{prop:11.4} and hence has a chief series by Proposition~\ref{prop:10.3}.)
 \end{proposition}
 \begin{proof}
+    Suppose first that all chief factors of $G$ are elementary abelian. Since $G$ has a composition series, Exercise~\ref{ex:10.6} gives a chief series
+    \[
+        G = G_0 \geq G_1 \geq \cdots \geq G_r = 1.
+    \]
+    Each quotient $G_i/G_{i+1}$ is elementary abelian, hence abelian. Therefore this chief series is a normal series with abelian successive quotients, so $G$ is solvable by Proposition~\ref{prop:11.2}. \\
+    Conversely, suppose that $G$ is solvable, and let $A/B$ be a chief factor of $G$. Since $G$ has a composition series, Proposition~\ref{prop:11.4} implies that $G$ is finite. By Corollary~\ref{cor:10.6}, the chief factor $A/B$ is a direct product of mutually isomorphic simple groups; say
+    \[
+        A/B \cong S\times \cdots \times S.
+    \]
+    Since $A \leq G$, Proposition~\ref{prop:11.3} shows that $A$ is solvable, and then that $A/B$ is solvable. Hence each direct factor $S$ is solvable, again by Proposition~\ref{prop:11.3}. Thus $S$ is a simple solvable group, so Proposition~\ref{prop:11.1} gives that $S$ has prime order. Therefore $A/B$ is a direct product of copies of a cyclic group of prime order, and hence is elementary abelian.
 \end{proof}
 
 \begin{corollary}
@@ -79,6 +145,20 @@ A group having a composition series is solvable iff all of its chief factors are
 A group having a composition series is solvable iff it has a normal series in which every successive quotient is a $p$-group.
 \end{corollary}
 \begin{proof}
+    Suppose first that $G$ is solvable. Since $G$ has a composition series, Exercise~\ref{ex:10.6} gives a chief series
+    \[
+        G = G_0 \geq G_1 \geq \cdots \geq G_r = 1.
+    \]
+    By Proposition~\ref{prop:11.6}, each chief factor $G_i/G_{i+1}$ is elementary abelian, and hence is a $p$-group. Thus $G$ has a normal series whose successive quotients are $p$-groups. \\
+    Conversely, suppose that $G$ has a normal series
+    \[
+        G = G_0 \geq G_1 \geq \cdots \geq G_r = 1
+    \]
+    in which every successive quotient is a $p$-group. We prove that $G$ is solvable by induction on $r$. If $r=0$, then $G=1$, so there is nothing to prove. If $r\geq 1$, put $N=G_1$. Then
+    \[
+        N = G_1 \geq G_2 \geq \cdots \geq G_r = 1
+    \]
+    is a normal series of $N$ whose successive quotients are $p$-groups, so $N$ is solvable by induction. Also, $G/N = G_0/G_1$ is a finite $p$-group, and hence is solvable by Corollary~\ref{cor:11.5}. Therefore $G$ is solvable by Proposition~\ref{prop:11.3}.
 \end{proof}
 
 \subsubsection*{Supersolvable groups and Hall's theorems}
@@ -96,6 +176,17 @@ Let $G$ be a finite solvable group of order $mn$, where $m$ and $n$ are coprime.
 (In other words, this theorem asserts that a finite solvable group possesses Hall subgroups of all possible orders.)
 \end{theorem}
 \begin{proof}
+    We argue by induction on $\lvert G\rvert$. If $G=1$, there is nothing to prove. Suppose then that $G\neq 1$, and choose a minimal normal subgroup $N$ of $G$. Since $N/1$ is a chief factor of the finite solvable group $G$, Proposition~\ref{prop:11.6} shows that $N$ is elementary abelian, say $\lvert N\rvert=p^a$ for some prime $p$. Since $\gcd(m,n)=1$, either $\lvert N\rvert$ divides $m$ or $\lvert N\rvert$ divides $n$. \\
+    First suppose that $\lvert N\rvert$ divides $m$. Then
+    \[
+        \lvert G/N\rvert = \frac{m}{\lvert N\rvert}n,
+    \]
+    and the two factors on the right are coprime. The quotient $G/N$ is solvable by Proposition~\ref{prop:11.3}, so the induction hypothesis gives a subgroup $H/N$ of $G/N$ of order $m/\lvert N\rvert$. Hence $\lvert H\rvert=m$, and $H$ is the required subgroup of $G$. \\
+    Now suppose that $\lvert N\rvert$ divides $n$. Then
+    \[
+        \lvert G/N\rvert = m\frac{n}{\lvert N\rvert},
+    \]
+    again with coprime factors. By induction, $G/N$ has a subgroup $K/N$ of order $m$. Thus $\lvert K\rvert=m\lvert N\rvert$. Inside $K$, the subgroup $N$ is a normal Hall subgroup, since $\gcd(m,\lvert N\rvert)=1$. By \nameref{thm:schur-zassenhaus}, $N$ has a complement in $K$. This complement has order $\lvert K:N\rvert=m$, and hence is the required subgroup of $G$.
 \end{proof}
 
 \subsubsection*{More on solvability criteria}
