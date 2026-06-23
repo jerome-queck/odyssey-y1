@@ -244,6 +244,17 @@ Let $G_i/G_{i+1}$ be a chief factor of a finite group $G$. By Lemma~\ref{lem:10.
 Show that an abelian group has a composition series iff it is finite.
 \end{exercise}
 \begin{solution}
+If $G$ is finite, then Proposition~\ref{prop:10.1} gives a composition series of $G$. Conversely, suppose that $G$ is abelian and has a composition series
+\[
+  G=G_0>G_1>\cdots>G_r=1.
+\]
+Each factor $G_i/G_{i+1}$ is simple by definition, and it is abelian because $G_i\leq G$ is abelian. We first note that a simple abelian group has prime order. Indeed, if $A$ is simple and abelian, and if $1\neq a\in A$, then $\langle a\rangle\trianglelefteq A$; hence $\langle a\rangle=A$. Thus $A$ is cyclic. If $A$ were infinite cyclic, then it would have a proper non-trivial subgroup; if $A$ were finite cyclic of composite order, then it would also have a proper non-trivial subgroup. Therefore $A$ has prime order. Applying this to each $G_i/G_{i+1}$, we see that each factor is finite. Since
+\[
+  \lvert G\rvert
+  =
+  \prod_{i=0}^{r-1}\lvert G_i:G_{i+1}\rvert,
+\]
+it follows that $G$ is finite.
 \end{solution}
 
 \begin{exercise}
@@ -251,13 +262,70 @@ Show that an abelian group has a composition series iff it is finite.
 Show that $\mathrm{GL}(n, F)$ has a composition series iff $F$ is finite.
 \end{exercise}
 \begin{solution}
+If $F$ is finite, then $\GL(n,F)$ is finite, so Proposition~\ref{prop:10.1} gives a composition series of $\GL(n,F)$. Conversely, suppose that $\GL(n,F)$ has a composition series. Let
+\[
+  Z=\{aI_n\mid a\in F^\times\}
+\]
+be the subgroup of non-zero scalar matrices. This subgroup is central, hence normal, in $\GL(n,F)$, and $Z\cong F^\times$. By Lemma~\ref{lem:10.2}, the subgroup $Z$ has a composition series. Since $Z$ is abelian, Exercise~\ref{ex:10.1} shows that $Z$ is finite. Therefore $F^\times$ is finite. Since
+\[
+  F=F^\times\cup\{0\},
+\]
+it follows that $F$ is finite.
 \end{solution}
 
 \begin{exercise}
 \label{ex:10.3}
-Using \nameref{thm:third-iso} (Exercise~\ref{ex:2.14}), prove the \emph{Schreier refinement theorem}: Any two subnormal series of a given group have equivalent refinements.
+Using \nameref{thm:third-iso}, prove the \emph{Schreier refinement theorem}: Any two subnormal series of a given group have equivalent refinements.
 \end{exercise}
 \begin{solution}
+Let
+\[
+  G=G_0\geq G_1\geq\cdots\geq G_r=1
+\]
+and
+\[
+  G=H_0\geq H_1\geq\cdots\geq H_s=1
+\]
+be two subnormal series of $G$. For each $0\leq i<r$ and $0\leq j\leq s$, put
+\[
+  G_{i,j}=G_{i+1}(G_i\cap H_j).
+\]
+Then
+\[
+  G_i=G_{i,0}\geq G_{i,1}\geq\cdots\geq G_{i,s}=G_{i+1},
+\]
+so these subgroups refine the first series. The normality condition holds because $G_{i+1}\trianglelefteq G_i$ and $H_{j+1}\trianglelefteq H_j$: if $x\in G_{i,j}$ and $y\in G_{i,j+1}$, writing $x=ab$ with $a\in G_{i+1}$ and $b\in G_i\cap H_j$, and writing $y=cd$ with $c\in G_{i+1}$ and $d\in G_i\cap H_{j+1}$, a direct conjugation calculation gives $xyx^{-1}\in G_{i+1}(G_i\cap H_{j+1})=G_{i,j+1}$. Hence
+\[
+  G=G_{0,0}\geq G_{0,1}\geq\cdots\geq G_{0,s}
+  =G_{1,0}\geq\cdots\geq G_{r-1,s}=1
+\]
+is a subnormal refinement of the first series.\\
+Similarly, for each $0\leq j<s$ and $0\leq i\leq r$, put
+\[
+  H_{j,i}=H_{j+1}(H_j\cap G_i).
+\]
+Then
+\[
+  H_j=H_{j,0}\geq H_{j,1}\geq\cdots\geq H_{j,r}=H_{j+1},
+\]
+and the same normality argument shows that these subgroups give a subnormal refinement of the second series.\\
+It remains to compare the factors. Fix $i$ and $j$. Applying \nameref{thm:third-iso} with
+\[
+  H_1=G_i,\qquad K_1=G_{i+1},\qquad H_2=H_j,\qquad K_2=H_{j+1},
+\]
+we obtain
+\[
+  G_{i+1}(G_i\cap H_j)/G_{i+1}(G_i\cap H_{j+1})
+  \cong
+  H_{j+1}(H_j\cap G_i)/H_{j+1}(H_j\cap G_{i+1}).
+\]
+That is,
+\[
+  G_{i,j}/G_{i,j+1}
+  \cong
+  H_{j,i}/H_{j,i+1}.
+\]
+Thus the factors of the refinement of the first series are precisely the factors of the refinement of the second series, after reindexing the pair $(i,j)$ as $(j,i)$. Therefore the two refinements are equivalent.
 \end{solution}
 
 \begin{exercise}
@@ -265,6 +333,20 @@ Using \nameref{thm:third-iso} (Exercise~\ref{ex:2.14}), prove the \emph{Schreier
 (cont.) Use the Schreier refinement theorem to give an alternate proof of \nameref{thm:jordan-holder}.
 \end{exercise}
 \begin{solution}
+Let
+\[
+  G=G_0>G_1>\cdots>G_r=1
+\]
+and
+\[
+  G=H_0>H_1>\cdots>H_s=1
+\]
+be two composition series of $G$. By Exercise~\ref{ex:10.3}, these two subnormal series have equivalent refinements. Since each factor $G_i/G_{i+1}$ is simple, no subgroup can be inserted properly between $G_i$ and $G_{i+1}$ in a subnormal refinement; any inserted term must repeat either $G_i$ or $G_{i+1}$. Thus the non-trivial factors of any refinement of the first composition series are precisely the factors $G_i/G_{i+1}$. Similarly, the non-trivial factors of any refinement of the second composition series are precisely the factors $H_j/H_{j+1}$.\\
+The equivalent refinements therefore have the same non-trivial factors up to reordering, because their trivial factors correspond only to trivial factors. Hence $r=s$, and there is some permutation $\rho\in S_r$ such that
+\[
+  G_{i-1}/G_i\cong H_{\rho(i)-1}/H_{\rho(i)}
+\]
+for every $i$. Therefore the two original composition series are equivalent. This proves \nameref{thm:jordan-holder}.
 \end{solution}
 
 \begin{exercise}
@@ -272,6 +354,37 @@ Using \nameref{thm:third-iso} (Exercise~\ref{ex:2.14}), prove the \emph{Schreier
 Determine all composition series and all chief series of $S_n$ for $n \geq 2$. (\textsc{Hint}: Use Exercise~\ref{ex:3.8}.)
 \end{exercise}
 \begin{solution}
+For $n=2$, the group $S_2$ has prime order, so the only composition series and chief series is
+\[
+  S_2>1.
+\]
+For $n=3$, the only non-trivial proper normal subgroup of $S_3$ is $A_3$: indeed, a normal subgroup is a union of conjugacy classes, and the conjugacy classes in $S_3$ have sizes $1$, $2$, and $3$. Hence the only composition series and chief series is
+\[
+  S_3>A_3>1.
+\]
+Now let $n=4$, and put
+\[
+  K=\{1,\,(1\,2)(3\,4),\,(1\,3)(2\,4),\,(1\,4)(2\,3)\}.
+\]
+The conjugacy classes in $S_4$ have sizes $1$, $3$, $8$, $6$, and $6$, corresponding respectively to the identity, double transpositions, $3$-cycles, transpositions, and $4$-cycles. Since a normal subgroup is a union of conjugacy classes and its order must divide $24$, the normal subgroups of $S_4$ are precisely $1$, $K$, $A_4$, and $S_4$. Thus the only chief series of $S_4$ is
+\[
+  S_4>A_4>K>1.
+\]
+The composition series of $S_4$ are obtained by refining the final factor $K/1$. Since $K\cong \Z_2\times\Z_2$, its three subgroups of order $2$ give the three composition series
+\[
+  S_4>A_4>K>L>1,
+\]
+where
+\[
+  L\in
+  \{\langle(1\,2)(3\,4)\rangle,\,
+  \langle(1\,3)(2\,4)\rangle,\,
+  \langle(1\,4)(2\,3)\rangle\}.
+\]
+Finally, suppose $n\geq 5$. We first record that the only non-trivial proper normal subgroup of $S_n$ is $A_n$. Indeed, if $N\trianglelefteq S_n$, then $N\cap A_n\trianglelefteq A_n$. By the simplicity of $A_n$ (Theorem~\ref{thm:7.4} for $n=5$ and Exercise~\ref{ex:7.8} for $n\geq 6$), if $N\leq A_n$, then $N=1$ or $N=A_n$. If $N\nleq A_n$, then $NA_n=S_n$. If $N\cap A_n=A_n$, then $N=S_n$; while if $N\cap A_n=1$, then $N\cong S_n/A_n\cong \Z_2$, which would force the non-identity element of $N$ to be central in $S_n$, impossible for $n\geq 3$. Thus the only non-trivial proper normal subgroup of $S_n$ is $A_n$. Hence the only composition series and the only chief series of $S_n$ is
+\[
+  S_n>A_n>1.
+\]
 \end{solution}
 
 \begin{exercise}
@@ -279,6 +392,24 @@ Determine all composition series and all chief series of $S_n$ for $n \geq 2$. (
 Show that any group having a composition series has a chief series.
 \end{exercise}
 \begin{solution}
+Let
+\[
+  G=G_0>G_1>\cdots>G_r=1
+\]
+be a composition series of $G$. We first note that the lengths of normal series of $G$ with no repeated terms are bounded above by $r$. Indeed, any normal series is a subnormal series, so by Exercise~\ref{ex:10.3} it has an equivalent refinement with a refinement of the composition series above. Since a composition series admits no proper non-trivial refinement, the other series cannot have more than $r$ non-trivial factors.\\
+Hence among all normal series of $G$ with no repeated terms, choose one of maximal length:
+\[
+  G=N_0>N_1>\cdots>N_s=1.
+\]
+We claim that this is a chief series. If not, then for some $i$ there is a normal subgroup $M\trianglelefteq G$ such that
+\[
+  N_i>M>N_{i+1}.
+\]
+But then inserting $M$ gives a longer normal series
+\[
+  G=N_0>\cdots>N_i>M>N_{i+1}>\cdots>N_s=1,
+\]
+still with no repeated terms. This contradicts the maximality of the chosen normal series. Therefore no normal subgroup of $G$ lies properly between two consecutive terms, and so the series is a chief series of $G$.
 \end{solution}
 
 \begin{exercise}
@@ -286,6 +417,25 @@ Show that any group having a composition series has a chief series.
 (cont.) Show that any chief factor of a group having a composition series is a direct product of mutually isomorphic simple groups.
 \end{exercise}
 \begin{solution}
+Let $A/B$ be a chief factor of $G$. By Exercise~\ref{ex:10.6}, $G$ has a chief series, so Lemma~\ref{lem:10.4} shows that $A/B$ is a minimal normal subgroup of the quotient group $G/B$. Also, since $G$ has a composition series, the quotient group $G/B$ has a composition series: take the images of a composition series of $G$ under the natural map $G\to G/B$ and delete repeated terms. Therefore Lemma~\ref{lem:10.2} shows that $A/B$ has a composition series.\\
+We now prove the following claim. If $N$ is a minimal normal subgroup of a group $X$, and if $N$ has a composition series, then $N$ is a direct product of mutually isomorphic simple groups. Choose a maximal normal subgroup $N_1$ of $N$, so $N/N_1$ is simple. Let $\mathcal{C}$ be the set of $X$-conjugates of $N_1$. Since $N\trianglelefteq X$, every member of $\mathcal{C}$ is again a maximal normal subgroup of $N$, and all quotients $N/C$, with $C\in\mathcal{C}$, are isomorphic to $N/N_1$.\\
+Consider finite intersections of members of $\mathcal{C}$. Since $N$ has a composition series, the same bounded-length argument used in Exercise~\ref{ex:10.6} shows that descending chains of normal subgroups of $N$ cannot be strictly decreasing indefinitely. Hence there is a finite intersection
+\[
+  I=N_1\cap N_2\cap\cdots\cap N_r
+\]
+which is minimal among all finite intersections of members of $\mathcal{C}$. This subgroup is normal in $X$: for any $x\in X$, the intersection $I\cap xIx^{-1}$ is again a finite intersection of members of $\mathcal{C}$ contained in $I$, so minimality gives $I\cap xIx^{-1}=I$; applying the same argument to $x^{-1}$ gives equality. Since $I\leq N_1<N$ and $N$ is minimal normal in $X$, we get $I=1$.\\
+For $1\leq i\leq r$, put
+\[
+  A_i=N_1\cap\cdots\cap N_i.
+\]
+We prove by induction on $i$ that $N/A_i$ is a direct product of groups isomorphic with $N/N_1$. The case $i=1$ is immediate. Suppose $i>1$ and the claim is known for $i-1$. If $A_{i-1}\leq N_i$, then $A_i=A_{i-1}$, and there is nothing to prove. Otherwise $N_i<A_{i-1}N_i\trianglelefteq N$, so maximal normality of $N_i$ in $N$ gives $A_{i-1}N_i=N$. By Lemma~\ref{lem:2.7},
+\[
+  N/A_i
+  \cong
+  A_{i-1}/A_i \times N_i/A_i.
+\]
+The first factor is isomorphic to $N/N_i\cong N/N_1$, while the second factor is isomorphic to $N/A_{i-1}$ by \nameref{thm:first-iso}. Hence, by induction, $N/A_i$ is a direct product of groups isomorphic with $N/N_1$. Taking $i=r$ and using $A_r=I=1$, we conclude that $N$ itself is a direct product of mutually isomorphic simple groups.\\
+Applying this claim to the minimal normal subgroup $A/B$ of $G/B$ proves that the chief factor $A/B$ is a direct product of mutually isomorphic simple groups.
 \end{solution}
 
 \begin{exercise}
@@ -293,6 +443,26 @@ Show that any group having a composition series has a chief series.
 Show that any finite group that has no proper non-trivial characteristic subgroups is a direct product of mutually isomorphic simple groups. Use this to give a new proof of Theorem~\ref{thm:10.5}.
 \end{exercise}
 \begin{solution}
+We prove the first assertion by induction on $\lvert G\rvert$. If $G=1$, there is nothing to prove, and if $G$ is simple, then $G$ is itself a direct product with one simple factor. Suppose then that $G$ is not simple, and choose a minimal normal subgroup $N$ of $G$. Since $G$ is not simple, we may choose $N<G$.\\
+We first observe that $N$ has no proper non-trivial characteristic subgroups. Indeed, if $C$ is characteristic in $N$, then $C\trianglelefteq G$, because $N\trianglelefteq G$ and conjugation by each element of $G$ restricts to an automorphism of $N$. Since $N$ is minimal normal in $G$, this gives $C=1$ or $C=N$. Thus, by induction,
+\[
+  N\cong S\times\cdots\times S
+\]
+for some simple group $S$.\\
+Now let $N_1,\dots,N_t$ be the distinct images of $N$ under automorphisms of $G$. Each $N_i$ is again a minimal normal subgroup of $G$, and each $N_i$ is isomorphic with $N$. The product
+\[
+  K=N_1N_2\cdots N_t
+\]
+is characteristic in $G$, since automorphisms of $G$ merely permute the subgroups $N_i$. It is non-trivial, so our hypothesis on $G$ gives $K=G$. Choose a subcollection, relabelled as $N_1,\dots,N_r$, minimal with respect to the property that
+\[
+  G=N_1N_2\cdots N_r.
+\]
+We claim that this product is direct. Put $P_{i-1}=N_1\cdots N_{i-1}$. Since $P_{i-1}$ and $N_i$ are normal in $G$, their intersection $P_{i-1}\cap N_i$ is normal in $G$ and is contained in the minimal normal subgroup $N_i$. Hence $P_{i-1}\cap N_i$ is either $1$ or $N_i$. The second possibility would give $N_i\leq P_{i-1}$, contradicting the minimality of the chosen subcollection. Therefore $P_{i-1}\cap N_i=1$. Also $[P_{i-1},N_i]\leq P_{i-1}\cap N_i=1$, so $P_i=P_{i-1}N_i$ is the direct product $P_{i-1}\times N_i$. Inducting on $i$ gives
+\[
+  G=N_1\times\cdots\times N_r.
+\]
+Since each $N_i$ is isomorphic with $N$, and $N$ is a direct product of copies of the same simple group $S$, it follows that $G$ is a direct product of mutually isomorphic simple groups.\\
+We now use this to prove Theorem~\ref{thm:10.5}. Let $N$ be a minimal normal subgroup of a finite group $G$. If $C$ is characteristic in $N$, then, as above, $C\trianglelefteq G$. By the minimal normality of $N$, we have $C=1$ or $C=N$. Thus $N$ is a finite group with no proper non-trivial characteristic subgroups. By the first part, $N$ is a direct product of mutually isomorphic simple groups.
 \end{solution}
 
 \end{document}
