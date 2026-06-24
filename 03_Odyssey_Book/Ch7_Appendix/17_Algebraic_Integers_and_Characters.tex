@@ -101,6 +101,13 @@ If $G$ has a conjugacy class of non-trivial prime power order, then $G$ is not s
 If $|G| = p^a q^b$, where $p$ and $q$ are primes, then $G$ is solvable.
 \end{namedtheorem}
 \begin{proof}
+    We argue by induction on $\lvert G\rvert$. If $\lvert G\rvert$ is a prime power, then $G$ is solvable by Corollary~\ref{cor:11.5}. We may therefore assume that $p$ and $q$ are distinct and both divide $\lvert G\rvert$.\\
+    Suppose first that $G$ is not simple. Choose a normal subgroup $N$ of $G$ with $1<N<G$. Both $N$ and $G/N$ have orders of the form $p^r q^s$, so they are solvable by induction. Hence $G$ is solvable by Proposition~\ref{prop:11.3}.\\
+    It remains to consider the case where $G$ is simple. If $G$ is abelian, then $G$ has prime order and is solvable. Suppose then that $G$ is non-abelian simple. In particular, $Z(G)=1$. If every non-identity conjugacy class of $G$ had order divisible by $pq$, then the class equation would give
+    \[
+        \lvert G\rvert=1+\sum_i \lvert C_i\rvert
+    \]
+    with each $\lvert C_i\rvert$ divisible by $pq$, a contradiction since $pq$ divides $\lvert G\rvert$. Therefore $G$ has a non-trivial conjugacy class whose order is not divisible by both $p$ and $q$. Since every conjugacy class size divides $\lvert G\rvert$, this class has prime power order. Theorem~\ref{thm:17.7} then implies that $G$ is not simple, contradicting our assumption. Thus the non-abelian simple case cannot occur, and $G$ is solvable.
 \end{proof}
 
 \subsubsection*{Beyond two primes}

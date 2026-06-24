@@ -200,6 +200,30 @@ Let $G$ be a finite solvable group of order $mn$, where $m$ and $n$ are coprime.
 Let $G$ be a finite solvable group of order $mn$, where $m$ and $n$ are coprime. Then any two subgroups of $G$ of order $m$ are conjugate, and any subgroup of $G$ whose order divides $m$ is contained in a subgroup of order $m$.
 \end{theorem}
 \begin{proof}
+    We prove both assertions simultaneously by induction on $\lvert G\rvert$. If $G=1$, there is nothing to prove. We first record a special conjugacy fact which will be needed in the induction. Suppose that $A$ is an abelian normal Hall subgroup of a finite group $E$, and that $E=A\rtimes H$. If $K$ is another complement to $A$ in $E$, then $K$ is conjugate to $H$ in $E$. Indeed, write $A$ additively. The quotient map $E\to E/A$ identifies both $H$ and $K$ with $E/A$, so for each $h\in H$ there is a unique element $c(h)\in A$ such that $c(h)h\in K$. Since $K$ is a subgroup, we have
+    \[
+        c(h_1h_2)=c(h_1)+{}^{h_1}c(h_2)
+    \]
+    for all $h_1,h_2\in H$. Put $b=\sum_{h\in H}c(h)$. Then, for $h_0\in H$,
+    \[
+        {}^{h_0}b
+        =\sum_{h\in H}{}^{h_0}c(h)
+        =\sum_{h\in H}\bigl(c(h_0h)-c(h_0)\bigr)
+        =b-\lvert H\rvert c(h_0).
+    \]
+    Since $\gcd(\lvert H\rvert,\lvert A\rvert)=1$, multiplication by $\lvert H\rvert$ is an automorphism of $A$. Choose $a\in A$ such that $\lvert H\rvert a=b$. Applying $h_0$ to this equality and using the displayed equation gives
+    \[
+        \lvert H\rvert{}^{h_0}a=\lvert H\rvert a-\lvert H\rvert c(h_0),
+    \]
+    so ${}^{h_0}a=a-c(h_0)$, and hence $c(h_0)=a-{}^{h_0}a$. Therefore
+    \[
+        ah_0a^{-1}=c(h_0)h_0\in K
+    \]
+    for every $h_0\in H$, and it follows that $aHa^{-1}=K$.\\
+    Now let $N$ be a minimal normal subgroup of $G$. Since $G$ is finite and solvable, Proposition~\ref{prop:11.6} shows that $N$ is elementary abelian, say $\lvert N\rvert=p^r$. Since $\gcd(m,n)=1$, either $\lvert N\rvert$ divides $m$ or $\lvert N\rvert$ divides $n$.\\
+    First suppose that $\lvert N\rvert$ divides $m$. Let $H$ and $K$ be subgroups of $G$ of order $m$. If $P$ is a Sylow $p$-subgroup of $H$, then $P$ is also a Sylow $p$-subgroup of $G$, and since $N$ is a normal $p$-subgroup of $G$, we have $N\leq P\leq H$. Similarly, $N\leq K$. By induction in $G/N$, the subgroups $H/N$ and $K/N$ are conjugate, and hence $H$ and $K$ are conjugate in $G$. Now let $L\leq G$ have order dividing $m$. The subgroup $LN$ has order dividing $m$, because its order divides $\lvert G\rvert$ and all of its prime divisors divide $m$. Hence $LN/N$ has order dividing $m/\lvert N\rvert$. By induction in $G/N$, there is a subgroup $M/N$ of $G/N$ of order $m/\lvert N\rvert$ containing $LN/N$. Then $M$ has order $m$ and contains $L$.\\
+    It remains to consider the case where $\lvert N\rvert$ divides $n$. Let $H$ and $K$ be subgroups of $G$ of order $m$. Then $H\cap N=K\cap N=1$, so $HN/N$ and $KN/N$ are subgroups of $G/N$ of order $m$. By induction in $G/N$, these two subgroups are conjugate. Replacing $H$ by a conjugate in $G$, we may assume that $HN=KN$. Inside $HN$, the subgroup $N$ is an abelian normal Hall subgroup, and $H$ and $K$ are complements to $N$. By the special conjugacy fact proved above, $H$ and $K$ are conjugate in $HN$, and hence in $G$.\\
+    Finally let $L\leq G$ have order dividing $m$. Since $\lvert N\rvert$ divides $n$, we have $L\cap N=1$, and so $LN/N$ has order $\lvert L\rvert$, which divides $m$. By induction in $G/N$, there is a subgroup $M/N$ of $G/N$ of order $m$ containing $LN/N$. Then $\lvert M\rvert=m\lvert N\rvert$, and $N$ is a normal Hall subgroup of $M$. By \nameref{thm:schur-zassenhaus}, choose a complement $H$ to $N$ in $M$, so $\lvert H\rvert=m$. Under the quotient isomorphism $H\to M/N$, let $L_H$ be the subgroup of $H$ corresponding to $LN/N$. Then $NL_H=NL$, and both $L$ and $L_H$ are complements to $N$ in $NL$. Applying the special conjugacy fact inside $NL$, there is some $x\in NL$ such that $xL_Hx^{-1}=L$. Therefore $L\leq xHx^{-1}$, and $xHx^{-1}$ is a subgroup of $G$ of order $m$.
 \end{proof}
 
 \subsubsection*{Classical theorems on solvability}
@@ -212,6 +236,7 @@ Let $G$ be a finite solvable group of order $mn$, where $m$ and $n$ are coprime.
 If $p$ and $q$ are primes, then any group of order $p^a q^b$ is solvable.
 \end{namedtheorem}
 \begin{proof}
+    We defer the proof to the Appendix, where it is proved as \nameref{thm:burnside-paqb}, using the character theory developed in Chapter~6.
 \end{proof}
 
 \begin{itemize}
@@ -266,6 +291,34 @@ A finite group $G$ is not solvable iff there exist non-trivial elements $x, y, z
 Let $G$ be a finite, solvable, primitive permutation group on a set $X$. Then $X$ can be given the structure of a vector space over the field $\Z/p\Z$ for some prime $p$ in such a way that $G$ is isomorphic with a subgroup of $\operatorname{Aff}(X)$ that contains $\mathcal{T}(X)$.
 \end{theorem}
 \begin{proof}
+    If $X$ has one element, then the result is immediate, taking $X$ to be the zero vector space over any field $\Z/p\Z$. We may therefore assume that $G\neq 1$. Let $N$ be a minimal normal subgroup of $G$. Since $G$ is finite and solvable, Proposition~\ref{prop:11.6} shows that $N$ is elementary abelian, say $N\cong \Z_p^r$ for some prime $p$. We regard $N$ as a vector space over $\Z_p$ in the usual way.\\
+    Choose $x_0\in X$, and let $H=G_{x_0}$. Since $X$ is primitive, Corollary~\ref{cor:3.10} shows that $H$ is a maximal subgroup of $G$. We claim that $N\nleq H$. Indeed, if $N\leq H$, then $N$ fixes $x_0$. Since $N\trianglelefteq G$, Lemma~\ref{lem:3.2} gives
+    \[
+        N=gNg^{-1}\leq gHg^{-1}=G_{gx_0}
+    \]
+    for every $g\in G$. Since $X$ is transitive, this would mean that $N$ fixes every point of $X$. But $G$ is a permutation group on $X$, so the action is faithful, and hence $N=1$, a contradiction. Thus $H<NH\leq G$, and maximality of $H$ gives $NH=G$.\\
+    Now $N\cap H$ is normal in both $N$ and $H$: normality in $N$ follows because $N$ is abelian, and normality in $H$ follows from $N\trianglelefteq G$. Hence $N\cap H\trianglelefteq NH=G$. Since $N$ is a minimal normal subgroup of $G$ and $N\nleq H$, we get $N\cap H=1$. Therefore $G=N\rtimes H$.\\
+    By Proposition~\ref{prop:3.4}, the map
+    \[
+        G/H\to X,\qquad gH\mapsto gx_0
+    \]
+    is an isomorphism of $G$-sets. Since $G=NH$ and $N\cap H=1$, every coset of $H$ has the form $nH$ for a unique $n\in N$. Thus every element of $X$ has the form $nx_0$ for a unique $n\in N$. We transfer the vector-space structure of $N$ to $X$ by declaring
+    \[
+        nx_0+n'x_0=(n+n')x_0,
+        \qquad
+        \lambda(nx_0)=(\lambda n)x_0
+    \]
+    for $n,n'\in N$ and $\lambda\in\Z_p$. This makes $X$ a vector space over $\Z_p$.\\
+    Under this vector-space structure, the elements of $N$ act as translations. Indeed, if $n_0,n\in N$, then
+    \[
+        n_0(nx_0)=(n_0+n)x_0=nx_0+n_0x_0.
+    \]
+    Since every vector of $X$ has the form $n_0x_0$ for a unique $n_0\in N$, the image of $N$ in the permutation group of $X$ is exactly $\mathcal{T}(X)$.\\
+    It remains to see that the stabilizer $H$ acts linearly. Let $h\in H$ and let $x=nx_0\in X$. Since $h$ fixes $x_0$, we have
+    \[
+        h x=h(nx_0)=(hnh^{-1})x_0.
+    \]
+    Conjugation by $h$ is an automorphism of the elementary abelian group $N$, and hence is a linear automorphism of the vector space $N$ over $\Z_p$. Therefore the action of $h$ on $X$ is linear. Since every element of $G$ has the form $nh$ with $n\in N$ and $h\in H$, every element of $G$ acts on $X$ as an affine transformation. Thus $G$ is isomorphic with a subgroup of $\operatorname{Aff}(X)$, and this subgroup contains $\mathcal{T}(X)$.
 \end{proof}
 
 \subsubsection*{Nilpotent groups}
@@ -279,6 +332,11 @@ Let $G$ be a finite, solvable, primitive permutation group on a set $X$. Then $X
 Nilpotent groups are solvable.
 \end{proposition}
 \begin{proof}
+    Let
+    \[
+        G=G_0\geq G_1\geq \cdots \geq G_r=1
+    \]
+    be a central series for $G$. For each $i$, the quotient $G_i/G_{i+1}$ is contained in $Z(G/G_{i+1})$, and hence is abelian. Therefore this central series is a normal series whose successive quotients are abelian. By Proposition~\ref{prop:11.2}, $G$ is solvable.
 \end{proof}
 
 \begin{itemize}
@@ -290,6 +348,20 @@ Nilpotent groups are solvable.
 Finite $p$-groups are nilpotent.
 \end{lemma}
 \begin{proof}
+    Let $P$ be a finite $p$-group. We argue by induction on $\lvert P\rvert$. If $P=1$, then the result is immediate. Suppose now that $P\neq 1$. By Theorem~\ref{thm:8.1}, the center $Z(P)$ is non-trivial. If $Z(P)=P$, then $P$ is abelian, so
+    \[
+        P\geq 1
+    \]
+    is a central series. We may therefore assume that $1<Z(P)<P$.\\
+    The quotient $P/Z(P)$ is a smaller finite $p$-group, so by induction it has a central series
+    \[
+        P/Z(P)=\overline{P}_0\geq \overline{P}_1\geq \cdots \geq \overline{P}_r=1.
+    \]
+    Let $\pi\colon P\to P/Z(P)$ be the quotient map, and put $P_i=\pi^{-1}(\overline{P}_i)$. Then
+    \[
+        P=P_0\geq P_1\geq \cdots \geq P_r=Z(P)\geq 1.
+    \]
+    For each $i<r$, the centrality of $\overline{P}_i/\overline{P}_{i+1}$ in $(P/Z(P))/\overline{P}_{i+1}$ says precisely that $P_i/P_{i+1}$ is contained in $Z(P/P_{i+1})$. Finally, $Z(P)/1$ is contained in $Z(P/1)$. Hence the displayed series is a central series for $P$, and $P$ is nilpotent.
 \end{proof}
 
 \begin{itemize}
@@ -309,6 +381,39 @@ The following statements about a finite group $G$ are equivalent:
 \end{enumerate}
 \end{theorem}
 \begin{proof}
+    If $G=1$, then all five conditions are immediate. We may therefore assume that $G\neq 1$. We first prove $(1)\Rightarrow(2)$. Let
+    \[
+        G=G_0\geq G_1\geq \cdots \geq G_r=1
+    \]
+    be a central series for $G$, and let $H<G$. Choose $i$ minimal such that $G_i\leq H$. Since $G_0=G\nleq H$ and $G_r=1\leq H$, we have $i\geq 1$. Choose $x\in G_{i-1}-H$. For $h\in H$, the containment
+    \[
+        G_{i-1}/G_i\leq Z(G/G_i)
+    \]
+    gives $xhG_i=hxG_i$, so $xhx^{-1}h^{-1}\in G_i\leq H$. Hence $xhx^{-1}\in H$. Thus $xHx^{-1}\leq H$, and since $G$ is finite, this inclusion is equality. Therefore $x\in N_G(H)-H$, so $H$ is not self-normalizing.\\
+    We next prove $(2)\Rightarrow(3)$. Let $P$ be a Sylow $p$-subgroup of $G$, and put $K=N_G(P)$. We claim that $K$ is self-normalizing. Indeed, $P\trianglelefteq K$, so $P$ is the unique Sylow $p$-subgroup of $K$. If $g\in N_G(K)$, then $gPg^{-1}\leq K$ and $gPg^{-1}$ is again a Sylow $p$-subgroup of $K$. By uniqueness, $gPg^{-1}=P$, so $g\in N_G(P)=K$. Thus $N_G(K)\leq K$, and the reverse inclusion is automatic, so $N_G(K)=K$. If $P$ were not normal in $G$, then $K<G$, giving a proper self-normalizing subgroup of $G$, contrary to (2). Therefore every Sylow subgroup of $G$ is normal in $G$.\\
+    The implications $(3)\Rightarrow(4)$ and $(4)\Rightarrow(5)$ are exactly the corresponding implications in Theorem~\ref{thm:8.7}. It remains to prove $(5)\Rightarrow(1)$. By Theorem~\ref{thm:8.7}, condition (5) implies that
+    \[
+        G=P_1\times \cdots \times P_n,
+    \]
+    where the $P_i$ are the Sylow subgroups of $G$. By Lemma~\ref{lem:11.14}, each $P_i$ is nilpotent. Choose a central series
+    \[
+        P_i=P_{i,0}\geq P_{i,1}\geq \cdots \geq P_{i,r_i}=1
+    \]
+    for each $i$, and extend the notation by setting $P_{i,j}=1$ for $j>r_i$. If $r=\max\{r_1,\ldots,r_n\}$, define
+    \[
+        G_j=P_{1,j}\times \cdots \times P_{n,j}
+        \qquad
+        (0\leq j\leq r).
+    \]
+    Then
+    \[
+        G=G_0\geq G_1\geq \cdots \geq G_r=1.
+    \]
+    If $0\leq j<r$, $x=(x_1,\ldots,x_n)\in G_j$, and $g=(g_1,\ldots,g_n)\in G$, then the centrality of each $P_{i,j}/P_{i,j+1}$ gives
+    \[
+        x_ig_ix_i^{-1}g_i^{-1}\in P_{i,j+1}
+    \]
+    for every $i$. Hence $xgx^{-1}g^{-1}\in G_{j+1}$, so $G_j/G_{j+1}\leq Z(G/G_{j+1})$. Therefore the displayed series is a central series for $G$, and $G$ is nilpotent.
 \end{proof}
 
 \subsection*{Exercises}
