@@ -423,6 +423,20 @@ The following statements about a finite group $G$ are equivalent:
 Show that any finite group has a largest solvable normal subgroup.
 \end{exercise}
 \begin{solution}
+    Let $A$ and $B$ be solvable normal subgroups of $G$. Then
+    \[
+        gABg^{-1}=(gAg^{-1})(gBg^{-1})=AB
+    \]
+    for every $g\in G$, so $AB\trianglelefteq G$. Also, $A\trianglelefteq AB$, and by the \nameref{thm:second-iso} we have
+    \[
+        AB/A\cong B/(A\cap B).
+    \]
+    Since $B$ is solvable, Proposition~\ref{prop:11.3} shows that $B/(A\cap B)$ is solvable. Hence $AB/A$ is solvable. Since $A$ is solvable, another application of Proposition~\ref{prop:11.3} gives that $AB$ is solvable. Thus the product of two solvable normal subgroups of $G$ is again a solvable normal subgroup of $G$.\\
+    Because $G$ is finite, it has only finitely many subgroups. List the solvable normal subgroups of $G$ as
+    \[
+        N_1,\ldots,N_r.
+    \]
+    Put $R=N_1\cdots N_r$. Repeatedly applying the previous paragraph shows that $R$ is a solvable normal subgroup of $G$. Moreover, each $N_i$ is contained in $R$. Therefore every solvable normal subgroup of $G$ is contained in $R$, so $R$ is the largest solvable normal subgroup of $G$.
 \end{solution}
 
 \begin{exercise}
@@ -430,6 +444,32 @@ Show that any finite group has a largest solvable normal subgroup.
 Let $N$ be a solvable normal Hall subgroup of a finite group $G$. Show that any two complements to $N$ in $G$ are conjugate. (The strong version of \nameref{thm:schur-zassenhaus} asserts that this is true for any normal Hall subgroup $N$, whether solvable or not. The proof uses \nameref{thm:feit-thompson} to argue that if $N$ is not solvable, then $G/N$ must be solvable.)
 \end{exercise}
 \begin{solution}
+    We argue by induction on $\lvert G\rvert$. If $N=1$, then any complement to $N$ is equal to $G$, so there is nothing to prove. Suppose then that $N\neq 1$, and let $H$ and $K$ be complements to $N$ in $G$. Since $N$ is solvable, its derived series has a last non-trivial term, say $N^{(r)}$. Then $N^{(r)}$ is abelian. Since $N^{(r)}$ is characteristic in $N$ and $N\trianglelefteq G$, we have $N^{(r)}\trianglelefteq G$. Choose a minimal non-trivial normal subgroup $A$ of $G$ with $A\leq N^{(r)}$. Then $A$ is abelian, $A\trianglelefteq G$, and $A\leq N$.\\
+    In $G/A$, the subgroup $N/A$ is a solvable normal Hall subgroup, and $HA/A$ and $KA/A$ are complements to $N/A$. By induction, these two complements are conjugate in $G/A$. Replacing $H$ by a conjugate in $G$, we may assume that
+    \[
+        HA=KA.
+    \]
+    Put $E=HA=KA$. Then $A$ is an abelian normal Hall subgroup of $E$, and $H$ and $K$ are complements to $A$ in $E$. It remains to show that two complements to an abelian normal Hall subgroup are conjugate.\\
+    Write $A$ additively. Since both $H$ and $K$ map isomorphically onto $E/A$, for each $h\in H$ there is a unique element $c(h)\in A$ such that $c(h)h\in K$. Because $K$ is a subgroup, we have
+    \[
+        c(h_1h_2)=c(h_1)+{}^{h_1}c(h_2)
+    \]
+    for all $h_1,h_2\in H$. Put $b=\sum_{h\in H}c(h)$. For any $h_0\in H$, we get
+    \[
+        {}^{h_0}b
+        =\sum_{h\in H}{}^{h_0}c(h)
+        =\sum_{h\in H}(c(h_0h)-c(h_0))
+        =b-\lvert H\rvert c(h_0).
+    \]
+    Since $A$ is a Hall subgroup of $E$, $\gcd(\lvert A\rvert,\lvert H\rvert)=1$, so multiplication by $\lvert H\rvert$ is an automorphism of $A$. Choose $a\in A$ such that $\lvert H\rvert a=b$. Applying $h_0$ to this equality and using the displayed equation gives
+    \[
+        \lvert H\rvert{}^{h_0}a=\lvert H\rvert a-\lvert H\rvert c(h_0),
+    \]
+    whence ${}^{h_0}a=a-c(h_0)$. Thus $c(h_0)=a-{}^{h_0}a$, and so
+    \[
+        ah_0a^{-1}=c(h_0)h_0\in K
+    \]
+    for every $h_0\in H$. Therefore $aHa^{-1}=K$. Hence $H$ and $K$ are conjugate in $G$.
 \end{solution}
 
 \begin{exercise}
@@ -441,6 +481,40 @@ Complete the following sketch, which gives a proof of Theorem~\ref{thm:11.8} tha
 \end{enumerate}
 \end{exercise}
 \begin{solution}
+    \phantom{}\par
+    \begin{enumerate}
+        \item[(a)] We prove the theorem by induction on $\lvert G\rvert$ and show that all cases reduce to the stated one. Let $A$ be a minimal normal subgroup of $G$. Since $G$ is finite and solvable, Proposition~\ref{prop:11.6} shows that $A$ is elementary abelian. Hence $\lvert A\rvert$ divides either $m$ or $n$.\\
+        If $\lvert A\rvert$ divides $m$, then
+        \[
+            \lvert G/A\rvert=\frac{m}{\lvert A\rvert}n,
+        \]
+        with coprime factors. By induction, $G/A$ has a subgroup of order $m/\lvert A\rvert$. Its preimage in $G$ has order $m$, and we are done.\\
+        Suppose next that $\lvert A\rvert$ divides $n$ and $\lvert A\rvert<n$. Then
+        \[
+            \lvert G/A\rvert=m\frac{n}{\lvert A\rvert}.
+        \]
+        By induction, $G/A$ has a subgroup $K/A$ of order $m$. Thus $\lvert K\rvert=m\lvert A\rvert$. Since $K$ is a subgroup of the solvable group $G$, Proposition~\ref{prop:11.3} shows that $K$ is solvable. Applying induction to $K$, whose order is smaller than $\lvert G\rvert$, gives a subgroup of $K$ of order $m$.\\
+        Thus the only remaining case is the case in which every minimal normal subgroup of $G$ has order $n$. In that case such a subgroup is unique. Indeed, if $A$ and $B$ were distinct minimal normal subgroups of order $n$, then $A\cap B=1$, so $\lvert AB\rvert=n^2$ would divide $\lvert G\rvert=mn$, contradicting $\gcd(m,n)=1$ unless $n=1$. If $n=1$, the result is trivial. Hence, in the non-trivial remaining case, $G$ has a unique minimal normal subgroup $N$ of order $n$.
+        \item[(b)] We now work in the reduced case from part (a). Let $M/N$ be a minimal normal subgroup of $G/N$. Since $G/N$ is solvable by Proposition~\ref{prop:11.3}, Proposition~\ref{prop:11.6} shows that $M/N$ is elementary abelian, say of order $p^a$, where $p$ divides $m$. Let $P$ be a Sylow $p$-subgroup of $M$. Since $\lvert N\rvert=n$ is coprime to $p$, we have $\lvert P\rvert=p^a=\lvert M/N\rvert$, and hence $M=NP$ with $N\cap P=1$.\\
+        Since $M\trianglelefteq G$, the Frattini argument gives
+        \[
+            G=MN_G(P).
+        \]
+        We claim first that $N_M(P)=P$. Put
+        \[
+            C=N\cap N_G(P).
+        \]
+        Since $N$ is the unique minimal normal subgroup of the solvable group $G$, it is elementary abelian, so $N$ normalizes $C$. Also, $N_G(P)$ normalizes both $N$ and $N_G(P)$, and hence normalizes $C$. Since $G=MN_G(P)=NPN_G(P)$, it follows that $C\trianglelefteq G$. If $C\neq 1$, then the minimality and uniqueness of $N$ force $C=N$. Thus $N\leq N_G(P)$, and so $M=NP\leq N_G(P)$. Together with $G=MN_G(P)$, this would imply that $P\trianglelefteq G$. Then $G$ would have a non-trivial minimal normal subgroup contained in $P$, contradicting the uniqueness of $N$, since $p$ does not divide $\lvert N\rvert$. Therefore $C=1$.\\
+        Now every element of $N_M(P)$ has the form $np$ with $n\in N$ and $p\in P$. Since both $np$ and $p$ normalize $P$, the element $n$ also normalizes $P$, so $n\in C=1$. Hence $N_M(P)=P$. Using $G=MN_G(P)$, we obtain
+        \[
+            \lvert G\rvert
+            =\frac{\lvert M\rvert\lvert N_G(P)\rvert}{\lvert M\cap N_G(P)\rvert}
+            =\frac{\lvert M\rvert\lvert N_G(P)\rvert}{\lvert N_M(P)\rvert}
+            =\frac{n\lvert P\rvert\lvert N_G(P)\rvert}{\lvert P\rvert}
+            =n\lvert N_G(P)\rvert.
+        \]
+        Since $\lvert G\rvert=mn$, it follows that $\lvert N_G(P)\rvert=m$. Therefore $N_G(P)$ is the required subgroup of order $m$.
+    \end{enumerate}
 \end{solution}
 
 \begin{exercise}
@@ -448,6 +522,20 @@ Complete the following sketch, which gives a proof of Theorem~\ref{thm:11.8} tha
 Prove Theorem~\ref{thm:11.9}. If your proof involves \nameref{thm:schur-zassenhaus}, then construct a second proof that is independent of Schur-Zassenhaus by mimicking Exercise~\ref{ex:11.3} above.
 \end{exercise}
 \begin{solution}
+    We give the Schur--Zassenhaus-free proof directly. We prove both assertions simultaneously by induction on $\lvert G\rvert$. If $G=1$, there is nothing to prove. Let $N$ be a minimal normal subgroup of $G$. Since $G$ is finite and solvable, Proposition~\ref{prop:11.6} shows that $N$ is elementary abelian, say $\lvert N\rvert=p^r$. Since $\gcd(m,n)=1$, either $\lvert N\rvert$ divides $m$ or $\lvert N\rvert$ divides $n$.\\
+    First suppose that $\lvert N\rvert$ divides $m$. Let $H$ and $K$ be subgroups of $G$ of order $m$. If $P$ is a Sylow $p$-subgroup of $H$, then $P$ is also a Sylow $p$-subgroup of $G$. Since $N$ is a normal $p$-subgroup of $G$, we have $N\leq P\leq H$. Similarly, $N\leq K$. In the quotient $G/N$, the subgroups $H/N$ and $K/N$ have order $m/\lvert N\rvert$. By induction in $G/N$, they are conjugate. Hence $H$ and $K$ are conjugate in $G$.\\
+    Now let $L\leq G$ have order dividing $m$. Then $LN$ has order dividing $m$: it is a subgroup of $G$, and all of its prime divisors divide $m$. Hence $LN/N$ has order dividing $m/\lvert N\rvert$. By induction in $G/N$, there is a subgroup $M/N$ of $G/N$ of order $m/\lvert N\rvert$ containing $LN/N$. Then $M$ has order $m$ and contains $L$. This proves both assertions in the case $\lvert N\rvert\mid m$.\\
+    It remains to consider the case where $\lvert N\rvert$ divides $n$. Let $H$ and $K$ be subgroups of $G$ of order $m$. Then $H\cap N=K\cap N=1$, so $HN/N$ and $KN/N$ are subgroups of $G/N$ of order $m$. By induction in $G/N$, they are conjugate. Replacing $H$ by a conjugate in $G$, we may assume that
+    \[
+        HN=KN.
+    \]
+    Inside $HN$, the subgroup $N$ is a solvable normal Hall subgroup, and $H$ and $K$ are complements to $N$. By Exercise~\ref{ex:11.2}, the complements $H$ and $K$ are conjugate in $HN$, and hence in $G$.\\
+    Finally let $L\leq G$ have order dividing $m$. Since $\lvert N\rvert$ divides $n$, we have $L\cap N=1$, and so $LN/N$ has order $\lvert L\rvert$, which divides $m$. By induction in $G/N$, there is a subgroup $M/N$ of $G/N$ of order $m$ containing $LN/N$. Then $\lvert M\rvert=m\lvert N\rvert$, and $M$ is solvable by Proposition~\ref{prop:11.3}. By the Schur--Zassenhaus-free proof of Theorem~\ref{thm:11.8} from Exercise~\ref{ex:11.3}, the group $M$ has a subgroup $H$ of order $m$. Since $N\trianglelefteq M$ and $\gcd(\lvert H\rvert,\lvert N\rvert)=1$, we have $H\cap N=1$ and $HN=M$. Thus $H$ is a complement to $N$ in $M$.\\
+    Under the quotient isomorphism $H\to M/N$, let $L_H$ be the subgroup of $H$ corresponding to $LN/N$. Then $NL_H=NL$. Also, both $L$ and $L_H$ are complements to $N$ in $NL$. Applying Exercise~\ref{ex:11.2} inside $NL$, there is some $x\in NL$ such that
+    \[
+        xL_Hx^{-1}=L.
+    \]
+    Therefore $L\leq xHx^{-1}$, and $xHx^{-1}$ is a subgroup of $G$ of order $m$. This proves the containment assertion, and completes the proof of Theorem~\ref{thm:11.9}.
 \end{solution}
 
 \begin{exercise}
