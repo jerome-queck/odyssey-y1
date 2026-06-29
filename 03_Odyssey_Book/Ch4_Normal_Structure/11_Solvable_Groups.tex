@@ -543,6 +543,22 @@ Prove Theorem~\ref{thm:11.9}. If your proof involves \nameref{thm:schur-zassenha
 Let $V$ be a finite-dimensional vector space over the field of $p$ elements. Suppose that $G$ is a solvable subgroup of $\operatorname{Aff}(V)$ which contains $\mathcal{T}(V)$ and that the stabilizer of the origin under the action of $G$ on $V$ does not leave any non-zero proper subspace of $V$ invariant. Show that $G$ is a primitive permutation group on $V$.
 \end{exercise}
 \begin{solution}
+    Let $H=G_0$ be the stabilizer of the origin. Since $G$ contains the full translation group $\mathcal{T}(V)$, the action of $G$ on $V$ is transitive: for any $v\in V$, the translation $T_v$ sends $0$ to $v$. By Corollary~\ref{cor:3.10}, it remains to show that $H$ is a maximal subgroup of $G$.\\
+    Let $K$ be a subgroup of $G$ such that $H<K\leq G$. We will show that $K=G$. Choose $g\in K-H$, and write $g(0)=v$. Then $v\neq 0$. Since $g\in \operatorname{Aff}(V)$, we may write $g=T_vS$ for some $S\in \operatorname{GL}(V)$. Moreover,
+    \[
+        S=T_{-v}g\in G,
+    \]
+    because $T_{-v}\in\mathcal{T}(V)\leq G$. Since $S$ fixes the origin, we have $S\in H\leq K$. Hence $T_v=gS^{-1}\in K$.\\
+    Now define
+    \[
+        W=\{w\in V\mid T_w\in K\}.
+    \]
+    The subgroup $K\cap\mathcal{T}(V)$ of the translation group corresponds to the additive subgroup $W$ of $V$, so $W$ is a subspace of $V$ over the field of $p$ elements. Since $T_v\in K$ with $v\neq 0$, the subspace $W$ is non-zero. Also, if $h\in H$ and $w\in W$, then
+    \[
+        hT_wh^{-1}=T_{h(w)}
+    \]
+    lies in $K$, because $h,T_w\in K$. Thus $h(w)\in W$, and so $W$ is invariant under $H$. By hypothesis, $H$ leaves no non-zero proper subspace of $V$ invariant. Therefore $W=V$.\\
+    Hence $K$ contains every translation $T_w$. Since every element of $G$ has the form $T_w h$ with $w\in V$ and $h\in H$, it follows that $K=G$. Thus there is no subgroup strictly between $H$ and $G$, so $H$ is maximal in $G$. By Corollary~\ref{cor:3.10}, the action of $G$ on $V$ is primitive. Therefore $G$ is a primitive permutation group on $V$.
 \end{solution}
 
 \begin{exercise}
@@ -550,6 +566,17 @@ Let $V$ be a finite-dimensional vector space over the field of $p$ elements. Sup
 Show that a finite group is supersolvable iff it has a normal series having cyclic successive quotients. (An arbitrary group is called supersolvable if this latter condition holds.)
 \end{exercise}
 \begin{solution}
+    Suppose first that $G$ is finite supersolvable. By Proposition~\ref{prop:10.3}, $G$ has a chief series
+    \[
+        G=G_0>G_1>\cdots>G_r=1.
+    \]
+    By definition of supersolvability, each chief factor $G_i/G_{i+1}$ has prime order, and hence is cyclic. Thus this chief series is a normal series with cyclic successive quotients.\\
+    Conversely, suppose that $G$ has a normal series
+    \[
+        G=G_0\geq G_1\geq \cdots \geq G_r=1
+    \]
+    whose successive quotients are cyclic. Removing repeated terms if necessary, we may assume the inclusions are strict. Since $G$ is finite, each cyclic quotient $G_i/G_{i+1}$ is finite. We refine each such quotient into cyclic groups of prime order. Indeed, if $\lvert G_i/G_{i+1}\rvert=p_1\cdots p_s$, with primes repeated according to multiplicity, then Theorem~\ref{thm:1.4} gives a chain of subgroups in $G_i/G_{i+1}$ whose successive quotients have orders $p_1,\ldots,p_s$. These subgroups are characteristic in the cyclic group $G_i/G_{i+1}$, since they are the unique subgroups of their respective orders. Because $G_i/G_{i+1}\trianglelefteq G/G_{i+1}$, Exercise~\ref{ex:2.4} and the \nameref{thm:correspondence} show that the corresponding intermediate subgroups are normal in $G$.\\
+    Refining every factor in this way gives a normal series of $G$ whose successive quotients have prime order. No normal subgroup of $G$ can be inserted properly between two consecutive terms of this refined series, because a group of prime order has no non-trivial proper subgroup. Hence the refined series is a chief series. Therefore $G$ has a chief series whose factors all have prime order, and so $G$ is supersolvable.
 \end{solution}
 
 \begin{exercise}
@@ -557,6 +584,13 @@ Show that a finite group is supersolvable iff it has a normal series having cycl
 Show that finite nilpotent groups are supersolvable. (If we define supersolvability for arbitrary groups as in Exercise~\ref{ex:11.6}, is an infinite nilpotent group necessarily supersolvable?)
 \end{exercise}
 \begin{solution}
+    We first prove that finite nilpotent groups are supersolvable. By Exercise~\ref{ex:11.6}, it is enough to show that a finite nilpotent group has a normal series with cyclic successive quotients. We argue by induction on $\lvert G\rvert$. If $G=1$, there is nothing to prove. Suppose $G\neq 1$, and let
+    \[
+        G=G_0\geq G_1\geq \cdots \geq G_r=1
+    \]
+    be a central series for $G$. The last non-trivial term of this series is contained in $Z(G)$, so $Z(G)\neq 1$. Since $G$ is finite, \nameref{thm:cauchy} gives a subgroup $C\leq Z(G)$ of prime order. Then $C\trianglelefteq G$, and $G/C$ is nilpotent, since the image of a central series for $G$ in $G/C$ is a central series after repeated terms are deleted.\\
+    By induction, $G/C$ has a normal series with cyclic successive quotients. Lifting this series to $G$ by the \nameref{thm:correspondence} and then appending $C>1$ gives a normal series of $G$ with cyclic successive quotients. Hence $G$ is supersolvable by Exercise~\ref{ex:11.6}.\\
+    The corresponding statement for infinite nilpotent groups is false. The additive group $(\Q,+)$ is abelian, and hence nilpotent, but it is not supersolvable in the sense of Exercise~\ref{ex:11.6}. Indeed, any group with a finite normal series whose successive quotients are cyclic is finitely generated, by lifting one generator from each cyclic quotient. The group $(\Q,+)$ is not finitely generated: if $q_1,\ldots,q_m\in\Q$ and $D$ is a common denominator for them, then $\langle q_1,\ldots,q_m\rangle\leq D^{-1}\Z$, so these elements cannot generate all of $\Q$.
 \end{solution}
 
 \begin{exercise}
@@ -564,6 +598,12 @@ Show that finite nilpotent groups are supersolvable. (If we define supersolvabil
 (cont.) Give an example of a finite supersolvable group that is not nilpotent. (Hence we have a proper ascending chain of classes of finite groups, starting with cyclic groups, then abelian, then nilpotent, then supersolvable, and ending with solvable.)
 \end{exercise}
 \begin{solution}
+    The group $S_3$ is such an example. The series
+    \[
+        S_3>A_3>1
+    \]
+    is a normal series with cyclic successive quotients, since $S_3/A_3\cong \Z_2$ and $A_3\cong \Z_3$. Thus $S_3$ is supersolvable by Exercise~\ref{ex:11.6}.\\
+    However, $S_3$ is not nilpotent. Its Sylow $2$-subgroups are the three subgroups generated by the transpositions, so no Sylow $2$-subgroup is normal in $S_3$. By Theorem~\ref{thm:11.15}, a finite nilpotent group has all Sylow subgroups normal. Therefore $S_3$ is supersolvable but not nilpotent.
 \end{solution}
 
 \subsection*{Further Exercises}
@@ -575,6 +615,24 @@ Let $G$ be a group. Let $\Gamma_1 = G$, and for $n \in \N$ let $\Gamma_{n+1} = [
 Show that each $\Gamma_n$ and $\mathcal{Z}_n$ is a characteristic subgroup of $G$.
 \end{exercise}
 \begin{solution}
+    We first consider the lower central series. Clearly $\Gamma_1=G$ is characteristic in $G$. Suppose that $\Gamma_n$ is characteristic in $G$, and let $\varphi\in\Aut(G)$. Then
+    \[
+        \varphi(\Gamma_{n+1})
+        =\varphi([\Gamma_n,G])
+        =[\varphi(\Gamma_n),\varphi(G)]
+        =[\Gamma_n,G]
+        =\Gamma_{n+1}.
+    \]
+    Hence $\Gamma_{n+1}$ is characteristic in $G$, and induction proves that every $\Gamma_n$ is characteristic.\\
+    We next consider the upper central series. Clearly $\mathcal{Z}_0=1$ is characteristic in $G$. Suppose that $\mathcal{Z}_{n-1}$ is characteristic in $G$, and let $\varphi\in\Aut(G)$. Then $\varphi$ induces an automorphism
+    \[
+        \overline{\varphi}\colon G/\mathcal{Z}_{n-1}\to G/\mathcal{Z}_{n-1}.
+    \]
+    The center of a group is characteristic, so $\overline{\varphi}$ fixes
+    \[
+        Z(G/\mathcal{Z}_{n-1})=\mathcal{Z}_n/\mathcal{Z}_{n-1}.
+    \]
+    Therefore $\varphi$ fixes the full preimage of this subgroup in $G$, namely $\mathcal{Z}_n$. Hence $\mathcal{Z}_n$ is characteristic in $G$, and induction proves that every $\mathcal{Z}_n$ is characteristic.
 \end{solution}
 
 \begin{exercise}
@@ -582,6 +640,47 @@ Show that each $\Gamma_n$ and $\mathcal{Z}_n$ is a characteristic subgroup of $G
 (cont.) Show that $G$ is nilpotent iff $\Gamma_r = 1$ for some $r$ iff $\mathcal{Z}_s = G$ for some $s$.
 \end{exercise}
 \begin{solution}
+    We use the following translation of the centrality condition: if $K\trianglelefteq G$ and $K\leq H\leq G$, then
+    \[
+        H/K\leq Z(G/K)
+        \quad\text{iff}\quad
+        [H,G]\leq K.
+    \]
+    Indeed, $hK$ commutes with every $gK$ exactly when $[h,g]\in K$.\\
+    Suppose first that $\Gamma_r=1$ for some $r$. Then
+    \[
+        G=\Gamma_1\geq \Gamma_2\geq \cdots \geq \Gamma_r=1
+    \]
+    is a normal series by Exercise~\ref{ex:11.9}. Since $\Gamma_{i+1}=[\Gamma_i,G]$, the observation above gives
+    \[
+        \Gamma_i/\Gamma_{i+1}\leq Z(G/\Gamma_{i+1})
+    \]
+    for every $i$. Thus this is a central series, and $G$ is nilpotent. Conversely, suppose that $G$ is nilpotent, and let
+    \[
+        G=G_0\geq G_1\geq \cdots \geq G_t=1
+    \]
+    be a central series. We claim that $\Gamma_{i+1}\leq G_i$ for $0\leq i\leq t$. This is clear for $i=0$. If $\Gamma_i\leq G_{i-1}$, then
+    \[
+        \Gamma_{i+1}=[\Gamma_i,G]\leq [G_{i-1},G]\leq G_i,
+    \]
+    where the last inclusion follows from the centrality of $G_{i-1}/G_i$ in $G/G_i$. Hence $\Gamma_{t+1}\leq G_t=1$, so $\Gamma_{t+1}=1$.\\
+    Now suppose that $\mathcal{Z}_s=G$ for some $s$. By Exercise~\ref{ex:11.9}, the series
+    \[
+        G=\mathcal{Z}_s\geq \mathcal{Z}_{s-1}\geq \cdots \geq \mathcal{Z}_0=1
+    \]
+    is a normal series, and it is central by the defining relation
+    \[
+        \mathcal{Z}_i/\mathcal{Z}_{i-1}=Z(G/\mathcal{Z}_{i-1}).
+    \]
+    Hence $G$ is nilpotent. Conversely, suppose again that
+    \[
+        G=G_0\geq G_1\geq \cdots \geq G_t=1
+    \]
+    is a central series. We claim that $G_{t-i}\leq \mathcal{Z}_i$ for $0\leq i\leq t$. This is clear for $i=0$, since $G_t=1=\mathcal{Z}_0$. If $G_{t-i}\leq \mathcal{Z}_i$, then centrality gives
+    \[
+        [G_{t-i-1},G]\leq G_{t-i}\leq \mathcal{Z}_i.
+    \]
+    Therefore $G_{t-i-1}/\mathcal{Z}_i\leq Z(G/\mathcal{Z}_i)$, and so $G_{t-i-1}\leq \mathcal{Z}_{i+1}$. Taking $i=t$ gives $G=G_0\leq \mathcal{Z}_t$, hence $\mathcal{Z}_t=G$. This proves the equivalence of all three conditions.
 \end{solution}
 
 \begin{exercise}
@@ -589,6 +688,27 @@ Show that each $\Gamma_n$ and $\mathcal{Z}_n$ is a characteristic subgroup of $G
 (cont.) Suppose that $G$ is nilpotent. Show that the lower and upper central series of $G$ have the same length, say $c$, and that no central series of $G$ can have length less than $c$. (This number $c$ is called the \emph{nilpotency class} of $G$. The groups of nilpotency class $1$ are exactly the abelian groups.)
 \end{exercise}
 \begin{solution}
+    Let
+    \[
+        c_L=\min\{c\geq 0\mid \Gamma_{c+1}=1\},
+        \qquad
+        c_U=\min\{c\geq 0\mid \mathcal{Z}_c=G\}.
+    \]
+    These integers exist by Exercise~\ref{ex:11.10}. The lower central series has length $c_L$, and the upper central series has length $c_U$.\\
+    Since
+    \[
+        G=\mathcal{Z}_{c_U}\geq \mathcal{Z}_{c_U-1}\geq \cdots \geq \mathcal{Z}_0=1
+    \]
+    is a central series, the argument in Exercise~\ref{ex:11.10} gives $\Gamma_{c_U+1}=1$. Hence $c_L\leq c_U$. Similarly,
+    \[
+        G=\Gamma_1\geq \Gamma_2\geq \cdots \geq \Gamma_{c_L+1}=1
+    \]
+    is a central series, so the upper-series argument in Exercise~\ref{ex:11.10} gives $\mathcal{Z}_{c_L}=G$. Hence $c_U\leq c_L$. Therefore $c_L=c_U$; call this common value $c$.\\
+    Finally, let
+    \[
+        G=G_0\geq G_1\geq \cdots \geq G_t=1
+    \]
+    be any central series of $G$. The lower-series argument from Exercise~\ref{ex:11.10} gives $\Gamma_{t+1}=1$, so by the minimality of $c=c_L$ we have $c\leq t$. Thus no central series of $G$ can have length less than $c$. For a non-trivial group, $c=1$ iff $\Gamma_2=G'=1$, which is equivalent to $G$ being abelian.
 \end{solution}
 
 \end{document}
