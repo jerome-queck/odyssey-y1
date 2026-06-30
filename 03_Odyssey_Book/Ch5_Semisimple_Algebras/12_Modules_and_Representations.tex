@@ -21,6 +21,16 @@
 There is a bijective correspondence between the set of linear actions of a group $G$ on an $F$-vector space $V$ and the set of homomorphisms from $G$ to $\mathrm{GL}(V)$.
 \end{proposition}
 \begin{proof}
+    Suppose first that $\rho \colon G \to \mathrm{GL}(V)$ is a homomorphism. Define an action of $G$ on $V$ by setting $gv = \rho(g)(v)$ for $g \in G$ and $v \in V$. Since $\rho(1)$ is the identity map on $V$, we have $1v = v$, and since $\rho(g_1g_2) = \rho(g_1)\rho(g_2)$, we have
+    \[
+        (g_1g_2)v = \rho(g_1g_2)(v) = \rho(g_1)(\rho(g_2)(v)) = g_1(g_2v).
+    \]
+    Thus this is an action of $G$ on $V$. Moreover, the action is linear because each $\rho(g)$ is an element of $\mathrm{GL}(V)$.\\
+    Conversely, suppose that $G$ acts linearly on $V$. For each $g \in G$, define $\rho(g) \colon V \to V$ by $\rho(g)(v) = gv$. The linearity of the action says precisely that $\rho(g)$ is an $F$-linear map, and $\rho(g^{-1})$ is its inverse, so $\rho(g) \in \mathrm{GL}(V)$. The action law gives
+    \[
+        \rho(g_1g_2)(v) = (g_1g_2)v = g_1(g_2v) = \rho(g_1)(\rho(g_2)(v))
+    \]
+    for every $v \in V$, whence $\rho(g_1g_2) = \rho(g_1)\rho(g_2)$. Therefore $\rho \colon G \to \mathrm{GL}(V)$ is a homomorphism. These two constructions clearly undo one another, so the correspondence is bijective.
 \end{proof}
 
 \subsubsection*{Linear Representations and Modules}
@@ -53,6 +63,7 @@ There is a bijective correspondence between the set of linear actions of a group
 Any non-zero homomorphism between simple $R$-modules is an isomorphism.
 \end{namedlemma}
 \begin{proof}
+    Let $M$ and $N$ be simple $R$-modules, and let $\varphi \colon M \to N$ be a non-zero $R$-module homomorphism. Since $\ker \varphi$ is a submodule of $M$, simplicity of $M$ gives either $\ker \varphi = M$ or $\ker \varphi = 0$. The first case would force $\varphi = 0$, contrary to assumption, so $\ker \varphi = 0$. Thus $\varphi$ is injective. Similarly, $\operatorname{im}\varphi$ is a submodule of $N$, so simplicity of $N$ gives either $\operatorname{im}\varphi = 0$ or $\operatorname{im}\varphi = N$. Since $\varphi$ is non-zero, its image is non-zero, and hence $\operatorname{im}\varphi = N$. Thus $\varphi$ is surjective. Therefore $\varphi$ is an isomorphism.
 \end{proof}
 
 \subsubsection*{Hom-Modules, Balanced Maps, and Tensor Products}
@@ -85,6 +96,19 @@ Any non-zero homomorphism between simple $R$-modules is an isomorphism.
 Let $R$ be a ring with unit, and let $M$ be an $R$-module. Then $M$ and $R \otimes_R M$ are isomorphic $R$-modules.
 \end{proposition}
 \begin{proof}
+    Define $f \colon R \times M \to M$ by $f(r,m) = rm$. This map is balanced, so it induces an $R$-module homomorphism
+    \[
+        \alpha \colon R \otimes_R M \to M, \qquad \alpha(r \otimes m) = rm.
+    \]
+    We define a second $R$-module homomorphism
+    \[
+        \beta \colon M \to R \otimes_R M, \qquad \beta(m) = 1 \otimes m.
+    \]
+    This is $R$-linear because $\beta(rm) = 1 \otimes rm = r \otimes m = r(1 \otimes m) = r\beta(m)$. Now $\alpha\beta(m) = \alpha(1 \otimes m) = m$ for every $m \in M$, while
+    \[
+        \beta\alpha(r \otimes m) = \beta(rm) = 1 \otimes rm = r \otimes m
+    \]
+    for every elementary tensor $r \otimes m$. Since elementary tensors generate $R \otimes_R M$, the maps $\alpha$ and $\beta$ are inverse isomorphisms.
 \end{proof}
 
 \begin{proposition}
@@ -92,6 +116,35 @@ Let $R$ be a ring with unit, and let $M$ be an $R$-module. Then $M$ and $R \otim
 Let $R$ and $S$ be rings with unit, let $M_1, \ldots, M_r$ be $(R,S)$-bimodules, and let $N$ be an $S$-module. Then $(\bigoplus_i M_i) \otimes_S N$ and $\bigoplus_i M_i \otimes_S N$ are isomorphic $R$-modules.
 \end{proposition}
 \begin{proof}
+    Define
+    \[
+        f \colon \Bigl(\bigoplus_i M_i\Bigr) \times N \to \bigoplus_i (M_i \otimes_S N)
+    \]
+    by
+    \[
+        f((m_1,\ldots,m_r),n) = (m_1 \otimes n,\ldots,m_r \otimes n).
+    \]
+    This map is balanced, so it induces an $R$-module homomorphism
+    \[
+        \alpha \colon \Bigl(\bigoplus_i M_i\Bigr) \otimes_S N \to \bigoplus_i (M_i \otimes_S N).
+    \]
+    Conversely, for each $i$, let $\iota_i \colon M_i \to \bigoplus_i M_i$ be the natural inclusion. The map $M_i \times N \to (\bigoplus_i M_i) \otimes_S N$ given by $(m,n) \mapsto \iota_i(m) \otimes n$ is balanced, and hence induces an $R$-module homomorphism
+    \[
+        \beta_i \colon M_i \otimes_S N \to \Bigl(\bigoplus_i M_i\Bigr) \otimes_S N.
+    \]
+    Combining these maps gives an $R$-module homomorphism
+    \[
+        \beta \colon \bigoplus_i (M_i \otimes_S N) \to \Bigl(\bigoplus_i M_i\Bigr) \otimes_S N,
+        \qquad
+        \beta(z_1,\ldots,z_r) = \sum_i \beta_i(z_i).
+    \]
+    On elementary tensors, $\alpha\beta$ sends an element $m \otimes n$ in the $i$th summand to itself in the $i$th summand, so $\alpha\beta$ is the identity. Also,
+    \[
+        \beta\alpha((m_1,\ldots,m_r) \otimes n)
+        = \sum_i \iota_i(m_i) \otimes n
+        = (m_1,\ldots,m_r) \otimes n.
+    \]
+    Since elementary tensors generate $(\bigoplus_i M_i) \otimes_S N$, $\beta\alpha$ is also the identity. Thus $\alpha$ and $\beta$ are inverse isomorphisms.
 \end{proof}
 
 \begin{proposition}
@@ -99,6 +152,26 @@ Let $R$ and $S$ be rings with unit, let $M_1, \ldots, M_r$ be $(R,S)$-bimodules,
 Let $F$ be a field, and let $U$ and $V$ be $F$-vector spaces, with $\dim_F(U) < \infty$. Let $U^* = \mathrm{Hom}_F(U, F)$. Then the map $\Gamma \colon U^* \otimes_F V \to \mathrm{Hom}_F(U, V)$ defined by setting $\Gamma(\varphi \otimes v)(u) = \varphi(u)v$ and extending linearly is an isomorphism of $F$-vector spaces.
 \end{proposition}
 \begin{proof}
+    Let $\{u_1,\ldots,u_n\}$ be a basis for $U$, and let $\{\varepsilon_1,\ldots,\varepsilon_n\}$ be the dual basis for $U^*$, so that $\varepsilon_i(u_j) = \delta_{ij}$. By the preceding description of tensor products over a field, every element of $U^* \otimes_F V$ can be written uniquely in the form $\sum_i \varepsilon_i \otimes v_i$ with $v_i \in V$. If
+    \[
+        \Gamma\Bigl(\sum_i \varepsilon_i \otimes v_i\Bigr) = 0,
+    \]
+    then evaluating at $u_j$ gives
+    \[
+        0 = \Gamma\Bigl(\sum_i \varepsilon_i \otimes v_i\Bigr)(u_j) = \sum_i \varepsilon_i(u_j)v_i = v_j.
+    \]
+    Hence all $v_j$ are zero, so $\Gamma$ is injective. To show surjectivity, let $T \in \mathrm{Hom}_F(U,V)$. We claim that
+    \[
+        \Gamma\Bigl(\sum_i \varepsilon_i \otimes T(u_i)\Bigr) = T.
+    \]
+    Indeed, if $u = \sum_i a_i u_i$, then
+    \[
+        \Gamma\Bigl(\sum_i \varepsilon_i \otimes T(u_i)\Bigr)(u)
+        = \sum_i \varepsilon_i(u)T(u_i)
+        = \sum_i a_iT(u_i)
+        = T(u).
+    \]
+    Thus $\Gamma$ is surjective, and therefore an isomorphism.
 \end{proof}
 
 \subsubsection*{Group Rings and Group Algebras}
@@ -119,6 +192,11 @@ Let $F$ be a field, and let $U$ and $V$ be $F$-vector spaces, with $\dim_F(U) < 
 If $F$ is a field and $G$ a finite group, then an $FG$-module is finitely generated iff it has finite dimension as an $F$-vector space.
 \end{lemma}
 \begin{proof}
+    Suppose first that $V$ is generated as an $FG$-module by $v_1,\ldots,v_t$. Every element of $V$ is then a sum of elements of the form $\alpha_i v_i$ with $\alpha_i \in FG$. Writing $\alpha_i = \sum_{g \in G} a_g g$, we have
+    \[
+        \alpha_i v_i = \sum_{g \in G} a_g(gv_i).
+    \]
+    Hence $V$ is generated as an $F$-vector space by the finite set $\{gv_i \mid g \in G,\ 1 \leq i \leq t\}$, so $\dim_F(V) < \infty$. Conversely, if $V$ is finite-dimensional over $F$, then any finite $F$-basis for $V$ also generates $V$ as an $FG$-module, since $F$ acts through the scalar elements $\lambda 1 \in FG$. Thus $V$ is finitely generated as an $FG$-module.
 \end{proof}
 
 \begin{proposition}
@@ -126,6 +204,11 @@ If $F$ is a field and $G$ a finite group, then an $FG$-module is finitely genera
 If $F$ is a field and $G$ a finite group, then there is a bijective correspondence between finitely generated $FG$-modules and linear actions of $G$ on finite-dimensional $F$-vector spaces.
 \end{proposition}
 \begin{proof}
+    Let $V$ be a finitely generated $FG$-module. By Lemma~\ref{lem:12.5}, $V$ is finite-dimensional as an $F$-vector space. Restricting the module structure map $FG \times V \to V$ to $G \times V$ gives an action of $G$ on $V$, and this action is linear because, for each $g \in G$, multiplication by $g$ is $F$-linear on $V$. Conversely, suppose that $V$ is a finite-dimensional $F$-vector space on which $G$ acts linearly. Define an action of $FG$ on $V$ by
+    \[
+        \Bigl(\sum_{g \in G} a_g g\Bigr)v = \sum_{g \in G} a_g(gv).
+    \]
+    The linearity of the $G$-action and the group action law show that this makes $V$ an $FG$-module. These two constructions undo one another: restricting an $FG$-module to the basis elements $g \in G$ recovers the corresponding linear action, and extending a linear action $F$-linearly recovers the corresponding $FG$-module structure. Therefore the correspondence is bijective.
 \end{proof}
 
 \subsubsection*{Examples and Constructions of \texorpdfstring{$FG$}{FG}-Modules}
@@ -145,6 +228,27 @@ If $F$ is a field and $G$ a finite group, then there is a bijective corresponden
 Let $U$ and $V$ be $FG$-modules. Then $U^* \otimes_F V$ and $\mathrm{Hom}_F(U, V)$ are isomorphic $FG$-modules.
 \end{proposition}
 \begin{proof}
+    By Proposition~\ref{prop:12.4}, the map
+    \[
+        \Gamma \colon U^* \otimes_F V \to \mathrm{Hom}_F(U,V),
+        \qquad
+        \Gamma(\varphi \otimes v)(u) = \varphi(u)v
+    \]
+    is an isomorphism of $F$-vector spaces. It remains only to check that $\Gamma$ respects the $G$-action. For $g \in G$, $\varphi \in U^*$, $v \in V$, and $u \in U$, we have
+    \[
+        \Gamma(g(\varphi \otimes v))(u)
+        = \Gamma((g\varphi) \otimes gv)(u)
+        = (g\varphi)(u)gv
+        = \varphi(g^{-1}u)gv.
+    \]
+    On the other hand,
+    \[
+        (g\Gamma(\varphi \otimes v))(u)
+        = g\bigl(\Gamma(\varphi \otimes v)(g^{-1}u)\bigr)
+        = g\bigl(\varphi(g^{-1}u)v\bigr)
+        = \varphi(g^{-1}u)gv.
+    \]
+    Thus $\Gamma(g(\varphi \otimes v)) = g\Gamma(\varphi \otimes v)$ on elementary tensors, and hence by linearity on all of $U^* \otimes_F V$. Therefore $\Gamma$ is an $FG$-module isomorphism.
 \end{proof}
 
 \subsubsection*{Maschke's Theorem and Semisimplicity}
@@ -157,6 +261,30 @@ Let $U$ and $V$ be $FG$-modules. Then $U^* \otimes_F V$ and $\mathrm{Hom}_F(U, V
 Let $G$ be a group, and suppose that the characteristic of $F$ is either zero or coprime to $|G|$. If $U$ is an $FG$-module and $V$ is an $FG$-submodule of $U$, then $V$ is a direct summand of $U$ as $FG$-modules.
 \end{namedtheorem}
 \begin{proof}
+    Since $V$ is an $F$-subspace of $U$, choose an $F$-subspace $W$ of $U$ such that $U = V \oplus W$ as $F$-vector spaces. Let $\pi \colon U \to V$ be the projection onto $V$ along $W$. This map is $F$-linear and restricts to the identity on $V$, but it need not be an $FG$-module homomorphism. We average it over $G$ by defining
+    \[
+        \pi'(u) = \frac{1}{|G|}\sum_{g \in G} g\pi(g^{-1}u)
+    \]
+    for $u \in U$. The scalar $1/|G|$ exists in $F$ because the characteristic of $F$ does not divide $|G|$. Since $V$ is an $FG$-submodule of $U$, each term $g\pi(g^{-1}u)$ lies in $V$, so $\pi'$ maps $U$ into $V$. If $v \in V$, then $g^{-1}v \in V$ and $\pi(g^{-1}v) = g^{-1}v$, so
+    \[
+        \pi'(v) = \frac{1}{|G|}\sum_{g \in G} gg^{-1}v = v.
+    \]
+    Thus $\pi'$ is still a projection onto $V$. We now show that $\pi'$ is an $FG$-module homomorphism. It is enough to check the action of elements $x \in G$, since the $FG$-action is obtained by $F$-linear extension. For $x \in G$ and $u \in U$,
+    \[
+        \pi'(xu)
+        = \frac{1}{|G|}\sum_{g \in G} g\pi(g^{-1}xu).
+    \]
+    Put $g = xy$. As $g$ runs through $G$, so does $y$, and hence
+    \[
+        \pi'(xu)
+        = \frac{1}{|G|}\sum_{y \in G} xy\pi(y^{-1}u)
+        = x\pi'(u).
+    \]
+    Therefore $\pi'$ is an $FG$-module homomorphism. Its kernel is then an $FG$-submodule of $U$, and because $\pi'$ is a projection onto $V$, we have
+    \[
+        U = V \oplus \ker \pi'.
+    \]
+    Thus $V$ is a direct summand of $U$ as an $FG$-module.
 \end{proof}
 
 \begin{itemize}
@@ -166,13 +294,18 @@ Let $G$ be a group, and suppose that the characteristic of $F$ is either zero or
 
 \begin{corollary}
 \label{cor:12.8}
-Let $G$ be a group, and let $F$ be a field whose characteristic does not divide $|G|$. Then every non-zero $FG$-module is semisimple.
+Let $G$ be a group, and let $F$ be a field whose characteristic does not divide $|G|$. Then every non-zero finitely generated $FG$-module is semisimple.
 \end{corollary}
 \begin{proof}
+    Let $U$ be a non-zero finitely generated $FG$-module. By Lemma~\ref{lem:12.5}, $U$ is finite-dimensional over $F$, so we argue by induction on $\dim_F(U)$. If $U$ is simple, then $U$ is already semisimple. Otherwise, $U$ has a non-zero proper $FG$-submodule $V$. By \nameref{thm:maschke}, there is an $FG$-submodule $W$ of $U$ such that
+    \[
+        U = V \oplus W.
+    \]
+    Both $V$ and $W$ have smaller $F$-dimension than $U$, so by induction they are semisimple. Their direct sum is therefore semisimple, and hence $U$ is semisimple.
 \end{proof}
 
 \begin{itemize}
-    \item In Chapter~6 we shall be concerned only with the case $F = \C$, called \emph{ordinary} representation theory; since $\C$ has characteristic zero, by Corollary~\ref{cor:12.8} every non-zero $\C G$-module is semisimple.
+    \item In Chapter~6 we shall be concerned only with the case $F = \C$, called \emph{ordinary} representation theory; since $\C$ has characteristic zero, by Corollary~\ref{cor:12.8} every non-zero finitely generated $\C G$-module is semisimple.
     \item The next section concentrates on algebras with this property. The case where the characteristic of $F$ divides $|G|$, in which $FG$-modules need not be semisimple, is the subject of \emph{modular} representation theory (originated by Dickson in 1907; mostly developed by Brauer from the 1930s onward).
 \end{itemize}
 
