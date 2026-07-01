@@ -318,6 +318,17 @@ Throughout these exercises, let $F$ be a field and let $G$ be a finite group.
 Let $U$ and $V$ be $FG$-modules having the same dimension $n$, and let $\rho \colon G \to \mathrm{GL}(U)$ and $\tau \colon G \to \mathrm{GL}(V)$ be the corresponding representations. By fixing $F$-bases for $U$ and $V$, we consider $\rho$ and $\tau$ as homomorphisms from $G$ to $\mathrm{GL}(n, F)$. Show that $U \cong V$ iff there exists some $M \in \mathrm{GL}(n, F)$ such that $\rho(g) M = M \tau(g)$ for every $g \in G$. (Two representations are said to be \emph{equivalent} if this latter condition holds; hence two representations are equivalent iff their corresponding modules over the group algebra are isomorphic.)
 \end{exercise}
 \begin{solution}
+    Fix the chosen $F$-bases for $U$ and $V$, and write vectors in coordinates with respect to these bases.\\
+    $(\Rightarrow)$ Suppose that $U \cong V$ as $FG$-modules. Then there is an $FG$-module isomorphism $T \colon V \to U$. Let $M$ be the matrix of $T$ with respect to the chosen bases. Since $T$ is an $F$-vector space isomorphism, $M \in \mathrm{GL}(n,F)$. For every $v \in V$ and $g \in G$, the $FG$-linearity of $T$ gives
+    \[
+        T(gv) = gT(v).
+    \]
+    In coordinates, the left hand side is represented by $M\tau(g)v$, while the right hand side is represented by $\rho(g)Mv$. Hence $M\tau(g)v = \rho(g)Mv$ for every coordinate vector $v$, and therefore $\rho(g)M = M\tau(g)$ for every $g \in G$.\\
+    $(\Leftarrow)$ Conversely, suppose that there exists $M \in \mathrm{GL}(n,F)$ such that $\rho(g)M = M\tau(g)$ for every $g \in G$. Let $T \colon V \to U$ be the $F$-linear map represented by $M$. Since $M$ is invertible, $T$ is an $F$-vector space isomorphism. For $v \in V$ and $g \in G$, the given matrix identity says exactly that
+    \[
+        gT(v) = T(gv).
+    \]
+    Thus $T$ commutes with the action of every $g \in G$. Since the $FG$-action is obtained by extending the $G$-action $F$-linearly, $T$ is an $FG$-module homomorphism. Therefore $T$ is an $FG$-module isomorphism, and so $U \cong V$.
 \end{solution}
 
 \begin{exercise}
@@ -325,6 +336,20 @@ Let $U$ and $V$ be $FG$-modules having the same dimension $n$, and let $\rho \co
 Let $\sigma = \sum_{g \in G} g \in FG$. Show that the subspace $F\sigma$ of $FG$ is the unique submodule of $FG$ that is isomorphic with the trivial module.
 \end{exercise}
 \begin{solution}
+    For any $x \in G$, left multiplication gives
+    \[
+        x\sigma = \sum_{g \in G} xg = \sum_{h \in G} h = \sigma,
+    \]
+    since $g \mapsto xg$ is a permutation of $G$. Thus every element of $G$ acts trivially on $F\sigma$, so $F\sigma$ is a submodule isomorphic with the trivial module.\\
+    Conversely, let $W$ be a submodule of $FG$ isomorphic with the trivial module. Choose a non-zero element
+    \[
+        u = \sum_{g \in G} a_g g \in W.
+    \]
+    Since $G$ acts trivially on $W$, we have $xu = u$ for every $x \in G$. Comparing the coefficient of $h \in G$ in this equality gives
+    \[
+        a_{x^{-1}h} = a_h.
+    \]
+    Given any $g,h \in G$, choose $x = hg^{-1}$. Then $x^{-1}h = g$, so $a_g = a_h$. Hence all coefficients of $u$ are equal, say $a_g = c$ for every $g \in G$. Since $u \neq 0$, we have $c \neq 0$, and therefore $u = c\sigma$. Thus $W = Fu = F\sigma$, proving uniqueness.
 \end{solution}
 
 \begin{exercise}
@@ -332,6 +357,31 @@ Let $\sigma = \sum_{g \in G} g \in FG$. Show that the subspace $F\sigma$ of $FG$
 (cont.) Let $\epsilon \colon FG \to F$ be the $FG$-module epimorphism defined by $\epsilon(g) = 1$ for all $g \in G$, and let $\Delta = \ker \epsilon$. (We call $\Delta$ the \emph{augmentation ideal} of $FG$.) Show that $\Delta$ is the unique submodule of $FG$ whose quotient is isomorphic with the trivial module.
 \end{exercise}
 \begin{solution}
+    Write
+    \[
+        \epsilon\Bigl(\sum_{g \in G} a_g g\Bigr) = \sum_{g \in G} a_g.
+    \]
+    This is an $FG$-module homomorphism: it is $F$-linear, and for $x \in G$,
+    \[
+        \epsilon\Bigl(x\sum_{g \in G} a_g g\Bigr)
+        = \epsilon\Bigl(\sum_{g \in G} a_g xg\Bigr)
+        = \sum_{g \in G} a_g
+        = x\epsilon\Bigl(\sum_{g \in G} a_g g\Bigr),
+    \]
+    where the last equality uses the trivial action of $G$ on $F$. Since $\epsilon(1)=1$, the map is onto, and by \nameref{thm:fth} we have
+    \[
+        FG/\Delta \cong F.
+    \]
+    Thus $\Delta$ is a submodule whose quotient is isomorphic with the trivial module.\\
+    Conversely, suppose that $N$ is a submodule of $FG$ and that $FG/N \cong F$ as $FG$-modules. Compose the quotient map $FG \to FG/N$ with such an isomorphism to obtain an $FG$-module epimorphism $q \colon FG \to F$ with kernel $N$. Put $c = q(1)$. For every $g \in G$, we have
+    \[
+        q(g) = q(g \cdot 1) = gq(1) = c,
+    \]
+    again because $F$ is the trivial module. Hence, for $\sum_{g \in G} a_g g \in FG$,
+    \[
+        q\Bigl(\sum_{g \in G} a_g g\Bigr) = \sum_{g \in G} a_g c = c\epsilon\Bigl(\sum_{g \in G} a_g g\Bigr).
+    \]
+    Since $q$ is onto, $c \neq 0$. Therefore $\ker q = \ker \epsilon = \Delta$, so $N=\Delta$. This proves the desired uniqueness.
 \end{solution}
 
 \begin{exercise}
@@ -339,6 +389,28 @@ Let $\sigma = \sum_{g \in G} g \in FG$. Show that the subspace $F\sigma$ of $FG$
 (cont.) Suppose that the characteristic of $F$ divides $|G|$. Show that $F\sigma \subseteq \Delta$. Conclude that $\Delta$ is not a direct summand of $FG$ and hence that the $FG$-module $FG$ is not semisimple. (This shows that the converse of Corollary~\ref{cor:12.8} is true.)
 \end{exercise}
 \begin{solution}
+    Since $\operatorname{char}(F)$ divides $|G|$, we have $|G|\cdot 1_F = 0$ in $F$. Therefore
+    \[
+        \epsilon(\sigma)
+        = \epsilon\Bigl(\sum_{g \in G} g\Bigr)
+        = \sum_{g \in G} 1
+        = |G|\cdot 1_F
+        = 0.
+    \]
+    Hence $\sigma \in \Delta$, and so $F\sigma \subseteq \Delta$.\\
+    We now show that $\Delta$ cannot be a direct summand of $FG$. Suppose, for contradiction, that
+    \[
+        FG = \Delta \oplus W
+    \]
+    for some $FG$-submodule $W$. Then
+    \[
+        W \cong FG/\Delta \cong F,
+    \]
+    so $W$ is a submodule isomorphic with the trivial module. By Exercise~\ref{ex:12.2}, we must have $W = F\sigma$. But $F\sigma \subseteq \Delta$, so
+    \[
+        W \cap \Delta = F\sigma \neq 0,
+    \]
+    contradicting the directness of the sum. Thus $\Delta$ is not a direct summand of $FG$. Since every submodule of a semisimple module is a direct summand, it follows that $FG$ is not semisimple.
 \end{solution}
 
 \subsection*{Further Exercises}
@@ -362,6 +434,39 @@ While $H^3(H, A)$ plays some role in the theory of extensions of a non-abelian g
 (cont.) Define a homomorphism $\varphi \colon H \to \mathrm{Aut}(A)$ by $\varphi(x)(a) = xa$. Show that there is a bijective correspondence between the set of splitting maps of $A \rtimes_\varphi H$ and $Z^1(H, A)$. (Recall that a homomorphism $t \colon H \to A \rtimes_\varphi H$ is called a splitting map if $\eta \circ t$ is the identity map on $H$, where $\eta \colon A \rtimes_\varphi H \to H$ is the natural map. The natural inclusion of $H$ into $A \rtimes_\varphi H$ is a splitting map, but there may be others.)
 \end{exercise}
 \begin{solution}
+    Since $A$ is a $\Z H$-module, each $x \in H$ acts on $A$ by an automorphism of the underlying abelian group, and the action law gives $\varphi(xy)=\varphi(x)\varphi(y)$. Thus $\varphi \colon H \to \mathrm{Aut}(A)$ is a homomorphism. We use additive notation for $A$, so multiplication in $A \rtimes_\varphi H$ is given by
+    \[
+        (a,x)(b,y) = (a + xb, xy).
+    \]
+    Let $t \colon H \to A \rtimes_\varphi H$ be a splitting map. Since $\eta\circ t$ is the identity on $H$, each $t(x)$ has the form
+    \[
+        t(x) = (f(x),x)
+    \]
+    for a unique function $f \colon H \to A$. Since $t$ is a homomorphism, $t(1)=(0,1)$, so $f(1)=0$. Also, for $x,y \in H$,
+    \[
+        (f(xy),xy)
+        = t(xy)
+        = t(x)t(y)
+        = (f(x),x)(f(y),y)
+        = (f(x)+xf(y),xy).
+    \]
+    Hence
+    \[
+        f(xy) = f(x)+xf(y).
+    \]
+    This is precisely the condition $\delta^2 f=0$, so $f \in Z^1(H,A)$.\\
+    Conversely, suppose that $f \in Z^1(H,A)$. Define $t_f \colon H \to A \rtimes_\varphi H$ by
+    \[
+        t_f(x) = (f(x),x).
+    \]
+    The normalization of $f$ gives $t_f(1)=(0,1)$, and the cocycle identity gives
+    \[
+        t_f(x)t_f(y)
+        = (f(x)+xf(y),xy)
+        = (f(xy),xy)
+        = t_f(xy).
+    \]
+    Therefore $t_f$ is a homomorphism. Moreover, $\eta(t_f(x))=x$, so $t_f$ is a splitting map. These two constructions are inverse to one another, and hence the splitting maps of $A \rtimes_\varphi H$ are in bijective correspondence with $Z^1(H,A)$.
 \end{solution}
 
 \begin{exercise}
@@ -369,6 +474,46 @@ While $H^3(H, A)$ plays some role in the theory of extensions of a non-abelian g
 (cont.) We say that two splitting maps $t$ and $u$ of $A \rtimes_\varphi H$ are \emph{conjugate} if there is some $a \in A$ such that $u(x) = at(x)a^{-1}$ for all $x \in H$. (Verify that this is an equivalence relation on the set of splitting maps.) Show that there is a bijective correspondence between the set of conjugacy classes of splitting maps of $A \rtimes_\varphi H$ and $H^1(H, A)$.
 \end{exercise}
 \begin{solution}
+    First observe that conjugacy of splitting maps is an equivalence relation. Reflexivity is obtained by conjugating by $0 \in A$; symmetry follows by conjugating by $-a$ if the original conjugating element is $a$; and transitivity follows because two successive conjugations by elements of $A$ are the same as conjugation by their sum.\\
+    By Exercise~\ref{ex:12.5}, a splitting map $t$ corresponds to a $1$-cocycle $f \in Z^1(H,A)$ via
+    \[
+        t(x) = (f(x),x).
+    \]
+    Let $u$ be another splitting map, corresponding to $k \in Z^1(H,A)$, so that
+    \[
+        u(x) = (k(x),x).
+    \]
+    We identify $a \in A$ with $(a,1) \in A \rtimes_\varphi H$. Then
+    \[
+        (a,1)(f(x),x)(-a,1)
+        = (f(x)+a-xa,x).
+    \]
+    Therefore $u(x)=at(x)a^{-1}$ for every $x \in H$ iff
+    \[
+        k(x) = f(x)+a-xa
+    \]
+    for every $x \in H$. Identifying $C^0(H,A)$ with $A$, the coboundary of $a$ is the $1$-cochain
+    \[
+        (\delta^1 a)(x) = xa-a.
+    \]
+    Thus the preceding identity says
+    \[
+        k-f = -\delta^1 a = \delta^1(-a).
+    \]
+    In particular, conjugate splitting maps determine $1$-cocycles in the same coset of $B^1(H,A)$.\\
+    Conversely, suppose that two $1$-cocycles $f,k \in Z^1(H,A)$ differ by a $1$-coboundary. Say
+    \[
+        k-f = \delta^1 c,
+    \]
+    so $k(x)=f(x)+xc-c$ for every $x \in H$. Then
+    \[
+        k(x)=f(x)+(-c)-x(-c),
+    \]
+    and the calculation above shows that the corresponding splitting maps satisfy
+    \[
+        u(x)=(-c)t(x)(-c)^{-1}
+    \]
+    for every $x \in H$. Hence they are conjugate. It follows that the bijection from Exercise~\ref{ex:12.5} descends exactly to a bijection between conjugacy classes of splitting maps and cosets in $Z^1(H,A)/B^1(H,A)=H^1(H,A)$.
 \end{solution}
 
 \end{document}
