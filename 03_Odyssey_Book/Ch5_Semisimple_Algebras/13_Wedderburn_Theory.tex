@@ -568,6 +568,28 @@ Throughout these exercises, $A$ denotes a finite-dimensional algebra with unit o
 Let $n \in \N$. Let $V$ be the $n$-dimensional subspace of $A^n$ spanned by the identity elements of the summands. Show that if $M$ is an $A$-module and $T \colon V \to M$ is a linear transformation, then there is a unique $A$-module homomorphism from $A^n$ to $M$ which extends $T$.
 \end{exercise}
 \begin{solution}
+    Let $e_i$ denote the element of $A^n$ whose $i$th coordinate is $1$ and whose other coordinates are zero. Then $V$ is the $F$-span of $e_1,\ldots,e_n$, and every element of $A^n$ has a unique expression
+    \[
+        (a_1,\ldots,a_n)=a_1e_1+\cdots+a_ne_n.
+    \]
+    Define
+    \[
+        \widetilde{T}(a_1,\ldots,a_n)=a_1T(e_1)+\cdots+a_nT(e_n).
+    \]
+    This map is $F$-linear, and for $b\in A$ we have
+    \[
+        \widetilde{T}(b(a_1,\ldots,a_n))
+        =\widetilde{T}(ba_1,\ldots,ba_n)
+        =ba_1T(e_1)+\cdots+ba_nT(e_n)
+        =b\widetilde{T}(a_1,\ldots,a_n).
+    \]
+    Hence $\widetilde{T}$ is an $A$-module homomorphism. Also $\widetilde{T}(e_i)=T(e_i)$ for each $i$, so $\widetilde{T}$ extends $T$. Finally, if $\varphi \colon A^n\to M$ is any $A$-module homomorphism extending $T$, then
+    \[
+        \varphi(a_1,\ldots,a_n)
+        =a_1\varphi(e_1)+\cdots+a_n\varphi(e_n)
+        =a_1T(e_1)+\cdots+a_nT(e_n).
+    \]
+    Thus $\varphi=\widetilde{T}$, proving uniqueness.
 \end{solution}
 
 \begin{exercise}
@@ -575,6 +597,16 @@ Let $n \in \N$. Let $V$ be the $n$-dimensional subspace of $A^n$ spanned by the 
 (cont.) Suppose that $B$ is an $A$-module having an $n$-dimensional subspace $U$ such that whenever $M$ is an $A$-module and $T \colon U \to M$ is a linear transformation, there is a unique extension of $T$ to an $A$-module homomorphism from $B$ to $M$. Show that $B$ and $A^n$ are isomorphic $A$-modules. (Modules of the form $A^n$ for some $n \in \N$ are called \emph{free} $A$-modules; hence this exercise provides an alternate characterization of freeness, which we shall generalize for group algebras in the exercises to Section 16.)
 \end{exercise}
 \begin{solution}
+    Choose a basis $u_1,\ldots,u_n$ of $U$, and let $e_1,\ldots,e_n$ be the standard elements of the subspace $V\leq A^n$ from Exercise~\ref{ex:13.1}. Define linear maps
+    \[
+        \alpha_0 \colon V\to B,\qquad \alpha_0(e_i)=u_i,
+    \]
+    and
+    \[
+        \beta_0 \colon U\to A^n,\qquad \beta_0(u_i)=e_i.
+    \]
+    By Exercise~\ref{ex:13.1}, $\alpha_0$ extends uniquely to an $A$-module homomorphism $\alpha \colon A^n\to B$. By the assumed property of $B$, $\beta_0$ extends uniquely to an $A$-module homomorphism $\beta \colon B\to A^n$.\\
+    The composite $\beta\alpha \colon A^n\to A^n$ extends the identity map on $V$, because $\beta\alpha(e_i)=\beta(u_i)=e_i$. The identity map on $A^n$ is also an $A$-module homomorphism extending the identity map on $V$. By the uniqueness in Exercise~\ref{ex:13.1}, we have $\beta\alpha=1_{A^n}$. Similarly, $\alpha\beta \colon B\to B$ extends the identity map on $U$, and so does $1_B$. By the uniqueness property of $B$, we have $\alpha\beta=1_B$. Therefore $\alpha$ and $\beta$ are inverse isomorphisms, and $B\cong A^n$ as $A$-modules.
 \end{solution}
 
 \begin{exercise}
@@ -582,6 +614,21 @@ Let $n \in \N$. Let $V$ be the $n$-dimensional subspace of $A^n$ spanned by the 
 Let $n \in \N$, and let $T_n(F)$ be the algebra of upper triangular $n \times n$ matrices. Show that the set $V_n(F)$ of column vectors over $F$ of length $n$ is a $T_n(F)$-module that has a unique composition series in which every simple $T_n(F)$-module appears exactly once as a composition factor.
 \end{exercise}
 \begin{solution}
+    The usual matrix action makes $V_n(F)$ a $T_n(F)$-module. Let
+    \[
+        W_k=\langle e_1,\ldots,e_k\rangle_F
+    \]
+    for $0\leq k\leq n$, where $W_0=0$ and $e_1,\ldots,e_n$ are the standard column vectors. Since an upper triangular matrix sends $e_j$ into $\langle e_1,\ldots,e_j\rangle_F$, each $W_k$ is a $T_n(F)$-submodule.\\
+    We claim that these are the only submodules. Let $0\neq W\leq V_n(F)$, and choose the largest index $k$ such that some vector in $W$ has non-zero $k$th coordinate. Then $W\subseteq W_k$. For such a vector $v$, the matrix unit $E_{kk}(1)$ gives a non-zero scalar multiple of $e_k$, so $e_k\in W$. Applying $E_{ik}(1)$ for $1\leq i\leq k$ gives $e_i\in W$. Hence $W_k\subseteq W$, and so $W=W_k$. Thus the submodule lattice is exactly
+    \[
+        0=W_0<W_1<\cdots<W_n=V_n(F).
+    \]
+    Therefore this is the unique composition series of $V_n(F)$. The quotient $W_k/W_{k-1}$ is one-dimensional, and a matrix $(a_{ij})\in T_n(F)$ acts on it by the scalar $a_{kk}$.\\
+    It remains to see that every simple module occurs in this list. Let $N$ be the ideal of strictly upper triangular matrices. Then $N^n=0$. If $S$ is a simple $T_n(F)$-module, then $NS$ is a submodule of $S$, so either $NS=0$ or $NS=S$. The second possibility would imply $N^mS=S$ for every $m\geq1$, contradicting $N^n=0$. Hence $NS=0$, and $S$ is a simple module for
+    \[
+        T_n(F)/N\cong F\oplus\cdots\oplus F.
+    \]
+    The simple modules for this direct sum are the coordinate modules. Indeed, the diagonal idempotents split any module into the sum of their images, and a simple module can have only one non-zero such image. Thus one diagonal copy of $F$ acts by scalars and the other copies act as zero. These are exactly the modules $W_k/W_{k-1}$. Hence every simple $T_n(F)$-module appears exactly once as a composition factor in the displayed series.
 \end{solution}
 
 \begin{exercise}
@@ -589,6 +636,20 @@ Let $n \in \N$, and let $T_n(F)$ be the algebra of upper triangular $n \times n$
 (cont.) Show that the $T_n(F)$-module $T_n(F)$ is isomorphic with the direct sum of all non-zero submodules of $V_n(F)$.
 \end{exercise}
 \begin{solution}
+    By Exercise~\ref{ex:13.3}, the non-zero submodules of $V_n(F)$ are
+    \[
+        W_k=\langle e_1,\ldots,e_k\rangle_F,\qquad 1\leq k\leq n.
+    \]
+    For each $k$, let $C_k$ be the subspace of $T_n(F)$ consisting of matrices whose only possibly non-zero entries lie in the $k$th column. Since left multiplication by an upper triangular matrix acts on each column separately, $C_k$ is a left $T_n(F)$-submodule of the regular module $T_n(F)$. Also every upper triangular matrix is the sum of its columns, so
+    \[
+        T_n(F)=C_1\oplus\cdots\oplus C_n
+    \]
+    as $T_n(F)$-modules.\\
+    The map $C_k\to W_k$ sending a matrix to its $k$th column is a $T_n(F)$-module isomorphism. Indeed, the $k$th column of $XM$ is $X$ times the $k$th column of $M$, and the possible $k$th columns of upper triangular matrices are exactly the vectors in $W_k$. Therefore
+    \[
+        T_n(F)\cong W_1\oplus\cdots\oplus W_n,
+    \]
+    which is the direct sum of all non-zero submodules of $V_n(F)$.
 \end{solution}
 
 \begin{exercise}
@@ -596,6 +657,17 @@ Let $n \in \N$, and let $T_n(F)$ be the algebra of upper triangular $n \times n$
 (cont.) Find the largest nilpotent ideal of $T_n(F)$, and show without reference to Theorem~\ref{thm:13.23} that it is also the common annihilator of all simple $T_n(F)$-modules and the smallest submodule of $T_n(F)$ having semisimple quotient.
 \end{exercise}
 \begin{solution}
+    Let $N$ be the ideal of strictly upper triangular matrices. Then $N^n=0$, so $N$ is nilpotent. We first show that $N$ is the largest nilpotent ideal. Let $I$ be a nilpotent ideal of $T_n(F)$. If some $X\in I$ had a non-zero diagonal entry $x_{ii}$, then
+    \[
+        E_{ii}(1)XE_{ii}(1)=x_{ii}E_{ii}(1)
+    \]
+    would lie in $I$. Hence $E_{ii}(1)\in I$. But $E_{ii}(1)$ is idempotent and non-zero, so it is not nilpotent, contradicting the nilpotence of $I$. Thus every element of $I$ has zero diagonal, and $I\subseteq N$. Hence $N$ is the largest nilpotent ideal.\\
+    Next we compute the common annihilator of the simple modules. From Exercise~\ref{ex:13.3}, the simple modules are the one-dimensional quotients $W_i/W_{i-1}$. A strictly upper triangular matrix sends $W_i$ into $W_{i-1}$, so $N$ annihilates every $W_i/W_{i-1}$. Conversely, if $X=(x_{ij})$ is not in $N$, then $x_{ii}\neq0$ for some $i$, and $X$ acts on $W_i/W_{i-1}$ by the non-zero scalar $x_{ii}$. Hence $X$ does not annihilate all simple modules. Therefore $N$ is exactly the common annihilator of all simple $T_n(F)$-modules.\\
+    Finally, $T_n(F)/N$ is the diagonal algebra, isomorphic to $F\oplus\cdots\oplus F$, so it is semisimple as a $T_n(F)$-module. Thus $N$ is a submodule of $T_n(F)$ with semisimple quotient. If $L\leq T_n(F)$ is any submodule such that $T_n(F)/L$ is semisimple, then the common annihilator of all simple modules annihilates $T_n(F)/L$. In particular, for $x\in N$,
+    \[
+        x(1+L)=x+L=0,
+    \]
+    so $x\in L$. Hence $N\subseteq L$. Therefore $N$ is the smallest submodule of $T_n(F)$ having semisimple quotient.
 \end{solution}
 
 \begin{exercise}
@@ -603,6 +675,8 @@ Let $n \in \N$, and let $T_n(F)$ be the algebra of upper triangular $n \times n$
 Let $U$ be an $A$-module, let $n \in \N$, and let $U^n$ be the set of column vectors of length $n$ with entries from $U$, considered in the obvious way as an $\mathcal{M}_n(A)$-module. Show that $U$ is a simple $A$-module iff $U^n$ is a simple $\mathcal{M}_n(A)$-module.
 \end{exercise}
 \begin{solution}
+    Suppose first that $U$ is simple, and let $0\neq W\leq U^n$ be an $\mathcal{M}_n(A)$-submodule. Choose a vector $w=(u_1,\ldots,u_n)^t\in W$ with some $u_j\neq0$. Applying $E_{jj}(1)$ to $w$ shows that the vector with $u_j$ in the $j$th coordinate and zero elsewhere lies in $W$. Since $U$ is simple, $Au_j=U$. Applying $E_{jj}(a)$ for $a\in A$ shows that every vector with an arbitrary element of $U$ in the $j$th coordinate lies in $W$. Applying $E_{ij}(1)$ for $1\leq i\leq n$ then shows that every coordinate copy of $U$ lies in $W$. Hence $W=U^n$, proving that $U^n$ is simple.\\
+    Conversely, suppose that $U^n$ is simple as an $\mathcal{M}_n(A)$-module. If $0\neq L<U$ were an $A$-submodule, then $L^n$ would be a non-zero proper $\mathcal{M}_n(A)$-submodule of $U^n$, contradicting simplicity. Therefore $U$ is simple as an $A$-module.
 \end{solution}
 
 \begin{exercise}
@@ -610,6 +684,35 @@ Let $U$ be an $A$-module, let $n \in \N$, and let $U^n$ be the set of column vec
 (cont.) Show that $\mathrm{Hom}_A(U,V) \cong \mathrm{Hom}_{\mathcal{M}_n(A)}(U^n, V^n)$ for any $A$-modules $U$ and $V$.
 \end{exercise}
 \begin{solution}
+    Given $\varphi\in\Hom_A(U,V)$, define $\varphi^n \colon U^n\to V^n$ by applying $\varphi$ to each coordinate. This is an $\mathcal{M}_n(A)$-module homomorphism, so we have a linear map
+    \[
+        \Gamma \colon \Hom_A(U,V)\to \Hom_{\mathcal{M}_n(A)}(U^n,V^n),
+        \qquad \Gamma(\varphi)=\varphi^n.
+    \]
+    If $\varphi^n=0$, then $\varphi=0$, so $\Gamma$ is injective.\\
+    To prove surjectivity, let $\Psi \colon U^n\to V^n$ be an $\mathcal{M}_n(A)$-module homomorphism. Let $\iota_i$ denote insertion into the $i$th coordinate and $\pi_i$ projection onto the $i$th coordinate. Since $E_{11}(1)\iota_1(u)=\iota_1(u)$, we have
+    \[
+        \Psi\iota_1(u)=\Psi E_{11}(1)\iota_1(u)=E_{11}(1)\Psi\iota_1(u),
+    \]
+    so $\Psi\iota_1(u)$ has only its first coordinate possibly non-zero. Define $\varphi \colon U\to V$ by
+    \[
+        \Psi\iota_1(u)=\iota_1(\varphi(u)).
+    \]
+    For $a\in A$,
+    \[
+        \iota_1(\varphi(au))
+        =\Psi E_{11}(a)\iota_1(u)
+        =E_{11}(a)\Psi\iota_1(u)
+        =\iota_1(a\varphi(u)),
+    \]
+    so $\varphi$ is $A$-linear. For each $j$,
+    \[
+        \Psi\iota_j(u)=\Psi E_{j1}(1)\iota_1(u)=E_{j1}(1)\Psi\iota_1(u)=\iota_j(\varphi(u)).
+    \]
+    By additivity, $\Psi$ applies $\varphi$ to each coordinate. Thus $\Psi=\varphi^n$, and $\Gamma$ is surjective. Therefore
+    \[
+        \Hom_A(U,V)\cong \Hom_{\mathcal{M}_n(A)}(U^n,V^n).
+    \]
 \end{solution}
 
 \begin{exercise}
@@ -617,6 +720,38 @@ Let $U$ be an $A$-module, let $n \in \N$, and let $U^n$ be the set of column vec
 (cont.) Show that every $\mathcal{M}_n(A)$-module is isomorphic with a module of the form $U^n$ for some $A$-module $U$. (What Exercises~\ref{ex:13.6}--\ref{ex:13.8} show is that the module theory of the algebras $A$ and $\mathcal{M}_n(A)$ is, in a sense that can be made precise, the same. In the language of category theory, we say that the categories of $A$-modules and $\mathcal{M}_n(A)$-modules are \emph{Morita equivalent}.)
 \end{exercise}
 \begin{solution}
+    Let $W$ be an $\mathcal{M}_n(A)$-module, and put $e_i=E_{ii}(1)$. The idempotents $e_1,\ldots,e_n$ are orthogonal and satisfy $e_1+\cdots+e_n=1$, so
+    \[
+        W=e_1W\oplus\cdots\oplus e_nW.
+    \]
+    Let $U=e_1W$, made into an $A$-module by
+    \[
+        a\cdot u=E_{11}(a)u.
+    \]
+    For each $i$, the maps
+    \[
+        U\to e_iW,\qquad u\mapsto E_{i1}(1)u,
+    \]
+    and
+    \[
+        e_iW\to U,\qquad w\mapsto E_{1i}(1)w,
+    \]
+    are inverse $F$-linear isomorphisms. Define
+    \[
+        \Phi \colon U^n\to W,\qquad
+        \Phi((u_1,\ldots,u_n)^t)=\sum_{i=1}^n E_{i1}(1)u_i.
+    \]
+    The inverse sends $w\in W$ to
+    \[
+        (E_{11}(1)w,E_{12}(1)w,\ldots,E_{1n}(1)w)^t.
+    \]
+    Hence $\Phi$ is an $F$-linear isomorphism. It remains only to check the action. If $X=(a_{ij})\in\mathcal{M}_n(A)$, then
+    \[
+        X\Phi((u_1,\ldots,u_n)^t)
+        =\sum_{i,j} E_{ij}(a_{ij})E_{j1}(1)u_j
+        =\sum_i E_{i1}(1)\Bigl(\sum_j E_{11}(a_{ij})u_j\Bigr).
+    \]
+    This is exactly $\Phi(X(u_1,\ldots,u_n)^t)$, using the $A$-module structure on $U$. Thus $\Phi$ is an $\mathcal{M}_n(A)$-module isomorphism, and $W\cong U^n$.
 \end{solution}
 
 \begin{exercise}
@@ -624,6 +759,16 @@ Let $U$ be an $A$-module, let $n \in \N$, and let $U^n$ be the set of column vec
 Show that $A$ is a simple $A$-module iff $A$ is a division algebra.
 \end{exercise}
 \begin{solution}
+    Suppose first that $A$ is a division algebra. If $0\neq I\leq A$ is a left ideal, choose $0\neq x\in I$. Then $x$ is invertible, so $1=x^{-1}x\in I$, and hence $I=A$. Thus the regular left $A$-module $A$ has no non-zero proper submodules, so it is simple.\\
+    Conversely, suppose that $A$ is simple as a left $A$-module. Let $0\neq a\in A$. The left ideal $Aa$ is non-zero, so $Aa=A$. Hence there exists $b\in A$ such that $ba=1$. Right multiplication by $a$ is then surjective, since every $x\in A$ can be written as
+    \[
+        x=(xb)a.
+    \]
+    Since $A$ is finite-dimensional over $F$, this right multiplication map is also injective. Now
+    \[
+        (ab-1)a=a(ba)-a=0,
+    \]
+    so injectivity gives $ab-1=0$. Thus $ab=ba=1$, and $a$ is invertible. Every non-zero element of $A$ is invertible, so $A$ is a division algebra.
 \end{solution}
 
 \begin{exercise}
@@ -631,6 +776,8 @@ Show that $A$ is a simple $A$-module iff $A$ is a division algebra.
 We can clearly regard an $A/\mathrm{rad}\, A$-module as being an $A$-module; on the other hand, a simple $A$-module is annihilated by $\mathrm{rad}(A)$ and hence can be considered as an $A/\mathrm{rad}\, A$-module. Show that an $A$-module is simple iff it is a simple $A/\mathrm{rad}(A)$-module. (Since $A/\mathrm{rad}(A)$ is a semisimple algebra, this implies that the determination of simple modules over arbitrary algebras reduces to the case of semisimple algebras.)
 \end{exercise}
 \begin{solution}
+    Let $R=\mathrm{rad}(A)$. If $M$ is a simple $A$-module, then Theorem~\ref{thm:13.23} shows that $R$ annihilates every simple $A$-module. Hence $RM=0$, so the action of $A$ on $M$ factors through $A/R$. The $A$-submodules of $M$ are then exactly the $A/R$-submodules of $M$, because the two actions differ only by the quotient map $A\to A/R$. Therefore $M$ is simple as an $A/R$-module.\\
+    Conversely, suppose that $M$ is simple as an $A/R$-module. Regard $M$ as an $A$-module through the quotient map. Then $R$ acts as zero, and again the $A$-submodules and the $A/R$-submodules of $M$ are the same. Since there are no non-zero proper $A/R$-submodules, there are no non-zero proper $A$-submodules. Hence $M$ is simple as an $A$-module.
 \end{solution}
 
 \begin{exercise}
@@ -638,6 +785,12 @@ We can clearly regard an $A/\mathrm{rad}\, A$-module as being an $A$-module; on 
 Let $B$ be a finite-dimensional $F$-algebra, possibly without unit. Show that if $B$ is a simple algebra whose multiplication is not identically zero, then $B$ is isomorphic with a matrix algebra over a division algebra.
 \end{exercise}
 \begin{solution}
+    Since the multiplication on $B$ is not identically zero, we have $B^2\neq0$. The subspace $B^2$, spanned by all products of two elements of $B$, is a two-sided ideal of $B$. Since $B$ is simple, this forces $B^2=B$.\\
+    We claim that $B$ has no non-zero nilpotent ideals. If $I$ were a non-zero nilpotent ideal, then simplicity would give $I=B$, so $B$ itself would be nilpotent. But $B^2=B$ implies $B^m=B$ for every $m\geq1$, contradicting nilpotence. Thus no such ideal exists. By Theorem~\ref{thm:13.26}, the algebra $B$ has a unit. Now Theorem~\ref{thm:13.17} applies to the simple algebra with unit $B$, and gives
+    \[
+        B\cong \mathcal{M}_n(D)
+    \]
+    for some $n\in\N$ and some division algebra $D$.
 \end{solution}
 
 \subsection*{Further Exercises}
@@ -647,17 +800,33 @@ Let $A$ be as above, and let $M$ be a finitely generated $A$-module.
 \begin{exercise}
 \label{ex:13.12}
 Show that the following objects (exist and) are equal: the intersection of all maximal submodules of $M$; the smallest submodule of $M$ having semisimple quotient; and $\mathrm{rad}(A)M$. This submodule of $M$ is called the \emph{radical} of $M$ and is denoted $\mathrm{rad}(M)$. (Observe that our two definitions of the symbol $\mathrm{rad}(A)$ agree.)
-
-We define a descending series $\mathrm{rad}^n(M)$ of submodules of $M$ by setting $\mathrm{rad}^0(M) = M$ and $\mathrm{rad}^n(M) = \mathrm{rad}(\mathrm{rad}^{n-1}(M))$ for $n \in \N$. It follows from Exercise~\ref{ex:13.12} that $\mathrm{rad}^n(M) = (\mathrm{rad}(A))^n M$ for any $n \in \N$. This series is called the \emph{radical series} of $M$. Observe that $\mathrm{rad}^n(M) = 0$ for some $n$, since $\mathrm{rad}(A)$ is a nilpotent ideal, and that each successive quotient of the radical series is a semisimple module, with $M$ being semisimple iff $\mathrm{rad}(M) = 0$.
 \end{exercise}
 \begin{solution}
+    Put $R=\mathrm{rad}(A)$. We first show that $RM$ is the smallest submodule of $M$ having semisimple quotient. Since $R$ annihilates $M/RM$, the quotient $M/RM$ is naturally an $A/R$-module. The algebra $A/R$ is semisimple by Theorem~\ref{thm:13.23}, so $M/RM$ is semisimple. Conversely, if $N\leq M$ and $M/N$ is semisimple, then $R$ annihilates every simple summand of $M/N$, and therefore annihilates all of $M/N$. Hence $RM\subseteq N$. Thus $RM$ is exactly the smallest submodule of $M$ with semisimple quotient.\\
+    It remains to identify this submodule with the intersection of all maximal submodules. If $M=0$, all three objects are zero. Assume $M\neq0$. Every maximal submodule $L$ of $M$ has simple quotient $M/L$, so the preceding paragraph gives $RM\subseteq L$. Hence $RM$ is contained in the intersection of all maximal submodules.\\
+    For the reverse inclusion, consider the semisimple module $M/RM$. In a finite-dimensional semisimple module, the intersection of all maximal submodules is zero: if $0\neq \overline{m}$, choose a decomposition into simple summands and project onto a simple summand where $\overline{m}$ has non-zero component; the kernel of that projection is a maximal submodule not containing $\overline{m}$. Pulling this statement back along $M\to M/RM$ shows that the intersection of the maximal submodules of $M$ containing $RM$ is exactly $RM$. Since every maximal submodule contains $RM$, the intersection of all maximal submodules of $M$ is $RM$. Therefore all three objects are equal.
 \end{solution}
+
+We define a descending series $\mathrm{rad}^n(M)$ of submodules of $M$ by setting $\mathrm{rad}^0(M) = M$ and $\mathrm{rad}^n(M) = \mathrm{rad}(\mathrm{rad}^{n-1}(M))$ for $n \in \N$. It follows from Exercise~\ref{ex:13.12} that $\mathrm{rad}^n(M) = (\mathrm{rad}(A))^n M$ for any $n \in \N$. This series is called the \emph{radical series} of $M$. Observe that $\mathrm{rad}^n(M) = 0$ for some $n$, since $\mathrm{rad}(A)$ is a nilpotent ideal, and that each successive quotient of the radical series is a semisimple module, with $M$ being semisimple iff $\mathrm{rad}(M) = 0$.
 
 \begin{exercise}
 \label{ex:13.13}
 (cont.) Show that $M$ has a unique largest semisimple submodule and that this submodule is equal to $\{m \in M \mid \mathrm{rad}(A)m = 0\}$. We call this submodule the \emph{socle} of $M$, and we denote it by $\mathrm{soc}(M)$.
 \end{exercise}
 \begin{solution}
+    Put $R=\mathrm{rad}(A)$, and set
+    \[
+        K=\{m\in M\mid Rm=0\}.
+    \]
+    This is an $A$-submodule of $M$: if $a\in A$, $r\in R$, and $m\in K$, then
+    \[
+        r(am)=(ra)m=0
+    \]
+    because $ra\in R$. Since $R$ annihilates $K$, the module $K$ is naturally an $A/R$-module. The algebra $A/R$ is semisimple, so $K$ is semisimple.\\
+    Conversely, every simple $A$-module is annihilated by $R$, by Theorem~\ref{thm:13.23}. Hence every simple submodule of $M$ lies in $K$, and therefore every semisimple submodule of $M$ lies in $K$. Since $K$ itself is semisimple, it is the unique largest semisimple submodule of $M$. Thus
+    \[
+        \mathrm{soc}(M)=K=\{m\in M\mid \mathrm{rad}(A)m=0\}.
+    \]
 \end{solution}
 
 \begin{exercise}
@@ -665,6 +834,28 @@ We define a descending series $\mathrm{rad}^n(M)$ of submodules of $M$ by settin
 (cont.) We define an ascending series $\mathrm{soc}^n(M)$ of submodules of $M$ as follows: We let $\mathrm{soc}^0(M) = 0$ and $\mathrm{soc}^1(M) = \mathrm{soc}(M)$, and for $n > 1$ we let $\mathrm{soc}^n(M)$ be the submodule of $M$ such that $\mathrm{soc}^n(M)/\mathrm{soc}^{n-1}(M) = \mathrm{soc}(M/\mathrm{soc}^{n-1}(M))$. Show that we have $\mathrm{soc}^n(M) = \{m \in M \mid \mathrm{rad}(A)^n m = 0\}$ for any $n \in \N$. (This series is called the \emph{socle series} of $M$. As with the radical series, we observe that $\mathrm{soc}^n(M) = M$ for some $n$, since $\mathrm{rad}(A)$ is nilpotent, and that each successive quotient of the socle series is semisimple, with $M$ being semisimple iff $\mathrm{soc}(M) = M$.)
 \end{exercise}
 \begin{solution}
+    Put $R=\mathrm{rad}(A)$. We prove the formula by induction on $n$. For $n=0$, the formula says
+    \[
+        \mathrm{soc}^0(M)=\{m\in M\mid A m=0\},
+    \]
+    and both sides are zero because $A$ has a unit. The case $n=1$ is exactly Exercise~\ref{ex:13.13}.\\
+    Assume now that $n>1$ and that
+    \[
+        \mathrm{soc}^{n-1}(M)=\{m\in M\mid R^{n-1}m=0\}.
+    \]
+    By definition, $m\in \mathrm{soc}^n(M)$ iff the coset $m+\mathrm{soc}^{n-1}(M)$ lies in
+    \[
+        \mathrm{soc}(M/\mathrm{soc}^{n-1}(M)).
+    \]
+    By Exercise~\ref{ex:13.13}, this is equivalent to
+    \[
+        Rm\subseteq \mathrm{soc}^{n-1}(M).
+    \]
+    Using the induction hypothesis, the last condition is equivalent to $R^{n-1}(Rm)=R^n m=0$. Therefore
+    \[
+        \mathrm{soc}^n(M)=\{m\in M\mid R^n m=0\}
+    \]
+    for every $n\in\N$.
 \end{solution}
 
 \begin{exercise}
@@ -672,6 +863,34 @@ We define a descending series $\mathrm{rad}^n(M)$ of submodules of $M$ by settin
 (cont.) Show that $\mathrm{rad}^n(M) = 0$ iff $\mathrm{soc}^n(M) = M$; conclude that the radical and socle series of $M$ have the same finite length. If this common length is $r$, then show that $\mathrm{rad}^n(M) \subseteq \mathrm{soc}^{r-n}(M)$ for every $0 \leq n \leq r$.
 \end{exercise}
 \begin{solution}
+    Put $R=\mathrm{rad}(A)$. By Exercise~\ref{ex:13.12}, the radical series satisfies
+    \[
+        \mathrm{rad}^n(M)=R^nM
+    \]
+    for every $n\in\N$. By Exercise~\ref{ex:13.14}, the socle series satisfies
+    \[
+        \mathrm{soc}^n(M)=\{m\in M\mid R^n m=0\}.
+    \]
+    Hence
+    \[
+        \mathrm{rad}^n(M)=0
+        \quad\Longleftrightarrow\quad
+        R^nM=0
+        \quad\Longleftrightarrow\quad
+        \text{every }m\in M\text{ satisfies }R^n m=0
+        \quad\Longleftrightarrow\quad
+        \mathrm{soc}^n(M)=M.
+    \]
+    Therefore the least $n$ for which the radical series reaches zero is the same as the least $n$ for which the socle series reaches $M$. Since $R$ is nilpotent, this common length is finite.\\
+    Let this common length be $r$. For $0\leq n\leq r$, take $x\in\mathrm{rad}^n(M)=R^nM$. Then
+    \[
+        R^{r-n}x\subseteq R^{r-n}R^nM=R^rM=\mathrm{rad}^r(M)=0.
+    \]
+    By the formula for the socle series, this means $x\in \mathrm{soc}^{r-n}(M)$. Hence
+    \[
+        \mathrm{rad}^n(M)\subseteq \mathrm{soc}^{r-n}(M)
+    \]
+    for every $0\leq n\leq r$.
 \end{solution}
 
 \end{document}
