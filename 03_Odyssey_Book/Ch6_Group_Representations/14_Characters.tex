@@ -22,6 +22,16 @@
 There is some $r \in \N$ and some $f_1, \ldots, f_r \in \N$ such that $\C G \cong \mathcal{M}_{f_1}(\C) \oplus \ldots \oplus \mathcal{M}_{f_r}(\C)$ as $\C$-algebras. Furthermore, there are exactly $r$ isomorphism classes of simple $\C G$-modules, and if we let $S_1, \ldots, S_r$ be representatives of these $r$ classes, then we can order the $S_i$ so that $\C G \cong f_1 S_1 \oplus \ldots \oplus f_r S_r$ as $\C G$-modules, where $\dim_{\C} S_i = f_i$ for each $i$. Any $\C G$-module can be written uniquely in the form $a_1 S_1 \oplus \ldots \oplus a_r S_r$, where the $a_i$ are non-negative integers.
 \end{theorem}
 \begin{proof}
+    Since $\mathrm{char}(\C)=0$, Corollary~\ref{cor:12.8} shows that every finitely generated $\C G$-module is semisimple. In particular, the regular module $\C G$ is semisimple, and hence $\C G$ is a semisimple algebra by Lemma~\ref{lem:13.3}. Since $\C$ is algebraically closed, Theorem~\ref{thm:13.18} gives a $\C$-algebra isomorphism
+    \[
+        \C G \cong \mathcal{M}_{f_1}(\C) \oplus \cdots \oplus \mathcal{M}_{f_r}(\C)
+    \]
+    for some positive integers $f_1,\ldots,f_r$.\\
+    For the algebra on the right, Theorem~\ref{thm:13.10} says that there are exactly $r$ isomorphism classes of simple modules, one coming from each matrix-algebra summand. More concretely, by Theorem~\ref{thm:13.6}, the simple module attached to the summand $\mathcal{M}_{f_i}(\C)$ is the natural column module $\C^{f_i}$, and the regular module $\mathcal{M}_{f_i}(\C)$ is the direct sum of $f_i$ copies of this module. Transporting these modules across the displayed algebra isomorphism gives simple $\C G$-modules $S_1,\ldots,S_r$ with $\dim_{\C}S_i=f_i$, and as $\C G$-modules we obtain
+    \[
+        \C G \cong f_1S_1 \oplus \cdots \oplus f_rS_r.
+    \]
+    Finally, every finitely generated $\C G$-module is semisimple, so it is a direct sum of simple modules. Since $S_1,\ldots,S_r$ represent all simple isomorphism classes, every such module has the form $a_1S_1 \oplus \cdots \oplus a_rS_r$ with $a_i \geq 0$. The multiplicities $a_i$ are uniquely determined by Proposition~\ref{prop:13.5}.
 \end{proof}
 
 \subsubsection*{Degrees of $G$}
@@ -35,6 +45,16 @@ There is some $r \in \N$ and some $f_1, \ldots, f_r \in \N$ such that $\C G \con
 We have $\sum\limits_{i=1}^{r} f_i^2 = |G|$.
 \end{corollary}
 \begin{proof}
+    Taking $\C$-dimensions in Theorem~\ref{thm:14.1} gives
+    \[
+        |G|=\dim_{\C}\C G
+        =
+        \dim_{\C}\left(\mathcal{M}_{f_1}(\C) \oplus \cdots \oplus \mathcal{M}_{f_r}(\C)\right)
+        =
+        \sum_{i=1}^{r}\dim_{\C}\mathcal{M}_{f_i}(\C)
+        =
+        \sum_{i=1}^{r}f_i^2.
+    \]
 \end{proof}
 
 \subsubsection*{Degrees and conjugacy classes}
@@ -48,6 +68,24 @@ We have $\sum\limits_{i=1}^{r} f_i^2 = |G|$.
 The number $r$ of simple $\C G$-modules is equal to the number of conjugacy classes of $G$.
 \end{theorem}
 \begin{proof}
+    Let $Z$ be the center of the algebra $\C G$. By Theorem~\ref{thm:14.1}, $\C G$ is isomorphic with
+    \[
+        \mathcal{M}_{f_1}(\C) \oplus \cdots \oplus \mathcal{M}_{f_r}(\C).
+    \]
+    The center of a direct sum is the direct sum of the centers, and the center of $\mathcal{M}_{f_i}(\C)$ consists of the scalar matrices: commuting with the matrix units forces all off-diagonal entries to be zero and all diagonal entries to be equal. Hence $Z \cong \C^r$, so $\dim_{\C}Z=r$.\\
+    We now compute the same dimension using the group basis of $\C G$. Write an arbitrary element of $\C G$ as
+    \[
+        a=\sum_{g \in G}\lambda_g g.
+    \]
+    If $a \in Z$, then $h a h^{-1}=a$ for every $h \in G$. Comparing the coefficients of the basis elements of $G$, we get
+    \[
+        \lambda_g=\lambda_{hgh^{-1}}
+    \]
+    for all $g,h \in G$. Thus the coefficients of a central element are constant on conjugacy classes. Conversely, if the coefficients are constant on conjugacy classes, then $h a h^{-1}=a$ for every $h \in G$, so $a$ commutes with every element of $G$, and hence with every element of $\C G$. Therefore $Z$ has as a basis the class sums
+    \[
+        \sum_{g \in K}g,
+    \]
+    where $K$ runs through the conjugacy classes of $G$. These class sums have disjoint supports in the basis $G$, so they are linearly independent. It follows that $\dim_{\C}Z$ is the number of conjugacy classes of $G$. Since we already proved that $\dim_{\C}Z=r$, the result follows.
 \end{proof}
 
 \subsubsection*{Defining characters}
@@ -78,6 +116,19 @@ Let $U$ be a $\C G$-module, let $\rho \colon G \to \mathrm{GL}(U)$ be the repres
 \end{enumerate}
 \end{proposition}
 \begin{proof}
+    Since $g^n=1$, we have $\rho(g)^n=I$, so the minimal polynomial of $\rho(g)$ divides $x^n-1$. Over $\C$, the polynomial $x^n-1$ splits into distinct linear factors. Hence the minimal polynomial of $\rho(g)$ also splits into distinct linear factors, and therefore $\rho(g)$ is diagonalizable. This proves (i).\\
+    Once $\rho(g)$ is diagonalizable, we may choose a basis of $U$ consisting of eigenvectors for $\rho(g)$. In such a basis the matrix of $\rho(g)$ is diagonal, so its trace is the sum of its eigenvalues, counted with multiplicity. This proves (ii). Since every eigenvalue $\lambda$ satisfies $\lambda^n=1$, each eigenvalue is an $n$th root of unity. There are $\dim_{\C}U=\chi_U(1)$ eigenvalues with multiplicity, so $\chi_U(g)$ is a sum of $\chi_U(1)$ $n$th roots of unity. This proves (iii).\\
+    The eigenvalues of $\rho(g^{-1})=\rho(g)^{-1}$ are the inverses of the eigenvalues of $\rho(g)$. If $\lambda$ is a root of unity, then $\lambda^{-1}=\overline{\lambda}$. Hence the eigenvalues of $\rho(g^{-1})$ are the complex conjugates of the eigenvalues of $\rho(g)$, and taking traces gives $\chi_U(g^{-1})=\overline{\chi_U(g)}$. This proves (iv).\\
+    Part (iii) writes $\chi_U(g)=\lambda_1+\cdots+\lambda_m$, where $m=\chi_U(1)$ and each $|\lambda_i|=1$. Therefore
+    \[
+        |\chi_U(g)| \leq |\lambda_1|+\cdots+|\lambda_m|=m=\chi_U(1),
+    \]
+    proving (v).\\
+    It remains to prove (vi). Let
+    \[
+        K=\{x \in G \mid \chi_U(x)=\chi_U(1)\}.
+    \]
+    For $x \in G$, the preceding parts write $\chi_U(x)$ as a sum of $\chi_U(1)$ roots of unity. Such a sum can equal the positive real number $\chi_U(1)$ only when every summand is $1$. Since $\rho(x)$ is diagonalizable, this happens exactly when $\rho(x)=I$. Thus $K=\ker\rho$, and hence $K \trianglelefteq G$.
 \end{proof}
 
 \subsubsection*{Algebra of characters}
@@ -92,6 +143,17 @@ Let $U$ be a $\C G$-module, let $\rho \colon G \to \mathrm{GL}(U)$ be the repres
 The irreducible characters of $G$ are, as functions from $G$ to $\C$, linearly independent over $\C$.
 \end{proposition}
 \begin{proof}
+    For each irreducible character $\chi_i$, extend $\chi_i$ linearly from the basis $G$ of $\C G$ to a linear map $\C G \to \C$. Equivalently, $\chi_i(a)$ is the trace of the linear transformation of $S_i$ defined by $a \in \C G$.\\
+    Using the algebra decomposition from Theorem~\ref{thm:14.1}, let $e_i$ be the element that is the identity matrix in the $i$th summand $\mathcal{M}_{f_i}(\C)$ and zero in all other summands. Then $e_i$ acts as the identity on $S_i$, so $\chi_i(e_i)=\dim_{\C}S_i=f_i$. If $j \neq i$, then $e_i$ acts as zero on $S_j$, so $\chi_j(e_i)=0$.\\
+    Suppose that $\lambda_1,\ldots,\lambda_r \in \C$ satisfy
+    \[
+        \lambda_1\chi_1+\cdots+\lambda_r\chi_r=0
+    \]
+    as functions on $G$. Since $G$ is a basis of $\C G$, the same equality holds after extending the characters linearly to $\C G$. Evaluating at $e_i$ gives
+    \[
+        0=\sum_{j=1}^{r}\lambda_j\chi_j(e_i)=\lambda_i f_i.
+    \]
+    Since $f_i>0$, we get $\lambda_i=0$. This holds for every $i$, so the irreducible characters are linearly independent.
 \end{proof}
 
 \begin{lemma}
@@ -99,6 +161,18 @@ The irreducible characters of $G$ are, as functions from $G$ to $\C$, linearly i
 $\chi_{U \oplus V} = \chi_U + \chi_V$ for any $\C G$-modules $U$ and $V$.
 \end{lemma}
 \begin{proof}
+    Fix $g \in G$. Choose a basis of $U \oplus V$ whose first vectors form a basis of $U \oplus 0$ and whose remaining vectors form a basis of $0 \oplus V$. With respect to this basis, the linear transformation induced by $g$ has block diagonal form
+    \[
+        \begin{pmatrix}
+            \rho_U(g) & 0\\
+            0 & \rho_V(g)
+        \end{pmatrix}.
+    \]
+    The trace of a block diagonal matrix is the sum of the traces of its diagonal blocks. Therefore
+    \[
+        \chi_{U \oplus V}(g)=\chi_U(g)+\chi_V(g).
+    \]
+    Since this holds for every $g \in G$, we have $\chi_{U \oplus V}=\chi_U+\chi_V$.
 \end{proof}
 
 \subsubsection*{Characters distinguish modules}
@@ -111,6 +185,24 @@ $\chi_{U \oplus V} = \chi_U + \chi_V$ for any $\C G$-modules $U$ and $V$.
 If $S_1, \ldots, S_r$ are the distinct simple $\C G$-modules, then the character of the $\C G$-module $a_1 S_1 \oplus \ldots \oplus a_r S_r$ (where the $a_i$ are non-negative integers) is $a_1 \chi_1 + \ldots + a_r \chi_r$. Consequently, two $\C G$-modules are isomorphic iff their characters are equal.
 \end{theorem}
 \begin{proof}
+    Repeatedly applying Lemma~\ref{lem:14.6} gives
+    \[
+        \chi_{a_1S_1 \oplus \cdots \oplus a_rS_r}
+        =
+        a_1\chi_1+\cdots+a_r\chi_r.
+    \]
+    Thus the displayed formula for the character of a decomposed module holds.\\
+    Isomorphic modules have equal characters, so only the converse needs proof. Suppose that $U$ and $V$ are $\C G$-modules with $\chi_U=\chi_V$. By Theorem~\ref{thm:14.1}, write
+    \[
+        U \cong a_1S_1 \oplus \cdots \oplus a_rS_r,
+        \qquad
+        V \cong b_1S_1 \oplus \cdots \oplus b_rS_r.
+    \]
+    Taking characters and using the first part of the proof gives
+    \[
+        0=\chi_U-\chi_V=(a_1-b_1)\chi_1+\cdots+(a_r-b_r)\chi_r.
+    \]
+    Proposition~\ref{prop:14.5} says that the $\chi_i$ are linearly independent, so $a_i-b_i=0$ for every $i$. Hence $a_i=b_i$ for every $i$, and therefore $U \cong V$.
 \end{proof}
 
 \subsubsection*{Tensor products, duals, and Hom}
@@ -125,11 +217,66 @@ If $S_1, \ldots, S_r$ are the distinct simple $\C G$-modules, then the character
 Let $U$ and $V$ be $\C G$-modules. Then:
 \begin{enumerate}
     \item[(i)] $\chi_{U \otimes V} = \chi_U \chi_V$.
-    \item[(ii)] $\chi_{U^*} = \overline{\chi_U}$. (Recall that $U^* = \mathrm{Hom}(U, F)$.)
+    \item[(ii)] $\chi_{U^*} = \overline{\chi_U}$. (Recall that $U^* = \mathrm{Hom}_{\C}(U, \C)$.)
     \item[(iii)] $\chi_{\mathrm{Hom}(U,V)} = \overline{\chi_U} \chi_V$.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
+    We prove the three assertions separately.\\
+    (i) Fix $g \in G$. By Proposition~\ref{prop:14.4}, the transformations induced by $g$ on $U$ and $V$ are diagonalizable. Choose eigenbases $u_1,\ldots,u_m$ of $U$ and $v_1,\ldots,v_n$ of $V$, with
+    \[
+        gu_i=\lambda_i u_i,
+        \qquad
+        gv_j=\mu_j v_j.
+    \]
+    Then $u_i \otimes v_j$, with $1 \leq i \leq m$ and $1 \leq j \leq n$, is a basis of $U \otimes V$, and
+    \[
+        g(u_i \otimes v_j)=gu_i \otimes gv_j
+        =
+        \lambda_i\mu_j(u_i \otimes v_j).
+    \]
+    Hence the eigenvalues of $g$ on $U \otimes V$ are the products $\lambda_i\mu_j$, and so
+    \[
+        \chi_{U \otimes V}(g)
+        =
+        \sum_{i,j}\lambda_i\mu_j
+        =
+        \left(\sum_i\lambda_i\right)\left(\sum_j\mu_j\right)
+        =
+        \chi_U(g)\chi_V(g).
+    \]
+    This proves (i).\\
+    (ii) Again fix $g \in G$, and choose an eigenbasis $u_1,\ldots,u_m$ of $U$ with $gu_i=\lambda_i u_i$. Let $\varphi_1,\ldots,\varphi_m$ be the dual basis of $U^*$. Since each $\lambda_i$ is a root of unity, $\lambda_i^{-1}=\overline{\lambda_i}$. For each $i,j$ we have
+    \[
+        (g\varphi_i)(u_j)
+        =
+        \varphi_i(g^{-1}u_j)
+        =
+        \varphi_i(\lambda_j^{-1}u_j)
+        =
+        \overline{\lambda_j}\delta_{ij}.
+    \]
+    Thus $g\varphi_i=\overline{\lambda_i}\varphi_i$. Therefore the eigenvalues of $g$ on $U^*$ are $\overline{\lambda_1},\ldots,\overline{\lambda_m}$, and
+    \[
+        \chi_{U^*}(g)=\overline{\lambda_1}+\cdots+\overline{\lambda_m}
+        =
+        \overline{\chi_U(g)}.
+    \]
+    This proves (ii).\\
+    (iii) Proposition~\ref{prop:12.7} gives an isomorphism of $\C G$-modules
+    \[
+        \mathrm{Hom}(U,V) \cong U^* \otimes V.
+    \]
+    Isomorphic modules have equal characters, so by (i) and (ii),
+    \[
+        \chi_{\mathrm{Hom}(U,V)}
+        =
+        \chi_{U^* \otimes V}
+        =
+        \chi_{U^*}\chi_V
+        =
+        \overline{\chi_U}\chi_V.
+    \]
 \end{proof}
 
 \subsubsection*{Virtual characters and class functions}
@@ -142,6 +289,18 @@ Let $U$ and $V$ be $\C G$-modules. Then:
 The virtual characters of $G$ form a ring.
 \end{corollary}
 \begin{proof}
+    Addition and additive inverses are immediate from the definition of virtual characters as $\Z$-linear combinations of the irreducible characters. The only point to check is closure under multiplication.\\
+    If $\chi$ and $\psi$ are ordinary characters, then Proposition~\ref{prop:14.8} shows that $\chi\psi$ is the character of a tensor product module. Hence $\chi\psi$ is again an ordinary character, and by Theorem~\ref{thm:14.7} it is a non-negative integer combination of the irreducible characters. Now if
+    \[
+        \alpha=\sum_i a_i\chi_i,
+        \qquad
+        \beta=\sum_j b_j\chi_j
+    \]
+    are virtual characters, then
+    \[
+        \alpha\beta=\sum_{i,j}a_i b_j(\chi_i\chi_j),
+    \]
+    and each product $\chi_i\chi_j$ is an integer combination of irreducible characters by the preceding paragraph. Thus $\alpha\beta$ is again a virtual character. The principal character is the multiplicative identity, so the virtual characters form a ring.
 \end{proof}
 
 \subsubsection*{Class functions}
@@ -156,6 +315,7 @@ The virtual characters of $G$ form a ring.
 The irreducible characters of $G$ form a basis for the space of class functions on $G$.
 \end{proposition}
 \begin{proof}
+    Every irreducible character is a character, and hence is a class function. By Proposition~\ref{prop:14.5}, the irreducible characters $\chi_1,\ldots,\chi_r$ are linearly independent. By Theorem~\ref{thm:14.3}, the number $r$ is also the number of conjugacy classes of $G$, which is the dimension of the space of class functions on $G$. Therefore we have $r$ linearly independent vectors in an $r$-dimensional vector space, so the irreducible characters form a basis.
 \end{proof}
 
 \subsubsection*{Inner product on class functions}
@@ -184,6 +344,44 @@ The irreducible characters of $G$ form a basis for the space of class functions 
 If $U$ is a $\C G$-module, then $\dim_{\C} U^G = \frac{1}{|G|} \sum\limits_{g \in G} \chi_U(g)$.
 \end{lemma}
 \begin{proof}
+    Let
+    \[
+        a=\frac{1}{|G|}\sum_{g \in G}g \in \C G,
+    \]
+    and let $T$ be the linear transformation of $U$ defined by the action of $a$. For any $h \in G$, we have $ha=a$, because left multiplication by $h$ merely permutes the elements of $G$ inside the sum. Also,
+    \[
+        a^2
+        =
+        \frac{1}{|G|^2}\sum_{g,k \in G}gk
+        =
+        \frac{1}{|G|}\sum_{y \in G}y
+        =
+        a,
+    \]
+    since each $y \in G$ occurs as $gk$ exactly $|G|$ times. Hence $T^2=T$. The polynomial $x^2-x=x(x-1)$ has distinct roots, so $T$ is diagonalizable with eigenvalues only $0$ and $1$.\\
+    Let $U_1$ be the eigenspace of $T$ with eigenvalue $1$. If $u \in U_1$, then for every $h \in G$ we have
+    \[
+        hu=hTu=(ha)u=au=Tu=u,
+    \]
+    so $u \in U^G$. Conversely, if $u \in U^G$, then
+    \[
+        Tu=au=\frac{1}{|G|}\sum_{g \in G}gu
+        =
+        \frac{1}{|G|}\sum_{g \in G}u
+        =
+        u,
+    \]
+    so $u \in U_1$. Thus $U^G=U_1$.\\
+    Since $T$ is diagonalizable with eigenvalues $0$ and $1$, its trace is the dimension of its $1$-eigenspace, namely $\dim_{\C}U^G$. On the other hand, by linearity of trace,
+    \[
+        \mathrm{tr}(T)
+        =
+        \frac{1}{|G|}\sum_{g \in G}\chi_U(g).
+    \]
+    Therefore
+    \[
+        \dim_{\C}U^G=\frac{1}{|G|}\sum_{g \in G}\chi_U(g).
+    \]
 \end{proof}
 
 \begin{theorem}
@@ -191,6 +389,37 @@ If $U$ is a $\C G$-module, then $\dim_{\C} U^G = \frac{1}{|G|} \sum\limits_{g \i
 We have $(\chi_U, \chi_V) = \dim_{\C} \mathrm{Hom}_{\C G}(U, V)$ for any $\C G$-modules $U$ and $V$.
 \end{theorem}
 \begin{proof}
+    First we identify a fixed-point space. Inside the $\C G$-module $\mathrm{Hom}(U,V)$, the $\C G$-homomorphisms are exactly the $G$-fixed maps. Recall that the $G$-action is given by
+    \[
+        (g\varphi)(u)=g\varphi(g^{-1}u).
+    \]
+    If $\varphi \in \mathrm{Hom}_{\C G}(U,V)$, then
+    \[
+        (g\varphi)(u)=g\varphi(g^{-1}u)=gg^{-1}\varphi(u)=\varphi(u),
+    \]
+    so $\varphi$ is fixed by every $g \in G$. Conversely, if $g\varphi=\varphi$ for every $g \in G$, then applying this equality to $gu$ gives
+    \[
+        \varphi(gu)=(g\varphi)(gu)=g\varphi(u),
+    \]
+    so $\varphi$ is $G$-linear. Hence
+    \[
+        \mathrm{Hom}_{\C G}(U,V)=\mathrm{Hom}(U,V)^G.
+    \]
+    By Lemma~\ref{lem:14.11} and Proposition~\ref{prop:14.8}, we now get
+    \[
+        \dim_{\C}\mathrm{Hom}_{\C G}(U,V)
+        =
+        \frac{1}{|G|}\sum_{g \in G}\chi_{\mathrm{Hom}(U,V)}(g)
+        =
+        \frac{1}{|G|}\sum_{g \in G}\overline{\chi_U(g)}\chi_V(g)
+        =
+        (\chi_V,\chi_U).
+    \]
+    The right-hand side is equal to a dimension, so it is a real number. By conjugate symmetry of the inner product,
+    \[
+        (\chi_U,\chi_V)=\overline{(\chi_V,\chi_U)}=(\chi_V,\chi_U).
+    \]
+    Therefore $(\chi_U,\chi_V)=\dim_{\C}\mathrm{Hom}_{\C G}(U,V)$.
 \end{proof}
 
 \subsection*{Exercises}
