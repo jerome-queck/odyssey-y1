@@ -431,6 +431,33 @@ Throughout these exercises, $G$ denotes a finite group, and all modules are fini
 Let $A$ be a semisimple $\C$-algebra. Let $[A, A]$ be the subspace of $A$ spanned by the set $\{ab - ba \mid a, b \in A\}$. Show that the codimension of $[A, A]$ in $A$ (which is just the dimension of $A/[A, A]$) is equal to the number of isomorphism classes of simple $A$-modules.
 \end{exercise}
 \begin{solution}
+    By Theorem~\ref{thm:13.18}, we may write
+    \[
+        A\cong \mathcal{M}_{n_1}(\C)\oplus\cdots\oplus \mathcal{M}_{n_r}(\C)
+    \]
+    as $\C$-algebras. By Theorem~\ref{thm:13.10}, this algebra has exactly $r$ isomorphism classes of simple modules. Thus it remains to show that the quotient by the commutator subspace has dimension $r$.\\
+    First consider $B=\mathcal{M}_n(\C)$. Every commutator in $B$ has trace zero, since
+    \[
+        \operatorname{tr}(XY-YX)=\operatorname{tr}(XY)-\operatorname{tr}(YX)=0.
+    \]
+    Conversely, the trace-zero matrices are spanned by commutators. Indeed, for $i\neq j$,
+    \[
+        E_{ij}=E_{ii}E_{ij}-E_{ij}E_{ii},
+    \]
+    and for $i\neq j$,
+    \[
+        E_{ii}-E_{jj}=E_{ij}E_{ji}-E_{ji}E_{ij}.
+    \]
+    The off-diagonal matrix units together with the diagonal differences span the trace-zero subspace of $\mathcal{M}_n(\C)$. Hence $[B,B]$ is exactly the trace-zero subspace, and so $B/[B,B]$ is one-dimensional.\\
+    In a direct sum of algebras, commutators are computed componentwise, so
+    \[
+        [A,A]\cong [\mathcal{M}_{n_1}(\C),\mathcal{M}_{n_1}(\C)]\oplus\cdots\oplus [\mathcal{M}_{n_r}(\C),\mathcal{M}_{n_r}(\C)].
+    \]
+    Therefore each matrix-algebra summand contributes one dimension to the quotient, and
+    \[
+        \dim_{\C}A/[A,A]=r.
+    \]
+    This is exactly the number of isomorphism classes of simple $A$-modules.
 \end{solution}
 
 \begin{exercise}
@@ -438,6 +465,20 @@ Let $A$ be a semisimple $\C$-algebra. Let $[A, A]$ be the subspace of $A$ spanne
 (cont.) Let $A = \C G$, and let $g_1, \ldots, g_r$ be representatives of the $r$ conjugacy classes of $G$. Show that $\{g_i + [A, A] \mid 1 \leq i \leq r\}$ is a basis of $A/[A, A]$.
 \end{exercise}
 \begin{solution}
+    Let $\pi \colon A\to A/[A,A]$ be the quotient map. If $g,h\in G$, then
+    \[
+        hgh^{-1}-g=(hg)h^{-1}-h^{-1}(hg)\in [A,A].
+    \]
+    Thus conjugate elements of $G$ have the same image in $A/[A,A]$. Since every element of $A=\C G$ is a $\C$-linear combination of elements of $G$, it follows that the cosets
+    \[
+        g_i+[A,A],\qquad 1\leq i\leq r,
+    \]
+    span $A/[A,A]$.\\
+    By Exercise~\ref{ex:14.1}, the dimension of $A/[A,A]$ is the number of isomorphism classes of simple $\C G$-modules. By Theorem~\ref{thm:14.3}, this number is the number of conjugacy classes of $G$, namely $r$. Thus we have $r$ spanning vectors in an $r$-dimensional vector space, and hence
+    \[
+        \{g_i+[A,A]\mid 1\leq i\leq r\}
+    \]
+    is a basis of $A/[A,A]$.
 \end{solution}
 
 \begin{exercise}
@@ -445,6 +486,19 @@ Let $A$ be a semisimple $\C$-algebra. Let $[A, A]$ be the subspace of $A$ spanne
 Show that if $S$ is a simple $\C G$-module and $U$ is a one-dimensional $\C G$-module, then $S \otimes U$ is simple.
 \end{exercise}
 \begin{solution}
+    Choose $0\neq u\in U$. Since $U$ is one-dimensional, for each $g\in G$ there is a scalar $\lambda_g\in \C^{\times}$ such that $gu=\lambda_g u$. Let $0\neq W\leq S\otimes U$ be a $\C G$-submodule. Under the vector-space isomorphism
+    \[
+        S\to S\otimes U,\qquad s\mapsto s\otimes u,
+    \]
+    let $T$ be the inverse image of $W$. Thus
+    \[
+        T=\{s\in S\mid s\otimes u\in W\}.
+    \]
+    Since $W\neq0$, we have $T\neq0$. If $s\in T$ and $g\in G$, then
+    \[
+        g(s\otimes u)=gs\otimes gu=gs\otimes \lambda_g u=\lambda_g(gs\otimes u)
+    \]
+    lies in $W$. Since $\lambda_g\neq0$, it follows that $gs\otimes u\in W$, so $gs\in T$. Hence $T$ is a non-zero $\C G$-submodule of $S$. Since $S$ is simple, $T=S$. Therefore $W=S\otimes U$, and so $S\otimes U$ is simple.
 \end{solution}
 
 \begin{exercise}
@@ -452,6 +506,20 @@ Show that if $S$ is a simple $\C G$-module and $U$ is a one-dimensional $\C G$-m
 Show that the set of isomorphism classes of the one-dimensional $\C G$-modules forms a group under the taking of tensor products.
 \end{exercise}
 \begin{solution}
+    For one-dimensional $\C G$-modules $U$ and $V$, define
+    \[
+        [U][V]=[U\otimes V],
+    \]
+    where brackets denote isomorphism classes. This is well-defined because isomorphic modules give isomorphic tensor products, and $U\otimes V$ is again one-dimensional. Associativity follows from the usual associativity isomorphism for tensor products.\\
+    The identity element is the class of the trivial one-dimensional module $\C$, since $U\otimes \C\cong U$ as $\C G$-modules. The inverse of $[U]$ is $[U^*]$. Indeed, the evaluation map
+    \[
+        U\otimes U^*\to \C,\qquad u\otimes \varphi\mapsto \varphi(u),
+    \]
+    is a $\C G$-module homomorphism, because
+    \[
+        (g\varphi)(gu)=\varphi(g^{-1}gu)=\varphi(u).
+    \]
+    Both $U\otimes U^*$ and $\C$ are one-dimensional, and the evaluation map is non-zero, so it is an isomorphism. Thus every element has an inverse, and the isomorphism classes of one-dimensional $\C G$-modules form a group under tensor product.
 \end{solution}
 
 \begin{exercise}
@@ -459,6 +527,16 @@ Show that the set of isomorphism classes of the one-dimensional $\C G$-modules f
 Let $\chi$ be an irreducible character of $G$. Show that if $\lambda$ is any $|G|$th root of unity, then $\{x \in G \mid \chi(x) = \lambda \chi(1)\} \trianglelefteq G$.
 \end{exercise}
 \begin{solution}
+    As written, this assertion is false. Let $G=\langle a\rangle$ be cyclic of order $2$, and let $U$ be the one-dimensional $\C G$-module on which $a$ acts as multiplication by $-1$. Its character $\chi$ is irreducible, with
+    \[
+        \chi(1)=1,\qquad \chi(a)=-1.
+    \]
+    Taking $\lambda=-1$, which is a $|G|$th root of unity, gives
+    \[
+        \{x\in G\mid \chi(x)=\lambda\chi(1)\}=\{a\}.
+    \]
+    This set does not contain the identity element, and hence is not a subgroup of $G$.\\
+    The nearby true statement is that this set is stable under conjugation. Indeed, if $\rho$ affords $\chi$ and $\chi(x)=\lambda\chi(1)$, then the eigenvalues of $\rho(x)$ are roots of unity and have absolute value $1$. Their sum has absolute value $\chi(1)$, so equality in the triangle inequality forces all of them to be $\lambda$. Hence $\rho(x)=\lambda I$, and conjugating $x$ inside $G$ leaves this scalar matrix unchanged. For $\lambda=1$, the set is $\ker\rho$, which is the normal subgroup from Proposition~\ref{prop:14.4}.
 \end{solution}
 
 \begin{exercise}
@@ -466,6 +544,33 @@ Let $\chi$ be an irreducible character of $G$. Show that if $\lambda$ is any $|G
 Show that a $\C G$-module $U$ is simple iff its dual $U^*$ is simple. Conclude that the complex conjugate of an irreducible character is again an irreducible character.
 \end{exercise}
 \begin{solution}
+    Suppose first that $U$ is simple. Let $0\neq W\leq U^*$ be a $\C G$-submodule, and define
+    \[
+        W^{\perp}=\{u\in U\mid \varphi(u)=0\text{ for all }\varphi\in W\}.
+    \]
+    We claim that $W^{\perp}$ is a $\C G$-submodule of $U$. If $u\in W^{\perp}$, $g\in G$, and $\varphi\in W$, then
+    \[
+        \varphi(gu)=(g^{-1}\varphi)(u)=0,
+    \]
+    because $g^{-1}\varphi\in W$. Hence $gu\in W^{\perp}$. Since $W\neq0$, some $\varphi\in W$ is non-zero, so $W^{\perp}\neq U$. By simplicity of $U$, we get $W^{\perp}=0$. Since $U$ is finite-dimensional,
+    \[
+        \dim_{\C}W^{\perp}=\dim_{\C}U-\dim_{\C}W,
+    \]
+    and therefore $\dim_{\C}W=\dim_{\C}U=\dim_{\C}U^*$. Thus $W=U^*$, and $U^*$ is simple.\\
+    Conversely, suppose that $U^*$ is simple. Applying the first direction to $U^*$ shows that $U^{**}$ is simple. The natural map
+    \[
+        U\to U^{**},\qquad u\mapsto (\varphi\mapsto \varphi(u)),
+    \]
+    is a $\C G$-module isomorphism, since
+    \[
+        (g(\varphi\mapsto \varphi(u)))(\varphi)=(g^{-1}\varphi)(u)=\varphi(gu).
+    \]
+    Hence $U$ is simple.\\
+    If $\chi=\chi_U$ is irreducible, then $U$ is simple, so $U^*$ is simple by the first part. Proposition~\ref{prop:14.8} gives
+    \[
+        \chi_{U^*}=\overline{\chi_U}=\overline{\chi},
+    \]
+    and therefore $\overline{\chi}$ is again an irreducible character.
 \end{solution}
 
 If $F$ is any field and $U$ is any $FG$-module, then we define the character of $U$ to be an $F$-valued function on $U$ whose value at $g \in G$ is the trace of the $F$-endomorphism of $U$ induced by $g$, exactly as was done in this section in the case $F = \C$.
@@ -475,6 +580,32 @@ If $F$ is any field and $U$ is any $FG$-module, then we define the character of 
 Suppose that $F$ has characteristic $p > 0$. Give an example to demonstrate that two $FG$-modules that have the same character need not be isomorphic.
 \end{exercise}
 \begin{solution}
+    Let $G=\langle g\rangle$ be cyclic of order $p$, and let $F$ have characteristic $p$. Let $V=F^2$ with the trivial $FG$-module structure. Let $U=F^2$ with $g$ acting by the matrix
+    \[
+        J=
+        \begin{pmatrix}
+            1 & 1\\
+            0 & 1
+        \end{pmatrix}.
+    \]
+    Since $J=I+N$ with $N^2=0$, and since $F$ has characteristic $p$, we have
+    \[
+        J^p=(I+N)^p=I+N^p=I.
+    \]
+    Thus this defines an $FG$-module. For $0\leq k<p$,
+    \[
+        J^k=
+        \begin{pmatrix}
+            1 & k\\
+            0 & 1
+        \end{pmatrix},
+    \]
+    so $\operatorname{tr}(J^k)=2$. On the trivial module $V$, every element of $G$ acts as the $2\times2$ identity matrix, whose trace is also $2$. Therefore $\chi_U=\chi_V$.\\
+    However, $U$ and $V$ are not isomorphic. The fixed-point space $V^G$ is all of $V$, so $\dim_F V^G=2$. On the other hand,
+    \[
+        U^G=\ker(J-I),
+    \]
+    which is one-dimensional. Since an isomorphism of $FG$-modules preserves the dimension of the fixed-point space, $U\not\cong V$.
 \end{solution}
 
 \begin{exercise}
@@ -482,6 +613,32 @@ Suppose that $F$ has characteristic $p > 0$. Give an example to demonstrate that
 Suppose that $F$ has characteristic $p > 0$. Show that if $U$ is an $FG$-module then we have $\chi_U(g) = \chi_U(g_{p'})$ for any $g \in G$, where $g_{p'}$ is the $p'$-part of $g$ as defined in Exercise~\ref{ex:1.4}.
 \end{exercise}
 \begin{solution}
+    Write
+    \[
+        g=xy=yx,
+    \]
+    where $x=g_p$ is the $p$-part of $g$ and $y=g_{p'}$ is the $p'$-part of $g$, as in Exercise~\ref{ex:1.4}. Let $X$ and $Y$ be the linear transformations of $U$ induced by $x$ and $y$, respectively. Since $x$ and $y$ commute, $X$ and $Y$ commute. Also $x$ has $p$-power order, so for some $a\geq0$ we have $X^{p^a}=I$. In characteristic $p$,
+    \[
+        (X-I)^{p^a}=X^{p^a}-I=0.
+    \]
+    Thus $N=X-I$ is nilpotent. Since $N$ commutes with $Y$, the product $NY$ is also nilpotent:
+    \[
+        (NY)^{p^a}=N^{p^a}Y^{p^a}=0.
+    \]
+    A nilpotent endomorphism has trace zero. Therefore
+    \[
+        \chi_U(g)
+        =
+        \operatorname{tr}(XY)
+        =
+        \operatorname{tr}((I+N)Y)
+        =
+        \operatorname{tr}(Y)+\operatorname{tr}(NY)
+        =
+        \operatorname{tr}(Y)
+        =
+        \chi_U(g_{p'}).
+    \]
 \end{solution}
 
 \end{document}
