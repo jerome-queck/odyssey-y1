@@ -6,7 +6,7 @@
 
 \subsubsection*{Definition of the Character Table}
 \begin{itemize}
-    \item Any character of $G$ is a $\Z$-linear combination of the $r$ irreducible characters $\chi_1, \ldots, \chi_r$, where $r$ is the number of conjugacy classes of $G$ (Theorem~\ref{thm:14.3}).
+    \item Any character of $G$ is a $\Z$-linear combination of the $r$ irreducible characters $\chi_1, \ldots, \chi_r$ (Theorem~\ref{thm:14.7}), where $r$ is the number of conjugacy classes of $G$ (Theorem~\ref{thm:14.3}).
     \item Each irreducible character is determined by its values on the $r$ conjugacy classes, so the irreducible characters are completely determined by an $r \times r$ array.
     \item The \emph{character table} of $G$ is this $r \times r$ array $\mathcal{X} = (\chi_i(g_j))_{1 \leq i,j \leq r}$, where $g_1, \ldots, g_r$ are conjugacy class representatives.
     \item The character table is well-defined only up to reordering of rows and columns.
@@ -34,6 +34,12 @@
 $(\chi_i, \chi_j) = \delta_{ij}$ for any $i$ and $j$.
 \end{namedtheorem}
 \begin{proof}
+    Let $S_1,\ldots,S_r$ be the distinct simple $\C G$-modules, ordered so that $S_i$ affords the character $\chi_i$. By Theorem~\ref{thm:14.12}, we have
+    \[
+        (\chi_i,\chi_j)=\dim_{\C}\Hom_{\C G}(S_i,S_j)
+    \]
+    for every $i$ and $j$. If $i=j$, then this Hom-space is $\End_{\C G}(S_i)$, which is isomorphic to $\C$ by Lemma~\ref{lem:13.14}; hence its dimension is $1$. If $i\neq j$, then $S_i$ and $S_j$ are non-isomorphic simple modules. By \nameref{lem:schur}, any non-zero map $S_i\to S_j$ would be an isomorphism, so no such non-zero map exists. Thus $\Hom_{\C G}(S_i,S_j)=0$ when $i\neq j$.\\
+    Therefore $(\chi_i,\chi_j)$ is $1$ when $i=j$ and $0$ otherwise, which is exactly $\delta_{ij}$.
 \end{proof}
 
 In other words, this theorem asserts that
@@ -47,6 +53,7 @@ for any $i$ and $j$, where the $g_t$ are conjugacy class representatives and the
 The irreducible characters of $G$ form an orthonormal basis for the vector space of class functions on $G$.
 \end{corollary}
 \begin{proof}
+    Proposition~\ref{prop:14.10} gives that the irreducible characters form a basis for the vector space of class functions on $G$. By \nameref{thm:row-orthogonality}, their pairwise inner products satisfy $(\chi_i,\chi_j)=\delta_{ij}$. Thus this basis is orthonormal with respect to the inner product on class functions.
 \end{proof}
 
 \begin{corollary}
@@ -54,13 +61,35 @@ The irreducible characters of $G$ form an orthonormal basis for the vector space
 If $\alpha = \sum_i a_i \chi_i$ and $\beta = \sum_j b_j \chi_j$ are virtual characters of $G$, then $(\alpha, \beta) = \sum_i a_i b_i$.
 \end{corollary}
 \begin{proof}
+    Since $\alpha$ and $\beta$ are virtual characters, the coefficients $a_i$ and $b_j$ are integers. In particular, conjugating the coefficient $b_j$ does not change it. Using linearity in the first argument, conjugate-linearity in the second argument, and then row orthogonality, we get
+    \[
+        (\alpha,\beta)
+        =
+        \left(\sum_i a_i\chi_i,\sum_j b_j\chi_j\right)
+        =
+        \sum_i\sum_j a_i b_j(\chi_i,\chi_j)
+        =
+        \sum_i\sum_j a_i b_j\delta_{ij}
+        =
+        \sum_i a_i b_i.
+    \]
 \end{proof}
 
 \begin{corollary}
 \label{cor:15.3}
-If $\alpha$ is a character of $G$ and $n \in \{1, 2, 3\}$, then $(\alpha, \alpha) = n$ iff $\alpha$ is a sum of $n$ irreducible characters.
+If $\alpha$ is a character of $G$ and $n \in \{1, 2, 3\}$, then $(\alpha, \alpha) = n$ iff $\alpha$ is a sum of $n$ distinct irreducible characters.
 \end{corollary}
 \begin{proof}
+    Write
+    \[
+        \alpha=\sum_{i=1}^{r}a_i\chi_i
+    \]
+    as in Theorem~\ref{thm:14.7}. Since $\alpha$ is an ordinary character, the coefficients $a_i$ are non-negative integers. By Corollary~\ref{cor:15.2},
+    \[
+        (\alpha,\alpha)=\sum_{i=1}^{r}a_i^2.
+    \]
+    Suppose first that $(\alpha,\alpha)=n$ with $n\in\{1,2,3\}$. No coefficient $a_i$ can be at least $2$, because then $a_i^2\geq4>n$. Hence every $a_i$ is either $0$ or $1$, and exactly $n$ of them are equal to $1$. Thus $\alpha$ is the sum of exactly $n$ distinct irreducible characters.\\
+    Conversely, if $\alpha$ is the sum of exactly $n$ distinct irreducible characters, then its coefficients in the irreducible-character basis are $1$ for those $n$ characters and $0$ for all the others. Corollary~\ref{cor:15.2} gives $(\alpha,\alpha)=n$.
 \end{proof}
 
 \begin{corollary}
@@ -68,6 +97,11 @@ If $\alpha$ is a character of $G$ and $n \in \{1, 2, 3\}$, then $(\alpha, \alpha
 If $\alpha$ is a virtual character of $G$, then each $\chi_j$ appears with coefficient $(\alpha, \chi_j)$ in the unique expression of $\alpha$ as a $\Z$-linear combination of the irreducible characters of $G$.
 \end{corollary}
 \begin{proof}
+    Write $\alpha=\sum_i a_i\chi_i$, with each $a_i\in\Z$. Applying Corollary~\ref{cor:15.2} to $\alpha$ and $\chi_j$ gives
+    \[
+        (\alpha,\chi_j)=a_j.
+    \]
+    Thus the inner product with $\chi_j$ reads off exactly the coefficient of $\chi_j$ in the irreducible-character expansion of $\alpha$.
 \end{proof}
 
 \begin{proposition}
@@ -75,6 +109,23 @@ If $\alpha$ is a virtual character of $G$, then each $\chi_j$ appears with coeff
 If $\alpha$ is a linear character of $G$ and $\chi$ is an irreducible character of $G$, then $\alpha\chi$ is an irreducible character of $G$.
 \end{proposition}
 \begin{proof}
+    First, $\alpha\chi$ is a character by part (i) of Proposition~\ref{prop:14.8}, since it is the character of the tensor product of modules affording $\alpha$ and $\chi$. We only need to show that it is irreducible.\\
+    Since $\alpha$ is linear, $\alpha(g)$ is a root of unity for every $g\in G$ by part (iii) of Proposition~\ref{prop:14.4}. Hence
+    \[
+        \alpha(g)\overline{\alpha(g)}=|\alpha(g)|^2=1
+    \]
+    for every $g\in G$. Therefore
+    \begin{align*}
+        (\alpha\chi,\alpha\chi)
+        &=\frac{1}{|G|}\sum_{g\in G}\alpha(g)\chi(g)\overline{\alpha(g)\chi(g)} \\
+        &=\frac{1}{|G|}\sum_{g\in G}\alpha(g)\overline{\alpha(g)}\chi(g)\overline{\chi(g)} \\
+        &=\frac{1}{|G|}\sum_{g\in G}\chi(g)\overline{\chi(g)}
+        =
+        (\chi,\chi)
+        =
+        1,
+    \end{align*}
+    where the last equality is the Row Orthogonality Theorem. Since $\alpha\chi$ is a character with inner product $1$ against itself, Corollary~\ref{cor:15.3} shows that $\alpha\chi$ is irreducible.
 \end{proof}
 
 \subsubsection*{Orthogonality of Columns}
