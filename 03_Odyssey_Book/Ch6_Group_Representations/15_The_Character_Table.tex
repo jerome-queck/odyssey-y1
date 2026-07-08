@@ -138,6 +138,33 @@ If $g_1, \ldots, g_r$ are a set of conjugacy class representatives of $G$, and $
 \]
 \end{namedtheorem}
 \begin{proof}
+    Let $\mathcal{X}=(\chi_i(g_j))_{1\leq i,j\leq r}$ be the character table, and let $K$ be the $r\times r$ diagonal matrix whose diagonal entries are $k_1,\ldots,k_r$. We first compute the $(i,j)$-entry of $\mathcal{X}K\overline{\mathcal{X}}^{\,T}$:
+    \[
+        (\mathcal{X}K\overline{\mathcal{X}}^{\,T})_{ij}
+        =
+        \sum_{t=1}^{r}\chi_i(g_t)k_t\overline{\chi_j(g_t)}
+        =
+        \sum_{g\in G}\chi_i(g)\overline{\chi_j(g)}.
+    \]
+    The last equality simply rewrites the sum over $G$ as a sum over conjugacy classes, since $\chi_i$ and $\chi_j$ are constant on conjugacy classes. By \nameref{thm:row-orthogonality}, this is $|G|\delta_{ij}$. Hence
+    \[
+        \mathcal{X}K\overline{\mathcal{X}}^{\,T}=|G|I_r.
+    \]
+    If square matrices $A$ and $B$ satisfy $AB=cI_r$ with $c\neq0$, then $A$ is invertible, $B=cA^{-1}$, and therefore $BA=cI_r$. Applying this to $A=\mathcal{X}$ and $B=K\overline{\mathcal{X}}^{\,T}$ gives
+    \[
+        K\overline{\mathcal{X}}^{\,T}\mathcal{X}=|G|I_r.
+    \]
+    Now take the $(i,j)$-entry of this last matrix equation. We obtain
+    \[
+        k_i\sum_{t=1}^{r}\overline{\chi_t(g_i)}\chi_t(g_j)=|G|\delta_{ij}.
+    \]
+    Taking complex conjugates gives
+    \[
+        \sum_{t=1}^{r}\chi_t(g_i)\overline{\chi_t(g_j)}
+        =
+        \frac{|G|}{k_i}\delta_{ij}.
+    \]
+    Finally, $k_i=|G:C_G(g_i)|$, so $|G|/k_i=|C_G(g_i)|$.
 \end{proof}
 
 \subsubsection*{Characters and Quotient Groups}
@@ -147,6 +174,18 @@ If $g_1, \ldots, g_r$ are a set of conjugacy class representatives of $G$, and $
 Let $N \trianglelefteq G$, and let $U$ be a $\C(G/N)$-module. Then $U$ admits a canonical $\C G$-module structure, with a subspace of $U$ being a $\C G$-submodule iff it is a $\C(G/N)$-submodule. If $\psi$ is the character of the $\C(G/N)$-module $U$, then the character of the $\C G$-module $U$ is $\psi \circ \eta$, where $\eta\colon G \to G/N$ is the natural map.
 \end{lemma}
 \begin{proof}
+    Define the action of $G$ on $U$ by
+    \[
+        gu=(gN)u
+    \]
+    for $g\in G$ and $u\in U$, where the action on the right is the given action of $G/N$ on $U$. This is a $\C G$-module structure because the quotient action already satisfies
+    \[
+        ((gh)N)u=(gN)((hN)u),
+        \qquad
+        N u=u.
+    \]
+    A subspace $W\leq U$ is stable under this $G$-action exactly when it is stable under the action of every coset $gN\in G/N$. Thus the $\C G$-submodules of $U$ are precisely the $\C(G/N)$-submodules of $U$.\\
+    For the character statement, fix $g\in G$. The linear transformation of $U$ induced by $g$ under this inflated $G$-action is exactly the same linear transformation as the one induced by the coset $\eta(g)=gN$ under the original $G/N$-action. Therefore its trace is $\psi(\eta(g))$, so the character as a $\C G$-module is $\psi\circ\eta$.
 \end{proof}
 
 We define $K_\chi = \{x \in G \mid \chi(x) = \chi(1)\}$ for any character $\chi$ of $G$; we have $K_\chi \trianglelefteq G$ by part (vi) of Proposition~\ref{prop:14.4}. We call $K_\chi$ the \emph{kernel} of $\chi$, as it is the kernel of the corresponding representation. We write $K_i$ instead of $K_{\chi_i}$.
@@ -156,6 +195,33 @@ We define $K_\chi = \{x \in G \mid \chi(x) = \chi(1)\}$ for any character $\chi$
 The normal subgroups of $G$ are exactly the sets of the form $\bigcap_{i \in I} K_i$ for some $I \subseteq \{1, \ldots, r\}$.
 \end{proposition}
 \begin{proof}
+    First let $N \trianglelefteq G$. Let $U=\C(G/N)$ be the regular $\C(G/N)$-module, and let $\psi$ be its character. We use Lemma~\ref{lem:15.6} to view $U$ as a $\C G$-module, and we write $\chi=\psi\circ\eta$ for its character as a $\C G$-module. Since $\psi$ is the regular character of $G/N$, we have
+    \[
+        \psi(gN)=\psi(N)
+        \quad\Longleftrightarrow\quad
+        gN=N.
+    \]
+    Therefore $\chi(g)=\chi(1)$ iff $g\in N$, so $K_\chi=N$.\\
+    Now write $\chi=\sum_i a_i\chi_i$, where the $a_i$ are non-negative integers. We claim that
+    \[
+        K_\chi=\bigcap_{a_i>0}K_i.
+    \]
+    If $g\in K_i$ for every $i$ with $a_i>0$, then
+    \[
+        \chi(g)=\sum_i a_i\chi_i(g)=\sum_i a_i\chi_i(1)=\chi(1),
+    \]
+    so $g\in K_\chi$. Conversely, suppose $g\in K_\chi$. Then $\chi(g)=\chi(1)$, and hence
+    \[
+        \chi(1)=|\chi(g)|
+        \leq
+        \sum_i a_i|\chi_i(g)|
+        \leq
+        \sum_i a_i\chi_i(1)
+        =
+        \chi(1),
+    \]
+    where the second inequality is part (v) of Proposition~\ref{prop:14.4}. Thus equality holds throughout. For every $i$ with $a_i>0$, equality forces $|\chi_i(g)|=\chi_i(1)$, and equality in the triangle inequality forces the summands $a_i\chi_i(g)$ to point in the same direction as the positive real number $\chi(1)$. Hence $\chi_i(g)=\chi_i(1)$ for every $i$ with $a_i>0$, so $g\in\bigcap_{a_i>0}K_i$. This proves that $N=K_\chi$ has the required form.\\
+    Conversely, each $K_i$ is normal in $G$ by part (vi) of Proposition~\ref{prop:14.4}. Therefore any finite intersection $\bigcap_{i\in I}K_i$ is normal in $G$ by repeated use of Proposition~\ref{prop:1.7}. If $I=\emptyset$, the intersection is $G$, which is also normal.
 \end{proof}
 
 \begin{corollary}
@@ -163,6 +229,12 @@ The normal subgroups of $G$ are exactly the sets of the form $\bigcap_{i \in I} 
 $G$ is simple iff the only irreducible character $\chi_i$ for which $\chi_i(g) = \chi_i(1)$ for some $1 \neq g \in G$ is the principal character $\chi_1$.
 \end{corollary}
 \begin{proof}
+    Suppose first that $G$ is simple. If $\chi_i(g)=\chi_i(1)$ for some $1\neq g\in G$, then $g\in K_i$. Thus $K_i$ is a non-trivial normal subgroup of $G$, so $K_i=G$. If $K_i=G$, then the corresponding irreducible representation is trivial on every element of $G$, and hence the simple module must be one-dimensional and trivial. Thus $\chi_i=\chi_1$.\\
+    Conversely, suppose that $G$ is not simple. Then there is a non-trivial proper normal subgroup $N \trianglelefteq G$. Choose $1\neq g\in N$. By Proposition~\ref{prop:15.7}, we may write
+    \[
+        N=\bigcap_{i\in I}K_i
+    \]
+    for some $I\subseteq\{1,\ldots,r\}$. Since $N\neq G$, at least one non-principal $K_i$ must occur in this intersection; otherwise the intersection is just $G$, because $K_1=G$. Choose such an $i>1$. Then $g\in N\leq K_i$, so $\chi_i(g)=\chi_i(1)$ for a non-principal irreducible character. This is exactly the failure of the stated condition.
 \end{proof}
 
 \begin{corollary}
@@ -170,6 +242,8 @@ $G$ is simple iff the only irreducible character $\chi_i$ for which $\chi_i(g) =
 The character table of $G$ can be used to determine whether or not $G$ is solvable.
 \end{corollary}
 \begin{proof}
+    From the character table we can read off each $K_i$: it is the union of exactly those conjugacy classes on which $\chi_i$ takes the value $\chi_i(1)$. By Proposition~\ref{prop:15.7}, all normal subgroups of $G$ are obtained by intersecting these $K_i$. Thus the character table determines the list of normal subgroups of $G$.\\
+    The table also records the sizes of the conjugacy classes, so once a normal subgroup has been identified as a union of conjugacy classes, its order can be computed by adding the corresponding class sizes. Hence the table determines the inclusion relations among normal subgroups and the orders of all quotients appearing in normal series. We can therefore check whether there is a normal series whose successive quotients have prime-power order, i.e. are $p$-groups. By Corollary~\ref{cor:11.7}, this is equivalent to solvability.
 \end{proof}
 
 We define $Z_\chi = \{x \in G \mid |\chi(x)| = \chi(1)\}$ for any character $\chi$ of $G$. Again we write $Z_i$ instead of $Z_{\chi_i}$.
@@ -179,6 +253,20 @@ We define $Z_\chi = \{x \in G \mid |\chi(x)| = \chi(1)\}$ for any character $\ch
 $Z_\chi \leq G$ for any character $\chi$ of $G$, and if in addition $\chi$ is irreducible, then $Z_\chi/K_\chi = Z(G/K_\chi)$.
 \end{lemma}
 \begin{proof}
+    Let $U$ be a $\C G$-module affording $\chi$, and let $\rho\colon G\to\mathrm{GL}(U)$ be the corresponding representation. First we show that $Z_\chi$ is a subgroup. Certainly $1\in Z_\chi$. If $g\in Z_\chi$, then $g^{-1}\in Z_\chi$ by part (iv) of Proposition~\ref{prop:14.4}. Now suppose $g,h\in Z_\chi$. By part (iii) of Proposition~\ref{prop:14.4}, $\chi(g)$ is a sum of $\chi(1)$ roots of unity. The condition $|\chi(g)|=\chi(1)$ means that this sum has the largest possible absolute value, so all eigenvalues of $\rho(g)$ are equal to a single root of unity; say $\rho(g)=\lambda(g)I$. Similarly, $\rho(h)=\lambda(h)I$. Hence
+    \[
+        \rho(gh)=\rho(g)\rho(h)=\lambda(g)\lambda(h)I,
+    \]
+    so all eigenvalues of $\rho(gh)$ are equal and $|\chi(gh)|=\chi(1)$. Thus $gh\in Z_\chi$, and $Z_\chi\leq G$.\\
+    For any $g\in Z_\chi$, the matrix $\rho(g)$ is scalar, so it lies in the center of $\rho(G)$. Also $K_\chi\leq Z_\chi$, and since $K_\chi=\ker\rho$, we have $\rho(G)\cong G/K_\chi$. This gives
+    \[
+        Z_\chi/K_\chi\leq Z(G/K_\chi).
+    \]
+    Now assume that $\chi$ is irreducible, so $U$ is simple. Let $gK_\chi\in Z(G/K_\chi)$. Then $\rho(g)$ commutes with $\rho(x)$ for every $x\in G$, so the map $u\mapsto gu$ is a $\C G$-endomorphism of $U$. By Lemma~\ref{lem:13.14}, this endomorphism is multiplication by some scalar $\mu\in\C$. Since $g$ has finite order, $\mu$ is a root of unity. Therefore
+    \[
+        \chi(g)=\mu\chi(1),
+    \]
+    so $|\chi(g)|=\chi(1)$ and $g\in Z_\chi$. This proves the reverse inclusion, and hence $Z_\chi/K_\chi=Z(G/K_\chi)$.
 \end{proof}
 
 \begin{corollary}
@@ -186,6 +274,11 @@ $Z_\chi \leq G$ for any character $\chi$ of $G$, and if in addition $\chi$ is ir
 If $G$ is non-abelian and simple, then $Z_i = 1$ for all $i > 1$.
 \end{corollary}
 \begin{proof}
+    Let $i>1$. Since $G$ is simple and $\chi_i$ is not the principal character, Corollary~\ref{cor:15.8} gives $K_i=1$. Applying Lemma~\ref{lem:15.10} to the irreducible character $\chi_i$ gives
+    \[
+        Z_i/K_i=Z(G/K_i).
+    \]
+    Since $K_i=1$, this says $Z_i=Z(G)$. But $G$ is non-abelian and simple, so $Z(G)$ cannot be all of $G$ and hence must be $1$. Therefore $Z_i=1$ for all $i>1$.
 \end{proof}
 
 \begin{proposition}
@@ -193,6 +286,24 @@ If $G$ is non-abelian and simple, then $Z_i = 1$ for all $i > 1$.
 $Z(G) = \bigcap_{i=1}^{r} Z_i$.
 \end{proposition}
 \begin{proof}
+    First let $z\in Z(G)$. We show that $z\in Z_i$ for every $i$. Since $z$ is central in $G$, the coset $zK_i$ is central in $G/K_i$. By Lemma~\ref{lem:15.10}, applied to the irreducible character $\chi_i$, we have
+    \[
+        Z_i/K_i=Z(G/K_i).
+    \]
+    Hence $zK_i\in Z_i/K_i$. Since $K_i\leq Z_i$, this implies $z\in Z_i$. Therefore
+    \[
+        Z(G)\leq\bigcap_{i=1}^{r}Z_i.
+    \]
+    Conversely, suppose that $g\in\bigcap_{i=1}^{r}Z_i$. Fix any $x\in G$. For each $i$, Lemma~\ref{lem:15.10} gives
+    \[
+        gK_i\in Z_i/K_i=Z(G/K_i).
+    \]
+    Thus $gK_i$ commutes with $xK_i$ in $G/K_i$, so
+    \[
+        [g,x]\in K_i
+    \]
+    for every $i$. By Proposition~\ref{prop:15.7}, the intersection $K_1\cap\cdots\cap K_r$ is $1$: indeed, the normal subgroup $1$ is an intersection of some of the $K_i$, and intersecting all of them can only make this subgroup smaller. Hence $[g,x]=1$. Since this holds for every $x\in G$, we have $g\in Z(G)$.\\
+    Therefore $Z(G)=\bigcap_{i=1}^{r}Z_i$.
 \end{proof}
 
 \begin{lemma}
@@ -200,6 +311,17 @@ $Z(G) = \bigcap_{i=1}^{r} Z_i$.
 If $N \trianglelefteq G$, then the irreducible characters of $G/N$ can be determined from those of $G$.
 \end{lemma}
 \begin{proof}
+    Let $\chi$ be an irreducible character of $G$ with $N\leq K_\chi$, and let $U$ be a simple $\C G$-module affording $\chi$. Since every element of $N$ acts as the identity on $U$, we can define an action of $G/N$ on $U$ by
+    \[
+        (gN)u=gu.
+    \]
+    This is well-defined: if $gN=hN$, then $h^{-1}g\in N$, so $h^{-1}g$ acts trivially on $U$, and hence $gu=hu$. A $\C(G/N)$-submodule of $U$ is the same thing as a $\C G$-submodule under this action. Since $U$ is simple as a $\C G$-module, it is also simple as a $\C(G/N)$-module. Thus $\chi$ gives an irreducible character of $G/N$, whose value on $gN$ is $\chi(g)$.\\
+    Conversely, let $\psi$ be an irreducible character of $G/N$. By Lemma~\ref{lem:15.6}, the inflated character $\psi\circ\eta$ is the character of a $\C G$-module, and the submodule statement in that lemma shows that this inflated module is still simple. Hence $\psi\circ\eta$ is an irreducible character of $G$. Also, every element of $N$ maps to the identity coset, so $N\leq K_{\psi\circ\eta}$.\\
+    Therefore the irreducible characters of $G/N$ are exactly the characters obtained from irreducible characters $\chi_i$ of $G$ satisfying $N\leq K_i$. The corresponding character of $G/N$ has value
+    \[
+        gN\mapsto\chi_i(g)
+    \]
+    on the coset $gN$. This determines the number of irreducible characters of $G/N$ and their values on elements of $G/N$ from the irreducible characters of $G$. What it does not automatically give is the full conjugacy-class structure or the class sizes in $G/N$, but the character values themselves are determined.
 \end{proof}
 
 \begin{corollary}
@@ -207,6 +329,24 @@ If $N \trianglelefteq G$, then the irreducible characters of $G/N$ can be determ
 The character table of $G$ can be used to determine whether or not $G$ is nilpotent.
 \end{corollary}
 \begin{proof}
+    Let
+    \[
+        1=\mathcal{Z}_0\leq\mathcal{Z}_1\leq\mathcal{Z}_2\leq\cdots
+    \]
+    be the upper central series of $G$, so that
+    \[
+        \mathcal{Z}_m/\mathcal{Z}_{m-1}=Z(G/\mathcal{Z}_{m-1})
+    \]
+    for each $m\geq1$. We claim that the character table lets us determine each term $\mathcal{Z}_m$ recursively. For $m=1$, Proposition~\ref{prop:15.12} gives
+    \[
+        \mathcal{Z}_1=Z(G)=\bigcap_{i=1}^{r}Z_i,
+    \]
+    and each $Z_i$ can be read off from the character table by checking where $|\chi_i(g)|=\chi_i(1)$.\\
+    Now suppose that $\mathcal{Z}_{m-1}$ has already been determined. Lemma~\ref{lem:15.13} tells us how to determine the irreducible characters of the quotient $G/\mathcal{Z}_{m-1}$ from the irreducible characters of $G$. Applying Proposition~\ref{prop:15.12} inside this quotient determines
+    \[
+        Z(G/\mathcal{Z}_{m-1})=\mathcal{Z}_m/\mathcal{Z}_{m-1}.
+    \]
+    Taking the full preimage in $G$ then determines $\mathcal{Z}_m$. Thus the whole upper central series is determined from the character table. By Exercise~\ref{ex:11.10}, the group $G$ is nilpotent iff $\mathcal{Z}_s=G$ for some $s$. Therefore the character table can be used to determine whether or not $G$ is nilpotent.
 \end{proof}
 
 Observe that in Corollary~\ref{cor:15.9} we assumed that we knew both the irreducible characters of $G$ and the orders of the conjugacy classes, whereas in Corollary~\ref{cor:15.14} we did not need to know the orders of the classes. As evidenced by Lemma~\ref{lem:15.13}, there may be circumstances in which we can construct a character table without knowing the orders of the conjugacy classes. There is a theorem of G.\ Higman (see [15, p.\ 136]) which asserts that if we know the irreducible characters of $G$, but not the orders of the conjugacy classes, then we can at least determine the sets of prime divisors of the orders of the conjugacy classes.
