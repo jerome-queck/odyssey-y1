@@ -665,6 +665,42 @@ Throughout these exercises, $G$ denotes a finite group, and $\mathcal{X}$ denote
 What is the determinant of $\mathcal{X}$?
 \end{exercise}
 \begin{solution}
+    Let $g_1,\ldots,g_r$ be the chosen conjugacy class representatives. By the \nameref{thm:col-orthogonality},
+    \[
+        \mathcal{X}^{T}\overline{\mathcal{X}}
+        =
+        \operatorname{diag}\bigl(|C_G(g_1)|,\ldots,|C_G(g_r)|\bigr).
+    \]
+    Taking determinants gives
+    \[
+        |\det(\mathcal{X})|^2
+        =
+        \det(\mathcal{X})\overline{\det(\mathcal{X})}
+        =
+        \prod_{j=1}^{r}|C_G(g_j)|.
+    \]
+    Hence
+    \[
+        |\det(\mathcal{X})|
+        =
+        \left(\prod_{j=1}^{r}|C_G(g_j)|\right)^{1/2}
+        =
+        \frac{|G|^{r/2}}{(k_1\cdots k_r)^{1/2}}.
+    \]
+    We can also determine whether the determinant is real or purely imaginary. Let $m$ be the number of unordered pairs of non-real complex-conjugate irreducible characters. By Exercise~\ref{ex:14.6}, complex conjugation permutes the rows of $\mathcal{X}$, fixing every real-valued row and interchanging the two rows in each of these $m$ pairs. Therefore
+    \[
+        \overline{\det(\mathcal{X})}=(-1)^m\det(\mathcal{X}),
+    \]
+    and so
+    \[
+        \det(\mathcal{X})^2=(-1)^m\prod_{j=1}^{r}|C_G(g_j)|.
+    \]
+    Thus, up to the unavoidable sign caused by reordering rows or columns,
+    \[
+        \det(\mathcal{X})
+        =
+        \pm i^m\left(\prod_{j=1}^{r}|C_G(g_j)|\right)^{1/2}.
+    \]
 \end{solution}
 
 \begin{exercise}
@@ -672,6 +708,24 @@ What is the determinant of $\mathcal{X}$?
 Show that the sum of the entries in any row of $\mathcal{X}$ is a non-negative integer.
 \end{exercise}
 \begin{solution}
+    Let $G$ act on itself by conjugation, and let $\pi$ be the character of the corresponding permutation module. By Example~\ref{ex:15.eg.4}, $\pi(g)$ is the number of elements of $G$ fixed by $g$. Since
+    \[
+        gxg^{-1}=x
+        \quad\Longleftrightarrow\quad
+        gx=xg,
+    \]
+    these fixed points are exactly the elements of $C_G(g)$, and hence $\pi(g)=|C_G(g)|$. Fix an irreducible character $\chi_i$, and let $s_i=\sum_{j=1}^{r}\chi_i(g_j)$ be the sum of the entries in its row. Grouping the inner product $(\pi,\chi_i)$ by conjugacy classes gives
+    \begin{align*}
+        (\pi,\chi_i)
+        &=\frac{1}{|G|}\sum_{j=1}^{r}k_j|C_G(g_j)|\overline{\chi_i(g_j)} \\
+        &=\sum_{j=1}^{r}\overline{\chi_i(g_j)}
+        =\overline{s_i},
+    \end{align*}
+    because $k_j|C_G(g_j)|=|G|$. By Corollary~\ref{cor:15.4}, $(\pi,\chi_i)$ is the multiplicity of $\chi_i$ in $\pi$, so it is a non-negative integer. It is therefore real, and
+    \[
+        s_i=\overline{(\pi,\chi_i)}=(\pi,\chi_i)\in\Z_{\geq0}.
+    \]
+    Hence the sum of the entries in every row of $\mathcal{X}$ is a non-negative integer.
 \end{solution}
 
 \begin{exercise}
@@ -679,6 +733,29 @@ Show that the sum of the entries in any row of $\mathcal{X}$ is a non-negative i
 Compute the character of the $G$-set $G$, where $G$ acts via conjugation, and determine the multiplicities in this character of the irreducible characters.
 \end{exercise}
 \begin{solution}
+    Let $\pi$ be the character of the permutation module corresponding to the conjugation action of $G$ on itself. As in Exercise~\ref{ex:15.2}, an element $x\in G$ is fixed by $g$ exactly when $x\in C_G(g)$. Therefore
+    \[
+        \pi(g)=|C_G(g)|,
+        \qquad
+        \pi(g_j)=|C_G(g_j)|=\frac{|G|}{k_j}.
+    \]
+    Let $m_i$ be the multiplicity of $\chi_i$ in $\pi$. By Corollary~\ref{cor:15.4},
+    \begin{align*}
+        m_i
+        &=(\pi,\chi_i) \\
+        &=\frac{1}{|G|}\sum_{j=1}^{r}k_j\pi(g_j)\overline{\chi_i(g_j)} \\
+        &=\sum_{j=1}^{r}\overline{\chi_i(g_j)}.
+    \end{align*}
+    By Exercise~\ref{ex:15.2}, the sum of the entries in the $\chi_i$-row is a non-negative integer and is therefore real. Hence
+    \[
+        m_i=\sum_{j=1}^{r}\chi_i(g_j).
+    \]
+    We conclude that the conjugation character is
+    \[
+        \pi
+        =
+        \sum_{i=1}^{r}\left(\sum_{j=1}^{r}\chi_i(g_j)\right)\chi_i.
+    \]
 \end{solution}
 
 \begin{exercise}
@@ -686,6 +763,27 @@ Compute the character of the $G$-set $G$, where $G$ acts via conjugation, and de
 Observe that the complex conjugate of an irreducible character is an irreducible character. (This is either Exercise~\ref{ex:14.6} or an easy consequence of part (ii) of Proposition~\ref{prop:14.8} and Corollary~\ref{cor:15.3}.) Let $P$ be the $r \times r$ permutation matrix such that $P\mathcal{X}$ is the matrix obtained from $\mathcal{X}$ by interchanging two rows if their corresponding characters are conjugate. Let $Q$ be the $r \times r$ permutation matrix such that $\mathcal{X}Q$ is the matrix obtained from $\mathcal{X}$ by interchanging two columns if their corresponding conjugacy classes are inverse, in the sense that one class consists of the inverses of the elements of the other class. Show that $P\mathcal{X} = \mathcal{X}Q$.
 \end{exercise}
 \begin{solution}
+    Let $p$ be the permutation of $\{1,\ldots,r\}$ determined by $\chi_{p(i)}=\overline{\chi_i}$, and let $q$ be the permutation determined by requiring that $g_{q(j)}$ be conjugate to $g_j^{-1}$. By the definitions of $P$ and $Q$, we have
+    \[
+        (P\mathcal{X})_{ij}
+        =
+        \chi_{p(i)}(g_j)
+        =
+        \overline{\chi_i(g_j)}
+    \]
+    and
+    \[
+        (\mathcal{X}Q)_{ij}
+        =
+        \chi_i(g_{q(j)})
+        =
+        \chi_i(g_j^{-1}).
+    \]
+    The last equality holds because characters are constant on conjugacy classes. By part (iv) of Proposition~\ref{prop:14.4},
+    \[
+        \chi_i(g_j^{-1})=\overline{\chi_i(g_j)}.
+    \]
+    Hence $(P\mathcal{X})_{ij}=(\mathcal{X}Q)_{ij}$ for every $i$ and $j$, and therefore $P\mathcal{X}=\mathcal{X}Q$.
 \end{solution}
 
 \begin{exercise}
@@ -693,6 +791,13 @@ Observe that the complex conjugate of an irreducible character is an irreducible
 Suppose that $|G|$ is odd. Show that the only irreducible character that is real-valued is the principal character.
 \end{exercise}
 \begin{solution}
+    By the \nameref{thm:row-orthogonality}, the rows of $\mathcal{X}$ are linearly independent, so $\mathcal{X}$ is invertible. Exercise~\ref{ex:15.4} gives
+    \[
+        P=\mathcal{X}Q\mathcal{X}^{-1}.
+    \]
+    Thus $P$ and $Q$ are similar and have the same trace. The trace of a permutation matrix is the number of points fixed by the corresponding permutation. Therefore $\operatorname{tr}(P)$ is the number of real-valued irreducible characters, while $\operatorname{tr}(Q)$ is the number of conjugacy classes that are equal to their inverse classes.\\
+    We show that the identity class is the only conjugacy class fixed by inversion. Let $\mathcal{K}$ be such a class. By Proposition~\ref{prop:3.13}, $|\mathcal{K}|$ divides $|G|$, so $|\mathcal{K}|$ is odd. Inversion restricts to an involution on $\mathcal{K}$. Since all non-fixed points of an involution occur in pairs, this involution on the odd-sized set $\mathcal{K}$ has a fixed point $x$. Then $x=x^{-1}$, so $x^2=1$. Since $|G|$ is odd, \nameref{thm:lagrange} forces $x=1$, and therefore $\mathcal{K}=\{1\}$. Consequently $\operatorname{tr}(Q)=1$, so also $\operatorname{tr}(P)=1$.\\
+    The principal character is real-valued, and $\operatorname{tr}(P)=1$ shows that it is the only real-valued irreducible character.
 \end{solution}
 
 \begin{exercise}
@@ -703,6 +808,30 @@ Let $\chi$ be an irreducible character of $G$, and let $e \in \C G$ be the ident
 \]
 \end{exercise}
 \begin{solution}
+    Write
+    \[
+        e=\sum_{h\in G}a_hh.
+    \]
+    Fix $g\in G$, and let $L_{eg^{-1}}$ denote left multiplication by $eg^{-1}$ on the regular module $\C G$. For each basis element $x\in G$, we have
+    \[
+        (eg^{-1})x=\sum_{h\in G}a_hhg^{-1}x.
+    \]
+    The coefficient of $x$ in this expression is $a_g$, since $hg^{-1}x=x$ iff $h=g$. Thus every diagonal entry of $L_{eg^{-1}}$ is $a_g$, and
+    \[
+        \operatorname{tr}(L_{eg^{-1}})=|G|a_g.
+    \]
+    Let $S$ be a simple $\C G$-module affording $\chi$, and put $f=\chi(1)=\dim_{\C}S$. By Theorem~\ref{thm:14.1}, the regular module contains $f$ copies of $S$. Since $e$ is the identity element of the matrix summand corresponding to $S$, it acts as the identity on $S$ and as zero on every non-isomorphic simple module. Consequently, $eg^{-1}$ acts as $g^{-1}$ on each of the $f$ copies of $S$ and as zero on every other simple summand of the regular module. Taking traces gives
+    \[
+        \operatorname{tr}(L_{eg^{-1}})=f\chi(g^{-1})=\chi(1)\chi(g^{-1}).
+    \]
+    Comparing the two expressions for $\operatorname{tr}(L_{eg^{-1}})$ yields
+    \[
+        a_g=\frac{\chi(1)}{|G|}\chi(g^{-1})
+    \]
+    for every $g\in G$. Substituting these coefficients into the expression for $e$, we obtain
+    \[
+        e=\frac{\chi(1)}{|G|}\sum_{g\in G}\chi(g^{-1})g.
+    \]
 \end{solution}
 
 \begin{exercise}
@@ -710,6 +839,17 @@ Let $\chi$ be an irreducible character of $G$, and let $e \in \C G$ be the ident
 If $N \trianglelefteq G$ and $g \in G$, show that $|C_G(g)| \geq |C_{G/N}(gN)|$.
 \end{exercise}
 \begin{solution}
+    Let $\chi_1,\ldots,\chi_r$ be the irreducible characters of $G$. By Lemma~\ref{lem:15.13}, the irreducible characters of $G/N$ correspond exactly to those $\chi_i$ for which $N\leq K_i$, and the corresponding character of $G/N$ takes the value $\chi_i(g)$ at $gN$. Applying the \nameref{thm:col-orthogonality} first in $G/N$ and then in $G$, we obtain
+    \[
+        |C_{G/N}(gN)|
+        =
+        \sum_{\substack{1\leq i\leq r\\N\leq K_i}}|\chi_i(g)|^2
+        \leq
+        \sum_{i=1}^{r}|\chi_i(g)|^2
+        =
+        |C_G(g)|.
+    \]
+    The inequality holds because every summand is non-negative. Therefore $|C_G(g)|\geq|C_{G/N}(gN)|$.
 \end{solution}
 
 \begin{exercise}
@@ -717,6 +857,22 @@ If $N \trianglelefteq G$ and $g \in G$, show that $|C_G(g)| \geq |C_{G/N}(gN)|$.
 Show that if $G$ acts doubly transitively on $X$, then the character of $\C X$ is the sum of the principal character and exactly one other irreducible character.
 \end{exercise}
 \begin{solution}
+    As written, the assertion requires the additional assumption $|X|\geq2$. If $|X|=1$, the action is doubly transitive under the definition in Section~3, but $\C X$ affords only the principal character. We therefore prove the intended statement under the assumption $|X|\geq2$.\\
+    Let $\pi$ be the character of $\C X$, and let $G$ act diagonally on $X\times X$. By Example~\ref{ex:15.eg.4}, $\pi(g)$ is the number of points of $X$ fixed by $g$. Hence the number of points of $X\times X$ fixed by $g$ is $\pi(g)^2=|\pi(g)|^2$. Applying Example~\ref{ex:15.eg.4} to $X\times X$, we see that
+    \[
+        (\pi,\pi)
+        =
+        \frac{1}{|G|}\sum_{g\in G}|\pi(g)|^2
+    \]
+    is the number of orbits of $G$ on $X\times X$. Double transitivity gives exactly two such orbits: the diagonal
+    \[
+        \{(x,x)\mid x\in X\}
+    \]
+    and the set of ordered pairs $(x,y)$ with $x\neq y$. Thus $(\pi,\pi)=2$. By Corollary~\ref{cor:15.3}, $\pi$ is the sum of two distinct irreducible characters.\\
+    A doubly transitive action is transitive, so Example~\ref{ex:15.eg.4} gives $(\pi,\chi_1)=1$. Hence one of the two irreducible constituents is the principal character, and the other is a single non-principal irreducible character $\chi$. Therefore
+    \[
+        \pi=\chi_1+\chi.
+    \]
 \end{solution}
 
 \begin{exercise}
@@ -724,6 +880,92 @@ Show that if $G$ acts doubly transitively on $X$, then the character of $\C X$ i
 Determine the character table of $D_{2n}$ for any $n \in \N$.
 \end{exercise}
 \begin{solution}
+    Write
+    \[
+        D_{2n}=\langle r,s\mid r^n=s^2=1,\ srs=r^{-1}\rangle,
+    \]
+    where $r$ is a rotation and $s$ is a reflection. Every element is either $r^j$ or $sr^j$. Conjugation by $s$ sends $r^j$ to $r^{-j}$, while
+    \[
+        r^a(sr^j)r^{-a}=sr^{j-2a}.
+    \]
+    We therefore separate the cases in which $n$ is odd and even.\\
+    Suppose first that $n$ is odd. The conjugacy classes are
+    \[
+        \{1\},
+        \qquad
+        \{r^j,r^{-j}\}\quad\left(1\leq j\leq\frac{n-1}{2}\right),
+        \qquad
+        \{sr^a\mid0\leq a<n\}.
+    \]
+    The last set is one class because multiplication by $2$ is invertible modulo $n$. There are two linear characters $\lambda_{\delta}$, where $\delta\in\{1,-1\}$, given by
+    \[
+        \lambda_{\delta}(r^j)=1,
+        \qquad
+        \lambda_{\delta}(sr^j)=\delta.
+    \]
+    Let $\zeta=e^{2\pi i/n}$. For $1\leq k\leq(n-1)/2$, define a representation by
+    \[
+        r\longmapsto
+        \begin{pmatrix}
+            \zeta^k&0\\
+            0&\zeta^{-k}
+        \end{pmatrix},
+        \qquad
+        s\longmapsto
+        \begin{pmatrix}
+            0&1\\
+            1&0
+        \end{pmatrix}.
+    \]
+    Its character $\chi_k$ satisfies
+    \[
+        \chi_k(r^j)=\zeta^{kj}+\zeta^{-kj}=2\cos\left(\frac{2\pi kj}{n}\right),
+        \qquad
+        \chi_k(sr^j)=0.
+    \]
+    The two eigenvalues of $r$ in this representation are distinct, and $s$ interchanges their eigenspaces, so the representation has no invariant one-dimensional subspace and is irreducible. The characters $\chi_k$ are pairwise distinct, since the values $2\cos(2\pi k/n)$ at $r$ are distinct in the given range. We have constructed
+    \[
+        2+\frac{n-1}{2}=\frac{n+3}{2}
+    \]
+    irreducible characters, exactly the number of conjugacy classes. Hence the character table for odd $n$ is
+    \[
+        \begin{array}{c|ccc}
+            &1&r^{\pm j}\ \left(1\leq j\leq\frac{n-1}{2}\right)&sr^a\ (0\leq a<n)\\
+            \hline
+            \lambda_{1}&1&1&1\\
+            \lambda_{-1}&1&1&-1\\
+            \chi_k\ \left(1\leq k\leq\frac{n-1}{2}\right)&2&2\cos\left(\frac{2\pi kj}{n}\right)&0
+        \end{array}
+    \]
+    where the class sizes are respectively $1$, $2$, and $n$.\\
+    Now suppose that $n$ is even. The conjugacy classes are
+    \[
+        \{1\},\quad
+        \{r^{n/2}\},\quad
+        \{r^j,r^{-j}\}\ \left(1\leq j<\frac n2\right),\quad
+        \{sr^{2a}\mid0\leq a<\tfrac n2\},\quad
+        \{sr^{2a+1}\mid0\leq a<\tfrac n2\}.
+    \]
+    There are four linear characters $\lambda_{\varepsilon,\delta}$, indexed by $\varepsilon,\delta\in\{1,-1\}$, defined by
+    \[
+        \lambda_{\varepsilon,\delta}(r^j)=\varepsilon^j,
+        \qquad
+        \lambda_{\varepsilon,\delta}(sr^j)=\delta\varepsilon^j.
+    \]
+    For $1\leq k<n/2$, the same two-dimensional matrices as above define irreducible characters $\chi_k$. Thus the character table for even $n$ is
+    \[
+        \begin{array}{c|ccccc}
+            &1&r^{n/2}&r^{\pm j}\ \left(1\leq j<\frac n2\right)&sr^{2a}&sr^{2a+1}\\
+            \hline
+            \lambda_{\varepsilon,\delta}&1&\varepsilon^{n/2}&\varepsilon^j&\delta&\delta\varepsilon\\
+            \chi_k\ \left(1\leq k<\frac n2\right)&2&2(-1)^k&2\cos\left(\frac{2\pi kj}{n}\right)&0&0
+        \end{array}
+    \]
+    where $\varepsilon,\delta\in\{1,-1\}$ and the class sizes are respectively $1$, $1$, $2$, $n/2$, and $n/2$. These give
+    \[
+        4+\left(\frac n2-1\right)=\frac n2+3
+    \]
+    pairwise distinct irreducible characters, again exactly the number of conjugacy classes. The formulas also cover $n=1$ and $n=2$, when the indexed families of two-dimensional characters are empty.
 \end{solution}
 
 \begin{exercise}
@@ -731,6 +973,88 @@ Determine the character table of $D_{2n}$ for any $n \in \N$.
 Determine the character table of $S_5$.
 \end{exercise}
 \begin{solution}
+    By Proposition~\ref{prop:1.10}, the conjugacy classes of $S_5$ are determined by cycle type. We order the class representatives and their class sizes as follows:
+    \[
+        \begin{array}{c|ccccccc}
+            &1&15&20&24&10&20&30\\
+            &1&(1\,2)(3\,4)&(1\,2\,3)&(1\,2\,3\,4\,5)&(1\,2)&(1\,2\,3)(4\,5)&(1\,2\,3\,4)
+        \end{array}
+    \]
+    Let $\chi_1$ be the principal character and let $\chi_2$ be the sign character. Let $\pi$ be the permutation character for the natural action of $S_5$ on $\{1,2,3,4,5\}$. By Example~\ref{ex:15.eg.4}, $\pi(g)$ is the number of fixed points of $g$, so
+    \[
+        \pi=(5,1,2,0,3,0,1).
+    \]
+    The action is transitive, so $(\pi,\chi_1)=1$ by Example~\ref{ex:15.eg.4}; hence $\pi-\chi_1$ is a character. A direct calculation gives
+    \[
+        (\pi-\chi_1,\pi-\chi_1)
+        =
+        \frac{1}{120}(1\cdot16+20\cdot1+24\cdot1+10\cdot4+20\cdot1)
+        =1.
+    \]
+    Hence $\chi_3=\pi-\chi_1=(4,0,1,-1,2,-1,0)$ is irreducible by Corollary~\ref{cor:15.3}. Proposition~\ref{prop:15.5} then gives the distinct irreducible character
+    \[
+        \chi_4=\chi_2\chi_3=(4,0,1,-1,-2,1,0).
+    \]
+    Next let $S_5$ act by conjugation on its set of ten transpositions, and let $\tau$ be the corresponding permutation character. Counting the transpositions that commute with each class representative gives
+    \[
+        \tau=(10,2,1,0,4,1,0).
+    \]
+    This action is transitive, so $(\tau,\chi_1)=1$ by Example~\ref{ex:15.eg.4}. Direct calculations also give
+    \[
+        (\tau,\chi_3)
+        =
+        \frac{1}{120}(1\cdot10\cdot4+20\cdot1\cdot1+10\cdot4\cdot2+20\cdot1\cdot(-1))
+        =1
+    \]
+    and
+    \[
+        (\tau,\tau)
+        =
+        \frac{1}{120}(1\cdot100+15\cdot4+20\cdot1+10\cdot16+20\cdot1)
+        =3.
+    \]
+    Thus $\tau$ contains one copy each of $\chi_1$ and $\chi_3$, and the remaining character
+    \[
+        \chi_5
+        =
+        \tau-\chi_1-\chi_3
+        =
+        (5,1,-1,0,1,1,-1)
+    \]
+    has $(\chi_5,\chi_5)=1$. Therefore $\chi_5$ is irreducible, and Proposition~\ref{prop:15.5} gives the distinct irreducible character
+    \[
+        \chi_6=\chi_2\chi_5=(5,1,-1,0,-1,-1,1).
+    \]
+    There are seven conjugacy classes, so one irreducible character $\chi_7$ remains. Corollary~\ref{cor:14.2} gives
+    \[
+        \chi_7(1)^2
+        =
+        120-(1^2+1^2+4^2+4^2+5^2+5^2)
+        =36,
+    \]
+    and hence $\chi_7(1)=6$. For each non-identity class representative $g$, orthogonality with the identity column gives
+    \[
+        \sum_{i=1}^{7}\chi_i(1)\chi_i(g)=0.
+    \]
+    Substituting the six known rows into these equations determines the remaining values, giving
+    \[
+        \chi_7=(6,-2,0,1,0,0,0).
+    \]
+    Therefore the character table of $S_5$ is
+    \[
+        \begin{array}{c|ccccccc}
+            &1&15&20&24&10&20&30\\
+            &1&(1\,2)(3\,4)&(1\,2\,3)&(1\,2\,3\,4\,5)&(1\,2)&(1\,2\,3)(4\,5)&(1\,2\,3\,4)\\
+            \hline
+            \chi_1&1&1&1&1&1&1&1\\
+            \chi_2&1&1&1&1&-1&-1&-1\\
+            \chi_3&4&0&1&-1&2&-1&0\\
+            \chi_4&4&0&1&-1&-2&1&0\\
+            \chi_5&5&1&-1&0&1&1&-1\\
+            \chi_6&5&1&-1&0&-1&-1&1\\
+            \chi_7&6&-2&0&1&0&0&0
+        \end{array}
+    \]
 \end{solution}
 
 \end{document}
