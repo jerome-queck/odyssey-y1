@@ -22,6 +22,44 @@ where $T$ is a transversal for $H$ in $G$ and $t \otimes V = \{t \otimes v \mid 
 \end{lemma}
 
 \begin{proof}
+    We take $T$ to be a left transversal, so that
+    \[
+        G=\bigsqcup_{t\in T}tH.
+    \]
+    Consequently,
+    \[
+        FG=\bigoplus_{t\in T}tFH
+    \]
+    as right $FH$-modules. For each $t\in T$, the map $tFH\to FH$ sending $th$ to $h$ is an isomorphism of right $FH$-modules. Hence Propositions~\ref{prop:12.2} and~\ref{prop:12.3} give the following isomorphisms of $F$-vector spaces:
+    \[
+        \mathrm{Ind}_H^G V
+        =
+        FG\otimes_{FH}V
+        \cong
+        \bigoplus_{t\in T}\bigl(tFH\otimes_{FH}V\bigr)
+        \cong
+        \bigoplus_{t\in T}V.
+    \]
+    Under the last isomorphism, the copy of $V$ indexed by $t$ is precisely the subspace
+    \[
+        t\otimes V=\{t\otimes v\mid v\in V\}.
+    \]
+    Indeed, if $g=th$ with $t\in T$ and $h\in H$, then the balancing relation in the tensor product gives
+    \[
+        g\otimes v=th\otimes v=t\otimes hv\in t\otimes V.
+    \]
+    Since the preceding decomposition is a direct sum, we obtain
+    \[
+        \mathrm{Ind}_H^G V=\bigoplus_{t\in T}t\otimes V
+    \]
+    as $F$-vector spaces. Finally, $|T|=|G : H|$, so
+    \[
+        \dim_F\mathrm{Ind}_H^G V
+        =
+        |T|\dim_FV
+        =
+        |G : H|\dim_FV.
+    \]
 \end{proof}
 
 \begin{namedtheorem}[Frobenius Reciprocity Theorem]
@@ -30,6 +68,76 @@ Let $U$ be an $FG$-module, let $H \leq G$, and let $V$ be an $FH$-module. Then a
 \end{namedtheorem}
 
 \begin{proof}
+    Let $\varphi\in\Hom_{FH}(V,\mathrm{Res}_H^G U)$. Define
+    \[
+        f_\varphi\colon FG\times V\to U,
+        \qquad
+        f_\varphi(a,v)=a\varphi(v).
+    \]
+    This map is additive in each variable. Moreover, if $b\in FH$, then
+    \[
+        f_\varphi(ab,v)
+        =
+        ab\varphi(v)
+        =
+        a\varphi(bv)
+        =
+        f_\varphi(a,bv),
+    \]
+    because $\varphi$ is $FH$-linear. Also, for $c\in FG$,
+    \[
+        f_\varphi(ca,v)=ca\varphi(v)=c f_\varphi(a,v).
+    \]
+    Thus $f_\varphi$ is balanced, so the universal property of the tensor product gives a unique $FG$-module homomorphism
+    \[
+        \Gamma(\varphi)\colon FG\otimes_{FH}V\to U
+    \]
+    satisfying
+    \[
+        \Gamma(\varphi)(a\otimes v)=a\varphi(v).
+    \]
+    This defines an $F$-linear map
+    \[
+        \Gamma\colon
+        \Hom_{FH}(V,\mathrm{Res}_H^G U)
+        \longrightarrow
+        \Hom_{FG}(\mathrm{Ind}_H^G V,U).
+    \]
+    Conversely, let $\theta\in\Hom_{FG}(\mathrm{Ind}_H^G V,U)$, and define
+    \[
+        \Delta(\theta)\colon V\to\mathrm{Res}_H^G U,
+        \qquad
+        \Delta(\theta)(v)=\theta(1\otimes v).
+    \]
+    For $h\in H$ and $v\in V$, the balancing relation gives
+    \[
+        \Delta(\theta)(hv)
+        =
+        \theta(1\otimes hv)
+        =
+        \theta(h\otimes v)
+        =
+        h\theta(1\otimes v)
+        =
+        h\Delta(\theta)(v).
+    \]
+    Hence $\Delta(\theta)$ is $FH$-linear. The two constructions are inverse: for $v\in V$,
+    \[
+        \Delta(\Gamma(\varphi))(v)
+        =
+        \Gamma(\varphi)(1\otimes v)
+        =
+        \varphi(v),
+    \]
+    while for every elementary tensor $a\otimes v$,
+    \[
+        \Gamma(\Delta(\theta))(a\otimes v)
+        =
+        a\theta(1\otimes v)
+        =
+        \theta(a\otimes v).
+    \]
+    Since elementary tensors span $\mathrm{Ind}_H^G V$, we have $\Gamma\Delta(\theta)=\theta$. Therefore $\Gamma$ is the required isomorphism of $F$-vector spaces.
 \end{proof}
 
 \subsubsection*{Induced Characters}
@@ -45,6 +153,22 @@ Let $H \leq G$, let $U$ be a $\C G$-module having character $\chi$, and let $V$ 
 \end{theorem}
 
 \begin{proof}
+    The character of $\mathrm{Res}_H^G U$ is $\chi|_H$, while the character of $\mathrm{Ind}_H^G V$ is $\varphi^G$. Applying Theorem~\ref{thm:14.12} first to $H$ and then to $G$ gives
+    \[
+        (\varphi,\chi|_H)_H
+        =
+        \dim_{\C}\Hom_{\C H}(V,\mathrm{Res}_H^G U)
+    \]
+    and
+    \[
+        (\varphi^G,\chi)_G
+        =
+        \dim_{\C}\Hom_{\C G}(\mathrm{Ind}_H^G V,U).
+    \]
+    These two Hom-spaces are isomorphic by \nameref{thm:frobenius-reciprocity}, so their dimensions are equal. Therefore
+    \[
+        (\varphi,\chi|_H)_H=(\varphi^G,\chi)_G.
+    \]
 \end{proof}
 
 \subsubsection*{Induction--Restriction Tables}
@@ -64,6 +188,32 @@ Let $H \leq G$, and let $V$ be a $\C H$-module having character $\chi$. If $T$ i
 \end{proposition}
 
 \begin{proof}
+    Choose a basis $\{v_1,\ldots,v_d\}$ of $V$. By Lemma~\ref{lem:16.1},
+    \[
+        \{t\otimes v_i\mid t\in T,\ 1\leq i\leq d\}
+    \]
+    is a basis of $\mathrm{Ind}_H^G V$. Fix $g\in G$. For each $t\in T$, there are unique $s\in T$ and $h\in H$ such that $gt=sh$. Therefore
+    \[
+        g(t\otimes v)=gt\otimes v=sh\otimes v=s\otimes hv,
+    \]
+    so $g$ maps the subspace $t\otimes V$ into $s\otimes V$.\\
+    If $s\neq t$, then this map contributes nothing to the trace, because it sends the whole $t\otimes V$ block into a different block. The equality $s=t$ holds precisely when
+    \[
+        gt=th
+        \quad\Longleftrightarrow\quad
+        h=t^{-1}gt\in H.
+    \]
+    In this case,
+    \[
+        g(t\otimes v)=t\otimes(t^{-1}gt)v.
+    \]
+    Under the isomorphism $V\to t\otimes V$ sending $v$ to $t\otimes v$, the action of $g$ on this block is therefore the same as the action of $t^{-1}gt$ on $V$. Its contribution to the trace is $\chi(t^{-1}gt)$. Summing the contributions of all diagonal blocks gives
+    \[
+        \chi^G(g)
+        =
+        \sum_{\substack{t\in T,\\t^{-1}gt\in H}}
+        \chi(t^{-1}gt).
+    \]
 \end{proof}
 
 \begin{corollary}
@@ -75,6 +225,32 @@ Let $\chi$ be a character of $H \leq G$, and let $g \in G$. Then
 \end{corollary}
 
 \begin{proof}
+    Let $T$ be a left transversal for $H$ in $G$. Every $x\in G$ can be written uniquely as $x=th$ with $t\in T$ and $h\in H$. For such an $x$,
+    \[
+        x^{-1}gx=h^{-1}(t^{-1}gt)h.
+    \]
+    Hence $x^{-1}gx\in H$ if and only if $t^{-1}gt\in H$. Whenever this occurs, $\chi$ being a class function on $H$ gives
+    \[
+        \chi(x^{-1}gx)
+        =
+        \chi\bigl(h^{-1}(t^{-1}gt)h\bigr)
+        =
+        \chi(t^{-1}gt).
+    \]
+    Thus, for each $t\in T$ with $t^{-1}gt\in H$, the $|H|$ elements $th$, where $h\in H$, all make the same contribution. Therefore
+    \[
+        \sum_{\substack{x\in G,\\x^{-1}gx\in H}}\chi(x^{-1}gx)
+        =
+        |H|
+        \sum_{\substack{t\in T,\\t^{-1}gt\in H}}\chi(t^{-1}gt).
+    \]
+    Proposition~\ref{prop:16.3} now gives
+    \[
+        \chi^G(g)
+        =
+        \frac{1}{|H|}
+        \sum_{\substack{x\in G,\\x^{-1}gx\in H}}\chi(x^{-1}gx).
+    \]
 \end{proof}
 
 \begin{proposition}
@@ -86,6 +262,77 @@ Let $\chi$ be a character of $H \leq G$, and let $g \in G$, and let $s$ be the n
 \end{proposition}
 
 \begin{proof}
+    If $s=0$, no conjugate of $g$ lies in $H$. Hence the sum in Corollary~\ref{cor:16.4} is empty, and therefore $\chi^G(g)=0$.\\
+    Now assume $s>0$. For each $1\leq i\leq s$, let
+    \[
+        X_i
+        =
+        \{x\in G\mid x^{-1}gx\text{ is conjugate in }H\text{ to }h_i\}.
+    \]
+    The sets $X_i$ are pairwise disjoint, and their union is $\{x\in G\mid x^{-1}gx\in H\}$. Since $\chi$ is constant on each conjugacy class of $H$, Corollary~\ref{cor:16.4} gives
+    \[
+        \chi^G(g)
+        =
+        \frac{1}{|H|}
+        \sum_{i=1}^{s}|X_i|\chi(h_i).
+    \]
+    It remains to calculate $|X_i|$. Choose $t_i\in G$ such that $t_i^{-1}gt_i=h_i$. We claim that
+    \[
+        X_i=C_G(g)t_iH.
+    \]
+    Indeed, if $c\in C_G(g)$ and $h\in H$, then
+    \[
+        (ct_ih)^{-1}g(ct_ih)
+        =
+        h^{-1}t_i^{-1}c^{-1}gct_ih
+        =
+        h^{-1}h_ih,
+    \]
+    so $ct_ih\in X_i$. This proves $C_G(g)t_iH\subseteq X_i$. Conversely, if $x\in X_i$, then for some $h\in H$,
+    \[
+        x^{-1}gx
+        =
+        h^{-1}h_ih
+        =
+        h^{-1}t_i^{-1}gt_ih.
+    \]
+    Put $c=xh^{-1}t_i^{-1}$. Then
+    \[
+        c^{-1}gc
+        =
+        t_ihx^{-1}gxh^{-1}t_i^{-1}
+        =
+        g,
+    \]
+    so $c\in C_G(g)$ and $x=ct_ih\in C_G(g)t_iH$. Thus the claim follows.\\
+    Proposition~\ref{prop:3.15} now gives
+    \[
+        |X_i|
+        =
+        \frac{|C_G(g)|\,|H|}
+        {|t_i^{-1}C_G(g)t_i\cap H|}.
+    \]
+    By Exercise~\ref{ex:3.7},
+    \[
+        t_i^{-1}C_G(g)t_i
+        =
+        C_G(t_i^{-1}gt_i)
+        =
+        C_G(h_i),
+    \]
+    and hence $t_i^{-1}C_G(g)t_i\cap H=C_H(h_i)$. Therefore
+    \[
+        \frac{|X_i|}{|H|}
+        =
+        \frac{|C_G(g)|}{|C_H(h_i)|}.
+    \]
+    Substituting this into the earlier expression for $\chi^G(g)$ yields
+    \[
+        \chi^G(g)
+        =
+        \sum_{i=1}^{s}
+        \frac{|C_G(g)|}{|C_H(h_i)|}\chi(h_i).
+    \]
 \end{proof}
 
 \begin{corollary}
@@ -97,6 +344,32 @@ Let $\chi$ be a character of $H \leq G$. Let $g \in G$, and suppose that the num
 \end{corollary}
 
 \begin{proof}
+    Proposition~\ref{prop:3.13} gives
+    \[
+        \ell=|G : C_G(g)|
+        \qquad\text{and}\qquad
+        k_i=|H : C_H(h_i)|.
+    \]
+    Hence
+    \[
+        |C_G(g)|=\frac{|G|}{\ell},
+        \qquad
+        |C_H(h_i)|=\frac{|H|}{k_i}.
+    \]
+    It follows that
+    \[
+        \frac{|C_G(g)|}{|C_H(h_i)|}
+        =
+        \frac{|G|/\ell}{|H|/k_i}
+        =
+        |G : H|\frac{k_i}{\ell}.
+    \]
+    Substituting this equality into Proposition~\ref{prop:16.5} gives
+    \[
+        \chi^G(g)
+        =
+        \sum_{i=1}^{s}|G : H|\frac{k_i}{\ell}\chi(h_i).
+    \]
 \end{proof}
 
 \subsubsection*{Frobenius Groups}
@@ -104,9 +377,9 @@ Let $\chi$ be a character of $H \leq G$. Let $g \in G$, and suppose that the num
     \item We end the section by presenting an important theorem on finite groups which, quite remarkably, has no known proof that does not use character theory.
     \item A \emph{Frobenius group} is a group $G$ having a subgroup $H$ such that $H \cap g H g^{-1} = 1$ for every $g \in G - H$. We call $H$ a \emph{Frobenius complement} of $G$.
     \item If $G$ is a finite Frobenius group, applying \nameref{thm:frobenius} yields a normal subgroup $N$, called the \emph{Frobenius kernel} of $G$. One has $G = N \rtimes H$, $N \cap H = 1$, and $|N||H| = |G|$.
-    \item For $G = N \rtimes H$ a finite Frobenius group with Frobenius kernel $N$ and complement $H$, the conjugation map $\varphi: H \to \mathrm{Aut}(N)$ has the property that for each $1 \neq h \in H$, $\varphi(h)$ is a \emph{fixed-point-free automorphism} of $N$: $\varphi(h)(n) = n$ forces $n = 1$. In particular, $\varphi$ is injective.
-    \item Conversely, given finite groups $N$ and $H$ and a homomorphism $\varphi: H \to \mathrm{Aut}(N)$ for which every $\varphi(h)$, $h \neq 1$, is fixed-point-free, $N \rtimes_\varphi H$ is a Frobenius group.
-    \item Example: if $p, q$ are distinct primes with $p \equiv 1 \pmod{q}$, then any monomorphism $\varphi: \Z_q \to \mathrm{Aut}(\Z_p)$ is fixed-point-free, and hence the unique non-abelian group of order $pq$ is a Frobenius group.
+    \item For $G = N \rtimes H$ a finite Frobenius group with Frobenius kernel $N$ and complement $H$, the conjugation map $\varphi \colon H \to \Aut(N)$ has the property that for each $1 \neq h \in H$, $\varphi(h)$ is a \emph{fixed-point-free automorphism} of $N$: $\varphi(h)(n) = n$ forces $n = 1$. In particular, $\varphi$ is injective.
+    \item Conversely, given finite groups $N$ and $H$ and a homomorphism $\varphi \colon H \to \Aut(N)$ for which every $\varphi(h)$, $h \neq 1$, is fixed-point-free, $N \rtimes_\varphi H$ is a Frobenius group.
+    \item Example: if $p, q$ are distinct primes with $p \equiv 1 \pmod{q}$, then any monomorphism $\varphi \colon \Z_q \to \Aut(\Z_p)$ is fixed-point-free, and hence the unique non-abelian group of order $pq$ is a Frobenius group.
     \item A theorem of Thompson (his 1959 Chicago Ph.D. thesis) states that any finite group having a fixed-point-free automorphism of prime order is nilpotent. Hence the Frobenius kernel of a finite Frobenius group is nilpotent.
 \end{itemize}
 
@@ -116,6 +389,161 @@ Let $G$ be a transitive permutation group on a finite set $X$, and suppose that 
 \end{namedtheorem}
 
 \begin{proof}
+    Let
+    \[
+        N=\{1\}\cup\{g\in G\mid gx\neq x\text{ for every }x\in X\}.
+    \]
+    Thus $N$ consists of the identity together with all fixed-point-free elements. We must prove that $N\trianglelefteq G$. Put $n=|X|$, fix $x_0\in X$, and let $H=G_{x_0}$. Since $X$ is transitive, Proposition~\ref{prop:3.4} gives $X\cong G/H$, and hence
+    \[
+        n=|G : H|,
+        \qquad
+        |G|=n|H|.
+    \]
+    Also, Lemma~\ref{lem:3.2} shows that every point stabilizer is conjugate to $H$, so every point stabilizer has order $|H|$.\\
+    Consider the set
+    \[
+        \mathcal{P}
+        =
+        \{(g,x)\in(G-\{1\})\times X\mid gx=x\}.
+    \]
+    For each $x\in X$, exactly $|G_x|-1=|H|-1$ non-identity elements fix $x$. Therefore
+    \[
+        |\mathcal{P}|=n(|H|-1).
+    \]
+    By hypothesis, each non-identity element of $G$ fixes at most one point. Thus every non-identity element which has a fixed point occurs in exactly one pair in $\mathcal{P}$. These are precisely the elements of $G-N$, so
+    \[
+        |G-N|=n(|H|-1).
+    \]
+    Consequently,
+    \[
+        |N|
+        =
+        |G|-n(|H|-1)
+        =
+        n|H|-n(|H|-1)
+        =
+        n.
+    \]
+    Notice also that conjugation preserves the number of fixed points: $aga^{-1}$ fixes $x$ if and only if $g$ fixes $a^{-1}x$. Hence $N$ is a union of conjugacy classes, although we do not yet know that it is a subgroup.\\
+    We next determine how conjugacy in $G$ behaves on $H-\{1\}$. Let $1\neq h\in H$, and suppose
+    \[
+        h=ah'a^{-1}
+    \]
+    for some $a\in G$ and $h'\in H$. Since $h\in H$, it fixes $x_0$. Since $h'$ fixes $x_0$, its conjugate $ah'a^{-1}=h$ fixes $ax_0$. Thus the non-identity element $h$ fixes both $x_0$ and $ax_0$. The hypothesis forces $ax_0=x_0$, so $a\in H$. Therefore two non-identity elements of $H$ are conjugate in $G$ only if they are already conjugate in $H$.\\
+    Taking $h'=h$ in the same argument shows that every element of $C_G(h)$ lies in $H$. Hence
+    \[
+        C_G(h)=C_H(h)
+    \]
+    for every $1\neq h\in H$. Finally, if $g\notin N$, then $g$ fixes a point $x=ax_0$ for some $a\in G$. Thus
+    \[
+        a^{-1}ga\in G_{x_0}=H.
+    \]
+    Since $g\neq1$, every element outside $N$ is therefore conjugate to a non-identity element of $H$.\\
+    Let $\varphi_1,\ldots,\varphi_s$ be the irreducible characters of $H$, with $\varphi_1$ the principal character, and let $\chi_1$ be the principal character of $G$. For each $i$, consider the induced character $\varphi_i^G$. Lemma~\ref{lem:16.1} gives
+    \[
+        \varphi_i^G(1)=|G : H|\varphi_i(1)=n\varphi_i(1).
+    \]
+    If $1\neq h\in H$, then the preceding conjugacy argument and Proposition~\ref{prop:16.5} give
+    \[
+        \varphi_i^G(h)
+        =
+        \frac{|C_G(h)|}{|C_H(h)|}\varphi_i(h)
+        =
+        \varphi_i(h).
+    \]
+    If $y\in N-\{1\}$, then no conjugate of $y$ lies in $H$, because every non-identity element of $H$ has a fixed point. Hence Proposition~\ref{prop:16.5} gives $\varphi_i^G(y)=0$.\\
+    For each $2\leq i\leq s$, define the virtual character
+    \[
+        \chi_i
+        =
+        \varphi_i^G-\varphi_i(1)\varphi_1^G+\varphi_i(1)\chi_1.
+    \]
+    Using the values just calculated, we obtain
+    \[
+        \begin{array}{c|ccc}
+            &1&1\neq h\in H&y\in N-\{1\}\\
+            \hline
+            \chi_i&\varphi_i(1)&\varphi_i(h)&\varphi_i(1)
+        \end{array}.
+    \]
+    We now show that $\chi_i$ is an irreducible character. The hypothesis gives the disjoint partition
+    \[
+        G
+        =
+        N\sqcup\bigsqcup_{x\in X}(G_x-\{1\}),
+    \]
+    because every non-identity element outside $N$ fixes exactly one point. Therefore
+    \begin{align*}
+        (\chi_i,\chi_i)_G
+        &=
+        \frac{1}{|G|}
+        \left(
+            \sum_{g\in N}|\chi_i(g)|^2
+            +
+            \sum_{x\in X}\sum_{1\neq g\in G_x}|\chi_i(g)|^2
+        \right) \\
+        &=
+        \frac{1}{|G|}
+        \left(
+            n\varphi_i(1)^2
+            +
+            n\sum_{1\neq h\in H}|\varphi_i(h)|^2
+        \right) \\
+        &=
+        \frac{1}{|H|}
+        \sum_{h\in H}|\varphi_i(h)|^2 \\
+        &=
+        (\varphi_i,\varphi_i)_H
+        =
+        1,
+    \end{align*}
+    where the last equality follows from \nameref{thm:row-orthogonality}, applied to $H$. Since $\chi_i$ is a virtual character, Corollary~\ref{cor:15.2} says that its inner product with itself is the sum of the squares of its integer coefficients in the irreducible-character basis. Since this sum is $1$, either $\chi_i$ or $-\chi_i$ is irreducible. But
+    \[
+        \chi_i(1)=\varphi_i(1)>0,
+    \]
+    so $\chi_i$, rather than $-\chi_i$, is an irreducible character of $G$.\\
+    Finally, define the character
+    \[
+        \chi=\sum_{i=1}^{s}\varphi_i(1)\chi_i,
+    \]
+    where $\chi_1$ is the principal character and the characters $\chi_i$ for $i\geq2$ are those constructed above. If $y\in N$, then $\chi_i(y)=\varphi_i(1)$ for every $i$; for $i=1$, both sides are $1$. Thus Corollary~\ref{cor:14.2}, applied to $H$, gives
+    \[
+        \chi(y)
+        =
+        \sum_{i=1}^{s}\varphi_i(1)^2
+        =
+        |H|.
+    \]
+    If $g\notin N$, then $g$ is conjugate in $G$ to some $1\neq h\in H$. Since characters are class functions,
+    \[
+        \chi(g)
+        =
+        \chi(h)
+        =
+        \sum_{i=1}^{s}\varphi_i(1)\varphi_i(h).
+    \]
+    Apply \nameref{thm:col-orthogonality} to the columns of the character table of $H$ represented by $1$ and $h^{-1}$. Using part (iv) of Proposition~\ref{prop:14.4}, we obtain
+    \[
+        \sum_{i=1}^{s}\varphi_i(1)\varphi_i(h)
+        =
+        \sum_{i=1}^{s}\varphi_i(1)\overline{\varphi_i(h^{-1})}
+        =
+        0.
+    \]
+    Hence
+    \[
+        \chi(g)
+        =
+        \begin{cases}
+            |H|,&g\in N,\\
+            0,&g\notin N.
+        \end{cases}
+    \]
+    In particular, $\chi(1)=|H|$, and therefore
+    \[
+        N=\{g\in G\mid\chi(g)=\chi(1)\}.
+    \]
+    Part (vi) of Proposition~\ref{prop:14.4} says that this set is a normal subgroup of $G$. Thus $N\trianglelefteq G$.
 \end{proof}
 
 \subsection*{Exercises}
@@ -124,9 +552,50 @@ Let $G$ be a transitive permutation group on a finite set $X$, and suppose that 
 
 \begin{exercise}
 \label{ex:16.1}
-Let $V$ be an $FH$-module, and let $W$ be an $FG$-module containing $V$. Suppose that $W$ has the property that for any $FG$-module $U$ and any $\varphi \in \mathrm{Hom}_{FH}(V, U)$, there is a unique $FG$-module homomorphism from $W$ to $U$ which extends $V$. (In this case, we say that $W$ is relatively $H$-free with respect to $V$; compare with Exercises~\ref{ex:13.1}--\ref{ex:13.2}.) Show that $W \cong \mathrm{Ind}_H^G V$.
+Let $V$ be an $FH$-module, and let $W$ be an $FG$-module containing $V$. Suppose that $W$ has the property that for any $FG$-module $U$ and any $\varphi \in \mathrm{Hom}_{FH}(V, U)$, there is a unique $FG$-module homomorphism from $W$ to $U$ whose restriction to $V$ is $\varphi$. (In this case, we say that $W$ is relatively $H$-free with respect to $V$; compare with Exercises~\ref{ex:13.1}--\ref{ex:13.2}.) Show that $W \cong \mathrm{Ind}_H^G V$.
 \end{exercise}
 \begin{solution}
+    Let
+    \[
+        I=\mathrm{Ind}_H^G V=FG\otimes_{FH}V.
+    \]
+    By Lemma~\ref{lem:16.1}, the map
+    \[
+        \eta\colon V\to I,
+        \qquad
+        \eta(v)=1\otimes v,
+    \]
+    identifies $V$ with the $FH$-submodule $1\otimes V$ of $I$. Apply the assumed property of $W$ with $U=I$ and $\varphi=\eta$. We obtain an $FG$-module homomorphism
+    \[
+        \alpha\colon W\to I
+    \]
+    such that $\alpha(v)=1\otimes v$ for every $v\in V$.\\
+    In the other direction, define
+    \[
+        \beta\colon I\to W,
+        \qquad
+        \beta(g\otimes v)=gv.
+    \]
+    This is well-defined because, for $h\in H$,
+    \[
+        \beta(gh\otimes v)=ghv=g(hv)=\beta(g\otimes hv),
+    \]
+    and it is $FG$-linear. For $v\in V$, we have
+    \[
+        (\beta\alpha)(v)=\beta(1\otimes v)=v.
+    \]
+    Thus both $\beta\alpha$ and $\operatorname{id}_W$ are $FG$-module homomorphisms from $W$ to $W$ whose restriction to $V$ is the identity. The uniqueness in the defining property of $W$ therefore gives
+    \[
+        \beta\alpha=\operatorname{id}_W.
+    \]
+    Also,
+    \[
+        (\alpha\beta)(1\otimes v)=\alpha(v)=1\otimes v.
+    \]
+    Since $I$ is generated as an $FG$-module by $1\otimes V$, this implies that $\alpha\beta=\operatorname{id}_I$. Hence $\alpha$ and $\beta$ are inverse $FG$-module isomorphisms, and so
+    \[
+        W\cong\mathrm{Ind}_H^G V.
+    \]
 \end{solution}
 
 \begin{exercise}
@@ -134,6 +603,30 @@ Let $V$ be an $FH$-module, and let $W$ be an $FG$-module containing $V$. Suppose
 Let $W$ be an $FG$-module that is generated by an $FH$-submodule $V$, and suppose that $\dim_F W = |G : H| \dim_F V$. Show that we must have $W \cong \mathrm{Ind}_H^G V$.
 \end{exercise}
 \begin{solution}
+    Define
+    \[
+        \pi\colon FG\otimes_{FH}V\to W,
+        \qquad
+        \pi(g\otimes v)=gv.
+    \]
+    This map is well-defined because
+    \[
+        \pi(gh\otimes v)=ghv=g(hv)=\pi(g\otimes hv)
+    \]
+    for every $g\in G$, $h\in H$, and $v\in V$, and it is $FG$-linear. Since $W$ is generated as an $FG$-module by $V$, every element of $W$ is a sum of elements of the form $gv$. Hence $\pi$ is surjective.\\
+    By Lemma~\ref{lem:16.1},
+    \[
+        \dim_F\mathrm{Ind}_H^G V
+        =
+        |G : H|\dim_FV
+        =
+        \dim_FW.
+    \]
+    Thus $\pi$ is a surjective linear map between finite-dimensional vector spaces of the same dimension, so it is also injective. Therefore
+    \[
+        W\cong\mathrm{Ind}_H^G V
+    \]
+    as $FG$-modules.
 \end{solution}
 
 \begin{exercise}
@@ -141,6 +634,72 @@ Let $W$ be an $FG$-module that is generated by an $FH$-submodule $V$, and suppos
 Show that $\mathrm{Hom}_{FG}(U, \mathrm{Ind}_H^G V) \cong \mathrm{Hom}_{FH}(\mathrm{Res}_H^G U, V)$ as $F$-vector spaces for any $FG$-module $U$ and $FH$-module $V$. (\textsc{Hint}: Show first that if $\varphi \in \mathrm{Hom}_{FH}(\mathrm{Res}_H^G U, V)$, then the map sending $u \in U$ to $\sum_{t \in T} t \otimes \varphi(t^{-1} u)$, where $T$ is a transversal for $H$ in $G$, lies in $\mathrm{Hom}_{FG}(U, \mathrm{Ind}_H^G V)$.)
 \end{exercise}
 \begin{solution}
+    Choose a transversal $T$ for $H$ in $G$ which contains $1$. For
+    \[
+        \varphi\in\Hom_{FH}(\mathrm{Res}_H^G U,V),
+    \]
+    define
+    \[
+        \Phi(\varphi)(u)
+        =
+        \sum_{t\in T}t\otimes\varphi(t^{-1}u).
+    \]
+    We first check that $\Phi(\varphi)$ is $FG$-linear. Let $x\in G$. For each $t\in T$, write $xt=sh$ with $s\in T$ and $h\in H$. As $t$ runs through $T$, so does $s$. Since $\varphi$ is $FH$-linear and $ht^{-1}=s^{-1}x$, we obtain
+    \begin{align*}
+        x\Phi(\varphi)(u)
+        &=
+        \sum_{t\in T}xt\otimes\varphi(t^{-1}u) \\
+        &=
+        \sum_{t\in T}s\otimes h\varphi(t^{-1}u) \\
+        &=
+        \sum_{t\in T}s\otimes\varphi(ht^{-1}u) \\
+        &=
+        \sum_{s\in T}s\otimes\varphi(s^{-1}xu)
+        =
+        \Phi(\varphi)(xu).
+    \end{align*}
+    Hence
+    \[
+        \Phi\colon
+        \Hom_{FH}(\mathrm{Res}_H^G U,V)
+        \longrightarrow
+        \Hom_{FG}(U,\mathrm{Ind}_H^G V)
+    \]
+    is a linear map.\\
+    By Lemma~\ref{lem:16.1}, every $z\in\mathrm{Ind}_H^G V$ has a unique expression
+    \[
+        z=\sum_{t\in T}t\otimes v_t.
+    \]
+    Let
+    \[
+        p\colon\mathrm{Ind}_H^G V\to V,
+        \qquad
+        p(z)=v_1
+    \]
+    be the projection onto the $1\otimes V$ component. This map is $FH$-linear: multiplication by an element of $H$ preserves $1\otimes V$, and it cannot move any $t\otimes V$ with $t\neq1$ into $1\otimes V$. Thus, for
+    \[
+        f\in\Hom_{FG}(U,\mathrm{Ind}_H^G V),
+    \]
+    the map $\Psi(f)=p\circ f$ lies in $\Hom_{FH}(\mathrm{Res}_H^G U,V)$.\\
+    For $\varphi\in\Hom_{FH}(\mathrm{Res}_H^G U,V)$, the $1\otimes V$ component of $\Phi(\varphi)(u)$ is $1\otimes\varphi(u)$. Therefore $\Psi\Phi(\varphi)=\varphi$. Conversely, suppose that
+    \[
+        f(u)=\sum_{t\in T}t\otimes v_t.
+    \]
+    Since $f$ is $FG$-linear, $f(t^{-1}u)=t^{-1}f(u)$. The $1\otimes V$ component of $t^{-1}f(u)$ is $v_t$, because $t^{-1}s\in H$ for $s,t\in T$ exactly when $s=t$. Hence
+    \[
+        \Phi\Psi(f)(u)
+        =
+        \sum_{t\in T}t\otimes v_t
+        =
+        f(u).
+    \]
+    Thus $\Phi$ and $\Psi$ are inverse linear maps, and therefore
+    \[
+        \Hom_{FG}(U,\mathrm{Ind}_H^G V)
+        \cong
+        \Hom_{FH}(\mathrm{Res}_H^G U,V)
+    \]
+    as $F$-vector spaces.
 \end{solution}
 
 \begin{exercise}
@@ -148,6 +707,37 @@ Show that $\mathrm{Hom}_{FG}(U, \mathrm{Ind}_H^G V) \cong \mathrm{Hom}_{FH}(\mat
 Show that if $X$ is a transitive $G$-set, then $FX \cong \mathrm{Ind}_{G_x}^G F$ for any $x \in X$.
 \end{exercise}
 \begin{solution}
+    Fix $x\in X$, put $H=G_x$, and regard $F$ as the trivial $FH$-module. Define
+    \[
+        \Phi\colon FG\otimes_{FH}F\to FX,
+        \qquad
+        \Phi(g\otimes\lambda)=\lambda(gx).
+    \]
+    This is well-defined because if $h\in H$, then $hx=x$, and hence
+    \[
+        \Phi(gh\otimes\lambda)
+        =
+        \lambda(ghx)
+        =
+        \lambda(gx)
+        =
+        \Phi(g\otimes h\lambda).
+    \]
+    The map is also $FG$-linear. Since $X$ is transitive, every element of $X$ has the form $gx$, so $\Phi$ is surjective.\\
+    By the orbit-stabilizer theorem and Lemma~\ref{lem:16.1},
+    \[
+        \dim_FFX
+        =
+        |X|
+        =
+        |G : G_x|
+        =
+        \dim_F\mathrm{Ind}_{G_x}^G F.
+    \]
+    Thus $\Phi$ is an isomorphism, and therefore
+    \[
+        FX\cong\mathrm{Ind}_{G_x}^G F.
+    \]
 \end{solution}
 
 \begin{exercise}
@@ -155,6 +745,87 @@ Show that if $X$ is a transitive $G$-set, then $FX \cong \mathrm{Ind}_{G_x}^G F$
 Compute the induction-restriction table of $(A_5, A_4)$.
 \end{exercise}
 \begin{solution}
+    Take $H=A_4$ to be the subgroup of $A_5$ fixing $5$. Let
+    \[
+        d=(1\,2)(3\,4),
+        \qquad
+        c=(1\,2\,3),
+    \]
+    and let $\omega$ be a primitive cube root of unity. The conjugacy classes of $H$ have representatives $1,d,c,c^{-1}$ and respective orders $1,3,4,4$. Its irreducible character table is
+    \[
+        \begin{array}{c|rrrr}
+            &1&d&c&c^{-1}\\
+            \hline
+            \varphi_1&1&1&1&1\\
+            \varphi_2&1&1&\omega&\omega^2\\
+            \varphi_3&1&1&\omega^2&\omega\\
+            \varphi_4&3&-1&0&0
+        \end{array}.
+    \]
+    We use the numbering of the irreducible characters of $A_5$ from Example~\ref{ex:15.eg.9}, so their degrees are
+    \[
+        \chi_1(1)=1,
+        \quad
+        \chi_2(1)=4,
+        \quad
+        \chi_3(1)=5,
+        \quad
+        \chi_4(1)=\chi_5(1)=3.
+    \]
+    Restricting the $A_5$-table to elements of $H$ gives
+    \[
+        \begin{array}{c|rrrr}
+            &1&d&c&c^{-1}\\
+            \hline
+            \chi_1|_H&1&1&1&1\\
+            \chi_2|_H&4&0&1&1\\
+            \chi_3|_H&5&1&-1&-1\\
+            \chi_4|_H&3&-1&0&0\\
+            \chi_5|_H&3&-1&0&0
+        \end{array}.
+    \]
+    Comparing these rows with the $A_4$-table, and using $\omega+\omega^2=-1$, we obtain
+    \[
+        \begin{aligned}
+            \chi_1|_H&=\varphi_1,\\
+            \chi_2|_H&=\varphi_1+\varphi_4,\\
+            \chi_3|_H&=\varphi_2+\varphi_3+\varphi_4,\\
+            \chi_4|_H&=\varphi_4,\\
+            \chi_5|_H&=\varphi_4.
+        \end{aligned}
+    \]
+    Therefore the induction-restriction table of $(A_5,A_4)$, with rows indexed by the $\varphi_i$ and columns indexed by the $\chi_j$, is
+    \[
+        \begin{array}{c|ccccc}
+            &\chi_1&\chi_2&\chi_3&\chi_4&\chi_5\\
+            \text{degree}&1&4&5&3&3\\
+            \hline
+            \varphi_1&1&1&0&0&0\\
+            \varphi_2&0&0&1&0&0\\
+            \varphi_3&0&0&1&0&0\\
+            \varphi_4&0&1&1&1&1
+        \end{array}.
+    \]
+    Equivalently, Frobenius reciprocity gives
+    \[
+        \begin{aligned}
+            \varphi_1^{A_5}&=\chi_1+\chi_2,\\
+            \varphi_2^{A_5}&=\chi_3,\\
+            \varphi_3^{A_5}&=\chi_3,\\
+            \varphi_4^{A_5}&=\chi_2+\chi_3+\chi_4+\chi_5.
+        \end{aligned}
+    \]
+    Since $|A_5 : A_4|=5$, the induced degrees must be $5,5,5,15$. The displayed decompositions have degrees
+    \[
+        1+4,
+        \qquad
+        5,
+        \qquad
+        5,
+        \qquad
+        4+5+3+3,
+    \]
+    respectively, which checks every row of the table.
 \end{solution}
 
 \begin{exercise}
@@ -162,6 +833,107 @@ Compute the induction-restriction table of $(A_5, A_4)$.
 Compute the character table of the unique non-abelian group of order $pq$, where $p$ and $q$ are distinct primes and $p \equiv 1 \pmod{q}$.
 \end{exercise}
 \begin{solution}
+    Since $p\equiv1\pmod q$, we have $q\mid p-1$. Choose $r\in(\Z_p)^\times$ of order $q$. The group has a presentation
+    \[
+        G=\langle a,b\mid a^p=b^q=1,\ bab^{-1}=a^r\rangle
+        =
+        \langle a\rangle\rtimes\langle b\rangle.
+    \]
+    Put
+    \[
+        N=\langle a\rangle,
+        \qquad
+        m=\frac{p-1}{q}.
+    \]
+    Conjugation by $b$ sends $a^u$ to $a^{ru}$. Hence the non-zero elements of $\Z_p$ split into $m$ orbits of order $q$ under multiplication by $r$. Choose representatives $u_1,\ldots,u_m$ for these orbits. The conjugacy classes contained in $N-\{1\}$ are
+    \[
+        C_k=\{a^{u_kr^t}\mid0\leq t<q\},
+        \qquad
+        1\leq k\leq m,
+    \]
+    and each has order $q$.\\
+    For $1\leq s<q$, conjugation by $a^w$ gives
+    \[
+        a^w(a^vb^s)a^{-w}
+        =
+        a^{v+(1-r^s)w}b^s.
+    \]
+    Since $r^s\not\equiv1\pmod p$, multiplication by $1-r^s$ is a bijection of $\Z_p$. Thus
+    \[
+        D_s=\{a^vb^s\mid0\leq v<p\}
+    \]
+    is one conjugacy class of order $p$. Distinct values of $s$ give distinct classes because their images in the abelian quotient $G/N$ are distinct. Hence $G$ has
+    \[
+        1+m+(q-1)=q+\frac{p-1}{q}
+    \]
+    conjugacy classes.\\
+    Let
+    \[
+        \epsilon=e^{2\pi i/p},
+        \qquad
+        \zeta=e^{2\pi i/q}.
+    \]
+    Since $bab^{-1}a^{-1}=a^{r-1}$ generates $N$, we have $G'=N$. Thus the $q$ linear characters are the lifts of the irreducible characters of $G/N\cong\Z_q$. They are
+    \[
+        \lambda_j(a)=1,
+        \qquad
+        \lambda_j(b)=\zeta^j,
+        \qquad
+        0\leq j<q.
+    \]
+    For $1\leq i\leq m$, define a non-principal linear character $\theta_i$ of $N$ by $\theta_i(a)=\epsilon^{u_i}$, and put $\psi_i=\theta_i^G$. Proposition~\ref{prop:16.3} gives
+    \[
+        \psi_i(a^{u_k})
+        =
+        \sum_{t=0}^{q-1}\epsilon^{u_i u_k r^t},
+        \qquad
+        \psi_i(b^s)=0.
+    \]
+    Moreover,
+    \[
+        \psi_i|_N
+        =
+        \sum_{t=0}^{q-1}\theta_i^{\,b^t}.
+    \]
+    Here $\theta_i^{\,b^t}(n)=\theta_i(b^{-t}nb^t)$ for $n\in N$.
+    These $q$ conjugate characters of $N$ are distinct because $r$ has order $q$. Therefore, by Theorem~\ref{thm:16.2},
+    \[
+        (\psi_i,\psi_i)_G
+        =
+        (\theta_i,\psi_i|_N)_N
+        =
+        1.
+    \]
+    Hence $\psi_i$ is irreducible by Corollary~\ref{cor:15.3}. Characters obtained from different orbits have disjoint sets of irreducible constituents upon restriction to $N$, so the $\psi_i$ are distinct.\\
+    The complete character table is therefore
+    \[
+        \begin{array}{c|c|c|c}
+            \text{class representative}
+            &1
+            &a^{u_k}\ (1\leq k\leq m)
+            &b^s\ (1\leq s<q)\\
+            \text{class order}
+            &1&q&p\\
+            \hline
+            \lambda_j\ (0\leq j<q)
+            &1&1&\zeta^{js}\\
+            \psi_i\ (1\leq i\leq m)
+            &q&
+            \displaystyle\sum_{t=0}^{q-1}\epsilon^{u_i u_k r^t}
+            &0
+        \end{array}.
+    \]
+    Finally, the squares of the degrees of these characters sum to
+    \[
+        q\cdot1^2+m q^2
+        =
+        q+\frac{p-1}{q}q^2
+        =
+        pq
+        =
+        |G|.
+    \]
+    By Corollary~\ref{cor:14.2}, no further irreducible characters exist.
 \end{solution}
 
 \begin{exercise}
@@ -169,6 +941,106 @@ Compute the character table of the unique non-abelian group of order $pq$, where
 Suppose that $G$ is a Frobenius group having Frobenius kernel $N$. Show that the irreducible characters of $G$ either are lifts of irreducible characters of $G/N$ or are induced from the non-principal irreducible characters of $N$. When is it true that the inductions to $G$ of two distinct non-principal irreducible characters of $N$ are equal?
 \end{exercise}
 \begin{solution}
+    Choose a Frobenius complement $H$, so that
+    \[
+        G=N\rtimes H.
+    \]
+    We first show that $H$ acts freely on the set of non-principal irreducible characters of $N$. Consider the Frobenius action of $G$ on the cosets of $H$. If $1\neq n\in N$, then
+    \[
+        C_G(n)\leq N.
+    \]
+    Indeed, suppose that $x\in C_G(n)$ but $x\notin N$. By the definition of $N$, the element $x$ is not fixed-point-free; by the Frobenius property, it therefore has exactly one fixed coset, say $y$. Since $n$ has no fixed points, $ny\neq y$, while
+    \[
+        x(ny)=n(xy)=ny.
+    \]
+    Thus $x$ fixes both $y$ and $ny$, contradicting the Frobenius property.\\
+    Now fix $1\neq h\in H$. Suppose that conjugation by $h$ fixed the $N$-conjugacy class of some $1\neq n\in N$. Then
+    \[
+        hnh^{-1}=xnx^{-1}
+    \]
+    for some $x\in N$, so $x^{-1}h\in C_G(n)$. But $x^{-1}h\notin N$, contradicting $C_G(n)\leq N$. Thus conjugation by $h$ fixes only the identity conjugacy class of $N$.\\
+    Write $\operatorname{Irr}(N)$ for the set of irreducible characters of $N$, and let $\mathcal{X}_N$ be the character table of $N$. Conjugation by $h$ permutes both $\operatorname{Irr}(N)$ and the conjugacy classes of $N$. The same character-table argument as in Exercises~\ref{ex:15.4}--\ref{ex:15.5} gives permutation matrices $P_h$ and $Q_h$ satisfying
+    \[
+        P_h\mathcal{X}_N=\mathcal{X}_NQ_h.
+    \]
+    Since $\mathcal{X}_N$ is invertible, $P_h$ and $Q_h$ are similar and have the same trace. These traces count the irreducible characters and conjugacy classes fixed by $h$, respectively. Only the identity class is fixed, so exactly one irreducible character is fixed. The principal character $1_N$ is always fixed; hence no non-principal irreducible character of $N$ is fixed by $h$. Therefore $H$ acts freely on
+    \[
+        \operatorname{Irr}(N)-\{1_N\}.
+    \]
+    For $\theta\in\operatorname{Irr}(N)$ and $h\in H$, write
+    \[
+        \theta^h(n)=\theta(h^{-1}nh).
+    \]
+    If $\theta\neq1_N$, Proposition~\ref{prop:16.3}, applied with $N\trianglelefteq G$ and transversal $H$, gives
+    \[
+        \theta^G|_N=\sum_{h\in H}\theta^h.
+    \]
+    Since the action is free, the characters in this sum are distinct and $\theta$ occurs exactly once. Frobenius reciprocity now gives
+    \[
+        (\theta^G,\theta^G)_G
+        =
+        (\theta,\theta^G|_N)_N
+        =
+        1.
+    \]
+    Hence $\theta^G$ is irreducible by Corollary~\ref{cor:15.3}. Characters induced from different $H$-orbits are distinct, since their restrictions to $N$ are sums of disjoint sets of irreducible characters.\\
+    Next let $\lambda$ be an irreducible character of $G/N$, and let $\widetilde{\lambda}$ be its lift to $G$. By Lemma~\ref{lem:15.6}, $\widetilde{\lambda}$ is irreducible. Also,
+    \[
+        \widetilde{\lambda}|_N=\lambda(1)1_N.
+    \]
+    Thus, for every non-principal $\theta\in\operatorname{Irr}(N)$,
+    \[
+        (\theta^G,\widetilde{\lambda})_G
+        =
+        (\theta,\widetilde{\lambda}|_N)_N
+        =
+        \lambda(1)(\theta,1_N)_N
+        =
+        0.
+    \]
+    Hence no character induced from a non-principal character of $N$ is equal to a lifted character.\\
+    Choose a set $R$ of representatives for the $H$-orbits on the non-principal irreducible characters of $N$. Since every such orbit has order $|H|$, and conjugation preserves character degrees,
+    \[
+        |N|-1
+        =
+        \sum_{\substack{\theta\in\operatorname{Irr}(N)\\\theta\neq1_N}}\theta(1)^2
+        =
+        |H|\sum_{\theta\in R}\theta(1)^2.
+    \]
+    The lifted characters have total degree-square sum
+    \[
+        \sum_{\lambda\in\operatorname{Irr}(G/N)}\widetilde{\lambda}(1)^2
+        =
+        |G/N|
+        =
+        |H|,
+    \]
+    while $\theta^G(1)=|H|\theta(1)$. Therefore the total degree-square sum of the lifted characters and the characters induced from $R$ is
+    \begin{align*}
+        |H|+\sum_{\theta\in R}\bigl(|H|\theta(1)\bigr)^2
+        &=
+        |H|+|H|^2\frac{|N|-1}{|H|} \\
+        &=
+        |H||N|
+        =
+        |G|.
+    \end{align*}
+    Corollary~\ref{cor:14.2} now shows that these are all the irreducible characters of $G$. Thus every irreducible character of $G$ is either a lift from $G/N$ or is induced from a non-principal irreducible character of $N$.\\
+    Finally, if $\theta,\psi\in\operatorname{Irr}(N)-\{1_N\}$, then
+    \[
+        (\theta^G,\psi^G)_G
+        =
+        (\theta,\psi^G|_N)_N
+        =
+        \sum_{h\in H}(\theta,\psi^h)_N.
+    \]
+    Since $H$ acts freely, this inner product is $1$ exactly when $\theta=\psi^h$ for some $h\in H$, and it is $0$ otherwise. Both induced characters are irreducible, so
+    \[
+        \theta^G=\psi^G
+        \quad\Longleftrightarrow\quad
+        \theta\text{ and }\psi\text{ are $G$-conjugate}.
+    \]
+    Equivalently, they must lie in the same $H$-orbit. This is also the same as lying in the same $G$-orbit, because $N$ acts trivially on its characters: characters are constant on $N$-conjugacy classes. If $\theta\neq\psi$, the conjugating element of $H$ is necessarily non-identity.
 \end{solution}
 
 \subsection*{Further Exercises}
@@ -180,6 +1052,19 @@ Suppose that $G$ is a Frobenius group having Frobenius kernel $N$. Show that the
 Show that conjugate elements of $G$ have the same minimal polynomial.
 \end{exercise}
 \begin{solution}
+    Suppose that $h=ygy^{-1}$ for some $y\in G$. If
+    \[
+        f(X)=c_0+c_1X+\cdots+c_nX^n\in\mathbb{F}_q[X],
+    \]
+    then
+    \[
+        f(h)
+        =
+        c_0I+c_1ygy^{-1}+\cdots+c_nyg^ny^{-1}
+        =
+        yf(g)y^{-1}.
+    \]
+    Hence $f(h)=0$ if and only if $f(g)=0$. Thus $g$ and $h$ are annihilated by exactly the same polynomials. In particular, the monic polynomial of least degree that annihilates $g$ is the same as the monic polynomial of least degree that annihilates $h$. Therefore $m_g(X)=m_h(X)$.
 \end{solution}
 
 \noindent Since $m_g(X)$ is a factor of the characteristic polynomial of $g$, which is the quadratic polynomial $\det(XI - g)$, we see that $m_g(X)$ is either linear, or a product of two like or unlike linear factors, or an irreducible monic quadratic.
@@ -189,6 +1074,19 @@ Show that conjugate elements of $G$ have the same minimal polynomial.
 (cont.) Show that if $m_g(X) = X - a$ for some $a \in \mathbb{F}_q^\times$, then $g = \begin{pmatrix} a & 0 \\ 0 & a \end{pmatrix} \in Z(G)$.
 \end{exercise}
 \begin{solution}
+    By definition, the minimal polynomial annihilates $g$. Therefore
+    \[
+        0=m_g(g)=g-aI,
+    \]
+    and hence
+    \[
+        g=aI=
+        \begin{pmatrix}
+            a&0\\
+            0&a
+        \end{pmatrix}.
+    \]
+    A scalar matrix commutes with every element of $G$, so $g\in Z(G)$.
 \end{solution}
 
 \begin{exercise}
@@ -196,6 +1094,66 @@ Show that conjugate elements of $G$ have the same minimal polynomial.
 (cont.) Show that if $m_g(X) = (X - a)^2$ for some $a \in \mathbb{F}_q^\times$, then $g$ is conjugate with $\begin{pmatrix} a & 1 \\ 0 & a \end{pmatrix}$, and the conjugacy class of $g$ has order $q^2 - 1$.
 \end{exercise}
 \begin{solution}
+    Put $N=g-aI$. Since $m_g(X)=(X-a)^2$, we have $N^2=0$ and $N\neq0$. Choose $v\in\mathbb{F}_q^2$ such that $Nv\neq0$. The vectors $Nv$ and $v$ are linearly independent: if $v=cNv$, then
+    \[
+        Nv=cN^2v=0,
+    \]
+    which is a contradiction. With respect to the ordered basis $(Nv,v)$, the transformation $N$ has matrix
+    \[
+        \begin{pmatrix}
+            0&1\\
+            0&0
+        \end{pmatrix}.
+    \]
+    Hence $g=aI+N$ is conjugate to
+    \[
+        J_a=
+        \begin{pmatrix}
+            a&1\\
+            0&a
+        \end{pmatrix}.
+    \]
+    It remains to compute the centralizer of $J_a$. Since $aI$ is central, a matrix centralizes $J_a$ if and only if it centralizes $J_a-aI$. Direct multiplication shows that
+    \[
+        \begin{pmatrix}
+            u&v\\
+            w&z
+        \end{pmatrix}
+        \begin{pmatrix}
+            0&1\\
+            0&0
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            0&1\\
+            0&0
+        \end{pmatrix}
+        \begin{pmatrix}
+            u&v\\
+            w&z
+        \end{pmatrix}
+    \]
+    if and only if $w=0$ and $z=u$. Thus
+    \[
+        C_G(J_a)
+        =
+        \left\{
+        \begin{pmatrix}
+            u&v\\
+            0&u
+        \end{pmatrix}
+        \,\middle|\,
+        u\in\mathbb{F}_q^\times,\ v\in\mathbb{F}_q
+        \right\},
+    \]
+    so $|C_G(J_a)|=q(q-1)$. By Proposition~\ref{prop:3.13}, the conjugacy class of $J_a$ has order
+    \[
+        |G : C_G(J_a)|
+        =
+        \frac{q(q-1)^2(q+1)}{q(q-1)}
+        =
+        q^2-1.
+    \]
 \end{solution}
 
 \begin{exercise}
@@ -203,6 +1161,50 @@ Show that conjugate elements of $G$ have the same minimal polynomial.
 (cont.) Show that if $m_g(X) = (X - a)(X - b)$ for some distinct $a, b \in \mathbb{F}_q^\times$, then $g$ is conjugate with $\begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix}$, and the conjugacy class of $g$ has order $q^2 + q$.
 \end{exercise}
 \begin{solution}
+    Since $m_g(X)=(X-a)(X-b)$ has two distinct roots, $g$ is diagonalizable over $\mathbb{F}_q$. Choosing eigenvectors for the eigenvalues $a$ and $b$ gives a basis with respect to which
+    \[
+        g=D_{a,b}=
+        \begin{pmatrix}
+            a&0\\
+            0&b
+        \end{pmatrix}.
+    \]
+    Let
+    \[
+        M=
+        \begin{pmatrix}
+            u&v\\
+            w&z
+        \end{pmatrix}\in G.
+    \]
+    The equation $MD_{a,b}=D_{a,b}M$ gives
+    \[
+        (b-a)v=0,
+        \qquad
+        (a-b)w=0.
+    \]
+    Since $a\neq b$, we obtain $v=w=0$. Therefore
+    \[
+        C_G(D_{a,b})
+        =
+        \left\{
+        \begin{pmatrix}
+            u&0\\
+            0&z
+        \end{pmatrix}
+        \,\middle|\,
+        u,z\in\mathbb{F}_q^\times
+        \right\},
+    \]
+    and so $|C_G(D_{a,b})|=(q-1)^2$. By Proposition~\ref{prop:3.13}, the conjugacy class has order
+    \[
+        |G : C_G(D_{a,b})|
+        =
+        \frac{q(q-1)^2(q+1)}{(q-1)^2}
+        =
+        q^2+q.
+    \]
+    Interchanging the two eigenvectors shows that $D_{a,b}$ and $D_{b,a}$ are conjugate. Thus these classes are indexed by unordered pairs $\{a,b\}$.
 \end{solution}
 
 \begin{exercise}
@@ -210,6 +1212,57 @@ Show that conjugate elements of $G$ have the same minimal polynomial.
 (cont.) Show that if $r, s \in \mathbb{F}_q$ are such that $X^2 - rX - s$ is irreducible, then the conjugacy class of $\begin{pmatrix} 0 & 1 \\ s & r \end{pmatrix}$ has order $q^2 - q$.
 \end{exercise}
 \begin{solution}
+    Let
+    \[
+        A=
+        \begin{pmatrix}
+            0&1\\
+            s&r
+        \end{pmatrix}.
+    \]
+    Its characteristic polynomial is
+    \[
+        \det(XI-A)=X^2-rX-s,
+    \]
+    which is irreducible by hypothesis. Hence the minimal polynomial of $A$ is also $X^2-rX-s$.\\
+    Let
+    \[
+        M=
+        \begin{pmatrix}
+            u&v\\
+            w&z
+        \end{pmatrix}.
+    \]
+    Comparing the entries of $MA$ and $AM$ shows that $MA=AM$ if and only if
+    \[
+        w=sv,
+        \qquad
+        z=u+rv.
+    \]
+    Consequently, the centralizer of $A$ in the algebra of all $2\times2$ matrices over $\mathbb{F}_q$ is
+    \[
+        \{uI+vA\mid u,v\in\mathbb{F}_q\}
+        =
+        \mathbb{F}_q[A].
+    \]
+    Since the minimal polynomial of $A$ is irreducible of degree $2$,
+    \[
+        \mathbb{F}_q[A]
+        \cong
+        \mathbb{F}_q[X]/(X^2-rX-s)
+    \]
+    is a field with $q^2$ elements. Every non-zero element of this field is invertible, and therefore
+    \[
+        C_G(A)=\mathbb{F}_q[A]^\times
+    \]
+    has order $q^2-1$. By Proposition~\ref{prop:3.13}, the conjugacy class of $A$ has order
+    \[
+        |G : C_G(A)|
+        =
+        \frac{q(q-1)^2(q+1)}{q^2-1}
+        =
+        q^2-q.
+    \]
 \end{solution}
 
 \noindent (Hint for Exercises~\ref{ex:16.10}--\ref{ex:16.12}: Compute centralizers and use Proposition~\ref{prop:3.13}.)
@@ -219,6 +1272,54 @@ Show that conjugate elements of $G$ have the same minimal polynomial.
 (cont.) Verify that what follows is a complete list of the conjugacy classes of $G$: $q - 1$ classes of $1$ element each, indexed by elements of $\mathbb{F}_q^\times$; $q - 1$ classes of $q^2 - 1$ elements each, indexed by elements of $\mathbb{F}_q^\times$; $(q - 1)(q - 2)/2$ classes of $q^2 + q$ elements each, indexed by unordered pairs of distinct elements of $\mathbb{F}_q^\times$; and $q(q - 1)/2$ classes of $q^2 - q$ elements each, indexed by irreducible monic quadratic polynomials with coefficients in $\mathbb{F}_q$.
 \end{exercise}
 \begin{solution}
+    Exercises~\ref{ex:16.9}--\ref{ex:16.12} give the four possible types. We check their parameters and then verify that their class sizes account for every element of $G$.\\
+    If $m_g(X)=X-a$, Exercise~\ref{ex:16.9} gives the scalar matrix $aI$. Thus there are $q-1$ such classes, each of order $1$.\\
+    If $m_g(X)=(X-a)^2$, Exercise~\ref{ex:16.10} gives one class represented by
+    \[
+        \begin{pmatrix}
+            a&1\\
+            0&a
+        \end{pmatrix}
+    \]
+    for each $a\in\mathbb{F}_q^\times$. Thus there are $q-1$ such classes, each of order $q^2-1$.\\
+    If $m_g(X)=(X-a)(X-b)$ with $a\neq b$, Exercise~\ref{ex:16.11} gives one class for each unordered pair $\{a,b\}\subseteq\mathbb{F}_q^\times$. The number of these pairs is
+    \[
+        \binom{q-1}{2}
+        =
+        \frac{(q-1)(q-2)}{2},
+    \]
+    and each class has order $q^2+q$.\\
+    Finally, suppose that $m_g(X)=X^2-rX-s$ is irreducible. In particular, $s\neq0$. Choose $0\neq v\in\mathbb{F}_q^2$. Since $g$ has no eigenvector over $\mathbb{F}_q$, the vectors $v$ and $gv$ are linearly independent. From $g^2=rg+sI$, we see that with respect to the ordered basis $(v,s^{-1}gv)$, the matrix of $g$ is
+    \[
+        \begin{pmatrix}
+            0&1\\
+            s&r
+        \end{pmatrix}.
+    \]
+    Thus each irreducible monic quadratic gives exactly one class, and different irreducible polynomials give different classes by Exercise~\ref{ex:16.8}. There are $q^2$ monic quadratic polynomials over $\mathbb{F}_q$. A reducible monic quadratic is determined by an unordered pair of roots in $\mathbb{F}_q$, allowing a repeated root, so there are
+    \[
+        \binom{q+1}{2}=\frac{q(q+1)}{2}
+    \]
+    reducible monic quadratics. Hence the number of irreducible monic quadratics is
+    \[
+        q^2-\frac{q(q+1)}{2}
+        =
+        \frac{q(q-1)}{2}.
+    \]
+    By Exercise~\ref{ex:16.12}, each corresponding class has order $q^2-q$.\\
+    As a final check, the total number of elements in the listed classes is
+    \begin{align*}
+        &(q-1)
+        +(q-1)(q^2-1)
+        +\frac{(q-1)(q-2)}{2}(q^2+q) \\
+        &\qquad
+        +\frac{q(q-1)}{2}(q^2-q)
+        =
+        q(q-1)^2(q+1)
+        =
+        |G|.
+    \end{align*}
+    Hence no elements or conjugacy classes are missing.
 \end{solution}
 
 \noindent Having determined the classes of $G$, we now turn to finding irreducible characters. Recall that we have an epimorphism $\det: G \to \mathbb{F}_q^\times$. Consequently, we can lift characters of $\mathbb{F}_q^\times$ to characters of $G$, as in Lemma~\ref{lem:15.6}. Now $\mathbb{F}_q^\times$ is an abelian group of order $q - 1$, and hence it has $q - 1$ linear characters, which we denote by $\tau_1, \dots, \tau_{q-1}$. (In fact, it is true (see [17, p. 132]) that $\mathbb{F}_q^\times \cong \Z_{q-1}$, and so we can, upon fixing a generator of $\mathbb{F}_q^\times$, completely specify the $\tau_i$.) For each $1 \leq i \leq q - 1$, let $\chi_i = \tau_i \circ \det$. We have
@@ -246,6 +1347,68 @@ The characters $\chi_i$ are linear, and $\chi_1$ is indeed the principal charact
 Observe that $\theta_{ij}^G = \theta_{ji}^G$.
 \end{exercise}
 \begin{solution}
+    We use Proposition~\ref{prop:16.5}. First observe that
+    \[
+        |B|=q(q-1)^2.
+    \]
+    For a scalar matrix $aI$, we have $C_G(aI)=G$ and $C_B(aI)=B$. Hence its contribution is multiplied by
+    \[
+        \frac{|C_G(aI)|}{|C_B(aI)|}=|G : B|=q+1,
+    \]
+    and therefore
+    \[
+        \theta_{ij}^G(aI)
+        =
+        (q+1)\theta_{ij}(aI)
+        =
+        (q+1)\tau_i(a)\tau_j(a).
+    \]
+    For
+    \[
+        J_a=
+        \begin{pmatrix}
+            a&1\\
+            0&a
+        \end{pmatrix},
+    \]
+    Exercise~\ref{ex:16.10} shows that $C_G(J_a)\leq B$, so $C_B(J_a)=C_G(J_a)$. Moreover, every element of the $G$-class of $J_a$ which lies in $B$ has the form
+    \[
+        \begin{pmatrix}
+            a&y\\
+            0&a
+        \end{pmatrix}
+        \qquad(y\neq0),
+    \]
+    and conjugation by diagonal matrices shows that all these elements are conjugate in $B$. Thus there is one relevant $B$-class, its coefficient in Proposition~\ref{prop:16.5} is $1$, and
+    \[
+        \theta_{ij}^G(J_a)
+        =
+        \theta_{ij}(J_a)
+        =
+        \tau_i(a)\tau_j(a).
+    \]
+    Now let $a\neq b$. The $G$-class of
+    \[
+        D_{a,b}=
+        \begin{pmatrix}
+            a&0\\
+            0&b
+        \end{pmatrix}
+    \]
+    meets $B$ in two $B$-classes, represented by $D_{a,b}$ and $D_{b,a}$. Indeed, every upper triangular matrix with distinct diagonal entries $a,b$ is conjugate in $B$ to $D_{a,b}$. Also,
+    \[
+        C_B(D_{a,b})=C_G(D_{a,b})=T,
+    \]
+    and similarly for $D_{b,a}$. Both coefficients in Proposition~\ref{prop:16.5} are therefore $1$, giving
+    \[
+        \theta_{ij}^G(D_{a,b})
+        =
+        \tau_i(a)\tau_j(b)+\tau_i(b)\tau_j(a).
+    \]
+    Finally, an upper triangular matrix has a characteristic polynomial that splits over $\mathbb{F}_q$. Hence no element whose minimal polynomial is an irreducible quadratic has a conjugate in $B$, so the induced character has value $0$ on the fourth-column classes. Combining these calculations gives the required table. The formula is symmetric in $i$ and $j$, and hence
+    \[
+        \theta_{ij}^G=\theta_{ji}^G.
+    \]
 \end{solution}
 
 \begin{exercise}
@@ -253,6 +1416,132 @@ Observe that $\theta_{ij}^G = \theta_{ji}^G$.
 (cont.) Show that $(\theta_{ij}^G, \theta_{ij}^G) = 1 + \delta_{ij}$ and that $(\theta_{ii}^G, \chi_i) = 1$. Conclude that $\theta_{ii}^G - \chi_i$ is an irreducible character of $G$ for each $i$ and that $\theta_{ij}^G$ is an irreducible character of $G$ whenever $i$ and $j$ are distinct.
 \end{exercise}
 \begin{solution}
+    Put $A=\mathbb{F}_q^\times$ and $n=|A|=q-1$, and write $\Theta_{ij}=\theta_{ij}^G$. We compute the inner product using the class sizes from Exercise~\ref{ex:16.13}. Since all values of the linear characters $\tau_i$ have absolute value $1$, the scalar and non-scalar repeated-eigenvalue classes contribute
+    \[
+        \sum_{a\in A}\left((q+1)^2+(q^2-1)\right)
+        =
+        2q(q+1)n.
+    \]
+    There is no contribution from the irreducible-quadratic classes. For the split classes, let
+    \[
+        S_{ij}
+        =
+        \sum_{\substack{\{a,b\}\subseteq A\\a\neq b}}
+        \left|
+        \tau_i(a)\tau_j(b)+\tau_i(b)\tau_j(a)
+        \right|^2.
+    \]
+    Define the linear character $\rho=\tau_i\overline{\tau_j}$ of $A$. Counting ordered pairs and then dividing by $2$, we obtain
+    \[
+        2S_{ij}
+        =
+        \sum_{\substack{a,b\in A\\a\neq b}}
+        \left(
+        2+\rho(a)\overline{\rho(b)}
+        +\overline{\rho(a)}\rho(b)
+        \right).
+    \]
+    By character orthogonality on the abelian group $A$,
+    \[
+        \sum_{a\in A}\rho(a)
+        =
+        \begin{cases}
+            n,&i=j,\\
+            0,&i\neq j.
+        \end{cases}
+    \]
+    Consequently,
+    \[
+        \sum_{a\neq b}\rho(a)\overline{\rho(b)}
+        =
+        \left|\sum_{a\in A}\rho(a)\right|^2-n,
+    \]
+    and the same formula holds for its complex conjugate. It follows that
+    \[
+        S_{ij}=n(n-2)+n^2\delta_{ij}.
+    \]
+    Since every split class has order $q^2+q=q(q+1)$, we now have
+    \begin{align*}
+        |G|(\Theta_{ij},\Theta_{ij})_G
+        &=
+        2q(q+1)n
+        +q(q+1)\left(n(n-2)+n^2\delta_{ij}\right) \\
+        &=
+        q(q+1)n^2(1+\delta_{ij}) \\
+        &=
+        |G|(1+\delta_{ij}).
+    \end{align*}
+    Therefore
+    \[
+        (\theta_{ij}^G,\theta_{ij}^G)_G=1+\delta_{ij}.
+    \]
+    Next, if
+    \[
+        b=
+        \begin{pmatrix}
+            x&y\\
+            0&z
+        \end{pmatrix}\in B,
+    \]
+    then
+    \[
+        \chi_i(b)
+        =
+        \tau_i(\det b)
+        =
+        \tau_i(xz)
+        =
+        \tau_i(x)\tau_i(z)
+        =
+        \theta_{ii}(b).
+    \]
+    Thus $\chi_i|_B=\theta_{ii}$, and Frobenius reciprocity gives
+    \[
+        (\theta_{ii}^G,\chi_i)_G
+        =
+        (\theta_{ii},\chi_i|_B)_B
+        =
+        (\theta_{ii},\theta_{ii})_B
+        =
+        1.
+    \]
+    If $i\neq j$, then $\theta_{ij}^G$ is a character of norm $1$, so it is irreducible by Corollary~\ref{cor:15.3}. If $i=j$, the preceding inner product shows that $\chi_i$ occurs once in $\theta_{ii}^G$. Hence
+    \[
+        \eta_i=\theta_{ii}^G-\chi_i
+    \]
+    is an actual character, and
+    \[
+        (\eta_i,\eta_i)_G
+        =
+        2-1-1+1
+        =
+        1.
+    \]
+    Therefore $\theta_{ii}^G-\chi_i$ is irreducible. Repeating the same class calculation with two possibly different pairs gives
+    \[
+        (\theta_{ij}^G,\theta_{k\ell}^G)_G
+        =
+        \delta_{ik}\delta_{j\ell}+\delta_{i\ell}\delta_{jk}.
+    \]
+    Thus the characters $\theta_{ij}^G$ are distinct precisely up to interchanging $i$ and $j$. Also, Frobenius reciprocity gives
+    \[
+        (\theta_{ii}^G,\chi_j)_G
+        =
+        (\theta_{ii},\chi_j|_B)_B
+        =
+        (\theta_{ii},\theta_{jj})_B
+        =
+        \delta_{ij}.
+    \]
+    Since $(\chi_i,\chi_j)_G=\delta_{ij}$, we obtain
+    \begin{align*}
+        (\theta_{ii}^G-\chi_i,\theta_{jj}^G-\chi_j)_G
+        &=
+        2\delta_{ij}-\delta_{ij}-\delta_{ij}+\delta_{ij} \\
+        &=
+        \delta_{ij}.
+    \end{align*}
+    Hence the characters $\theta_{ii}^G-\chi_i$ are pairwise distinct.
 \end{solution}
 
 \noindent At this point, we have constructed $q - 1$ distinct irreducible characters of degree $1$ (the $\chi_i$), $q - 1$ distinct irreducible characters of degree $q$ (the $\theta_{ii}^G - \chi_i$), and $(q - 1)(q - 2)/2$ distinct irreducible characters of degree $q + 1$ (the $\theta_{ij}^G$ for $i < j$). Our partial character table of $G$ is now
@@ -273,6 +1562,34 @@ Observe that $\theta_{ij}^G = \theta_{ji}^G$.
 (cont.) Show that the elements of $C - \mathbb{F}_q^\times$ form a double set of representatives of the fourth-column classes, with $x \in C - \mathbb{F}_q^\times$ being conjugate with (but unequal to) $x^q$. (\textsc{Hint}: Argue that each element of $G$ whose minimal polynomial is an irreducible quadratic determines a subgroup of $G$ that is isomorphic with $\mathbb{F}_{q^2}^\times$.)
 \end{exercise}
 \begin{solution}
+    We use the embedding from Exercise~\ref{ex:4.4}, in which $\mathbb{F}_{q^2}$ acts on itself by multiplication as a $2$-dimensional vector space over $\mathbb{F}_q$. Thus
+    \[
+        C=\{m_x\mid x\in\mathbb{F}_{q^2}^\times\},
+    \]
+    where $m_x(y)=xy$, and the subgroup $\mathbb{F}_q^\times$ consists exactly of the scalar multiplication maps. We identify $m_x$ with $x$.\\
+    Let $x\in C-\mathbb{F}_q^\times$. Since $x\notin\mathbb{F}_q$, its minimal polynomial over $\mathbb{F}_q$ is irreducible of degree $2$. The Frobenius map
+    \[
+        \sigma\colon\mathbb{F}_{q^2}\to\mathbb{F}_{q^2},
+        \qquad
+        y\mapsto y^q,
+    \]
+    is an invertible $\mathbb{F}_q$-linear map, and hence represents an element of $G$. For every $y\in\mathbb{F}_{q^2}$,
+    \[
+        \sigma m_x\sigma^{-1}(y)=x^qy.
+    \]
+    Therefore $\sigma x\sigma^{-1}=x^q$, so $x$ and $x^q$ are conjugate in $G$. They are unequal, since the elements fixed by Frobenius are exactly the elements of $\mathbb{F}_q$.\\
+    Conversely, suppose that $x,y\in C-\mathbb{F}_q^\times$ are conjugate in $G$. By Exercise~\ref{ex:16.8}, they have the same minimal polynomial. The two roots of the minimal polynomial of $x$ in $\mathbb{F}_{q^2}$ are $x$ and $x^q$. Hence
+    \[
+        y=x
+        \qquad\text{or}\qquad
+        y=x^q.
+    \]
+    Thus every $G$-class meets $C-\mathbb{F}_q^\times$ in at most the two elements $x,x^q$.\\
+    It remains to show that every fourth-column class meets $C$. Let $g\in G$ have irreducible quadratic minimal polynomial. Then
+    \[
+        \mathbb{F}_q[g]\cong\mathbb{F}_{q^2},
+    \]
+    so $\mathbb{F}_q[g]^\times\leq G$ is a subgroup isomorphic to $\mathbb{F}_{q^2}^\times$ and containing $g$. By the conjugacy fact about such subgroups stated immediately before this exercise, $\mathbb{F}_q[g]^\times$ is conjugate to $C$. Hence $g$ is conjugate to an element of $C-\mathbb{F}_q^\times$. Therefore every fourth-column class is represented by exactly two elements of $C-\mathbb{F}_q^\times$, namely $x$ and $x^q$.
 \end{solution}
 
 \noindent We now take $x \in C - \mathbb{F}_q^\times$ as our arbitrary fourth-column class representative. We have $\chi_i(x) = \tau_i(\det x)$, $(\theta_{ii}^G - \chi_i)(x) = -\tau_i(\det x)$, and $\theta_{ij}^G(x) = 0$.
@@ -292,6 +1609,55 @@ Observe that $\theta_{ij}^G = \theta_{ji}^G$.
 Observe that $(\beta_k^q)^G = \beta_k^G$, where by $\beta_k^q$ we mean the linear character of $C$ defined by $\beta_k^q(x) = \beta_k(x)^q$.
 \end{exercise}
 \begin{solution}
+    We apply Proposition~\ref{prop:16.5} with the subgroup $C$. Since $C$ is abelian, every conjugacy class in $C$ has one element.\\
+    If $a\in\mathbb{F}_q^\times$, then $aI\in Z(G)$, so
+    \[
+        C_G(aI)=G,
+        \qquad
+        C_C(aI)=C.
+    \]
+    Hence
+    \[
+        \beta_k^G(aI)
+        =
+        \frac{|G|}{|C|}\beta_k(a)
+        =
+        (q^2-q)\beta_k(a).
+    \]
+    A non-scalar element of $C$ has irreducible quadratic minimal polynomial. Therefore no element of $C$ is conjugate to a non-scalar repeated-eigenvalue matrix or to a split matrix with two distinct eigenvalues. Proposition~\ref{prop:16.5} consequently gives value $0$ on the second and third types.\\
+    Now let $x\in C-\mathbb{F}_q^\times$. By Exercise~\ref{ex:16.16}, the $G$-class of $x$ meets $C$ in exactly the two elements $x$ and $x^q$. Moreover,
+    \[
+        C_G(x)=C.
+    \]
+    Indeed, any $\mathbb{F}_q$-linear map $T$ commuting with multiplication by $x$ commutes with every multiplication map $m_y$ for $y\in\mathbb{F}_q[x]=\mathbb{F}_{q^2}$. Hence
+    \[
+        T(y)=T(m_y(1))=m_y(T(1))=yT(1),
+    \]
+    so $T$ is itself multiplication by $T(1)\in\mathbb{F}_{q^2}$. Thus both coefficients in Proposition~\ref{prop:16.5} are $1$, and
+    \[
+        \beta_k^G(x)
+        =
+        \beta_k(x)+\beta_k(x^q)
+        =
+        \beta_k(x)+\beta_k(x)^q.
+    \]
+    This proves the required table.\\
+    Finally, define $\beta_k^q$ by
+    \[
+        \beta_k^q(y)=\beta_k(y)^q=\beta_k(y^q).
+    \]
+    If $a\in\mathbb{F}_q^\times$, then $a^q=a$, so $\beta_k^q(a)=\beta_k(a)$. If $x\in C-\mathbb{F}_q^\times$, then
+    \[
+        (\beta_k^q)^G(x)
+        =
+        \beta_k(x)^q+\beta_k(x)^{q^2}
+        =
+        \beta_k(x)^q+\beta_k(x),
+    \]
+    because every value of $\beta_k$ is a $(q^2-1)$th root of unity. Hence
+    \[
+        (\beta_k^q)^G=\beta_k^G.
+    \]
 \end{solution}
 
 \noindent It is not hard to show that there are exactly $q - 1$ values of $k$ for which $\beta_k^q = \beta_k$. (This follows, for instance, from the observation made in Example~\ref{ex:15.eg.1} that the linear characters of a cyclic group of order $n$ themselves form a cyclic group of order $n$.)
@@ -310,6 +1676,70 @@ Observe that $(\beta_k^q)^G = \beta_k^G$, where by $\beta_k^q$ we mean the linea
 \]
 \end{exercise}
 \begin{solution}
+    Put $i=i_k$. From the preceding tables, the three characters occurring in the definition of $\psi_k$ have the following values:
+    \[
+        \begin{array}{c|cccc}
+            &aI&
+            \begin{pmatrix}a&1\\0&a\end{pmatrix}&
+            \begin{pmatrix}a&0\\0&b\end{pmatrix}&
+            x\in C-\mathbb{F}_q^\times\\
+            \hline
+            \theta_{11}^G-\chi_1
+            &q&0&1&-1\\
+            \theta_{i1}^G
+            &(q+1)\tau_i(a)&\tau_i(a)&\tau_i(a)+\tau_i(b)&0\\
+            \beta_k^G
+            &(q^2-q)\tau_i(a)&0&0&\beta_k(x)+\beta_k(x)^q
+        \end{array}.
+    \]
+    Here we used $\beta_k|_{\mathbb{F}_q^\times}=\tau_i$. Since
+    \[
+        \psi_k
+        =
+        (\theta_{11}^G-\chi_1)\theta_{i1}^G
+        -\theta_{i1}^G
+        -\beta_k^G,
+    \]
+    its value at a scalar matrix is
+    \begin{align*}
+        \psi_k(aI)
+        &=
+        q(q+1)\tau_i(a)
+        -(q+1)\tau_i(a)
+        -(q^2-q)\tau_i(a) \\
+        &=
+        (q-1)\tau_i(a).
+    \end{align*}
+    At a non-scalar repeated-eigenvalue matrix, we obtain
+    \[
+        \psi_k
+        \begin{pmatrix}
+            a&1\\
+            0&a
+        \end{pmatrix}
+        =
+        0-\tau_i(a)-0
+        =
+        -\tau_i(a).
+    \]
+    At a split matrix with $a\neq b$,
+    \[
+        \psi_k
+        \begin{pmatrix}
+            a&0\\
+            0&b
+        \end{pmatrix}
+        =
+        \bigl(\tau_i(a)+\tau_i(b)\bigr)
+        -\bigl(\tau_i(a)+\tau_i(b)\bigr)
+        =
+        0.
+    \]
+    Finally, if $x\in C-\mathbb{F}_q^\times$, then
+    \[
+        \psi_k(x)=-\beta_k(x)-\beta_k(x)^q.
+    \]
+    These are precisely the required values.
 \end{solution}
 
 \begin{exercise}
@@ -317,6 +1747,83 @@ Observe that $(\beta_k^q)^G = \beta_k^G$, where by $\beta_k^q$ we mean the linea
 (cont.) If $k$ is such that $\beta_k^q \neq \beta_k$, show that $(\psi_k, \psi_k) = 1$. Conclude that we have constructed $q(q - 1)/2$ distinct irreducible characters of degree $q - 1$.
 \end{exercise}
 \begin{solution}
+    Write $\beta=\beta_k$. The hypothesis $\beta^q\neq\beta$ says that the character
+    \[
+        \gamma=\beta^{q-1}
+    \]
+    is non-principal on $C$. Hence
+    \[
+        \sum_{x\in C}\gamma(x)=0.
+    \]
+    If $a\in\mathbb{F}_q^\times$, then $a^{q-1}=1$, and therefore $\gamma(a)=1$. It follows that
+    \[
+        \sum_{x\in C-\mathbb{F}_q^\times}\beta(x)^{q-1}
+        =
+        -(q-1).
+    \]
+    The inverse character $\gamma^{-1}=\beta^{1-q}$ is also non-principal, so similarly
+    \[
+        \sum_{x\in C-\mathbb{F}_q^\times}\beta(x)^{1-q}
+        =
+        -(q-1).
+    \]
+    Since character values have absolute value $1$, we have
+    \begin{align*}
+        \left|\beta(x)+\beta(x)^q\right|^2
+        &=
+        \left(\beta(x)+\beta(x)^q\right)
+        \left(\overline{\beta(x)}+\overline{\beta(x)^q}\right) \\
+        &=
+        2+\beta(x)^{q-1}+\beta(x)^{1-q}.
+    \end{align*}
+    Therefore
+    \[
+        \sum_{x\in C-\mathbb{F}_q^\times}
+        \left|\beta(x)+\beta(x)^q\right|^2
+        =
+        2(q^2-q)-2(q-1)
+        =
+        2(q-1)^2.
+    \]
+    Each fourth-column class has order $q^2-q$ and is represented twice in $C-\mathbb{F}_q^\times$. Using the values from Exercise~\ref{ex:16.18}, we obtain
+    \begin{align*}
+        |G|(\psi_k,\psi_k)_G
+        &=
+        (q-1)^3
+        +(q^2-1)(q-1) \\
+        &\qquad
+        +\frac{q^2-q}{2}
+        \sum_{x\in C-\mathbb{F}_q^\times}
+        \left|\beta(x)+\beta(x)^q\right|^2 \\
+        &=
+        (q-1)^3
+        +(q^2-1)(q-1)
+        +(q^2-q)(q-1)^2 \\
+        &=
+        q(q-1)^2(q+1)
+        =
+        |G|.
+    \end{align*}
+    Thus $(\psi_k,\psi_k)_G=1$. Since $\psi_k$ is a virtual character, it is an integral linear combination of the irreducible characters of $G$. Its norm being $1$ means that it is either an irreducible character or the negative of one. However,
+    \[
+        \psi_k(1)=q-1>0,
+    \]
+    so $\psi_k$ is an irreducible character of degree $q-1$.\\
+    The character group of the cyclic group $C$ is cyclic of order $q^2-1$. A character $\beta$ satisfies $\beta^q=\beta$ exactly when $\beta^{q-1}=1$, and there are $q-1$ such characters. Thus there are $q^2-q$ characters for which $\beta^q\neq\beta$. The operation $\beta\mapsto\beta^q$ is an involution, since $\beta^{q^2}=\beta$, so these characters form
+    \[
+        \frac{q^2-q}{2}
+    \]
+    pairs $\{\beta,\beta^q\}$. Exercise~\ref{ex:16.17} shows that $\beta^G=(\beta^q)^G$, and the restrictions of $\beta$ and $\beta^q$ to $\mathbb{F}_q^\times$ are equal. Hence the two characters in each pair give the same $\psi_k$.\\
+    Conversely, write $\psi_\beta$ for the character constructed from $\beta$, and suppose that $\psi_\beta=\psi_\delta$. Comparing scalar values shows that $\beta$ and $\delta$ have the same restriction to $\mathbb{F}_q^\times$. Comparing the fourth-column values then gives
+    \[
+        \beta+\beta^q=\delta+\delta^q
+    \]
+    on all of $C$. The irreducible characters of the abelian group $C$ are linearly independent, so $\{\delta,\delta^q\}=\{\beta,\beta^q\}$. Therefore distinct Frobenius pairs give distinct irreducible characters. The number constructed is consequently
+    \[
+        \frac{q^2-q}{2}
+        =
+        \frac{q(q-1)}{2}.
+    \]
 \end{solution}
 
 \noindent The number of irreducible characters that we have constructed is now equal to the number of conjugacy classes of $G$, and so by Theorem~\ref{thm:14.3} we are done.
