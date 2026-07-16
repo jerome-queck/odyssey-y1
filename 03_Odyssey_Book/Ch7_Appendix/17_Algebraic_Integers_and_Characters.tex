@@ -17,6 +17,16 @@
 The set of rational numbers that are also algebraic integers is exactly the set of ordinary integers.
 \end{lemma}
 \begin{proof}
+    Let $q\in\Q$ be an algebraic integer. Write $q=a/b$, where $a,b\in\Z$, $b>0$, and $a$ and $b$ are coprime. Choose a monic polynomial
+    \[
+        f(X)=X^n+c_{n-1}X^{n-1}+\cdots+c_0\in\Z[X]
+    \]
+    such that $f(q)=0$. Multiplying the resulting equation by $b^n$ gives
+    \[
+        a^n+c_{n-1}a^{n-1}b+\cdots+c_1ab^{n-1}+c_0b^n=0.
+    \]
+    Every term except $a^n$ is divisible by $b$, so $b\mid a^n$. Since $a$ and $b$ are coprime, this forces $b=1$. Thus $q=a\in\Z$.\\
+    Conversely, every $a\in\Z$ is a zero of the monic polynomial $X-a\in\Z[X]$, so every ordinary integer is an algebraic integer.
 \end{proof}
 
 \subsubsection*{Algebraic integers form a ring}
@@ -29,6 +39,21 @@ The set of rational numbers that are also algebraic integers is exactly the set 
 The algebraic integers form a subring of $\C$.
 \end{proposition}
 \begin{proof}
+    We first make a finite-generation observation. Let $R$ be a subring of $\C$ generated as an abelian group by $a_1,\ldots,a_t$, and let $z\in R$. For each $j$, write
+    \[
+        za_j=\sum_{i=1}^{t}m_{ij}a_i
+    \]
+    with $m_{ij}\in\Z$. If $M=(m_{ij})$ and $v=(a_1,\ldots,a_t)^{\mathsf{T}}$, then these equations say that $M^{\mathsf{T}}v=zv$. Since $1\in R$, the vector $v$ is non-zero. Hence $z$ is an eigenvalue of the integral matrix $M^{\mathsf{T}}$, and therefore is a zero of the monic polynomial
+    \[
+        \det(XI-M^{\mathsf{T}})\in\Z[X].
+    \]
+    Thus every element of a subring of $\C$ that is finitely generated as an abelian group is an algebraic integer.\\
+    Now let $x,y\in\C$ be algebraic integers. Choose monic relations for $x$ and $y$ of degrees $m$ and $n$, respectively. These relations allow every power of $x$ of degree at least $m$, and every power of $y$ of degree at least $n$, to be reduced to lower powers. Consequently,
+    \[
+        \Z[x,y]=\left\langle x^i y^j\mid 0\leq i<m,\ 0\leq j<n\right\rangle_{\Z}
+    \]
+    is finitely generated as an abelian group. The observation above shows that $x+y$ and $xy$, which both lie in $\Z[x,y]$, are algebraic integers.\\
+    Also, $0$ and $1$ are zeros of $X$ and $X-1$, respectively. If $f(X)$ is a monic polynomial of degree $m$ with $f(x)=0$, then $(-1)^m f(-X)$ is monic with integer coefficients and has $-x$ as a zero. Therefore the algebraic integers contain $0$ and $1$ and are closed under addition, multiplication, and additive inverses, so they form a subring of $\C$.
 \end{proof}
 
 \subsubsection*{Characters take algebraic-integer values}
@@ -41,6 +66,11 @@ The algebraic integers form a subring of $\C$.
 Let $\chi$ be a character of $G$. Then $\chi(g)$ is an algebraic integer for any $g \in G$.
 \end{proposition}
 \begin{proof}
+    Let $n=o(g)$. By part~(iii) of Proposition~\ref{prop:14.4}, we may write
+    \[
+        \chi(g)=\lambda_1+\cdots+\lambda_{\chi(1)},
+    \]
+    where every $\lambda_i$ is an $n$th root of unity. Each $\lambda_i$ is an algebraic integer because it is a zero of $X^n-1\in\Z[X]$. Proposition~\ref{prop:17.2} now shows that their sum $\chi(g)$ is an algebraic integer.
 \end{proof}
 
 \subsubsection*{Class-sum integrality}
@@ -53,6 +83,27 @@ Let $\chi$ be a character of $G$. Then $\chi(g)$ is an algebraic integer for any
 If $\chi$ is an irreducible character of $G$ and $g \in G$, then $|G : C_G(g)|\chi(g)/\chi(1)$ is an algebraic integer.
 \end{lemma}
 \begin{proof}
+    Let $S$ be a simple $\C G$-module affording $\chi$, let $K$ be the conjugacy class of $g$, and put
+    \[
+        \alpha=\sum_{x\in K}x\in\C G.
+    \]
+    The class-sum description of the center in the proof of Theorem~\ref{thm:14.3} shows that $\alpha\in Z(\C G)$. Hence the map $s\mapsto\alpha s$ lies in $\End_{\C G}(S)$, so Lemma~\ref{lem:13.14} gives some $\lambda\in\C$ such that $\alpha s=\lambda s$ for every $s\in S$. Taking traces on $S$ gives
+    \[
+        \lambda\chi(1)
+        =\sum_{x\in K}\chi(x)
+        =|K|\chi(g)
+        =|G:C_G(g)|\chi(g).
+    \]
+    Thus it remains to show that $\lambda$ is an algebraic integer.\\
+    By Theorem~\ref{thm:14.1}, we may identify an isomorphic copy of $S$ with a $\C G$-submodule of the regular module $\C G$. Consider right multiplication by $\alpha$,
+    \[
+        R_\alpha\colon\C G\to\C G,\qquad z\mapsto z\alpha.
+    \]
+    By Lemma~\ref{lem:13.11}, this is a $\C G$-module homomorphism. On the copy of $S$ we have $R_\alpha(s)=s\alpha=\alpha s=\lambda s$, so $\lambda$ is an eigenvalue of $R_\alpha$. With respect to the basis $G$ of $\C G$, each basis element $h$ is sent to
+    \[
+        h\alpha=\sum_{x\in K}hx.
+    \]
+    The elements $hx$ are distinct as $x$ ranges over $K$, so the matrix of $R_\alpha$ has only $0$ and $1$ as entries. Its characteristic polynomial is therefore monic with coefficients in $\Z$, and it has $\lambda$ as a zero. Hence $\lambda=|G:C_G(g)|\chi(g)/\chi(1)$ is an algebraic integer.
 \end{proof}
 
 \subsubsection*{Degrees of irreducible characters divide \texorpdfstring{$|G|$}{|G|}}
@@ -65,6 +116,23 @@ If $\chi$ is an irreducible character of $G$ and $g \in G$, then $|G : C_G(g)|\c
 Let $\chi$ be an irreducible character of $G$. Then $\chi(1)$ divides $|G|$.
 \end{proposition}
 \begin{proof}
+    Let $g_1,\ldots,g_r$ be representatives of the conjugacy classes of $G$, and let $K_i$ be the class of $g_i$. By the \nameref{thm:row-orthogonality},
+    \[
+        1=(\chi,\chi)
+        =\frac{1}{|G|}\sum_{i=1}^{r}|K_i|\chi(g_i)\overline{\chi(g_i)}.
+    \]
+    Therefore
+    \[
+        \frac{|G|}{\chi(1)}
+        =\sum_{i=1}^{r}
+        \left(\frac{|K_i|\chi(g_i)}{\chi(1)}\right)
+        \overline{\chi(g_i)}.
+    \]
+    The first factor in every summand is an algebraic integer by Lemma~\ref{lem:17.4}. By part~(iv) of Proposition~\ref{prop:14.4}, the second factor is
+    \[
+        \overline{\chi(g_i)}=\chi(g_i^{-1}),
+    \]
+    which is an algebraic integer by Proposition~\ref{prop:17.3}. Thus Proposition~\ref{prop:17.2} shows that $|G|/\chi(1)$ is an algebraic integer. It is rational, so Lemma~\ref{lem:17.1} gives $|G|/\chi(1)\in\Z$. Therefore $\chi(1)$ divides $|G|$.
 \end{proof}
 
 \subsubsection*{Toward Burnside's \texorpdfstring{$p^a q^b$}{p\^a q\^b} theorem}
@@ -77,6 +145,16 @@ Let $\chi$ be an irreducible character of $G$. Then $\chi(1)$ divides $|G|$.
 Let $\chi$ be a character of $G$, let $g \in G$, and define $\gamma = \chi(g)/\chi(1)$. If $\gamma$ is a non-zero algebraic integer, then $|\gamma| = 1$.
 \end{lemma}
 \begin{proof}
+    Put $d=\chi(1)$ and $n=o(g)$. By part~(iii) of Proposition~\ref{prop:14.4}, the number $\chi(g)$ is a sum of $d$ $n$th roots of unity. Hence $\gamma$ is an average of $d$ complex numbers of absolute value $1$, so
+    \[
+        |\gamma|\leq1.
+    \]
+    Suppose for a contradiction that $0<|\gamma|<1$. Let $\zeta_n$ be a primitive $n$th root of unity and put $L=\Q(\zeta_n)$. Since $\gamma\in L$ and $L/\Q$ is Galois, every algebraic conjugate of $\gamma$ has the form $\sigma(\gamma)$ for some $\sigma\in\operatorname{Gal}(L/\Q)$. Such an automorphism sends $n$th roots of unity to $n$th roots of unity, so every conjugate of $\gamma$ is again an average of $d$ roots of unity and therefore has absolute value at most $1$.\\
+    Let $\gamma_1,\ldots,\gamma_s$ be the distinct algebraic conjugates of $\gamma$, with $\gamma_1=\gamma$. Then
+    \[
+        \left|\gamma_1\cdots\gamma_s\right|<1.
+    \]
+    On the other hand, the minimal polynomial of the algebraic integer $\gamma$ is monic with coefficients in $\Z$, so its constant term is, up to sign, $\gamma_1\cdots\gamma_s$. This product is a non-zero integer because $\gamma\neq0$, which is impossible. Hence $|\gamma|$ cannot be strictly smaller than $1$, and so $|\gamma|=1$.
 \end{proof}
 
 \subsubsection*{A classical theorem of Burnside}
@@ -89,6 +167,30 @@ Let $\chi$ be a character of $G$, let $g \in G$, and define $\gamma = \chi(g)/\c
 If $G$ has a conjugacy class of non-trivial prime power order, then $G$ is not simple.
 \end{theorem}
 \begin{proof}
+    Suppose for a contradiction that $G$ is simple. Let $K$ be a conjugacy class of some $1\neq g\in G$, and write $|K|=p^n$ with $p$ prime and $n\geq1$. Since $K$ has more than one element, $G$ cannot be abelian; thus $G$ is non-abelian. Let $\chi_1,\ldots,\chi_r$ be the irreducible characters of $G$, where $\chi_1$ is the principal character. Applying the \nameref{thm:col-orthogonality} to $g$ and $1$ gives
+    \[
+        0=\sum_{i=1}^{r}\chi_i(g)\chi_i(1)
+        =1+\sum_{i=2}^{r}\chi_i(g)\chi_i(1).
+    \]
+    Dividing by $p$, we obtain
+    \[
+        -\frac{1}{p}=\sum_{i=2}^{r}\frac{\chi_i(g)\chi_i(1)}{p}.
+    \]
+    The number $-1/p$ is rational but not an integer, so Lemma~\ref{lem:17.1} says that it is not an algebraic integer. By Proposition~\ref{prop:17.2}, at least one summand on the right is not an algebraic integer; fix such an index $i>1$. Since $\chi_i(g)$ is an algebraic integer by Proposition~\ref{prop:17.3}, we must have $p\nmid\chi_i(1)$, for otherwise $\chi_i(g)\chi_i(1)/p$ would be an algebraic integer. Also, $\chi_i(g)\neq0$, since $0$ is an algebraic integer.\\
+    Now $|K|=p^n$ is coprime to $\chi_i(1)$, so there are integers $a,b$ such that
+    \[
+        a|K|+b\chi_i(1)=1.
+    \]
+    Multiplying this equation by $\chi_i(g)/\chi_i(1)$ gives
+    \[
+        \frac{\chi_i(g)}{\chi_i(1)}
+        =a\frac{|K|\chi_i(g)}{\chi_i(1)}+b\chi_i(g).
+    \]
+    The first term on the right is an algebraic integer by Lemma~\ref{lem:17.4}, and the second is one by Proposition~\ref{prop:17.3}. Thus $\chi_i(g)/\chi_i(1)$ is a non-zero algebraic integer. Lemma~\ref{lem:17.6} now gives
+    \[
+        |\chi_i(g)|=\chi_i(1).
+    \]
+    Hence $g\in Z_i=\{x\in G\mid |\chi_i(x)|=\chi_i(1)\}$. But Corollary~\ref{cor:15.11} gives $Z_i=1$ for $i>1$ when $G$ is non-abelian and simple, contradicting $g\neq1$. Therefore $G$ is not simple.
 \end{proof}
 
 \subsubsection*{Burnside's famous \texorpdfstring{$p^a q^b$}{p\^a q\^b} theorem}
@@ -107,7 +209,7 @@ If $|G| = p^a q^b$, where $p$ and $q$ are primes, then $G$ is solvable.
     \[
         \lvert G\rvert=1+\sum_i \lvert C_i\rvert
     \]
-    with each $\lvert C_i\rvert$ divisible by $pq$, a contradiction since $pq$ divides $\lvert G\rvert$. Therefore $G$ has a non-trivial conjugacy class whose order is not divisible by both $p$ and $q$. Since every conjugacy class size divides $\lvert G\rvert$, this class has prime power order. Theorem~\ref{thm:17.7} then implies that $G$ is not simple, contradicting our assumption. Thus the non-abelian simple case cannot occur, and $G$ is solvable.
+    with each $\lvert C_i\rvert$ divisible by $pq$, a contradiction since $pq$ divides $\lvert G\rvert$. Therefore some nonidentity element of $G$ has a conjugacy class whose order is not divisible by both $p$ and $q$. Since $Z(G)=1$, this class has more than one element. Every conjugacy class size divides $\lvert G\rvert$, so this class has non-trivial prime power order. Theorem~\ref{thm:17.7} then implies that $G$ is not simple, contradicting our assumption. Thus the non-abelian simple case cannot occur, and $G$ is solvable.
 \end{proof}
 
 \subsubsection*{Beyond two primes}
@@ -125,6 +227,20 @@ If $|G| = p^a q^b$, where $p$ and $q$ are primes, then $G$ is solvable.
 For $x \in \C$, let $\Z[x] = \{f(x) \mid f(X) \in \Z[X]\}$; this is an abelian subgroup of $\C$. Show that $x$ is an algebraic integer iff $\Z[x]$ is finitely generated.
 \end{exercise}
 \begin{solution}
+    Suppose first that $x$ is an algebraic integer. Choose a monic relation
+    \[
+        x^n+c_{n-1}x^{n-1}+\cdots+c_0=0
+    \]
+    with every $c_i\in\Z$. It expresses $x^n$ as an integral linear combination of $1,x,\ldots,x^{n-1}$. Multiplying this relation by further powers of $x$ shows that every power of $x$ is an integral linear combination of those same $n$ elements. Hence $\Z[x]$ is finitely generated as an abelian group.\\
+    Conversely, suppose that $\Z[x]$ is generated as an abelian group by $a_1,\ldots,a_t$. Since $xa_j\in\Z[x]$ for every $j$, choose integers $m_{ij}$ such that
+    \[
+        xa_j=\sum_{i=1}^{t}m_{ij}a_i.
+    \]
+    Let $M=(m_{ij})$ and $v=(a_1,\ldots,a_t)^{\mathsf{T}}$. Then $M^{\mathsf{T}}v=xv$. The vector $v$ is non-zero because $1\in\Z[x]$, so $x$ is an eigenvalue of the integral matrix $M^{\mathsf{T}}$. Therefore
+    \[
+        \det(XI-M^{\mathsf{T}})\in\Z[X]
+    \]
+    is monic and vanishes at $x$. Thus $x$ is an algebraic integer.
 \end{solution}
 
 \begin{exercise}
@@ -132,6 +248,12 @@ For $x \in \C$, let $\Z[x] = \{f(x) \mid f(X) \in \Z[X]\}$; this is an abelian s
 (cont.) Show that the set of algebraic integers is a subring of $\C$. (\textsc{Hint}: Use Exercise~\ref{ex:17.1} and the well-known fact (see [1, p.~145]) that any subgroup of a finitely generated abelian group is finitely generated.)
 \end{exercise}
 \begin{solution}
+    Let $x$ and $y$ be algebraic integers. By Exercise~\ref{ex:17.1}, choose additive generators $a_1,\ldots,a_s$ of $\Z[x]$ and $b_1,\ldots,b_t$ of $\Z[y]$. Every element of $\Z[x,y]$ is an integral linear combination of the products
+    \[
+        a_i b_j,\qquad 1\leq i\leq s,\quad 1\leq j\leq t:
+    \]
+    indeed, each monomial $x^r y^u$ is a product of an element of $\Z[x]$ and an element of $\Z[y]$. Thus $\Z[x,y]$ is finitely generated as an abelian group.\\
+    The groups $\Z[x+y]$ and $\Z[xy]$ are subgroups of $\Z[x,y]$. Every subgroup of a finitely generated abelian group is finitely generated, so Exercise~\ref{ex:17.1} shows that $x+y$ and $xy$ are algebraic integers. Also, $\Z[-x]=\Z[x]$, so $-x$ is an algebraic integer; and $0$ and $1$ are zeros of $X$ and $X-1$. Hence the algebraic integers form a subring of $\C$.
 \end{solution}
 
 \begin{exercise}
@@ -143,6 +265,49 @@ Let $G$ be a finite group, and define a function $\psi \colon G \to \C$ by setti
 which in light of Proposition~\ref{prop:17.5} shows that $\psi$ is a character. (Compare with Exercise~\ref{ex:3.6}.)
 \end{exercise}
 \begin{solution}
+    First, $\psi$ is a class function. Indeed, for $h\in G$, simultaneous conjugation gives a bijection
+    \[
+        (x,y)\longmapsto(hxh^{-1},hyh^{-1})
+    \]
+    from the pairs satisfying $[x,y]=g$ to the pairs satisfying $[x,y]=hgh^{-1}$. By Corollary~\ref{cor:15.1}, we may therefore write
+    \[
+        \psi=\sum_{i=1}^{r}(\psi,\chi_i)\chi_i.
+    \]
+    We calculate these coefficients. Let $S_i$ be a simple $\C G$-module affording $\chi_i$, let $d_i=\chi_i(1)$, and let $\rho_i\colon G\to\GL(S_i)$ be the corresponding representation. For each $y\in G$, define
+    \[
+        T_y=\sum_{x\in G}\rho_i(xyx^{-1}).
+    \]
+    If $h\in G$, then
+    \[
+        \rho_i(h)T_y\rho_i(h)^{-1}
+        =\sum_{x\in G}\rho_i(hxyx^{-1}h^{-1})
+        =T_y,
+    \]
+    because $hx$ runs through $G$ as $x$ does. Thus $T_y\in\End_{\C G}(S_i)$, and Lemma~\ref{lem:13.14} gives $T_y=c_yI$ for some $c_y\in\C$. Taking traces yields
+    \[
+        c_yd_i=\operatorname{tr}(T_y)
+        =\sum_{x\in G}\chi_i(xyx^{-1})
+        =|G|\chi_i(y),
+    \]
+    so $c_y=|G|\chi_i(y)/d_i$. Using $[x,y]=xyx^{-1}y^{-1}$, we now obtain
+    \[
+        \sum_{x,y\in G}\chi_i([x,y])
+        =\sum_{y\in G}\operatorname{tr}\bigl(T_y\rho_i(y)^{-1}\bigr)
+        =\frac{|G|}{d_i}\sum_{y\in G}\chi_i(y)\chi_i(y^{-1})
+        =\frac{|G|^2}{d_i}.
+    \]
+    The last equality uses part~(iv) of Proposition~\ref{prop:14.4} and the \nameref{thm:row-orthogonality}. Since $[x,y]^{-1}=[y,x]$, the same calculation gives
+    \[
+        (\psi,\chi_i)
+        =\frac{1}{|G|}\sum_{x,y\in G}\overline{\chi_i([x,y])}
+        =\frac{1}{|G|}\sum_{x,y\in G}\chi_i([x,y]^{-1})
+        =\frac{|G|}{d_i}.
+    \]
+    Consequently,
+    \[
+        \psi=\sum_{i=1}^{r}\frac{|G|}{\chi_i(1)}\chi_i.
+    \]
+    Proposition~\ref{prop:17.5} shows that every coefficient is a positive integer. Hence the right-hand side is a character, namely that of the direct sum containing $|G|/\chi_i(1)$ copies of $S_i$ for each $i$.
 \end{solution}
 
 \end{document}
